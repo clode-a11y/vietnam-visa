@@ -1,0 +1,2119 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Виза во Вьетнам 2025</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* Tropical Gradient Colors */
+            --green-light: #86EFAC;
+            --green: #22C55E;
+            --green-dark: #166534;
+            
+            --pink-light: #FECDD3;
+            --pink: #FB7185;
+            --pink-dark: #E11D48;
+            
+            --orange-light: #FED7AA;
+            --orange: #F97316;
+            --orange-dark: #EA580C;
+            
+            /* Base Colors */
+            --white: #FFFFFF;
+            --black: #1A1A1A;
+            
+            /* Text */
+            --text-primary: #1A1A1A;
+            --text-secondary: rgba(26, 26, 26, 0.7);
+            --text-muted: rgba(26, 26, 26, 0.5);
+            --text-inverse: #FFFFFF;
+            
+            /* Cards */
+            --card-bg: rgba(255, 255, 255, 0.85);
+            --card-bg-solid: #FFFFFF;
+            --card-border: rgba(255, 255, 255, 0.5);
+            --card-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+            
+            /* Gradients */
+            --gradient-main: linear-gradient(135deg, #86EFAC 0%, #FECDD3 50%, #FED7AA 100%);
+            --gradient-accent: linear-gradient(135deg, #22C55E 0%, #FB7185 50%, #F97316 100%);
+            --gradient-hero: linear-gradient(180deg, #86EFAC 0%, #FECDD3 100%);
+            --gradient-middle: linear-gradient(180deg, #FECDD3 0%, #FED7AA 100%);
+            --gradient-end: linear-gradient(180deg, #FED7AA 0%, #FDBA74 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Animated Gradient Background */
+        .gradient-bg {
+            position: fixed;
+            inset: 0;
+            background: linear-gradient(
+                135deg,
+                #86EFAC 0%,
+                #A7F3D0 15%,
+                #FECDD3 35%,
+                #FBCFE8 50%,
+                #FED7AA 70%,
+                #FDBA74 85%,
+                #FED7AA 100%
+            );
+            background-size: 400% 400%;
+            animation: gradientFlow 20s ease infinite;
+            z-index: -1;
+        }
+
+        @keyframes gradientFlow {
+            0% { background-position: 0% 50%; }
+            25% { background-position: 50% 100%; }
+            50% { background-position: 100% 50%; }
+            75% { background-position: 50% 0%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Floating Shapes */
+        .floating-shapes {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .shape {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.5;
+            animation: float 20s ease-in-out infinite;
+        }
+
+        .shape-1 {
+            width: 600px;
+            height: 600px;
+            background: var(--green-light);
+            top: -20%;
+            left: -10%;
+            animation-delay: 0s;
+        }
+
+        .shape-2 {
+            width: 500px;
+            height: 500px;
+            background: var(--pink-light);
+            top: 30%;
+            right: -15%;
+            animation-delay: -5s;
+        }
+
+        .shape-3 {
+            width: 400px;
+            height: 400px;
+            background: var(--orange-light);
+            bottom: -10%;
+            left: 20%;
+            animation-delay: -10s;
+        }
+
+        .shape-4 {
+            width: 300px;
+            height: 300px;
+            background: var(--pink);
+            top: 60%;
+            left: -5%;
+            animation-delay: -15s;
+            opacity: 0.3;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            25% { transform: translate(30px, -30px) rotate(5deg); }
+            50% { transform: translate(-20px, 20px) rotate(-5deg); }
+            75% { transform: translate(20px, 30px) rotate(3deg); }
+        }
+
+        /* Scroll Reveal */
+        .reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .reveal-delay-1 { transition-delay: 0.1s; }
+        .reveal-delay-2 { transition-delay: 0.2s; }
+        .reveal-delay-3 { transition-delay: 0.3s; }
+        .reveal-delay-4 { transition-delay: 0.4s; }
+
+        /* ===== HEADER ===== */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+            transition: all 0.3s ease;
+        }
+
+        header.scrolled {
+            background: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 1.25rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            font-size: 1.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--green-dark);
+        }
+
+        .header-cta {
+            padding: 0.75rem 1.5rem;
+            background: var(--gradient-accent);
+            color: var(--text-inverse);
+            border-radius: 100px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(34, 197, 94, 0.3);
+        }
+
+        .header-cta:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 30px rgba(34, 197, 94, 0.4);
+        }
+
+        /* ===== HERO ===== */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 8rem 2rem 4rem;
+            position: relative;
+        }
+
+        .hero-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            width: 100%;
+        }
+
+        .hero-content {
+            max-width: 600px;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.6rem 1.2rem;
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--card-border);
+            border-radius: 100px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--green-dark);
+            margin-bottom: 2rem;
+            box-shadow: var(--card-shadow);
+        }
+
+        .hero-badge-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--green);
+            border-radius: 50%;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.6; transform: scale(1.3); }
+        }
+
+        .hero h1 {
+            font-size: clamp(3rem, 8vw, 5.5rem);
+            font-weight: 900;
+            line-height: 1.05;
+            letter-spacing: -0.03em;
+            margin-bottom: 1.5rem;
+            color: var(--text-primary);
+        }
+
+        .hero h1 .gradient {
+            background: var(--gradient-accent);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: 1.35rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto 3rem;
+            line-height: 1.7;
+        }
+
+        .hero-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 1.25rem 2.5rem;
+            background: var(--gradient-accent);
+            color: var(--text-inverse);
+            border-radius: 100px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 40px rgba(34, 197, 94, 0.3);
+        }
+
+        .hero-cta:hover {
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 0 20px 50px rgba(34, 197, 94, 0.4);
+        }
+
+        /* Vietnam Map Styles */
+        .hero-map {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .vietnam-map {
+            width: 100%;
+            max-width: 350px;
+            height: auto;
+            filter: drop-shadow(0 20px 40px rgba(34, 197, 94, 0.2));
+            animation: floatMap 6s ease-in-out infinite;
+        }
+
+        @keyframes floatMap {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+
+        .map-shape {
+            transition: all 0.4s ease;
+        }
+
+        .vietnam-map:hover .map-shape {
+            filter: brightness(1.1);
+        }
+
+        .city-marker {
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .city-marker:hover {
+            transform: scale(1.3);
+        }
+
+        .city-marker circle:first-child {
+            animation: pulse-marker 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse-marker {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        .city-labels text {
+            font-size: 11px;
+            opacity: 0.9;
+            transition: all 0.3s ease;
+        }
+
+        .plane {
+            animation: fly 4s ease-in-out infinite;
+        }
+
+        .plane-1 {
+            animation-delay: 0s;
+        }
+
+        .plane-2 {
+            animation-delay: 2s;
+        }
+
+        @keyframes fly {
+            0%, 100% { 
+                transform: translate(0, 0) rotate(-30deg); 
+                opacity: 0.6;
+            }
+            50% { 
+                transform: translate(10px, -10px) rotate(-25deg); 
+                opacity: 0.9;
+            }
+        }
+
+        /* Map Badges */
+        .map-decorations {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+        }
+
+        .map-badge {
+            position: absolute;
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--card-border);
+            padding: 0.6rem 1rem;
+            border-radius: 50px;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            animation: floatBadge 5s ease-in-out infinite;
+            pointer-events: auto;
+            transition: transform 0.3s ease;
+        }
+
+        .map-badge:hover {
+            transform: scale(1.1);
+        }
+
+        .badge-icon {
+            font-size: 1.2rem;
+        }
+
+        .badge-text {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .map-badge-1 {
+            top: 10%;
+            right: -10%;
+            animation-delay: 0s;
+        }
+
+        .map-badge-2 {
+            bottom: 30%;
+            left: -15%;
+            animation-delay: 1.5s;
+        }
+
+        .map-badge-3 {
+            bottom: 5%;
+            right: 5%;
+            animation-delay: 3s;
+        }
+
+        @keyframes floatBadge {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .hero-image {
+            margin-top: 4rem;
+            position: relative;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 40px 80px rgba(0, 0, 0, 0.15);
+        }
+
+        .hero-image img {
+            width: 100%;
+            max-width: 900px;
+            height: auto;
+            display: block;
+        }
+
+        .hero-image::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, transparent 60%, rgba(0,0,0,0.3) 100%);
+            pointer-events: none;
+        }
+
+        /* ===== STATS ===== */
+        .stats-section {
+            padding: 6rem 2rem;
+            position: relative;
+        }
+
+        .stats-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-label {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--green-dark);
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            margin-bottom: 1rem;
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            color: var(--text-primary);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.5rem;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .stat-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--card-border);
+            border-radius: 24px;
+            padding: 2.5rem;
+            text-align: center;
+            transition: all 0.4s ease;
+            box-shadow: var(--card-shadow);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.15);
+        }
+
+        .stat-card:nth-child(1):hover { border-color: var(--green); }
+        .stat-card:nth-child(2):hover { border-color: var(--pink); }
+        .stat-card:nth-child(3):hover { border-color: var(--orange); }
+        .stat-card:nth-child(4):hover { border-color: var(--green); }
+
+        .stat-value {
+            font-size: 3.5rem;
+            font-weight: 900;
+            background: var(--gradient-accent);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            font-weight: 600;
+        }
+
+        /* ===== FEATURES ===== */
+        .features-section {
+            padding: 8rem 2rem;
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 5rem;
+        }
+
+        .section-subtitle {
+            font-size: 1.15rem;
+            color: var(--text-secondary);
+            margin-top: 0.5rem;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .feature-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--card-border);
+            border-radius: 28px;
+            padding: 2.5rem;
+            transition: all 0.4s ease;
+            box-shadow: var(--card-shadow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient-accent);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.12);
+        }
+
+        .feature-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .feature-icon {
+            width: 70px;
+            height: 70px;
+            background: var(--gradient-accent);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 10px 30px rgba(34, 197, 94, 0.2);
+        }
+
+        .feature-card h3 {
+            font-size: 1.4rem;
+            font-weight: 800;
+            margin-bottom: 0.75rem;
+            color: var(--text-primary);
+        }
+
+        .feature-card p {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            line-height: 1.7;
+        }
+
+        .feature-card.large {
+            grid-column: span 2;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .visa-types-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .visa-type-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1.25rem;
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: 16px;
+            transition: all 0.3s ease;
+            border: 1px solid transparent;
+        }
+
+        .visa-type-item:hover {
+            background: var(--card-bg-solid);
+            transform: translateX(10px);
+            border-color: var(--green-light);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .visa-type-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--gradient-accent);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .visa-type-info h4 {
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 0.2rem;
+        }
+
+        .visa-type-info p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        /* ===== PROCESS ===== */
+        .process-section {
+            padding: 8rem 2rem;
+        }
+
+        .process-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .process-card {
+            text-align: center;
+            position: relative;
+        }
+
+        .process-number {
+            width: 80px;
+            height: 80px;
+            background: var(--gradient-accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            font-weight: 900;
+            color: var(--text-inverse);
+            margin: 0 auto 1.5rem;
+            box-shadow: 0 15px 40px rgba(34, 197, 94, 0.3);
+            position: relative;
+            z-index: 1;
+        }
+
+        .process-card:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            top: 40px;
+            left: calc(50% + 50px);
+            width: calc(100% - 80px);
+            height: 3px;
+            background: linear-gradient(90deg, var(--green-light), var(--pink-light), var(--orange-light));
+            border-radius: 2px;
+        }
+
+        .process-card h4 {
+            font-size: 1.15rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+
+        .process-card p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        /* ===== CALCULATOR ===== */
+        .calculator-section {
+            padding: 8rem 2rem;
+        }
+
+        .calculator-container {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .calculator-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--card-border);
+            border-radius: 32px;
+            padding: 3rem;
+            box-shadow: var(--card-shadow);
+        }
+
+        .calc-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .calc-field label {
+            display: block;
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--text-secondary);
+            margin-bottom: 0.75rem;
+        }
+
+        .calc-field input,
+        .calc-field select {
+            width: 100%;
+            padding: 1rem 1.25rem;
+            background: rgba(255, 255, 255, 0.8);
+            border: 2px solid rgba(0, 0, 0, 0.08);
+            border-radius: 14px;
+            color: var(--text-primary);
+            font-size: 1rem;
+            font-family: inherit;
+            transition: all 0.3s ease;
+        }
+
+        .calc-field input:focus,
+        .calc-field select:focus {
+            outline: none;
+            border-color: var(--green);
+            background: var(--card-bg-solid);
+            box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.15);
+        }
+
+        .calc-btn {
+            width: 100%;
+            padding: 1.25rem;
+            background: var(--gradient-accent);
+            border: none;
+            border-radius: 100px;
+            color: var(--text-inverse);
+            font-size: 1.1rem;
+            font-weight: 700;
+            font-family: inherit;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 40px rgba(34, 197, 94, 0.3);
+        }
+
+        .calc-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 50px rgba(34, 197, 94, 0.4);
+        }
+
+        .calc-result {
+            margin-top: 2rem;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: 20px;
+            text-align: center;
+            display: none;
+            border: 1px solid var(--card-border);
+        }
+
+        .calc-result.show {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .result-emoji { font-size: 4rem; margin-bottom: 1rem; }
+        
+        .result-visa {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .result-desc {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+        }
+
+        .result-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+        }
+
+        .result-stat {
+            padding: 1rem;
+            background: var(--card-bg-solid);
+            border-radius: 14px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .result-stat-value {
+            font-size: 1.5rem;
+            font-weight: 800;
+            background: var(--gradient-accent);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .result-stat-label {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        /* ===== WIDGETS ===== */
+        .widgets-section {
+            padding: 6rem 2rem;
+        }
+
+        .widgets-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .widget-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--card-border);
+            border-radius: 24px;
+            padding: 2rem;
+            box-shadow: var(--card-shadow);
+        }
+
+        .widget-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .widget-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--gradient-accent);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .widget-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .currency-inputs {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .currency-row {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .currency-input {
+            flex: 1;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.8);
+            border: 2px solid rgba(0, 0, 0, 0.08);
+            border-radius: 12px;
+            color: var(--text-primary);
+            font-size: 1.2rem;
+            font-weight: 700;
+            font-family: inherit;
+        }
+
+        .currency-input:focus {
+            outline: none;
+            border-color: var(--green);
+        }
+
+        .currency-label {
+            width: 50px;
+            text-align: center;
+            font-weight: 700;
+            color: var(--text-muted);
+        }
+
+        .weather-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+        }
+
+        .weather-item {
+            text-align: center;
+            padding: 1.25rem;
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .weather-item:hover {
+            transform: translateY(-5px);
+            background: var(--card-bg-solid);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .weather-icon { font-size: 2rem; margin-bottom: 0.5rem; }
+        
+        .weather-temp { 
+            font-size: 1.5rem; 
+            font-weight: 800; 
+            background: var(--gradient-accent);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .weather-city { 
+            font-size: 0.9rem; 
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+
+        /* ===== FAQ ===== */
+        .faq-section {
+            padding: 8rem 2rem;
+        }
+
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: var(--card-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
+            margin-bottom: 1rem;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .faq-item:hover {
+            box-shadow: var(--card-shadow);
+        }
+
+        .faq-question {
+            width: 100%;
+            padding: 1.5rem 2rem;
+            background: none;
+            border: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-family: inherit;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            text-align: left;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .faq-question:hover {
+            color: var(--green-dark);
+        }
+
+        .faq-icon {
+            width: 32px;
+            height: 32px;
+            background: var(--gradient-accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-inverse);
+            font-size: 1.2rem;
+            font-weight: 700;
+            transition: transform 0.3s ease;
+            flex-shrink: 0;
+        }
+
+        .faq-item.active .faq-icon {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 300px;
+        }
+
+        .faq-answer-content {
+            padding: 0 2rem 1.5rem;
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        /* ===== CTA ===== */
+        .cta-section {
+            padding: 8rem 2rem;
+            text-align: center;
+        }
+
+        .cta-emoji {
+            font-size: 5rem;
+            margin-bottom: 2rem;
+        }
+
+        .cta-title {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 900;
+            letter-spacing: -0.02em;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .cta-subtitle {
+            font-size: 1.3rem;
+            color: var(--text-secondary);
+            margin-bottom: 3rem;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 1.25rem 2.5rem;
+            background: var(--gradient-accent);
+            color: var(--text-inverse);
+            border-radius: 100px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 15px 50px rgba(34, 197, 94, 0.3);
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 0 20px 60px rgba(34, 197, 94, 0.4);
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            padding: 4rem 2rem 2rem;
+            background: rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(10px);
+        }
+
+        .footer-content {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-brand h3 {
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .footer-brand p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        .footer-links h4 {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 1rem;
+        }
+
+        .footer-links a {
+            display: block;
+            color: var(--text-secondary);
+            text-decoration: none;
+            padding: 0.4rem 0;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--green-dark);
+        }
+
+        .footer-bottom {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(0, 0, 0, 0.08);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-bottom p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* ===== CHATBOT ===== */
+        .chatbot-toggle {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 60px;
+            height: 60px;
+            background: var(--gradient-accent);
+            border: none;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 1000;
+            box-shadow: 0 10px 40px rgba(34, 197, 94, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        .chatbot-toggle:hover {
+            transform: scale(1.1);
+        }
+
+        .chatbot-window {
+            position: fixed;
+            bottom: 6rem;
+            right: 2rem;
+            width: 380px;
+            max-height: 500px;
+            background: var(--card-bg-solid);
+            border: 1px solid var(--card-border);
+            border-radius: 24px;
+            display: none;
+            flex-direction: column;
+            z-index: 1000;
+            overflow: hidden;
+            box-shadow: 0 25px 80px rgba(0, 0, 0, 0.2);
+        }
+
+        .chatbot-window.open {
+            display: flex;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .chatbot-header {
+            padding: 1.25rem;
+            background: var(--gradient-accent);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .chatbot-avatar {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        .chatbot-name { font-weight: 700; color: var(--text-inverse); }
+        .chatbot-status { font-size: 0.8rem; color: rgba(255, 255, 255, 0.8); }
+
+        .chatbot-messages {
+            flex: 1;
+            padding: 1rem;
+            overflow-y: auto;
+            max-height: 280px;
+            background: #FAFAFA;
+        }
+
+        .chat-message {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .chat-message.user { flex-direction: row-reverse; }
+
+        .message-avatar {
+            width: 30px;
+            height: 30px;
+            background: var(--green-light);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            flex-shrink: 0;
+        }
+
+        .message-bubble {
+            max-width: 80%;
+            padding: 0.75rem 1rem;
+            border-radius: 16px;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .chat-message.bot .message-bubble {
+            background: var(--card-bg-solid);
+            color: var(--text-primary);
+            border-bottom-left-radius: 4px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .chat-message.user .message-bubble {
+            background: var(--gradient-accent);
+            color: var(--text-inverse);
+            border-bottom-right-radius: 4px;
+        }
+
+        .quick-btns {
+            padding: 0.75rem 1rem;
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            background: #FAFAFA;
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .quick-btn {
+            padding: 0.5rem 1rem;
+            background: var(--card-bg-solid);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            border-radius: 100px;
+            color: var(--text-secondary);
+            font-size: 0.8rem;
+            font-family: inherit;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .quick-btn:hover {
+            background: var(--green);
+            color: var(--text-inverse);
+            border-color: var(--green);
+        }
+
+        .chatbot-input {
+            padding: 1rem;
+            background: var(--card-bg-solid);
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .chatbot-input input {
+            flex: 1;
+            padding: 0.75rem 1rem;
+            background: #F5F5F5;
+            border: 2px solid transparent;
+            border-radius: 100px;
+            color: var(--text-primary);
+            font-family: inherit;
+            transition: all 0.3s ease;
+        }
+
+        .chatbot-input input:focus {
+            outline: none;
+            border-color: var(--green);
+            background: var(--card-bg-solid);
+        }
+
+        .chatbot-input button {
+            width: 40px;
+            height: 40px;
+            background: var(--gradient-accent);
+            border: none;
+            border-radius: 50%;
+            color: var(--text-inverse);
+            font-size: 1rem;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .chatbot-input button:hover {
+            transform: scale(1.1);
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 1024px) {
+            .hero-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .hero-content {
+                max-width: 100%;
+            }
+            
+            .hero-map {
+                max-width: 300px;
+                margin: 0 auto;
+            }
+            
+            .map-badge-1 { right: 0; }
+            .map-badge-2 { left: 0; }
+            
+            .features-grid { grid-template-columns: 1fr; }
+            .feature-card.large { grid-column: span 1; grid-template-columns: 1fr; }
+            .process-grid { grid-template-columns: repeat(2, 1fr); }
+            .process-card::after { display: none; }
+            .footer-content { grid-template-columns: 1fr 1fr; }
+        }
+
+        @media (max-width: 768px) {
+            header { padding: 1rem 1.5rem; }
+            .nav-links { display: none; }
+            .hero h1 { font-size: 2.5rem; }
+            .hero-container { gap: 2rem; }
+            .hero-map { order: -1; }
+            .vietnam-map { max-width: 250px; }
+            .map-badge { padding: 0.5rem 0.8rem; }
+            .badge-text { font-size: 0.75rem; }
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+            .process-grid { grid-template-columns: 1fr; }
+            .calc-grid { grid-template-columns: 1fr; }
+            .result-stats { grid-template-columns: 1fr; }
+            .widgets-grid { grid-template-columns: 1fr; }
+            .footer-content { grid-template-columns: 1fr; text-align: center; }
+            .footer-bottom { flex-direction: column; gap: 1rem; text-align: center; }
+            .chatbot-window { width: calc(100% - 2rem); right: 1rem; left: 1rem; }
+        }
+
+        @media (max-width: 480px) {
+            .stats-grid { grid-template-columns: 1fr; }
+            .weather-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Animated Gradient Background -->
+    <div class="gradient-bg"></div>
+    
+    <!-- Floating Shapes -->
+    <div class="floating-shapes">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
+        <div class="shape shape-4"></div>
+    </div>
+
+    <!-- Header -->
+    <header id="header">
+        <a href="#" class="logo">
+            <span class="logo-icon">🇻🇳</span>
+            VietVisa
+        </a>
+        <ul class="nav-links">
+            <li><a href="#features">Типы виз</a></li>
+            <li><a href="#process">Процесс</a></li>
+            <li><a href="#calculator">Калькулятор</a></li>
+            <li><a href="#faq">FAQ</a></li>
+        </ul>
+        <a href="#calculator" class="header-cta">Рассчитать визу</a>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-container">
+        <div class="hero-content">
+            <div class="hero-badge reveal">
+                <span class="hero-badge-dot"></span>
+                Актуально на 2025 год
+            </div>
+            <h1 class="reveal reveal-delay-1">Виза во <span class="gradient">Вьетнам</span></h1>
+            <p class="hero-subtitle reveal reveal-delay-2">Полный гайд для россиян: безвизовый въезд до 45 дней, электронная виза и виза по прилёту</p>
+            <a href="#calculator" class="hero-cta reveal reveal-delay-3">
+                Рассчитать визу
+                <span>→</span>
+            </a>
+        </div>
+        <div class="hero-map reveal reveal-delay-4">
+            <!-- Стилизованная карта Вьетнама -->
+            <svg class="vietnam-map" viewBox="0 0 300 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <!-- Градиент для карты -->
+                    <linearGradient id="mapGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style="stop-color:#22C55E"/>
+                        <stop offset="50%" style="stop-color:#FB7185"/>
+                        <stop offset="100%" style="stop-color:#F97316"/>
+                    </linearGradient>
+                    <!-- Свечение -->
+                    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+                        <feGaussianBlur stdDeviation="8" result="coloredBlur"/>
+                        <feMerge>
+                            <feMergeNode in="coloredBlur"/>
+                            <feMergeNode in="SourceGraphic"/>
+                        </feMerge>
+                    </filter>
+                    <!-- Тень -->
+                    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+                        <feDropShadow dx="0" dy="10" stdDeviation="20" flood-color="#22C55E" flood-opacity="0.3"/>
+                    </filter>
+                </defs>
+                
+                <!-- Основная форма Вьетнама -->
+                <path class="map-shape" d="
+                    M 145 25
+                    C 160 28, 175 35, 185 45
+                    C 195 55, 200 70, 195 85
+                    C 190 100, 175 110, 170 125
+                    C 165 140, 170 155, 180 170
+                    C 190 185, 200 195, 195 215
+                    C 190 235, 175 250, 170 270
+                    C 165 290, 170 310, 175 330
+                    C 180 350, 175 370, 165 390
+                    C 155 410, 140 425, 125 440
+                    C 110 455, 90 465, 75 470
+                    C 60 475, 45 470, 40 455
+                    C 35 440, 45 420, 55 400
+                    C 65 380, 75 360, 80 340
+                    C 85 320, 80 300, 85 280
+                    C 90 260, 100 245, 105 225
+                    C 110 205, 105 185, 100 165
+                    C 95 145, 90 125, 95 105
+                    C 100 85, 115 70, 125 55
+                    C 135 40, 140 30, 145 25
+                    Z
+                " fill="url(#mapGradient)" filter="url(#shadow)"/>
+                
+                <!-- Маркеры городов -->
+                <g class="city-markers">
+                    <!-- Ханой -->
+                    <g class="city-marker" data-city="Ханой">
+                        <circle cx="155" cy="75" r="8" fill="#FFFFFF" stroke="url(#mapGradient)" stroke-width="3"/>
+                        <circle cx="155" cy="75" r="4" fill="url(#mapGradient)"/>
+                    </g>
+                    
+                    <!-- Дананг -->
+                    <g class="city-marker" data-city="Дананг">
+                        <circle cx="175" cy="200" r="7" fill="#FFFFFF" stroke="url(#mapGradient)" stroke-width="3"/>
+                        <circle cx="175" cy="200" r="3" fill="url(#mapGradient)"/>
+                    </g>
+                    
+                    <!-- Нячанг -->
+                    <g class="city-marker" data-city="Нячанг">
+                        <circle cx="160" cy="300" r="7" fill="#FFFFFF" stroke="url(#mapGradient)" stroke-width="3"/>
+                        <circle cx="160" cy="300" r="3" fill="url(#mapGradient)"/>
+                    </g>
+                    
+                    <!-- Хошимин -->
+                    <g class="city-marker" data-city="Хошимин">
+                        <circle cx="100" cy="400" r="8" fill="#FFFFFF" stroke="url(#mapGradient)" stroke-width="3"/>
+                        <circle cx="100" cy="400" r="4" fill="url(#mapGradient)"/>
+                    </g>
+                    
+                    <!-- Фукуок -->
+                    <g class="city-marker" data-city="Фукуок">
+                        <circle cx="55" cy="445" r="6" fill="#FFFFFF" stroke="url(#mapGradient)" stroke-width="3"/>
+                        <circle cx="55" cy="445" r="2.5" fill="url(#mapGradient)"/>
+                    </g>
+                </g>
+                
+                <!-- Подписи городов -->
+                <g class="city-labels" fill="#1A1A1A" font-family="Inter, sans-serif" font-weight="700" font-size="12">
+                    <text x="175" y="80">Ханой</text>
+                    <text x="195" y="205">Дананг</text>
+                    <text x="180" y="305">Нячанг</text>
+                    <text x="120" y="405">Хошимин</text>
+                    <text x="70" y="455">Фукуок</text>
+                </g>
+                
+                <!-- Декоративные самолётики -->
+                <g class="planes" fill="url(#mapGradient)" opacity="0.6">
+                    <path class="plane plane-1" d="M 230 120 l 15 -5 l -5 5 l 5 5 l -15 -5 l -8 8 l -2 -3 l 5 -5 l -5 -5 l 2 -3 l 8 8 z" transform="rotate(-30, 230, 120)"/>
+                    <path class="plane plane-2" d="M 50 150 l 15 -5 l -5 5 l 5 5 l -15 -5 l -8 8 l -2 -3 l 5 -5 l -5 -5 l 2 -3 l 8 8 z" transform="rotate(20, 50, 150)"/>
+                </g>
+            </svg>
+            
+            <!-- Декоративные элементы вокруг карты -->
+            <div class="map-decorations">
+                <div class="map-badge map-badge-1">
+                    <span class="badge-icon">🏖️</span>
+                    <span class="badge-text">Пляжи</span>
+                </div>
+                <div class="map-badge map-badge-2">
+                    <span class="badge-icon">🍜</span>
+                    <span class="badge-text">Еда</span>
+                </div>
+                <div class="map-badge map-badge-3">
+                    <span class="badge-icon">🏛️</span>
+                    <span class="badge-text">Храмы</span>
+                </div>
+            </div>
+        </div>
+        </div>
+    </section>
+
+    <!-- Stats -->
+    <section class="stats-section">
+        <div class="stats-header">
+            <p class="section-label reveal">Главные цифры</p>
+            <h2 class="section-title reveal reveal-delay-1">Всё что нужно знать</h2>
+        </div>
+        <div class="stats-grid">
+            <div class="stat-card reveal reveal-delay-1">
+                <div class="stat-value">45</div>
+                <div class="stat-label">дней без визы</div>
+            </div>
+            <div class="stat-card reveal reveal-delay-2">
+                <div class="stat-value">$25</div>
+                <div class="stat-label">стоимость e-Visa</div>
+            </div>
+            <div class="stat-card reveal reveal-delay-3">
+                <div class="stat-value">3</div>
+                <div class="stat-label">дня оформление</div>
+            </div>
+            <div class="stat-card reveal reveal-delay-4">
+                <div class="stat-value">90</div>
+                <div class="stat-label">дней максимум</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features -->
+    <section class="features-section" id="features">
+        <div class="section-header">
+            <p class="section-label reveal">Типы виз</p>
+            <h2 class="section-title reveal reveal-delay-1">Выберите подходящий вариант</h2>
+            <p class="section-subtitle reveal reveal-delay-2">Три способа легально находиться во Вьетнаме</p>
+        </div>
+
+        <div class="features-grid">
+            <div class="feature-card large reveal">
+                <div class="feature-content">
+                    <div class="feature-icon">🎯</div>
+                    <h3>Выберите тип визы</h3>
+                    <p>В зависимости от срока поездки и цели визита вам подойдёт один из трёх вариантов. Для большинства туристов виза вообще не нужна!</p>
+                </div>
+                <div class="visa-types-list">
+                    <div class="visa-type-item">
+                        <div class="visa-type-icon">🆓</div>
+                        <div class="visa-type-info">
+                            <h4>Безвизовый въезд</h4>
+                            <p>До 45 дней • Бесплатно</p>
+                        </div>
+                    </div>
+                    <div class="visa-type-item">
+                        <div class="visa-type-icon">💻</div>
+                        <div class="visa-type-info">
+                            <h4>Электронная виза</h4>
+                            <p>До 90 дней • $25</p>
+                        </div>
+                    </div>
+                    <div class="visa-type-item">
+                        <div class="visa-type-icon">🛬</div>
+                        <div class="visa-type-info">
+                            <h4>Виза по прилёту</h4>
+                            <p>До 30 дней • от $25</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="feature-card reveal reveal-delay-1">
+                <div class="feature-icon">📱</div>
+                <h3>Оформление онлайн</h3>
+                <p>E-Visa оформляется на официальном сайте за 3 рабочих дня. Никаких очередей.</p>
+            </div>
+
+            <div class="feature-card reveal reveal-delay-2">
+                <div class="feature-icon">🔄</div>
+                <h3>Можно продлить</h3>
+                <p>Безвизовое пребывание можно продлить выездом в соседнюю страну.</p>
+            </div>
+
+            <div class="feature-card reveal reveal-delay-3">
+                <div class="feature-icon">📋</div>
+                <h3>Минимум документов</h3>
+                <p>Только загранпаспорт, обратные билеты и бронь отеля.</p>
+            </div>
+
+            <div class="feature-card reveal reveal-delay-4">
+                <div class="feature-icon">✈️</div>
+                <h3>Все аэропорты</h3>
+                <p>E-Visa принимается везде: Ханой, Хошимин, Дананг, Нячанг, Фукуок.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process -->
+    <section class="process-section" id="process">
+        <div class="section-header">
+            <p class="section-label reveal">Процесс</p>
+            <h2 class="section-title reveal reveal-delay-1">Как получить e-Visa</h2>
+        </div>
+
+        <div class="process-grid">
+            <div class="process-card reveal reveal-delay-1">
+                <div class="process-number">1</div>
+                <h4>Заполните анкету</h4>
+                <p>На сайте evisa.gov.vn</p>
+            </div>
+            <div class="process-card reveal reveal-delay-2">
+                <div class="process-number">2</div>
+                <h4>Загрузите фото</h4>
+                <p>Паспорт + фото 4x6</p>
+            </div>
+            <div class="process-card reveal reveal-delay-3">
+                <div class="process-number">3</div>
+                <h4>Оплатите $25</h4>
+                <p>Картой онлайн</p>
+            </div>
+            <div class="process-card reveal reveal-delay-4">
+                <div class="process-number">4</div>
+                <h4>Получите на email</h4>
+                <p>Через 3 дня</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Calculator -->
+    <section class="calculator-section" id="calculator">
+        <div class="section-header">
+            <p class="section-label reveal">Калькулятор</p>
+            <h2 class="section-title reveal reveal-delay-1">Узнайте какая виза нужна</h2>
+        </div>
+
+        <div class="calculator-container">
+            <div class="calculator-card reveal reveal-delay-2">
+                <div class="calc-grid">
+                    <div class="calc-field">
+                        <label>Дата прилёта</label>
+                        <input type="date" id="arrival">
+                    </div>
+                    <div class="calc-field">
+                        <label>Дата вылета</label>
+                        <input type="date" id="departure">
+                    </div>
+                    <div class="calc-field">
+                        <label>Цель поездки</label>
+                        <select id="purpose">
+                            <option value="tourism">🏖️ Туризм</option>
+                            <option value="business">💼 Бизнес</option>
+                            <option value="work">👔 Работа</option>
+                        </select>
+                    </div>
+                    <div class="calc-field">
+                        <label>Въезды</label>
+                        <select id="entries">
+                            <option value="single">Однократный</option>
+                            <option value="multiple">Многократный</option>
+                        </select>
+                    </div>
+                </div>
+                <button class="calc-btn" onclick="calculateVisa()">Рассчитать →</button>
+
+                <div class="calc-result" id="calcResult">
+                    <div class="result-emoji" id="resultEmoji">🎉</div>
+                    <div class="result-visa" id="resultVisa">Безвизовый въезд</div>
+                    <p class="result-desc" id="resultDesc">Виза не требуется!</p>
+                    <div class="result-stats">
+                        <div class="result-stat">
+                            <div class="result-stat-value" id="resultDays">0</div>
+                            <div class="result-stat-label">дней</div>
+                        </div>
+                        <div class="result-stat">
+                            <div class="result-stat-value" id="resultCost">$0</div>
+                            <div class="result-stat-label">стоимость</div>
+                        </div>
+                        <div class="result-stat">
+                            <div class="result-stat-value" id="resultTime">0</div>
+                            <div class="result-stat-label">оформление</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Widgets -->
+    <section class="widgets-section" id="widgets">
+        <div class="section-header">
+            <p class="section-label reveal">Полезное</p>
+            <h2 class="section-title reveal reveal-delay-1">Инструменты для поездки</h2>
+        </div>
+
+        <div class="widgets-grid">
+            <div class="widget-card reveal reveal-delay-1">
+                <div class="widget-header">
+                    <div class="widget-icon">💱</div>
+                    <div class="widget-title">Конвертер валют</div>
+                </div>
+                <div class="currency-inputs">
+                    <div class="currency-row">
+                        <input type="number" class="currency-input" id="rubInput" value="10000" oninput="convertCurrency('rub')">
+                        <div class="currency-label">RUB</div>
+                    </div>
+                    <div class="currency-row">
+                        <input type="number" class="currency-input" id="vndInput" value="2750000" oninput="convertCurrency('vnd')">
+                        <div class="currency-label">VND</div>
+                    </div>
+                    <div class="currency-row">
+                        <input type="number" class="currency-input" id="usdInput" value="100" oninput="convertCurrency('usd')">
+                        <div class="currency-label">USD</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="widget-card reveal reveal-delay-2">
+                <div class="widget-header">
+                    <div class="widget-icon">🌤️</div>
+                    <div class="widget-title">Погода сейчас</div>
+                </div>
+                <div class="weather-grid">
+                    <div class="weather-item">
+                        <div class="weather-icon">☀️</div>
+                        <div class="weather-temp">32°</div>
+                        <div class="weather-city">Нячанг</div>
+                    </div>
+                    <div class="weather-item">
+                        <div class="weather-icon">🌤️</div>
+                        <div class="weather-temp">28°</div>
+                        <div class="weather-city">Ханой</div>
+                    </div>
+                    <div class="weather-item">
+                        <div class="weather-icon">⛅</div>
+                        <div class="weather-temp">30°</div>
+                        <div class="weather-city">Хошимин</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq-section" id="faq">
+        <div class="section-header">
+            <p class="section-label reveal">FAQ</p>
+            <h2 class="section-title reveal reveal-delay-1">Частые вопросы</h2>
+        </div>
+
+        <div class="faq-container">
+            <div class="faq-item reveal reveal-delay-1">
+                <button class="faq-question" onclick="toggleFaq(this)">
+                    Нужна ли виза россиянам во Вьетнам?
+                    <span class="faq-icon">+</span>
+                </button>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        Нет, для поездки до 45 дней виза не нужна. Просто возьмите загранпаспорт со сроком действия минимум 6 месяцев.
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item reveal reveal-delay-2">
+                <button class="faq-question" onclick="toggleFaq(this)">
+                    Сколько стоит электронная виза?
+                    <span class="faq-icon">+</span>
+                </button>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        E-Visa стоит $25 (оплата картой онлайн). Срок оформления — 3 рабочих дня.
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item reveal reveal-delay-3">
+                <button class="faq-question" onclick="toggleFaq(this)">
+                    Можно ли продлить пребывание?
+                    <span class="faq-icon">+</span>
+                </button>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        Да! Можно сделать visa-run — выехать в Камбоджу или Таиланд и въехать заново на 45 дней.
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item reveal reveal-delay-4">
+                <button class="faq-question" onclick="toggleFaq(this)">
+                    Какие документы нужны?
+                    <span class="faq-icon">+</span>
+                </button>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        Загранпаспорт (срок от 6 месяцев), обратные билеты, бронь отеля. Для e-Visa — фото 4x6 см.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section">
+        <div class="cta-emoji reveal">🌴</div>
+        <h2 class="cta-title reveal reveal-delay-1">Готовы к приключению?</h2>
+        <p class="cta-subtitle reveal reveal-delay-2">Вьетнам ждёт вас!</p>
+        <a href="https://evisa.xuatnhapcanh.gov.vn" target="_blank" class="cta-btn reveal reveal-delay-3">
+            Оформить e-Visa →
+        </a>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <h3>🇻🇳 VietVisa</h3>
+                <p>Гайд по визам во Вьетнам для россиян. 2025</p>
+            </div>
+            <div class="footer-links">
+                <h4>Разделы</h4>
+                <a href="#features">Типы виз</a>
+                <a href="#process">Процесс</a>
+                <a href="#calculator">Калькулятор</a>
+                <a href="#faq">FAQ</a>
+            </div>
+            <div class="footer-links">
+                <h4>Полезное</h4>
+                <a href="https://evisa.xuatnhapcanh.gov.vn" target="_blank">Сайт e-Visa</a>
+                <a href="#widgets">Конвертер</a>
+                <a href="#widgets">Погода</a>
+            </div>
+            <div class="footer-links">
+                <h4>Города</h4>
+                <a href="#">Нячанг</a>
+                <a href="#">Хошимин</a>
+                <a href="#">Ханой</a>
+                <a href="#">Фукуок</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2025 VietVisa</p>
+        </div>
+    </footer>
+
+    <!-- Chatbot -->
+    <button class="chatbot-toggle" onclick="toggleChatbot()">💬</button>
+    <div class="chatbot-window" id="chatbotWindow">
+        <div class="chatbot-header">
+            <div class="chatbot-avatar">🤖</div>
+            <div>
+                <div class="chatbot-name">Виза-бот</div>
+                <div class="chatbot-status">Онлайн</div>
+            </div>
+        </div>
+        <div class="chatbot-messages" id="chatMessages">
+            <div class="chat-message bot">
+                <div class="message-avatar">🤖</div>
+                <div class="message-bubble">Привет! 👋 Помогу с вопросами о визе во Вьетнам.</div>
+            </div>
+        </div>
+        <div class="quick-btns">
+            <button class="quick-btn" onclick="askBot('Нужна ли виза?')">Нужна ли виза?</button>
+            <button class="quick-btn" onclick="askBot('Сколько стоит?')">Стоимость</button>
+            <button class="quick-btn" onclick="askBot('Сколько дней?')">Сроки</button>
+        </div>
+        <div class="chatbot-input">
+            <input type="text" id="chatInput" placeholder="Введите вопрос..." onkeypress="handleKey(event)">
+            <button onclick="sendMessage()">➤</button>
+        </div>
+    </div>
+
+    <script>
+        // Scroll reveal
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            document.getElementById('header').classList.toggle('scrolled', window.scrollY > 50);
+        });
+
+        // Set default dates
+        const today = new Date();
+        const twoWeeks = new Date(today.getTime() + 14 * 24 * 60 * 60 * 1000);
+        document.getElementById('arrival').valueAsDate = today;
+        document.getElementById('departure').valueAsDate = twoWeeks;
+
+        // Calculator
+        function calculateVisa() {
+            const arrival = new Date(document.getElementById('arrival').value);
+            const departure = new Date(document.getElementById('departure').value);
+            const purpose = document.getElementById('purpose').value;
+            const entries = document.getElementById('entries').value;
+            
+            const days = Math.ceil((departure - arrival) / (1000 * 60 * 60 * 24));
+            if (days <= 0) { alert('Проверьте даты!'); return; }
+
+            let emoji, visa, desc, cost, time;
+
+            if (purpose === 'tourism' && days <= 45 && entries === 'single') {
+                emoji = '🎉'; visa = 'Безвизовый въезд'; desc = 'Виза не требуется!'; cost = '$0'; time = '0 дней';
+            } else if (days <= 90) {
+                emoji = '💻'; visa = 'Электронная виза'; desc = 'Оформите e-Visa онлайн'; cost = '$25'; time = '3 дня';
+            } else {
+                emoji = '🏛️'; visa = 'Долгосрочная виза'; desc = 'Обратитесь в посольство'; cost = 'от $50'; time = '14+ дней';
+            }
+
+            if (entries === 'multiple') cost = '$50';
+            if (purpose === 'work') { visa = 'Рабочая виза'; cost = 'от $100'; time = '14-30 дней'; }
+
+            document.getElementById('resultEmoji').textContent = emoji;
+            document.getElementById('resultVisa').textContent = visa;
+            document.getElementById('resultDesc').textContent = desc;
+            document.getElementById('resultDays').textContent = days;
+            document.getElementById('resultCost').textContent = cost;
+            document.getElementById('resultTime').textContent = time;
+
+            document.getElementById('calcResult').classList.add('show');
+        }
+
+        // Currency converter
+        const rates = { usd: 1, rub: 100, vnd: 25500 };
+
+        function convertCurrency(from) {
+            const usd = parseFloat(document.getElementById('usdInput').value) || 0;
+            const rub = parseFloat(document.getElementById('rubInput').value) || 0;
+            const vnd = parseFloat(document.getElementById('vndInput').value) || 0;
+
+            let baseUsd;
+            if (from === 'usd') baseUsd = usd;
+            else if (from === 'rub') baseUsd = rub / rates.rub;
+            else baseUsd = vnd / rates.vnd;
+
+            if (from !== 'usd') document.getElementById('usdInput').value = Math.round(baseUsd * 100) / 100;
+            if (from !== 'rub') document.getElementById('rubInput').value = Math.round(baseUsd * rates.rub);
+            if (from !== 'vnd') document.getElementById('vndInput').value = Math.round(baseUsd * rates.vnd);
+        }
+
+        // FAQ
+        function toggleFaq(btn) {
+            const item = btn.parentElement;
+            const wasActive = item.classList.contains('active');
+            document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('active'));
+            if (!wasActive) item.classList.add('active');
+        }
+
+        // Chatbot
+        function toggleChatbot() {
+            document.getElementById('chatbotWindow').classList.toggle('open');
+        }
+
+        const responses = {
+            'виза': 'Для россиян безвизовый въезд до 45 дней! Для дольше — e-Visa за $25.',
+            'стоит': 'Безвизовый — бесплатно. E-Visa — $25.',
+            'дней': 'Без визы до 45 дней. С e-Visa до 90 дней.',
+            'документ': 'Загранпаспорт (от 6 мес.), билеты, бронь отеля.',
+            'продлить': 'Выезд в соседнюю страну даёт новые 45 дней.',
+            'default': 'Спросите про визу, стоимость или сроки!'
+        };
+
+        function askBot(q) {
+            document.getElementById('chatInput').value = q;
+            sendMessage();
+        }
+
+        function sendMessage() {
+            const input = document.getElementById('chatInput');
+            const text = input.value.trim();
+            if (!text) return;
+
+            addMessage(text, 'user');
+            input.value = '';
+
+            setTimeout(() => {
+                let response = responses.default;
+                for (const [key, val] of Object.entries(responses)) {
+                    if (text.toLowerCase().includes(key)) { response = val; break; }
+                }
+                addMessage(response, 'bot');
+            }, 500);
+        }
+
+        function addMessage(text, type) {
+            const messages = document.getElementById('chatMessages');
+            const msg = document.createElement('div');
+            msg.className = `chat-message ${type}`;
+            msg.innerHTML = `
+                <div class="message-avatar">${type === 'bot' ? '🤖' : '👤'}</div>
+                <div class="message-bubble">${text}</div>
+            `;
+            messages.appendChild(msg);
+            messages.scrollTop = messages.scrollHeight;
+        }
+
+        function handleKey(e) {
+            if (e.key === 'Enter') sendMessage();
+        }
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(a => {
+            a.addEventListener('click', e => {
+                e.preventDefault();
+                document.querySelector(a.getAttribute('href'))?.scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+    </script>
+</body>
+</html>
