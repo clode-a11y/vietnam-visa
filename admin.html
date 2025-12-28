@@ -11,6 +11,8 @@
             --primary-dark: #166534;
             --danger: #EF4444;
             --warning: #F59E0B;
+            --info: #3B82F6;
+            --purple: #8B5CF6;
             --bg: #F3F4F6;
             --card: #FFFFFF;
             --text: #1F2937;
@@ -18,11 +20,7 @@
             --border: #E5E7EB;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             font-family: 'Inter', sans-serif;
@@ -31,7 +29,7 @@
             min-height: 100vh;
         }
 
-        /* Login Page */
+        /* Login */
         .login-page {
             min-height: 100vh;
             display: flex;
@@ -44,35 +42,17 @@
             background: var(--card);
             padding: 3rem;
             border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
             width: 100%;
             max-width: 400px;
         }
 
-        .login-card h1 {
-            text-align: center;
-            margin-bottom: 0.5rem;
-            font-size: 1.75rem;
-        }
+        .login-card h1 { text-align: center; margin-bottom: 0.5rem; font-size: 1.75rem; }
+        .login-card > p { text-align: center; color: var(--text-light); margin-bottom: 2rem; }
 
-        .login-card p {
-            text-align: center;
-            color: var(--text-light);
-            margin-bottom: 2rem;
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .form-group label {
-            display: block;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-            font-size: 0.9rem;
-        }
-
-        .form-group input {
+        .form-group { margin-bottom: 1.5rem; }
+        .form-group label { display: block; font-weight: 600; margin-bottom: 0.5rem; font-size: 0.9rem; }
+        .form-group input, .form-group select, .form-group textarea {
             width: 100%;
             padding: 0.875rem 1rem;
             border: 2px solid var(--border);
@@ -81,11 +61,11 @@
             font-family: inherit;
             transition: all 0.3s;
         }
-
-        .form-group input:focus {
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
             outline: none;
             border-color: var(--primary);
         }
+        .form-group textarea { resize: vertical; min-height: 100px; }
 
         .btn {
             width: 100%;
@@ -99,10 +79,7 @@
             cursor: pointer;
             transition: all 0.3s;
         }
-
-        .btn:hover {
-            background: var(--primary-dark);
-        }
+        .btn:hover { background: var(--primary-dark); }
 
         .error-msg {
             background: #FEE2E2;
@@ -114,10 +91,8 @@
             display: none;
         }
 
-        /* Admin Dashboard */
-        .admin-page {
-            display: none;
-        }
+        /* Admin */
+        .admin-page { display: none; }
 
         .admin-header {
             background: var(--card);
@@ -140,16 +115,8 @@
             gap: 0.5rem;
         }
 
-        .admin-user {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .admin-user span {
-            color: var(--text-light);
-        }
-
+        .admin-user { display: flex; align-items: center; gap: 1rem; }
+        .admin-user span { color: var(--text-light); }
         .btn-logout {
             padding: 0.5rem 1rem;
             background: var(--danger);
@@ -160,63 +127,51 @@
             font-weight: 500;
         }
 
-        .admin-container {
-            display: flex;
-            min-height: calc(100vh - 60px);
-        }
+        .admin-container { display: flex; min-height: calc(100vh - 60px); }
 
         /* Sidebar */
         .sidebar {
-            width: 250px;
+            width: 260px;
             background: var(--card);
             border-right: 1px solid var(--border);
-            padding: 1.5rem 0;
+            padding: 1rem 0;
+            overflow-y: auto;
         }
 
-        .sidebar-menu {
-            list-style: none;
+        .sidebar-section { padding: 0.5rem 1rem; margin-top: 1rem; }
+        .sidebar-section-title {
+            font-size: 0.7rem;
+            font-weight: 700;
+            color: var(--text-light);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
         }
 
+        .sidebar-menu { list-style: none; }
         .sidebar-menu li a {
             display: flex;
             align-items: center;
             gap: 0.75rem;
-            padding: 0.875rem 1.5rem;
+            padding: 0.75rem 1.5rem;
             color: var(--text-light);
             text-decoration: none;
             font-weight: 500;
+            font-size: 0.9rem;
             transition: all 0.3s;
         }
-
-        .sidebar-menu li a:hover,
-        .sidebar-menu li a.active {
+        .sidebar-menu li a:hover, .sidebar-menu li a.active {
             background: #F0FDF4;
             color: var(--primary);
             border-right: 3px solid var(--primary);
         }
+        .sidebar-menu li a span { font-size: 1.1rem; }
 
-        .sidebar-menu li a span {
-            font-size: 1.25rem;
-        }
+        /* Main */
+        .main-content { flex: 1; padding: 2rem; overflow-y: auto; }
+        .page-title { font-size: 1.75rem; margin-bottom: 0.5rem; }
+        .page-subtitle { color: var(--text-light); margin-bottom: 2rem; }
 
-        /* Main Content */
-        .main-content {
-            flex: 1;
-            padding: 2rem;
-            overflow-y: auto;
-        }
-
-        .page-title {
-            font-size: 1.75rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .page-subtitle {
-            color: var(--text-light);
-            margin-bottom: 2rem;
-        }
-
-        /* Cards */
+        /* Stats */
         .stats-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -228,7 +183,7 @@
             background: var(--card);
             padding: 1.5rem;
             border-radius: 12px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
         }
 
         .stat-card-icon {
@@ -241,27 +196,23 @@
             font-size: 1.5rem;
             margin-bottom: 1rem;
         }
-
         .stat-card-icon.green { background: #DCFCE7; }
         .stat-card-icon.blue { background: #DBEAFE; }
         .stat-card-icon.orange { background: #FED7AA; }
         .stat-card-icon.pink { background: #FECDD3; }
+        .stat-card-icon.purple { background: #EDE9FE; }
 
-        .stat-card h3 {
-            font-size: 2rem;
-            margin-bottom: 0.25rem;
-        }
+        .stat-card h3 { font-size: 2rem; margin-bottom: 0.25rem; }
+        .stat-card p { color: var(--text-light); font-size: 0.9rem; }
+        .stat-card .trend { font-size: 0.8rem; margin-top: 0.5rem; }
+        .stat-card .trend.up { color: var(--primary); }
+        .stat-card .trend.down { color: var(--danger); }
 
-        .stat-card p {
-            color: var(--text-light);
-            font-size: 0.9rem;
-        }
-
-        /* Content Card */
+        /* Cards */
         .content-card {
             background: var(--card);
             border-radius: 12px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
             margin-bottom: 1.5rem;
         }
 
@@ -272,42 +223,19 @@
             justify-content: space-between;
             align-items: center;
         }
+        .content-card-header h2 { font-size: 1.1rem; }
+        .content-card-body { padding: 1.5rem; }
 
-        .content-card-header h2 {
-            font-size: 1.1rem;
-        }
-
-        .content-card-body {
-            padding: 1.5rem;
-        }
-
-        /* Form Styles */
+        /* Form */
         .form-row {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 1.5rem;
             margin-bottom: 1.5rem;
         }
-
-        .form-row.full {
-            grid-template-columns: 1fr;
-        }
-
-        .form-group textarea {
-            width: 100%;
-            padding: 0.875rem 1rem;
-            border: 2px solid var(--border);
-            border-radius: 10px;
-            font-size: 1rem;
-            font-family: inherit;
-            resize: vertical;
-            min-height: 100px;
-        }
-
-        .form-group textarea:focus {
-            outline: none;
-            border-color: var(--primary);
-        }
+        .form-row.cols-3 { grid-template-columns: repeat(3, 1fr); }
+        .form-row.cols-4 { grid-template-columns: repeat(4, 1fr); }
+        .form-row.full { grid-template-columns: 1fr; }
 
         .btn-save {
             background: var(--primary);
@@ -319,44 +247,43 @@
             cursor: pointer;
             transition: all 0.3s;
         }
-
-        .btn-save:hover {
-            background: var(--primary-dark);
-        }
+        .btn-save:hover { background: var(--primary-dark); }
 
         .btn-secondary {
             background: var(--bg);
             color: var(--text);
-            padding: 0.75rem 2rem;
+            padding: 0.75rem 1.5rem;
             border: 1px solid var(--border);
             border-radius: 8px;
             font-weight: 600;
             cursor: pointer;
-            margin-right: 1rem;
+            margin-right: 0.5rem;
+        }
+
+        .btn-danger {
+            background: var(--danger);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .btn-info {
+            background: var(--info);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
         }
 
         /* Table */
-        .table-container {
-            overflow-x: auto;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-
-        th, td {
-            padding: 1rem;
-            text-align: left;
-            border-bottom: 1px solid var(--border);
-        }
-
-        th {
-            font-weight: 600;
-            color: var(--text-light);
-            font-size: 0.85rem;
-            text-transform: uppercase;
-        }
+        table { width: 100%; border-collapse: collapse; }
+        th, td { padding: 1rem; text-align: left; border-bottom: 1px solid var(--border); }
+        th { font-weight: 600; color: var(--text-light); font-size: 0.85rem; text-transform: uppercase; }
 
         .status-badge {
             padding: 0.25rem 0.75rem;
@@ -364,22 +291,11 @@
             font-size: 0.8rem;
             font-weight: 500;
         }
+        .status-badge.active { background: #DCFCE7; color: var(--primary-dark); }
+        .status-badge.draft { background: #FEF3C7; color: #92400E; }
+        .status-badge.inactive { background: #FEE2E2; color: var(--danger); }
 
-        .status-badge.active {
-            background: #DCFCE7;
-            color: var(--primary-dark);
-        }
-
-        .status-badge.draft {
-            background: #FEF3C7;
-            color: #92400E;
-        }
-
-        .action-btns {
-            display: flex;
-            gap: 0.5rem;
-        }
-
+        .action-btns { display: flex; gap: 0.5rem; }
         .btn-icon {
             width: 35px;
             height: 35px;
@@ -391,48 +307,124 @@
             justify-content: center;
             transition: all 0.3s;
         }
+        .btn-icon.edit { background: #DBEAFE; color: #1D4ED8; }
+        .btn-icon.delete { background: #FEE2E2; color: var(--danger); }
+        .btn-icon.view { background: #F3E8FF; color: var(--purple); }
 
-        .btn-icon.edit {
-            background: #DBEAFE;
-            color: #1D4ED8;
-        }
+        /* Sections */
+        .section-panel { display: none; }
+        .section-panel.active { display: block; }
 
-        .btn-icon.delete {
-            background: #FEE2E2;
-            color: var(--danger);
-        }
-
-        /* Section Panels */
-        .section-panel {
-            display: none;
-        }
-
-        .section-panel.active {
-            display: block;
-        }
-
-        /* FAQ Item */
-        .faq-item {
+        /* Items */
+        .item-card {
             background: var(--bg);
             border-radius: 10px;
             padding: 1rem;
             margin-bottom: 1rem;
-        }
-
-        .faq-item-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 0.5rem;
         }
+        .item-card-content h4 { font-weight: 600; margin-bottom: 0.25rem; }
+        .item-card-content p { color: var(--text-light); font-size: 0.9rem; }
 
-        .faq-item h4 {
-            font-weight: 600;
-        }
-
-        .faq-item p {
+        /* Chart placeholder */
+        .chart-placeholder {
+            background: linear-gradient(135deg, #F0FDF4 0%, #DBEAFE 100%);
+            border-radius: 10px;
+            height: 250px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             color: var(--text-light);
-            font-size: 0.9rem;
+        }
+
+        /* Messages */
+        .message-item {
+            display: flex;
+            gap: 1rem;
+            padding: 1rem;
+            background: var(--bg);
+            border-radius: 10px;
+            margin-bottom: 0.75rem;
+        }
+        .message-avatar {
+            width: 40px;
+            height: 40px;
+            background: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            flex-shrink: 0;
+        }
+        .message-content { flex: 1; }
+        .message-content .meta { font-size: 0.8rem; color: var(--text-light); margin-bottom: 0.25rem; }
+        .message-content .text { font-size: 0.95rem; }
+
+        /* Toggle */
+        .toggle-switch {
+            position: relative;
+            width: 50px;
+            height: 26px;
+        }
+        .toggle-switch input { opacity: 0; width: 0; height: 0; }
+        .toggle-slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: var(--border);
+            border-radius: 26px;
+            transition: 0.3s;
+        }
+        .toggle-slider:before {
+            position: absolute;
+            content: "";
+            height: 20px;
+            width: 20px;
+            left: 3px;
+            bottom: 3px;
+            background: white;
+            border-radius: 50%;
+            transition: 0.3s;
+        }
+        .toggle-switch input:checked + .toggle-slider { background: var(--primary); }
+        .toggle-switch input:checked + .toggle-slider:before { transform: translateX(24px); }
+
+        /* Log entry */
+        .log-entry {
+            padding: 0.75rem 1rem;
+            border-left: 3px solid var(--primary);
+            background: var(--bg);
+            margin-bottom: 0.5rem;
+            border-radius: 0 8px 8px 0;
+        }
+        .log-entry .time { font-size: 0.8rem; color: var(--text-light); }
+        .log-entry .action { font-weight: 500; }
+
+        /* Tabs */
+        .tabs {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+            border-bottom: 2px solid var(--border);
+            padding-bottom: 0.5rem;
+        }
+        .tab {
+            padding: 0.5rem 1rem;
+            background: none;
+            border: none;
+            font-weight: 500;
+            color: var(--text-light);
+            cursor: pointer;
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+        .tab.active, .tab:hover {
+            background: var(--primary);
+            color: white;
         }
 
         /* Toast */
@@ -444,42 +436,65 @@
             color: white;
             padding: 1rem 2rem;
             border-radius: 10px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
             display: none;
             z-index: 1000;
         }
-
         .toast.show {
             display: flex;
             align-items: center;
             gap: 0.75rem;
             animation: slideIn 0.3s ease;
         }
-
         @keyframes slideIn {
             from { transform: translateY(100px); opacity: 0; }
             to { transform: translateY(0); opacity: 1; }
         }
 
-        /* Responsive */
-        @media (max-width: 1024px) {
-            .stats-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .form-row {
-                grid-template-columns: 1fr;
-            }
+        /* Modal */
+        .modal {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.5);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1001;
+        }
+        .modal.show { display: flex; }
+        .modal-content {
+            background: var(--card);
+            padding: 2rem;
+            border-radius: 16px;
+            width: 100%;
+            max-width: 500px;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+        .modal-header h2 { font-size: 1.25rem; }
+        .modal-close {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-light);
         }
 
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+            .form-row.cols-4 { grid-template-columns: repeat(2, 1fr); }
+        }
         @media (max-width: 768px) {
-            .sidebar {
-                display: none;
-            }
-
-            .stats-grid {
-                grid-template-columns: 1fr;
-            }
+            .sidebar { display: none; }
+            .stats-grid { grid-template-columns: 1fr; }
+            .form-row, .form-row.cols-3 { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -512,7 +527,7 @@
                 VietVisa Admin
             </div>
             <div class="admin-user">
-                <span>Администратор</span>
+                <span id="adminName">Администратор</span>
                 <button class="btn-logout" onclick="logout()">Выйти</button>
             </div>
         </header>
@@ -520,51 +535,143 @@
         <div class="admin-container">
             <aside class="sidebar">
                 <ul class="sidebar-menu">
-                    <li><a href="#" class="active" onclick="showSection('dashboard')"><span>📊</span> Главная</a></li>
-                    <li><a href="#" onclick="showSection('content')"><span>📝</span> Контент</a></li>
-                    <li><a href="#" onclick="showSection('visas')"><span>🎫</span> Типы виз</a></li>
-                    <li><a href="#" onclick="showSection('faq')"><span>❓</span> FAQ</a></li>
-                    <li><a href="#" onclick="showSection('settings')"><span>⚙️</span> Настройки</a></li>
-                    <li><a href="index.html" target="_blank"><span>🌐</span> Открыть сайт</a></li>
+                    <li><a href="#" class="active" onclick="showSection('dashboard', this)"><span>📊</span> Главная</a></li>
                 </ul>
+
+                <div class="sidebar-section">
+                    <div class="sidebar-section-title">Контент</div>
+                </div>
+                <ul class="sidebar-menu">
+                    <li><a href="#" onclick="showSection('content', this)"><span>📝</span> Тексты</a></li>
+                    <li><a href="#" onclick="showSection('visas', this)"><span>🎫</span> Типы виз</a></li>
+                    <li><a href="#" onclick="showSection('faq', this)"><span>❓</span> FAQ</a></li>
+                    <li><a href="#" onclick="showSection('blog', this)"><span>📰</span> Блог/Новости</a></li>
+                    <li><a href="#" onclick="showSection('media', this)"><span>🖼️</span> Медиа</a></li>
+                </ul>
+
+                <div class="sidebar-section">
+                    <div class="sidebar-section-title">Коммуникации</div>
+                </div>
+                <ul class="sidebar-menu">
+                    <li><a href="#" onclick="showSection('chatbot', this)"><span>🤖</span> Чат-бот</a></li>
+                    <li><a href="#" onclick="showSection('messages', this)"><span>💬</span> Сообщения</a></li>
+                    <li><a href="#" onclick="showSection('newsletter', this)"><span>📧</span> Рассылка</a></li>
+                    <li><a href="#" onclick="showSection('telegram', this)"><span>📱</span> Telegram</a></li>
+                </ul>
+
+                <div class="sidebar-section">
+                    <div class="sidebar-section-title">Инструменты</div>
+                </div>
+                <ul class="sidebar-menu">
+                    <li><a href="#" onclick="showSection('calculator', this)"><span>🧮</span> Калькулятор</a></li>
+                    <li><a href="#" onclick="showSection('currency', this)"><span>💱</span> Валюты</a></li>
+                    <li><a href="#" onclick="showSection('analytics', this)"><span>📈</span> Аналитика</a></li>
+                </ul>
+
+                <div class="sidebar-section">
+                    <div class="sidebar-section-title">Система</div>
+                </div>
+                <ul class="sidebar-menu">
+                    <li><a href="#" onclick="showSection('seo', this)"><span>🔍</span> SEO</a></li>
+                    <li><a href="#" onclick="showSection('languages', this)"><span>🌍</span> Языки</a></li>
+                    <li><a href="#" onclick="showSection('backup', this)"><span>💾</span> Бэкапы</a></li>
+                    <li><a href="#" onclick="showSection('logs', this)"><span>📋</span> Логи</a></li>
+                    <li><a href="#" onclick="showSection('settings', this)"><span>⚙️</span> Настройки</a></li>
+                </ul>
+
+                <div class="sidebar-section" style="margin-top: 2rem;">
+                    <a href="index.html" target="_blank" style="display: flex; align-items: center; gap: 0.5rem; color: var(--primary); text-decoration: none; font-weight: 600;">
+                        <span>🌐</span> Открыть сайт
+                    </a>
+                </div>
             </aside>
 
             <main class="main-content">
                 <!-- Dashboard -->
                 <div class="section-panel active" id="dashboard">
-                    <h1 class="page-title">Главная</h1>
-                    <p class="page-subtitle">Обзор статистики сайта</p>
+                    <h1 class="page-title">Главная панель</h1>
+                    <p class="page-subtitle">Обзор статистики и активности</p>
 
                     <div class="stats-grid">
                         <div class="stat-card">
                             <div class="stat-card-icon green">👁️</div>
-                            <h3>1,234</h3>
+                            <h3 id="statVisits">2,847</h3>
                             <p>Посещений сегодня</p>
+                            <div class="trend up">↑ 12% за неделю</div>
                         </div>
                         <div class="stat-card">
-                            <div class="stat-card-icon blue">📄</div>
-                            <h3>5</h3>
-                            <p>Страниц</p>
+                            <div class="stat-card-icon blue">👥</div>
+                            <h3 id="statUsers">1,234</h3>
+                            <p>Уникальных посетителей</p>
+                            <div class="trend up">↑ 8% за неделю</div>
                         </div>
                         <div class="stat-card">
-                            <div class="stat-card-icon orange">❓</div>
-                            <h3>8</h3>
-                            <p>FAQ вопросов</p>
-                        </div>
-                        <div class="stat-card">
-                            <div class="stat-card-icon pink">💬</div>
-                            <h3>56</h3>
+                            <div class="stat-card-icon orange">💬</div>
+                            <h3 id="statMessages">156</h3>
                             <p>Сообщений в чат-боте</p>
+                            <div class="trend up">↑ 23% за неделю</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-card-icon pink">📧</div>
+                            <h3 id="statSubscribers">892</h3>
+                            <p>Подписчиков рассылки</p>
+                            <div class="trend up">↑ 5% за неделю</div>
                         </div>
                     </div>
 
-                    <div class="content-card">
+                    <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 1.5rem;">
+                        <div class="content-card">
+                            <div class="content-card-header">
+                                <h2>📈 Посещаемость за неделю</h2>
+                            </div>
+                            <div class="content-card-body">
+                                <div class="chart-placeholder">
+                                    <div style="text-align: center;">
+                                        <div style="font-size: 3rem; margin-bottom: 1rem;">📊</div>
+                                        <p>График посещаемости</p>
+                                        <p style="font-size: 0.8rem; margin-top: 0.5rem;">Пн: 2.1k | Вт: 2.3k | Ср: 2.5k | Чт: 2.4k | Пт: 2.8k | Сб: 1.9k | Вс: 1.7k</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="content-card">
+                            <div class="content-card-header">
+                                <h2>🌍 География</h2>
+                            </div>
+                            <div class="content-card-body">
+                                <div class="item-card">
+                                    <span>🇷🇺 Россия</span>
+                                    <strong>68%</strong>
+                                </div>
+                                <div class="item-card">
+                                    <span>🇺🇦 Украина</span>
+                                    <strong>12%</strong>
+                                </div>
+                                <div class="item-card">
+                                    <span>🇧🇾 Беларусь</span>
+                                    <strong>8%</strong>
+                                </div>
+                                <div class="item-card">
+                                    <span>🇰🇿 Казахстан</span>
+                                    <strong>7%</strong>
+                                </div>
+                                <div class="item-card">
+                                    <span>🌐 Другие</span>
+                                    <strong>5%</strong>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="content-card" style="margin-top: 1.5rem;">
                         <div class="content-card-header">
-                            <h2>Быстрые действия</h2>
+                            <h2>⚡ Быстрые действия</h2>
                         </div>
                         <div class="content-card-body">
                             <button class="btn-secondary" onclick="showSection('content')">✏️ Редактировать контент</button>
-                            <button class="btn-secondary" onclick="showSection('faq')">❓ Управление FAQ</button>
+                            <button class="btn-secondary" onclick="showSection('blog')">📰 Добавить новость</button>
+                            <button class="btn-secondary" onclick="showSection('messages')">💬 Просмотреть сообщения</button>
                             <button class="btn-save" onclick="window.open('index.html', '_blank')">🌐 Открыть сайт</button>
                         </div>
                     </div>
@@ -577,7 +684,7 @@
 
                     <div class="content-card">
                         <div class="content-card-header">
-                            <h2>Главный экран (Hero)</h2>
+                            <h2>🎯 Главный экран (Hero)</h2>
                         </div>
                         <div class="content-card-body">
                             <div class="form-row">
@@ -602,10 +709,10 @@
 
                     <div class="content-card">
                         <div class="content-card-header">
-                            <h2>Статистика</h2>
+                            <h2>📊 Статистика на главной</h2>
                         </div>
                         <div class="content-card-body">
-                            <div class="form-row">
+                            <div class="form-row cols-4">
                                 <div class="form-group">
                                     <label>Дней без визы</label>
                                     <input type="number" id="statDays" value="45">
@@ -614,8 +721,6 @@
                                     <label>Стоимость e-Visa ($)</label>
                                     <input type="number" id="statCost" value="25">
                                 </div>
-                            </div>
-                            <div class="form-row">
                                 <div class="form-group">
                                     <label>Дней оформления</label>
                                     <input type="number" id="statProcessing" value="3">
@@ -631,12 +736,12 @@
 
                     <div class="content-card">
                         <div class="content-card-header">
-                            <h2>Контакты и ссылки</h2>
+                            <h2>🔗 Ссылки и контакты</h2>
                         </div>
                         <div class="content-card-body">
                             <div class="form-row">
                                 <div class="form-group">
-                                    <label>Ссылка на e-Visa</label>
+                                    <label>Ссылка на официальный e-Visa</label>
                                     <input type="url" id="evisaUrl" value="https://evisa.xuatnhapcanh.gov.vn">
                                 </div>
                                 <div class="form-group">
@@ -657,54 +762,56 @@
                     <div class="content-card">
                         <div class="content-card-header">
                             <h2>Список типов виз</h2>
-                            <button class="btn-save" onclick="addVisa()">+ Добавить</button>
+                            <button class="btn-save" onclick="openModal('addVisa')">+ Добавить визу</button>
                         </div>
                         <div class="content-card-body">
-                            <div class="table-container">
-                                <table>
-                                    <thead>
-                                        <tr>
-                                            <th>Название</th>
-                                            <th>Срок</th>
-                                            <th>Стоимость</th>
-                                            <th>Статус</th>
-                                            <th>Действия</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td><strong>Безвизовый въезд</strong></td>
-                                            <td>До 45 дней</td>
-                                            <td>Бесплатно</td>
-                                            <td><span class="status-badge active">Активно</span></td>
-                                            <td class="action-btns">
-                                                <button class="btn-icon edit">✏️</button>
-                                                <button class="btn-icon delete">🗑️</button>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td><strong>Электронная виза</strong></td>
-                                            <td>До 90 дней</td>
-                                            <td>$25</td>
-                                            <td><span class="status-badge active">Активно</span></td>
-                                            <td class="action-btns">
-                                                <button class="btn-icon edit">✏️</button>
-                                                <button class="btn-icon delete">🗑️</button>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td><strong>Виза по прилёту</strong></td>
-                                            <td>До 30 дней</td>
-                                            <td>от $25</td>
-                                            <td><span class="status-badge active">Активно</span></td>
-                                            <td class="action-btns">
-                                                <button class="btn-icon edit">✏️</button>
-                                                <button class="btn-icon delete">🗑️</button>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Название</th>
+                                        <th>Срок</th>
+                                        <th>Стоимость</th>
+                                        <th>Описание</th>
+                                        <th>Статус</th>
+                                        <th>Действия</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="visaTable">
+                                    <tr>
+                                        <td><strong>🆓 Безвизовый въезд</strong></td>
+                                        <td>До 45 дней</td>
+                                        <td>Бесплатно</td>
+                                        <td>Для граждан РФ</td>
+                                        <td><span class="status-badge active">Активно</span></td>
+                                        <td class="action-btns">
+                                            <button class="btn-icon edit" onclick="editVisa(0)">✏️</button>
+                                            <button class="btn-icon delete" onclick="deleteVisa(0)">🗑️</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>💻 Электронная виза</strong></td>
+                                        <td>До 90 дней</td>
+                                        <td>$25</td>
+                                        <td>Оформление онлайн</td>
+                                        <td><span class="status-badge active">Активно</span></td>
+                                        <td class="action-btns">
+                                            <button class="btn-icon edit" onclick="editVisa(1)">✏️</button>
+                                            <button class="btn-icon delete" onclick="deleteVisa(1)">🗑️</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>🛬 Виза по прилёту</strong></td>
+                                        <td>До 30 дней</td>
+                                        <td>от $25</td>
+                                        <td>В аэропорту</td>
+                                        <td><span class="status-badge active">Активно</span></td>
+                                        <td class="action-btns">
+                                            <button class="btn-icon edit" onclick="editVisa(2)">✏️</button>
+                                            <button class="btn-icon delete" onclick="deleteVisa(2)">🗑️</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
@@ -712,56 +819,828 @@
                 <!-- FAQ -->
                 <div class="section-panel" id="faq">
                     <h1 class="page-title">FAQ</h1>
-                    <p class="page-subtitle">Управление частыми вопросами</p>
+                    <p class="page-subtitle">Управление часто задаваемыми вопросами</p>
 
                     <div class="content-card">
                         <div class="content-card-header">
                             <h2>Вопросы и ответы</h2>
-                            <button class="btn-save" onclick="addFaq()">+ Добавить вопрос</button>
+                            <button class="btn-save" onclick="openModal('addFaq')">+ Добавить вопрос</button>
+                        </div>
+                        <div class="content-card-body" id="faqList">
+                            <div class="item-card">
+                                <div class="item-card-content">
+                                    <h4>Нужна ли виза россиянам во Вьетнам?</h4>
+                                    <p>Нет, для поездки до 45 дней виза не нужна...</p>
+                                </div>
+                                <div class="action-btns">
+                                    <button class="btn-icon edit">✏️</button>
+                                    <button class="btn-icon delete">🗑️</button>
+                                </div>
+                            </div>
+                            <div class="item-card">
+                                <div class="item-card-content">
+                                    <h4>Сколько стоит электронная виза?</h4>
+                                    <p>E-Visa стоит $25, оформление за 3 дня...</p>
+                                </div>
+                                <div class="action-btns">
+                                    <button class="btn-icon edit">✏️</button>
+                                    <button class="btn-icon delete">🗑️</button>
+                                </div>
+                            </div>
+                            <div class="item-card">
+                                <div class="item-card-content">
+                                    <h4>Можно ли продлить пребывание?</h4>
+                                    <p>Да, можно сделать visa-run...</p>
+                                </div>
+                                <div class="action-btns">
+                                    <button class="btn-icon edit">✏️</button>
+                                    <button class="btn-icon delete">🗑️</button>
+                                </div>
+                            </div>
+                            <div class="item-card">
+                                <div class="item-card-content">
+                                    <h4>Какие документы нужны?</h4>
+                                    <p>Загранпаспорт, билеты, бронь отеля...</p>
+                                </div>
+                                <div class="action-btns">
+                                    <button class="btn-icon edit">✏️</button>
+                                    <button class="btn-icon delete">🗑️</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Blog -->
+                <div class="section-panel" id="blog">
+                    <h1 class="page-title">Блог / Новости</h1>
+                    <p class="page-subtitle">Публикации и обновления правил</p>
+
+                    <div class="content-card">
+                        <div class="content-card-header">
+                            <h2>Публикации</h2>
+                            <button class="btn-save" onclick="openModal('addPost')">+ Новая публикация</button>
                         </div>
                         <div class="content-card-body">
-                            <div class="faq-item">
-                                <div class="faq-item-header">
-                                    <h4>Нужна ли виза россиянам во Вьетнам?</h4>
-                                    <div class="action-btns">
-                                        <button class="btn-icon edit">✏️</button>
-                                        <button class="btn-icon delete">🗑️</button>
-                                    </div>
-                                </div>
-                                <p>Нет, для поездки до 45 дней виза не нужна. Просто возьмите загранпаспорт со сроком действия минимум 6 месяцев.</p>
-                            </div>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Заголовок</th>
+                                        <th>Категория</th>
+                                        <th>Дата</th>
+                                        <th>Статус</th>
+                                        <th>Действия</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>Обновление правил въезда 2025</strong></td>
+                                        <td>Новости</td>
+                                        <td>28.12.2024</td>
+                                        <td><span class="status-badge active">Опубликовано</span></td>
+                                        <td class="action-btns">
+                                            <button class="btn-icon view">👁️</button>
+                                            <button class="btn-icon edit">✏️</button>
+                                            <button class="btn-icon delete">🗑️</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Как оформить e-Visa: пошаговая инструкция</strong></td>
+                                        <td>Гайд</td>
+                                        <td>25.12.2024</td>
+                                        <td><span class="status-badge active">Опубликовано</span></td>
+                                        <td class="action-btns">
+                                            <button class="btn-icon view">👁️</button>
+                                            <button class="btn-icon edit">✏️</button>
+                                            <button class="btn-icon delete">🗑️</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Топ-10 мест в Нячанге</strong></td>
+                                        <td>Путешествия</td>
+                                        <td>20.12.2024</td>
+                                        <td><span class="status-badge draft">Черновик</span></td>
+                                        <td class="action-btns">
+                                            <button class="btn-icon view">👁️</button>
+                                            <button class="btn-icon edit">✏️</button>
+                                            <button class="btn-icon delete">🗑️</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
 
-                            <div class="faq-item">
-                                <div class="faq-item-header">
-                                    <h4>Сколько стоит электронная виза?</h4>
-                                    <div class="action-btns">
-                                        <button class="btn-icon edit">✏️</button>
-                                        <button class="btn-icon delete">🗑️</button>
-                                    </div>
-                                </div>
-                                <p>E-Visa стоит $25 (оплата картой онлайн). Срок оформления — 3 рабочих дня.</p>
-                            </div>
+                <!-- Media -->
+                <div class="section-panel" id="media">
+                    <h1 class="page-title">Медиа библиотека</h1>
+                    <p class="page-subtitle">Управление изображениями и файлами</p>
 
-                            <div class="faq-item">
-                                <div class="faq-item-header">
-                                    <h4>Можно ли продлить пребывание?</h4>
-                                    <div class="action-btns">
-                                        <button class="btn-icon edit">✏️</button>
-                                        <button class="btn-icon delete">🗑️</button>
-                                    </div>
+                    <div class="content-card">
+                        <div class="content-card-header">
+                            <h2>Изображения</h2>
+                            <button class="btn-save">📤 Загрузить</button>
+                        </div>
+                        <div class="content-card-body">
+                            <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem;">
+                                <div style="background: var(--bg); border-radius: 10px; padding: 1rem; text-align: center;">
+                                    <div style="font-size: 3rem; margin-bottom: 0.5rem;">🏖️</div>
+                                    <p style="font-size: 0.8rem; color: var(--text-light);">beach.jpg</p>
                                 </div>
-                                <p>Да! Можно сделать visa-run — выехать в Камбоджу или Таиланд и въехать заново на 45 дней.</p>
+                                <div style="background: var(--bg); border-radius: 10px; padding: 1rem; text-align: center;">
+                                    <div style="font-size: 3rem; margin-bottom: 0.5rem;">🗺️</div>
+                                    <p style="font-size: 0.8rem; color: var(--text-light);">map.svg</p>
+                                </div>
+                                <div style="background: var(--bg); border-radius: 10px; padding: 1rem; text-align: center;">
+                                    <div style="font-size: 3rem; margin-bottom: 0.5rem;">🛂</div>
+                                    <p style="font-size: 0.8rem; color: var(--text-light);">passport.jpg</p>
+                                </div>
+                                <div style="background: var(--bg); border-radius: 10px; padding: 1rem; text-align: center;">
+                                    <div style="font-size: 3rem; margin-bottom: 0.5rem;">✈️</div>
+                                    <p style="font-size: 0.8rem; color: var(--text-light);">airport.jpg</p>
+                                </div>
                             </div>
+                        </div>
+                    </div>
+                </div>
 
-                            <div class="faq-item">
-                                <div class="faq-item-header">
-                                    <h4>Какие документы нужны?</h4>
-                                    <div class="action-btns">
-                                        <button class="btn-icon edit">✏️</button>
-                                        <button class="btn-icon delete">🗑️</button>
-                                    </div>
+                <!-- Chatbot -->
+                <div class="section-panel" id="chatbot">
+                    <h1 class="page-title">Настройки чат-бота</h1>
+                    <p class="page-subtitle">Управление автоматическими ответами</p>
+
+                    <div class="content-card">
+                        <div class="content-card-header">
+                            <h2>🤖 Ключевые слова и ответы</h2>
+                            <button class="btn-save" onclick="openModal('addKeyword')">+ Добавить</button>
+                        </div>
+                        <div class="content-card-body">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Ключевое слово</th>
+                                        <th>Ответ бота</th>
+                                        <th>Действия</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><code>виза</code></td>
+                                        <td>Для россиян безвизовый въезд до 45 дней! Для дольше — e-Visa за $25.</td>
+                                        <td class="action-btns">
+                                            <button class="btn-icon edit">✏️</button>
+                                            <button class="btn-icon delete">🗑️</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>стоит</code></td>
+                                        <td>Безвизовый — бесплатно. E-Visa — $25.</td>
+                                        <td class="action-btns">
+                                            <button class="btn-icon edit">✏️</button>
+                                            <button class="btn-icon delete">🗑️</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>дней</code></td>
+                                        <td>Без визы до 45 дней. С e-Visa до 90 дней.</td>
+                                        <td class="action-btns">
+                                            <button class="btn-icon edit">✏️</button>
+                                            <button class="btn-icon delete">🗑️</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>документ</code></td>
+                                        <td>Загранпаспорт (от 6 мес.), билеты, бронь отеля.</td>
+                                        <td class="action-btns">
+                                            <button class="btn-icon edit">✏️</button>
+                                            <button class="btn-icon delete">🗑️</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>продлить</code></td>
+                                        <td>Выезд в соседнюю страну даёт новые 45 дней.</td>
+                                        <td class="action-btns">
+                                            <button class="btn-icon edit">✏️</button>
+                                            <button class="btn-icon delete">🗑️</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="content-card">
+                        <div class="content-card-header">
+                            <h2>⚙️ Настройки бота</h2>
+                        </div>
+                        <div class="content-card-body">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>Приветственное сообщение</label>
+                                    <input type="text" value="Привет! 👋 Помогу с вопросами о визе во Вьетнам.">
                                 </div>
-                                <p>Загранпаспорт (срок от 6 месяцев), обратные билеты, бронь отеля. Для e-Visa — фото 4x6 см.</p>
+                                <div class="form-group">
+                                    <label>Сообщение по умолчанию</label>
+                                    <input type="text" value="Спросите про визу, стоимость или сроки!">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>Имя бота</label>
+                                    <input type="text" value="Виза-бот">
+                                </div>
+                                <div class="form-group" style="display: flex; align-items: center; gap: 1rem;">
+                                    <label style="margin: 0;">Бот активен</label>
+                                    <label class="toggle-switch">
+                                        <input type="checkbox" checked>
+                                        <span class="toggle-slider"></span>
+                                    </label>
+                                </div>
+                            </div>
+                            <button class="btn-save" onclick="showToast('Настройки бота сохранены!')">💾 Сохранить</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Messages -->
+                <div class="section-panel" id="messages">
+                    <h1 class="page-title">Сообщения</h1>
+                    <p class="page-subtitle">История сообщений из чат-бота</p>
+
+                    <div class="stats-grid" style="grid-template-columns: repeat(3, 1fr);">
+                        <div class="stat-card">
+                            <div class="stat-card-icon blue">💬</div>
+                            <h3>156</h3>
+                            <p>Всего сообщений</p>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-card-icon green">✅</div>
+                            <h3>142</h3>
+                            <p>Отвечено ботом</p>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-card-icon orange">⏳</div>
+                            <h3>14</h3>
+                            <p>Без ответа</p>
+                        </div>
+                    </div>
+
+                    <div class="content-card">
+                        <div class="content-card-header">
+                            <h2>Последние сообщения</h2>
+                        </div>
+                        <div class="content-card-body">
+                            <div class="message-item">
+                                <div class="message-avatar">А</div>
+                                <div class="message-content">
+                                    <div class="meta">Анонимный пользователь • 5 минут назад</div>
+                                    <div class="text">Нужна ли виза для поездки на 2 недели?</div>
+                                </div>
+                            </div>
+                            <div class="message-item">
+                                <div class="message-avatar">М</div>
+                                <div class="message-content">
+                                    <div class="meta">Мария • 15 минут назад</div>
+                                    <div class="text">Сколько стоит электронная виза на 90 дней?</div>
+                                </div>
+                            </div>
+                            <div class="message-item">
+                                <div class="message-avatar">И</div>
+                                <div class="message-content">
+                                    <div class="meta">Иван • 1 час назад</div>
+                                    <div class="text">Можно ли продлить безвизовое пребывание?</div>
+                                </div>
+                            </div>
+                            <div class="message-item">
+                                <div class="message-avatar">О</div>
+                                <div class="message-content">
+                                    <div class="meta">Ольга • 2 часа назад</div>
+                                    <div class="text">Какие документы нужны для e-Visa?</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Newsletter -->
+                <div class="section-panel" id="newsletter">
+                    <h1 class="page-title">Email рассылка</h1>
+                    <p class="page-subtitle">Управление подписчиками и рассылками</p>
+
+                    <div class="stats-grid" style="grid-template-columns: repeat(3, 1fr);">
+                        <div class="stat-card">
+                            <div class="stat-card-icon purple">📧</div>
+                            <h3>892</h3>
+                            <p>Подписчиков</p>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-card-icon green">📨</div>
+                            <h3>12</h3>
+                            <p>Отправлено писем</p>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-card-icon blue">👁️</div>
+                            <h3>68%</h3>
+                            <p>Открываемость</p>
+                        </div>
+                    </div>
+
+                    <div class="content-card">
+                        <div class="content-card-header">
+                            <h2>✉️ Создать рассылку</h2>
+                        </div>
+                        <div class="content-card-body">
+                            <div class="form-row full">
+                                <div class="form-group">
+                                    <label>Тема письма</label>
+                                    <input type="text" placeholder="Новые правила въезда во Вьетнам">
+                                </div>
+                            </div>
+                            <div class="form-row full">
+                                <div class="form-group">
+                                    <label>Содержание</label>
+                                    <textarea rows="6" placeholder="Текст рассылки..."></textarea>
+                                </div>
+                            </div>
+                            <button class="btn-secondary">📋 Сохранить черновик</button>
+                            <button class="btn-save">📤 Отправить рассылку</button>
+                        </div>
+                    </div>
+
+                    <div class="content-card">
+                        <div class="content-card-header">
+                            <h2>👥 Последние подписчики</h2>
+                        </div>
+                        <div class="content-card-body">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Email</th>
+                                        <th>Дата подписки</th>
+                                        <th>Статус</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>ivan@mail.ru</td>
+                                        <td>28.12.2024</td>
+                                        <td><span class="status-badge active">Активен</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>maria@gmail.com</td>
+                                        <td>27.12.2024</td>
+                                        <td><span class="status-badge active">Активен</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>alex@yandex.ru</td>
+                                        <td>26.12.2024</td>
+                                        <td><span class="status-badge active">Активен</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Telegram -->
+                <div class="section-panel" id="telegram">
+                    <h1 class="page-title">Telegram интеграция</h1>
+                    <p class="page-subtitle">Настройка Telegram бота и уведомлений</p>
+
+                    <div class="content-card">
+                        <div class="content-card-header">
+                            <h2>🤖 Настройки Telegram бота</h2>
+                        </div>
+                        <div class="content-card-body">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>Bot Token</label>
+                                    <input type="text" placeholder="123456789:ABCdefGHIjklMNOpqrsTUVwxyz">
+                                </div>
+                                <div class="form-group">
+                                    <label>Chat ID для уведомлений</label>
+                                    <input type="text" placeholder="-1001234567890">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group" style="display: flex; align-items: center; gap: 1rem;">
+                                    <label style="margin: 0;">Уведомления о новых сообщениях</label>
+                                    <label class="toggle-switch">
+                                        <input type="checkbox" checked>
+                                        <span class="toggle-slider"></span>
+                                    </label>
+                                </div>
+                                <div class="form-group" style="display: flex; align-items: center; gap: 1rem;">
+                                    <label style="margin: 0;">Уведомления о подписках</label>
+                                    <label class="toggle-switch">
+                                        <input type="checkbox">
+                                        <span class="toggle-slider"></span>
+                                    </label>
+                                </div>
+                            </div>
+                            <button class="btn-save" onclick="showToast('Telegram настройки сохранены!')">💾 Сохранить</button>
+                            <button class="btn-info" style="margin-left: 0.5rem;">🔔 Тестовое уведомление</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Calculator -->
+                <div class="section-panel" id="calculator">
+                    <h1 class="page-title">Настройки калькулятора</h1>
+                    <p class="page-subtitle">Параметры калькулятора визы</p>
+
+                    <div class="content-card">
+                        <div class="content-card-header">
+                            <h2>🧮 Параметры расчёта</h2>
+                        </div>
+                        <div class="content-card-body">
+                            <div class="form-row cols-3">
+                                <div class="form-group">
+                                    <label>Макс. дней без визы</label>
+                                    <input type="number" value="45">
+                                </div>
+                                <div class="form-group">
+                                    <label>Макс. дней e-Visa</label>
+                                    <input type="number" value="90">
+                                </div>
+                                <div class="form-group">
+                                    <label>Стоимость e-Visa ($)</label>
+                                    <input type="number" value="25">
+                                </div>
+                            </div>
+                            <div class="form-row cols-3">
+                                <div class="form-group">
+                                    <label>Многократная e-Visa ($)</label>
+                                    <input type="number" value="50">
+                                </div>
+                                <div class="form-group">
+                                    <label>Срок оформления (дней)</label>
+                                    <input type="number" value="3">
+                                </div>
+                                <div class="form-group">
+                                    <label>Рабочая виза ($)</label>
+                                    <input type="number" value="100">
+                                </div>
+                            </div>
+                            <button class="btn-save" onclick="showToast('Параметры калькулятора сохранены!')">💾 Сохранить</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Currency -->
+                <div class="section-panel" id="currency">
+                    <h1 class="page-title">Курсы валют</h1>
+                    <p class="page-subtitle">Настройка конвертера валют</p>
+
+                    <div class="content-card">
+                        <div class="content-card-header">
+                            <h2>💱 Текущие курсы</h2>
+                            <button class="btn-info" onclick="showToast('Курсы обновлены!')">🔄 Обновить автоматически</button>
+                        </div>
+                        <div class="content-card-body">
+                            <div class="form-row cols-3">
+                                <div class="form-group">
+                                    <label>🇺🇸 1 USD = RUB</label>
+                                    <input type="number" value="100" step="0.01">
+                                </div>
+                                <div class="form-group">
+                                    <label>🇺🇸 1 USD = VND</label>
+                                    <input type="number" value="25500" step="1">
+                                </div>
+                                <div class="form-group">
+                                    <label>🇷🇺 1 RUB = VND</label>
+                                    <input type="number" value="255" step="0.01">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group" style="display: flex; align-items: center; gap: 1rem;">
+                                    <label style="margin: 0;">Автообновление курсов</label>
+                                    <label class="toggle-switch">
+                                        <input type="checkbox" checked>
+                                        <span class="toggle-slider"></span>
+                                    </label>
+                                </div>
+                                <div class="form-group">
+                                    <label>Источник курсов</label>
+                                    <select>
+                                        <option>ЦБ РФ</option>
+                                        <option>Open Exchange Rates</option>
+                                        <option>Ручной ввод</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <button class="btn-save" onclick="showToast('Курсы валют сохранены!')">💾 Сохранить</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Analytics -->
+                <div class="section-panel" id="analytics">
+                    <h1 class="page-title">Аналитика</h1>
+                    <p class="page-subtitle">Статистика посещений и поведения</p>
+
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-card-icon green">👁️</div>
+                            <h3>45,678</h3>
+                            <p>Просмотров за месяц</p>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-card-icon blue">👥</div>
+                            <h3>12,345</h3>
+                            <p>Уникальных за месяц</p>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-card-icon orange">⏱️</div>
+                            <h3>3:45</h3>
+                            <p>Среднее время на сайте</p>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-card-icon pink">📉</div>
+                            <h3>32%</h3>
+                            <p>Показатель отказов</p>
+                        </div>
+                    </div>
+
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+                        <div class="content-card">
+                            <div class="content-card-header">
+                                <h2>📊 Популярные страницы</h2>
+                            </div>
+                            <div class="content-card-body">
+                                <div class="item-card">
+                                    <span>Главная</span>
+                                    <strong>45%</strong>
+                                </div>
+                                <div class="item-card">
+                                    <span>Калькулятор</span>
+                                    <strong>28%</strong>
+                                </div>
+                                <div class="item-card">
+                                    <span>FAQ</span>
+                                    <strong>15%</strong>
+                                </div>
+                                <div class="item-card">
+                                    <span>Типы виз</span>
+                                    <strong>12%</strong>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="content-card">
+                            <div class="content-card-header">
+                                <h2>📱 Устройства</h2>
+                            </div>
+                            <div class="content-card-body">
+                                <div class="item-card">
+                                    <span>📱 Мобильные</span>
+                                    <strong>62%</strong>
+                                </div>
+                                <div class="item-card">
+                                    <span>💻 Десктоп</span>
+                                    <strong>32%</strong>
+                                </div>
+                                <div class="item-card">
+                                    <span>📟 Планшеты</span>
+                                    <strong>6%</strong>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="content-card" style="margin-top: 1.5rem;">
+                        <div class="content-card-header">
+                            <h2>🔧 Подключение аналитики</h2>
+                        </div>
+                        <div class="content-card-body">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>Google Analytics ID</label>
+                                    <input type="text" placeholder="G-XXXXXXXXXX">
+                                </div>
+                                <div class="form-group">
+                                    <label>Yandex Metrika ID</label>
+                                    <input type="text" placeholder="12345678">
+                                </div>
+                            </div>
+                            <button class="btn-save" onclick="showToast('Аналитика подключена!')">💾 Сохранить</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SEO -->
+                <div class="section-panel" id="seo">
+                    <h1 class="page-title">SEO настройки</h1>
+                    <p class="page-subtitle">Оптимизация для поисковых систем</p>
+
+                    <div class="content-card">
+                        <div class="content-card-header">
+                            <h2>🔍 Meta теги</h2>
+                        </div>
+                        <div class="content-card-body">
+                            <div class="form-row full">
+                                <div class="form-group">
+                                    <label>Title (заголовок страницы)</label>
+                                    <input type="text" value="Виза во Вьетнам 2025 | Гайд для россиян">
+                                </div>
+                            </div>
+                            <div class="form-row full">
+                                <div class="form-group">
+                                    <label>Meta Description</label>
+                                    <textarea>Полный гайд по визам во Вьетнам для граждан России. Безвизовый въезд до 45 дней, электронная виза e-Visa за $25, калькулятор визы. Актуальная информация 2025.</textarea>
+                                </div>
+                            </div>
+                            <div class="form-row full">
+                                <div class="form-group">
+                                    <label>Keywords (ключевые слова)</label>
+                                    <input type="text" value="виза вьетнам, виза во вьетнам для россиян, e-visa vietnam, безвизовый вьетнам">
+                                </div>
+                            </div>
+                            <button class="btn-save" onclick="showToast('SEO настройки сохранены!')">💾 Сохранить</button>
+                        </div>
+                    </div>
+
+                    <div class="content-card">
+                        <div class="content-card-header">
+                            <h2>📱 Open Graph (соцсети)</h2>
+                        </div>
+                        <div class="content-card-body">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>OG Title</label>
+                                    <input type="text" value="Виза во Вьетнам — полный гайд">
+                                </div>
+                                <div class="form-group">
+                                    <label>OG Image URL</label>
+                                    <input type="text" placeholder="https://...">
+                                </div>
+                            </div>
+                            <div class="form-row full">
+                                <div class="form-group">
+                                    <label>OG Description</label>
+                                    <textarea>Всё о визах во Вьетнам для россиян. Калькулятор визы, актуальные цены и сроки.</textarea>
+                                </div>
+                            </div>
+                            <button class="btn-save" onclick="showToast('Open Graph сохранён!')">💾 Сохранить</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Languages -->
+                <div class="section-panel" id="languages">
+                    <h1 class="page-title">Языки и переводы</h1>
+                    <p class="page-subtitle">Мультиязычность сайта</p>
+
+                    <div class="content-card">
+                        <div class="content-card-header">
+                            <h2>🌍 Доступные языки</h2>
+                            <button class="btn-save">+ Добавить язык</button>
+                        </div>
+                        <div class="content-card-body">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Язык</th>
+                                        <th>Код</th>
+                                        <th>Прогресс перевода</th>
+                                        <th>Статус</th>
+                                        <th>Действия</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>🇷🇺 Русский</td>
+                                        <td>ru</td>
+                                        <td>100%</td>
+                                        <td><span class="status-badge active">Основной</span></td>
+                                        <td class="action-btns">
+                                            <button class="btn-icon edit">✏️</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>🇬🇧 English</td>
+                                        <td>en</td>
+                                        <td>75%</td>
+                                        <td><span class="status-badge draft">В работе</span></td>
+                                        <td class="action-btns">
+                                            <button class="btn-icon edit">✏️</button>
+                                            <button class="btn-icon delete">🗑️</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>🇻🇳 Tiếng Việt</td>
+                                        <td>vi</td>
+                                        <td>0%</td>
+                                        <td><span class="status-badge inactive">Не активен</span></td>
+                                        <td class="action-btns">
+                                            <button class="btn-icon edit">✏️</button>
+                                            <button class="btn-icon delete">🗑️</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Backup -->
+                <div class="section-panel" id="backup">
+                    <h1 class="page-title">Резервное копирование</h1>
+                    <p class="page-subtitle">Бэкапы и восстановление данных</p>
+
+                    <div class="content-card">
+                        <div class="content-card-header">
+                            <h2>💾 Создать бэкап</h2>
+                        </div>
+                        <div class="content-card-body">
+                            <p style="margin-bottom: 1rem; color: var(--text-light);">Создайте резервную копию всех настроек и контента</p>
+                            <button class="btn-save" onclick="createBackup()">📥 Создать бэкап сейчас</button>
+                        </div>
+                    </div>
+
+                    <div class="content-card">
+                        <div class="content-card-header">
+                            <h2>📋 История бэкапов</h2>
+                        </div>
+                        <div class="content-card-body">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Дата</th>
+                                        <th>Размер</th>
+                                        <th>Тип</th>
+                                        <th>Действия</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>28.12.2024 15:30</td>
+                                        <td>2.3 MB</td>
+                                        <td>Автоматический</td>
+                                        <td class="action-btns">
+                                            <button class="btn-secondary" style="padding: 0.5rem 1rem;">📥 Скачать</button>
+                                            <button class="btn-info" style="padding: 0.5rem 1rem;">🔄 Восстановить</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>27.12.2024 15:30</td>
+                                        <td>2.1 MB</td>
+                                        <td>Автоматический</td>
+                                        <td class="action-btns">
+                                            <button class="btn-secondary" style="padding: 0.5rem 1rem;">📥 Скачать</button>
+                                            <button class="btn-info" style="padding: 0.5rem 1rem;">🔄 Восстановить</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>25.12.2024 10:00</td>
+                                        <td>1.9 MB</td>
+                                        <td>Ручной</td>
+                                        <td class="action-btns">
+                                            <button class="btn-secondary" style="padding: 0.5rem 1rem;">📥 Скачать</button>
+                                            <button class="btn-info" style="padding: 0.5rem 1rem;">🔄 Восстановить</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Logs -->
+                <div class="section-panel" id="logs">
+                    <h1 class="page-title">Логи действий</h1>
+                    <p class="page-subtitle">История действий администраторов</p>
+
+                    <div class="content-card">
+                        <div class="content-card-header">
+                            <h2>📋 Последние действия</h2>
+                            <button class="btn-secondary">🗑️ Очистить логи</button>
+                        </div>
+                        <div class="content-card-body">
+                            <div class="log-entry">
+                                <div class="time">28.12.2024 16:45</div>
+                                <div class="action">👤 <strong>admin</strong> — Изменение контента (Hero секция)</div>
+                            </div>
+                            <div class="log-entry">
+                                <div class="time">28.12.2024 16:30</div>
+                                <div class="action">👤 <strong>admin</strong> — Добавлен FAQ вопрос</div>
+                            </div>
+                            <div class="log-entry">
+                                <div class="time">28.12.2024 15:30</div>
+                                <div class="action">🤖 <strong>система</strong> — Автоматический бэкап создан</div>
+                            </div>
+                            <div class="log-entry">
+                                <div class="time">28.12.2024 14:00</div>
+                                <div class="action">👤 <strong>admin</strong> — Обновлены курсы валют</div>
+                            </div>
+                            <div class="log-entry">
+                                <div class="time">28.12.2024 12:15</div>
+                                <div class="action">👤 <strong>admin</strong> — Вход в систему</div>
+                            </div>
+                            <div class="log-entry">
+                                <div class="time">27.12.2024 18:00</div>
+                                <div class="action">👤 <strong>admin</strong> — Опубликована новость</div>
                             </div>
                         </div>
                     </div>
@@ -770,11 +1649,11 @@
                 <!-- Settings -->
                 <div class="section-panel" id="settings">
                     <h1 class="page-title">Настройки</h1>
-                    <p class="page-subtitle">Общие настройки сайта</p>
+                    <p class="page-subtitle">Общие настройки системы</p>
 
                     <div class="content-card">
                         <div class="content-card-header">
-                            <h2>Основные настройки</h2>
+                            <h2>⚙️ Основные настройки</h2>
                         </div>
                         <div class="content-card-body">
                             <div class="form-row">
@@ -783,23 +1662,33 @@
                                     <input type="text" value="VietVisa">
                                 </div>
                                 <div class="form-group">
-                                    <label>Язык</label>
-                                    <input type="text" value="Русский">
+                                    <label>URL сайта</label>
+                                    <input type="text" value="https://vietnam-visa-guide.vercel.app">
                                 </div>
                             </div>
-                            <div class="form-row full">
+                            <div class="form-row">
                                 <div class="form-group">
-                                    <label>Meta описание</label>
-                                    <textarea>Полный гайд по визам во Вьетнам для россиян. Безвизовый въезд, электронная виза, калькулятор визы.</textarea>
+                                    <label>Язык по умолчанию</label>
+                                    <select>
+                                        <option>Русский</option>
+                                        <option>English</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>Часовой пояс</label>
+                                    <select>
+                                        <option>UTC+3 (Москва)</option>
+                                        <option>UTC+7 (Вьетнам)</option>
+                                    </select>
                                 </div>
                             </div>
-                            <button class="btn-save" onclick="saveSettings()">💾 Сохранить настройки</button>
+                            <button class="btn-save" onclick="showToast('Настройки сохранены!')">💾 Сохранить</button>
                         </div>
                     </div>
 
                     <div class="content-card">
                         <div class="content-card-header">
-                            <h2>Смена пароля</h2>
+                            <h2>🔐 Смена пароля</h2>
                         </div>
                         <div class="content-card-body">
                             <div class="form-row">
@@ -815,8 +1704,46 @@
                             <button class="btn-save" onclick="changePassword()">🔐 Сменить пароль</button>
                         </div>
                     </div>
+
+                    <div class="content-card">
+                        <div class="content-card-header">
+                            <h2>🔔 Уведомления</h2>
+                        </div>
+                        <div class="content-card-body">
+                            <div class="form-row">
+                                <div class="form-group" style="display: flex; align-items: center; gap: 1rem;">
+                                    <label style="margin: 0;">Email уведомления</label>
+                                    <label class="toggle-switch">
+                                        <input type="checkbox" checked>
+                                        <span class="toggle-slider"></span>
+                                    </label>
+                                </div>
+                                <div class="form-group" style="display: flex; align-items: center; gap: 1rem;">
+                                    <label style="margin: 0;">Push уведомления</label>
+                                    <label class="toggle-switch">
+                                        <input type="checkbox">
+                                        <span class="toggle-slider"></span>
+                                    </label>
+                                </div>
+                            </div>
+                            <button class="btn-save" onclick="showToast('Уведомления сохранены!')">💾 Сохранить</button>
+                        </div>
+                    </div>
                 </div>
             </main>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal" id="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalTitle">Заголовок</h2>
+                <button class="modal-close" onclick="closeModal()">×</button>
+            </div>
+            <div id="modalBody">
+                <!-- Dynamic content -->
+            </div>
         </div>
     </div>
 
@@ -827,22 +1754,20 @@
     </div>
 
     <script>
-        // Default credentials
         const DEFAULT_USER = 'admin';
         const DEFAULT_PASS = 'admin123';
 
-        // Check if logged in
+        // Check login
         if (localStorage.getItem('adminLoggedIn') === 'true') {
             document.getElementById('loginPage').style.display = 'none';
             document.getElementById('adminPage').style.display = 'block';
         }
 
-        // Login form
+        // Login
         document.getElementById('loginForm').addEventListener('submit', function(e) {
             e.preventDefault();
             const username = document.getElementById('username').value;
             const password = document.getElementById('password').value;
-
             const savedUser = localStorage.getItem('adminUser') || DEFAULT_USER;
             const savedPass = localStorage.getItem('adminPass') || DEFAULT_PASS;
 
@@ -850,6 +1775,7 @@
                 localStorage.setItem('adminLoggedIn', 'true');
                 document.getElementById('loginPage').style.display = 'none';
                 document.getElementById('adminPage').style.display = 'block';
+                addLog('Вход в систему');
             } else {
                 document.getElementById('errorMsg').style.display = 'block';
             }
@@ -858,20 +1784,21 @@
         // Logout
         function logout() {
             localStorage.removeItem('adminLoggedIn');
-            document.getElementById('loginPage').style.display = 'flex';
-            document.getElementById('adminPage').style.display = 'none';
+            location.reload();
         }
 
         // Show section
-        function showSection(sectionId) {
+        function showSection(id, el) {
             document.querySelectorAll('.section-panel').forEach(s => s.classList.remove('active'));
-            document.getElementById(sectionId).classList.add('active');
+            document.getElementById(id).classList.add('active');
 
-            document.querySelectorAll('.sidebar-menu a').forEach(a => a.classList.remove('active'));
-            event.target.classList.add('active');
+            if (el) {
+                document.querySelectorAll('.sidebar-menu a').forEach(a => a.classList.remove('active'));
+                el.classList.add('active');
+            }
         }
 
-        // Show toast
+        // Toast
         function showToast(msg) {
             const toast = document.getElementById('toast');
             document.getElementById('toastMsg').textContent = msg;
@@ -882,30 +1809,25 @@
         // Save content
         function saveContent() {
             const data = {
-                heroTitle: document.getElementById('heroTitle').value,
-                heroBadge: document.getElementById('heroBadge').value,
-                heroDesc: document.getElementById('heroDesc').value,
-                statDays: document.getElementById('statDays').value,
-                statCost: document.getElementById('statCost').value,
-                statProcessing: document.getElementById('statProcessing').value,
-                statMaxDays: document.getElementById('statMaxDays').value,
-                evisaUrl: document.getElementById('evisaUrl').value,
-                contactEmail: document.getElementById('contactEmail').value
+                heroTitle: document.getElementById('heroTitle')?.value,
+                heroBadge: document.getElementById('heroBadge')?.value,
+                heroDesc: document.getElementById('heroDesc')?.value,
+                statDays: document.getElementById('statDays')?.value,
+                statCost: document.getElementById('statCost')?.value,
+                statProcessing: document.getElementById('statProcessing')?.value,
+                statMaxDays: document.getElementById('statMaxDays')?.value,
+                evisaUrl: document.getElementById('evisaUrl')?.value,
+                contactEmail: document.getElementById('contactEmail')?.value
             };
             localStorage.setItem('siteContent', JSON.stringify(data));
             showToast('Контент сохранён!');
-        }
-
-        // Save settings
-        function saveSettings() {
-            showToast('Настройки сохранены!');
+            addLog('Изменение контента');
         }
 
         // Change password
         function changePassword() {
             const currentPass = document.getElementById('currentPass').value;
             const newPass = document.getElementById('newPass').value;
-
             const savedPass = localStorage.getItem('adminPass') || DEFAULT_PASS;
 
             if (currentPass === savedPass && newPass.length >= 6) {
@@ -913,34 +1835,135 @@
                 showToast('Пароль изменён!');
                 document.getElementById('currentPass').value = '';
                 document.getElementById('newPass').value = '';
+                addLog('Смена пароля');
             } else {
                 showToast('Ошибка! Проверьте данные');
             }
         }
 
-        // Add FAQ
-        function addFaq() {
-            showToast('Функция в разработке');
+        // Modal
+        function openModal(type) {
+            const modal = document.getElementById('modal');
+            const title = document.getElementById('modalTitle');
+            const body = document.getElementById('modalBody');
+
+            if (type === 'addFaq') {
+                title.textContent = 'Добавить FAQ';
+                body.innerHTML = `
+                    <div class="form-group">
+                        <label>Вопрос</label>
+                        <input type="text" placeholder="Введите вопрос">
+                    </div>
+                    <div class="form-group">
+                        <label>Ответ</label>
+                        <textarea placeholder="Введите ответ"></textarea>
+                    </div>
+                    <button class="btn-save" onclick="showToast('FAQ добавлен!'); closeModal();">Добавить</button>
+                `;
+            } else if (type === 'addVisa') {
+                title.textContent = 'Добавить тип визы';
+                body.innerHTML = `
+                    <div class="form-group">
+                        <label>Название</label>
+                        <input type="text" placeholder="Название визы">
+                    </div>
+                    <div class="form-group">
+                        <label>Срок</label>
+                        <input type="text" placeholder="До 90 дней">
+                    </div>
+                    <div class="form-group">
+                        <label>Стоимость</label>
+                        <input type="text" placeholder="$25">
+                    </div>
+                    <div class="form-group">
+                        <label>Описание</label>
+                        <textarea placeholder="Описание..."></textarea>
+                    </div>
+                    <button class="btn-save" onclick="showToast('Виза добавлена!'); closeModal();">Добавить</button>
+                `;
+            } else if (type === 'addPost') {
+                title.textContent = 'Новая публикация';
+                body.innerHTML = `
+                    <div class="form-group">
+                        <label>Заголовок</label>
+                        <input type="text" placeholder="Заголовок статьи">
+                    </div>
+                    <div class="form-group">
+                        <label>Категория</label>
+                        <select>
+                            <option>Новости</option>
+                            <option>Гайд</option>
+                            <option>Путешествия</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Содержание</label>
+                        <textarea rows="6" placeholder="Текст статьи..."></textarea>
+                    </div>
+                    <button class="btn-secondary" onclick="showToast('Черновик сохранён!'); closeModal();">Сохранить черновик</button>
+                    <button class="btn-save" onclick="showToast('Опубликовано!'); closeModal();">Опубликовать</button>
+                `;
+            } else if (type === 'addKeyword') {
+                title.textContent = 'Добавить ключевое слово';
+                body.innerHTML = `
+                    <div class="form-group">
+                        <label>Ключевое слово</label>
+                        <input type="text" placeholder="виза">
+                    </div>
+                    <div class="form-group">
+                        <label>Ответ бота</label>
+                        <textarea placeholder="Текст ответа..."></textarea>
+                    </div>
+                    <button class="btn-save" onclick="showToast('Ключевое слово добавлено!'); closeModal();">Добавить</button>
+                `;
+            }
+
+            modal.classList.add('show');
         }
 
-        // Add Visa
-        function addVisa() {
-            showToast('Функция в разработке');
+        function closeModal() {
+            document.getElementById('modal').classList.remove('show');
         }
+
+        // Backup
+        function createBackup() {
+            const data = {
+                content: localStorage.getItem('siteContent'),
+                timestamp: new Date().toISOString()
+            };
+            const blob = new Blob([JSON.stringify(data, null, 2)], {type: 'application/json'});
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `backup-${new Date().toISOString().slice(0,10)}.json`;
+            a.click();
+            showToast('Бэкап создан!');
+            addLog('Создан бэкап');
+        }
+
+        // Add log
+        function addLog(action) {
+            const logs = JSON.parse(localStorage.getItem('adminLogs') || '[]');
+            logs.unshift({
+                time: new Date().toLocaleString('ru'),
+                action: action
+            });
+            if (logs.length > 50) logs.pop();
+            localStorage.setItem('adminLogs', JSON.stringify(logs));
+        }
+
+        // Edit/Delete functions
+        function editVisa(id) { showToast('Редактирование визы...'); }
+        function deleteVisa(id) { if(confirm('Удалить?')) showToast('Виза удалена'); }
 
         // Load saved content
-        const savedContent = localStorage.getItem('siteContent');
-        if (savedContent) {
-            const data = JSON.parse(savedContent);
-            if (data.heroTitle) document.getElementById('heroTitle').value = data.heroTitle;
-            if (data.heroBadge) document.getElementById('heroBadge').value = data.heroBadge;
-            if (data.heroDesc) document.getElementById('heroDesc').value = data.heroDesc;
-            if (data.statDays) document.getElementById('statDays').value = data.statDays;
-            if (data.statCost) document.getElementById('statCost').value = data.statCost;
-            if (data.statProcessing) document.getElementById('statProcessing').value = data.statProcessing;
-            if (data.statMaxDays) document.getElementById('statMaxDays').value = data.statMaxDays;
-            if (data.evisaUrl) document.getElementById('evisaUrl').value = data.evisaUrl;
-            if (data.contactEmail) document.getElementById('contactEmail').value = data.contactEmail;
+        const saved = localStorage.getItem('siteContent');
+        if (saved) {
+            const data = JSON.parse(saved);
+            Object.keys(data).forEach(key => {
+                const el = document.getElementById(key);
+                if (el && data[key]) el.value = data[key];
+            });
         }
     </script>
 </body>
