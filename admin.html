@@ -1,0 +1,947 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Админ-панель | VietVisa</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #22C55E;
+            --primary-dark: #166534;
+            --danger: #EF4444;
+            --warning: #F59E0B;
+            --bg: #F3F4F6;
+            --card: #FFFFFF;
+            --text: #1F2937;
+            --text-light: #6B7280;
+            --border: #E5E7EB;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+        }
+
+        /* Login Page */
+        .login-page {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #86EFAC 0%, #FECDD3 50%, #FED7AA 100%);
+        }
+
+        .login-card {
+            background: var(--card);
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .login-card h1 {
+            text-align: center;
+            margin-bottom: 0.5rem;
+            font-size: 1.75rem;
+        }
+
+        .login-card p {
+            text-align: center;
+            color: var(--text-light);
+            margin-bottom: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 0.875rem 1rem;
+            border: 2px solid var(--border);
+            border-radius: 10px;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: all 0.3s;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .btn {
+            width: 100%;
+            padding: 1rem;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn:hover {
+            background: var(--primary-dark);
+        }
+
+        .error-msg {
+            background: #FEE2E2;
+            color: var(--danger);
+            padding: 0.75rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            text-align: center;
+            display: none;
+        }
+
+        /* Admin Dashboard */
+        .admin-page {
+            display: none;
+        }
+
+        .admin-header {
+            background: var(--card);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .admin-logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .admin-user {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .admin-user span {
+            color: var(--text-light);
+        }
+
+        .btn-logout {
+            padding: 0.5rem 1rem;
+            background: var(--danger);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 500;
+        }
+
+        .admin-container {
+            display: flex;
+            min-height: calc(100vh - 60px);
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 250px;
+            background: var(--card);
+            border-right: 1px solid var(--border);
+            padding: 1.5rem 0;
+        }
+
+        .sidebar-menu {
+            list-style: none;
+        }
+
+        .sidebar-menu li a {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.875rem 1.5rem;
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+
+        .sidebar-menu li a:hover,
+        .sidebar-menu li a.active {
+            background: #F0FDF4;
+            color: var(--primary);
+            border-right: 3px solid var(--primary);
+        }
+
+        .sidebar-menu li a span {
+            font-size: 1.25rem;
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            padding: 2rem;
+            overflow-y: auto;
+        }
+
+        .page-title {
+            font-size: 1.75rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .page-subtitle {
+            color: var(--text-light);
+            margin-bottom: 2rem;
+        }
+
+        /* Cards */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card {
+            background: var(--card);
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .stat-card-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .stat-card-icon.green { background: #DCFCE7; }
+        .stat-card-icon.blue { background: #DBEAFE; }
+        .stat-card-icon.orange { background: #FED7AA; }
+        .stat-card-icon.pink { background: #FECDD3; }
+
+        .stat-card h3 {
+            font-size: 2rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .stat-card p {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        /* Content Card */
+        .content-card {
+            background: var(--card);
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            margin-bottom: 1.5rem;
+        }
+
+        .content-card-header {
+            padding: 1.25rem 1.5rem;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .content-card-header h2 {
+            font-size: 1.1rem;
+        }
+
+        .content-card-body {
+            padding: 1.5rem;
+        }
+
+        /* Form Styles */
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-row.full {
+            grid-template-columns: 1fr;
+        }
+
+        .form-group textarea {
+            width: 100%;
+            padding: 0.875rem 1rem;
+            border: 2px solid var(--border);
+            border-radius: 10px;
+            font-size: 1rem;
+            font-family: inherit;
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .btn-save {
+            background: var(--primary);
+            color: white;
+            padding: 0.75rem 2rem;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-save:hover {
+            background: var(--primary-dark);
+        }
+
+        .btn-secondary {
+            background: var(--bg);
+            color: var(--text);
+            padding: 0.75rem 2rem;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-right: 1rem;
+        }
+
+        /* Table */
+        .table-container {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+
+        th {
+            font-weight: 600;
+            color: var(--text-light);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+        }
+
+        .status-badge {
+            padding: 0.25rem 0.75rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .status-badge.active {
+            background: #DCFCE7;
+            color: var(--primary-dark);
+        }
+
+        .status-badge.draft {
+            background: #FEF3C7;
+            color: #92400E;
+        }
+
+        .action-btns {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .btn-icon {
+            width: 35px;
+            height: 35px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+
+        .btn-icon.edit {
+            background: #DBEAFE;
+            color: #1D4ED8;
+        }
+
+        .btn-icon.delete {
+            background: #FEE2E2;
+            color: var(--danger);
+        }
+
+        /* Section Panels */
+        .section-panel {
+            display: none;
+        }
+
+        .section-panel.active {
+            display: block;
+        }
+
+        /* FAQ Item */
+        .faq-item {
+            background: var(--bg);
+            border-radius: 10px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .faq-item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .faq-item h4 {
+            font-weight: 600;
+        }
+
+        .faq-item p {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        /* Toast */
+        .toast {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: var(--primary);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 10px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            display: none;
+            z-index: 1000;
+        }
+
+        .toast.show {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            animation: slideIn 0.3s ease;
+        }
+
+        @keyframes slideIn {
+            from { transform: translateY(100px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                display: none;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Login Page -->
+    <div class="login-page" id="loginPage">
+        <div class="login-card">
+            <h1>🇻🇳 VietVisa</h1>
+            <p>Войдите в админ-панель</p>
+            <div class="error-msg" id="errorMsg">Неверный логин или пароль</div>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label>Логин</label>
+                    <input type="text" id="username" placeholder="admin" required>
+                </div>
+                <div class="form-group">
+                    <label>Пароль</label>
+                    <input type="password" id="password" placeholder="••••••" required>
+                </div>
+                <button type="submit" class="btn">Войти</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Admin Dashboard -->
+    <div class="admin-page" id="adminPage">
+        <header class="admin-header">
+            <div class="admin-logo">
+                <span>🇻🇳</span>
+                VietVisa Admin
+            </div>
+            <div class="admin-user">
+                <span>Администратор</span>
+                <button class="btn-logout" onclick="logout()">Выйти</button>
+            </div>
+        </header>
+
+        <div class="admin-container">
+            <aside class="sidebar">
+                <ul class="sidebar-menu">
+                    <li><a href="#" class="active" onclick="showSection('dashboard')"><span>📊</span> Главная</a></li>
+                    <li><a href="#" onclick="showSection('content')"><span>📝</span> Контент</a></li>
+                    <li><a href="#" onclick="showSection('visas')"><span>🎫</span> Типы виз</a></li>
+                    <li><a href="#" onclick="showSection('faq')"><span>❓</span> FAQ</a></li>
+                    <li><a href="#" onclick="showSection('settings')"><span>⚙️</span> Настройки</a></li>
+                    <li><a href="index.html" target="_blank"><span>🌐</span> Открыть сайт</a></li>
+                </ul>
+            </aside>
+
+            <main class="main-content">
+                <!-- Dashboard -->
+                <div class="section-panel active" id="dashboard">
+                    <h1 class="page-title">Главная</h1>
+                    <p class="page-subtitle">Обзор статистики сайта</p>
+
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-card-icon green">👁️</div>
+                            <h3>1,234</h3>
+                            <p>Посещений сегодня</p>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-card-icon blue">📄</div>
+                            <h3>5</h3>
+                            <p>Страниц</p>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-card-icon orange">❓</div>
+                            <h3>8</h3>
+                            <p>FAQ вопросов</p>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-card-icon pink">💬</div>
+                            <h3>56</h3>
+                            <p>Сообщений в чат-боте</p>
+                        </div>
+                    </div>
+
+                    <div class="content-card">
+                        <div class="content-card-header">
+                            <h2>Быстрые действия</h2>
+                        </div>
+                        <div class="content-card-body">
+                            <button class="btn-secondary" onclick="showSection('content')">✏️ Редактировать контент</button>
+                            <button class="btn-secondary" onclick="showSection('faq')">❓ Управление FAQ</button>
+                            <button class="btn-save" onclick="window.open('index.html', '_blank')">🌐 Открыть сайт</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Content -->
+                <div class="section-panel" id="content">
+                    <h1 class="page-title">Контент сайта</h1>
+                    <p class="page-subtitle">Редактирование текстов и информации</p>
+
+                    <div class="content-card">
+                        <div class="content-card-header">
+                            <h2>Главный экран (Hero)</h2>
+                        </div>
+                        <div class="content-card-body">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>Заголовок</label>
+                                    <input type="text" id="heroTitle" value="Виза во Вьетнам">
+                                </div>
+                                <div class="form-group">
+                                    <label>Бейдж</label>
+                                    <input type="text" id="heroBadge" value="Актуально на 2025 год">
+                                </div>
+                            </div>
+                            <div class="form-row full">
+                                <div class="form-group">
+                                    <label>Описание</label>
+                                    <textarea id="heroDesc">Полный гайд для россиян: безвизовый въезд до 45 дней, электронная виза и виза по прилёту</textarea>
+                                </div>
+                            </div>
+                            <button class="btn-save" onclick="saveContent()">💾 Сохранить</button>
+                        </div>
+                    </div>
+
+                    <div class="content-card">
+                        <div class="content-card-header">
+                            <h2>Статистика</h2>
+                        </div>
+                        <div class="content-card-body">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>Дней без визы</label>
+                                    <input type="number" id="statDays" value="45">
+                                </div>
+                                <div class="form-group">
+                                    <label>Стоимость e-Visa ($)</label>
+                                    <input type="number" id="statCost" value="25">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>Дней оформления</label>
+                                    <input type="number" id="statProcessing" value="3">
+                                </div>
+                                <div class="form-group">
+                                    <label>Макс. дней с e-Visa</label>
+                                    <input type="number" id="statMaxDays" value="90">
+                                </div>
+                            </div>
+                            <button class="btn-save" onclick="saveContent()">💾 Сохранить</button>
+                        </div>
+                    </div>
+
+                    <div class="content-card">
+                        <div class="content-card-header">
+                            <h2>Контакты и ссылки</h2>
+                        </div>
+                        <div class="content-card-body">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>Ссылка на e-Visa</label>
+                                    <input type="url" id="evisaUrl" value="https://evisa.xuatnhapcanh.gov.vn">
+                                </div>
+                                <div class="form-group">
+                                    <label>Email для связи</label>
+                                    <input type="email" id="contactEmail" value="info@vietvisa.ru">
+                                </div>
+                            </div>
+                            <button class="btn-save" onclick="saveContent()">💾 Сохранить</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Visas -->
+                <div class="section-panel" id="visas">
+                    <h1 class="page-title">Типы виз</h1>
+                    <p class="page-subtitle">Управление информацией о визах</p>
+
+                    <div class="content-card">
+                        <div class="content-card-header">
+                            <h2>Список типов виз</h2>
+                            <button class="btn-save" onclick="addVisa()">+ Добавить</button>
+                        </div>
+                        <div class="content-card-body">
+                            <div class="table-container">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Название</th>
+                                            <th>Срок</th>
+                                            <th>Стоимость</th>
+                                            <th>Статус</th>
+                                            <th>Действия</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td><strong>Безвизовый въезд</strong></td>
+                                            <td>До 45 дней</td>
+                                            <td>Бесплатно</td>
+                                            <td><span class="status-badge active">Активно</span></td>
+                                            <td class="action-btns">
+                                                <button class="btn-icon edit">✏️</button>
+                                                <button class="btn-icon delete">🗑️</button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Электронная виза</strong></td>
+                                            <td>До 90 дней</td>
+                                            <td>$25</td>
+                                            <td><span class="status-badge active">Активно</span></td>
+                                            <td class="action-btns">
+                                                <button class="btn-icon edit">✏️</button>
+                                                <button class="btn-icon delete">🗑️</button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Виза по прилёту</strong></td>
+                                            <td>До 30 дней</td>
+                                            <td>от $25</td>
+                                            <td><span class="status-badge active">Активно</span></td>
+                                            <td class="action-btns">
+                                                <button class="btn-icon edit">✏️</button>
+                                                <button class="btn-icon delete">🗑️</button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQ -->
+                <div class="section-panel" id="faq">
+                    <h1 class="page-title">FAQ</h1>
+                    <p class="page-subtitle">Управление частыми вопросами</p>
+
+                    <div class="content-card">
+                        <div class="content-card-header">
+                            <h2>Вопросы и ответы</h2>
+                            <button class="btn-save" onclick="addFaq()">+ Добавить вопрос</button>
+                        </div>
+                        <div class="content-card-body">
+                            <div class="faq-item">
+                                <div class="faq-item-header">
+                                    <h4>Нужна ли виза россиянам во Вьетнам?</h4>
+                                    <div class="action-btns">
+                                        <button class="btn-icon edit">✏️</button>
+                                        <button class="btn-icon delete">🗑️</button>
+                                    </div>
+                                </div>
+                                <p>Нет, для поездки до 45 дней виза не нужна. Просто возьмите загранпаспорт со сроком действия минимум 6 месяцев.</p>
+                            </div>
+
+                            <div class="faq-item">
+                                <div class="faq-item-header">
+                                    <h4>Сколько стоит электронная виза?</h4>
+                                    <div class="action-btns">
+                                        <button class="btn-icon edit">✏️</button>
+                                        <button class="btn-icon delete">🗑️</button>
+                                    </div>
+                                </div>
+                                <p>E-Visa стоит $25 (оплата картой онлайн). Срок оформления — 3 рабочих дня.</p>
+                            </div>
+
+                            <div class="faq-item">
+                                <div class="faq-item-header">
+                                    <h4>Можно ли продлить пребывание?</h4>
+                                    <div class="action-btns">
+                                        <button class="btn-icon edit">✏️</button>
+                                        <button class="btn-icon delete">🗑️</button>
+                                    </div>
+                                </div>
+                                <p>Да! Можно сделать visa-run — выехать в Камбоджу или Таиланд и въехать заново на 45 дней.</p>
+                            </div>
+
+                            <div class="faq-item">
+                                <div class="faq-item-header">
+                                    <h4>Какие документы нужны?</h4>
+                                    <div class="action-btns">
+                                        <button class="btn-icon edit">✏️</button>
+                                        <button class="btn-icon delete">🗑️</button>
+                                    </div>
+                                </div>
+                                <p>Загранпаспорт (срок от 6 месяцев), обратные билеты, бронь отеля. Для e-Visa — фото 4x6 см.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Settings -->
+                <div class="section-panel" id="settings">
+                    <h1 class="page-title">Настройки</h1>
+                    <p class="page-subtitle">Общие настройки сайта</p>
+
+                    <div class="content-card">
+                        <div class="content-card-header">
+                            <h2>Основные настройки</h2>
+                        </div>
+                        <div class="content-card-body">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>Название сайта</label>
+                                    <input type="text" value="VietVisa">
+                                </div>
+                                <div class="form-group">
+                                    <label>Язык</label>
+                                    <input type="text" value="Русский">
+                                </div>
+                            </div>
+                            <div class="form-row full">
+                                <div class="form-group">
+                                    <label>Meta описание</label>
+                                    <textarea>Полный гайд по визам во Вьетнам для россиян. Безвизовый въезд, электронная виза, калькулятор визы.</textarea>
+                                </div>
+                            </div>
+                            <button class="btn-save" onclick="saveSettings()">💾 Сохранить настройки</button>
+                        </div>
+                    </div>
+
+                    <div class="content-card">
+                        <div class="content-card-header">
+                            <h2>Смена пароля</h2>
+                        </div>
+                        <div class="content-card-body">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>Текущий пароль</label>
+                                    <input type="password" id="currentPass">
+                                </div>
+                                <div class="form-group">
+                                    <label>Новый пароль</label>
+                                    <input type="password" id="newPass">
+                                </div>
+                            </div>
+                            <button class="btn-save" onclick="changePassword()">🔐 Сменить пароль</button>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- Toast -->
+    <div class="toast" id="toast">
+        <span>✅</span>
+        <span id="toastMsg">Сохранено!</span>
+    </div>
+
+    <script>
+        // Default credentials
+        const DEFAULT_USER = 'admin';
+        const DEFAULT_PASS = 'admin123';
+
+        // Check if logged in
+        if (localStorage.getItem('adminLoggedIn') === 'true') {
+            document.getElementById('loginPage').style.display = 'none';
+            document.getElementById('adminPage').style.display = 'block';
+        }
+
+        // Login form
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            const savedUser = localStorage.getItem('adminUser') || DEFAULT_USER;
+            const savedPass = localStorage.getItem('adminPass') || DEFAULT_PASS;
+
+            if (username === savedUser && password === savedPass) {
+                localStorage.setItem('adminLoggedIn', 'true');
+                document.getElementById('loginPage').style.display = 'none';
+                document.getElementById('adminPage').style.display = 'block';
+            } else {
+                document.getElementById('errorMsg').style.display = 'block';
+            }
+        });
+
+        // Logout
+        function logout() {
+            localStorage.removeItem('adminLoggedIn');
+            document.getElementById('loginPage').style.display = 'flex';
+            document.getElementById('adminPage').style.display = 'none';
+        }
+
+        // Show section
+        function showSection(sectionId) {
+            document.querySelectorAll('.section-panel').forEach(s => s.classList.remove('active'));
+            document.getElementById(sectionId).classList.add('active');
+
+            document.querySelectorAll('.sidebar-menu a').forEach(a => a.classList.remove('active'));
+            event.target.classList.add('active');
+        }
+
+        // Show toast
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            document.getElementById('toastMsg').textContent = msg;
+            toast.classList.add('show');
+            setTimeout(() => toast.classList.remove('show'), 3000);
+        }
+
+        // Save content
+        function saveContent() {
+            const data = {
+                heroTitle: document.getElementById('heroTitle').value,
+                heroBadge: document.getElementById('heroBadge').value,
+                heroDesc: document.getElementById('heroDesc').value,
+                statDays: document.getElementById('statDays').value,
+                statCost: document.getElementById('statCost').value,
+                statProcessing: document.getElementById('statProcessing').value,
+                statMaxDays: document.getElementById('statMaxDays').value,
+                evisaUrl: document.getElementById('evisaUrl').value,
+                contactEmail: document.getElementById('contactEmail').value
+            };
+            localStorage.setItem('siteContent', JSON.stringify(data));
+            showToast('Контент сохранён!');
+        }
+
+        // Save settings
+        function saveSettings() {
+            showToast('Настройки сохранены!');
+        }
+
+        // Change password
+        function changePassword() {
+            const currentPass = document.getElementById('currentPass').value;
+            const newPass = document.getElementById('newPass').value;
+
+            const savedPass = localStorage.getItem('adminPass') || DEFAULT_PASS;
+
+            if (currentPass === savedPass && newPass.length >= 6) {
+                localStorage.setItem('adminPass', newPass);
+                showToast('Пароль изменён!');
+                document.getElementById('currentPass').value = '';
+                document.getElementById('newPass').value = '';
+            } else {
+                showToast('Ошибка! Проверьте данные');
+            }
+        }
+
+        // Add FAQ
+        function addFaq() {
+            showToast('Функция в разработке');
+        }
+
+        // Add Visa
+        function addVisa() {
+            showToast('Функция в разработке');
+        }
+
+        // Load saved content
+        const savedContent = localStorage.getItem('siteContent');
+        if (savedContent) {
+            const data = JSON.parse(savedContent);
+            if (data.heroTitle) document.getElementById('heroTitle').value = data.heroTitle;
+            if (data.heroBadge) document.getElementById('heroBadge').value = data.heroBadge;
+            if (data.heroDesc) document.getElementById('heroDesc').value = data.heroDesc;
+            if (data.statDays) document.getElementById('statDays').value = data.statDays;
+            if (data.statCost) document.getElementById('statCost').value = data.statCost;
+            if (data.statProcessing) document.getElementById('statProcessing').value = data.statProcessing;
+            if (data.statMaxDays) document.getElementById('statMaxDays').value = data.statMaxDays;
+            if (data.evisaUrl) document.getElementById('evisaUrl').value = data.evisaUrl;
+            if (data.contactEmail) document.getElementById('contactEmail').value = data.contactEmail;
+        }
+    </script>
+</body>
+</html>
