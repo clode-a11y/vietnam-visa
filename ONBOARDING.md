@@ -53,9 +53,43 @@
 
 ---
 
-### 2.4 Настрой Git со своим аккаунтом
+### 2.4 Установи GitHub CLI
 
-Открой **Git Bash** и выполни (замени на свои данные):
+1. Перейди на https://cli.github.com/
+2. Нажми **"Download for Windows"**
+3. Запусти установщик
+4. **Перезапусти Git Bash** после установки
+
+---
+
+### 2.5 Авторизуйся в GitHub
+
+Открой **Git Bash** и выполни:
+
+```bash
+gh auth login
+```
+
+Отвечай на вопросы:
+1. **What account?** → `GitHub.com`
+2. **Preferred protocol?** → `HTTPS`
+3. **Authenticate Git?** → `Yes`
+4. **How to authenticate?** → `Login with a web browser`
+
+Откроется браузер:
+1. Скопируй код из терминала
+2. Вставь его на странице GitHub
+3. Нажми "Authorize"
+4. Вернись в Git Bash — должно написать "Logged in"
+
+**Проверь:**
+```bash
+gh auth status
+```
+
+---
+
+### 2.6 Настрой Git со своим именем
 
 ```bash
 git config --global user.name "Твоё Имя"
@@ -68,16 +102,9 @@ git config --global user.name "Alena Ivanova"
 git config --global user.email "alena@gmail.com"
 ```
 
-**Проверь настройки:**
-```bash
-git config --global --list
-```
-
-Должно показать твоё имя и email.
-
 ---
 
-### 2.5 Установи Claude Code
+### 2.7 Установи Claude Code
 
 Открой **Git Bash** и выполни:
 
