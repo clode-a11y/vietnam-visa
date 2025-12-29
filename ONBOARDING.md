@@ -44,7 +44,40 @@
 
 ---
 
-### 2.3 Установи Claude Code
+### 2.3 Зарегистрируйся на GitHub
+
+1. Перейди на https://github.com
+2. Нажми **"Sign up"**
+3. Введи свой email, придумай пароль и username
+4. Подтверди email (придёт письмо)
+
+---
+
+### 2.4 Настрой Git со своим аккаунтом
+
+Открой **Git Bash** и выполни (замени на свои данные):
+
+```bash
+git config --global user.name "Твоё Имя"
+git config --global user.email "твой@email.com"
+```
+
+**Пример:**
+```bash
+git config --global user.name "Alena Ivanova"
+git config --global user.email "alena@gmail.com"
+```
+
+**Проверь настройки:**
+```bash
+git config --global --list
+```
+
+Должно показать твоё имя и email.
+
+---
+
+### 2.5 Установи Claude Code
 
 Открой **Git Bash** и выполни:
 
