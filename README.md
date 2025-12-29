@@ -1,33 +1,61 @@
-# Nha Trang Rentals
+# Nha Trang Project
 
-Website for long-term apartment rentals in Nha Trang, Vietnam.
+Учебный репозиторий для практики с Claude Code.
 
-## Overview
+---
 
-A modern, Airbnb-inspired platform for finding rental apartments in Nha Trang. Features include:
+## Для новичков
 
-- Multi-language support (Russian, English, Vietnamese)
-- Browse apartments by district
-- Request in-person viewings or video calls
-- Real-time availability status
-- Map view
-- Favorites (localStorage + database)
+**Начни здесь:** [ONBOARDING.md](./ONBOARDING.md)
 
-## Documentation
+Пошаговая инструкция как:
+- Установить всё необходимое
+- Настроить Git и GitHub
+- Начать работать с Claude Code
 
-- [CLAUDE.md](./CLAUDE.md) — AI assistant context
-- [docs/user-stories.md](./docs/user-stories.md) — User stories
-- [docs/data-models.md](./docs/data-models.md) — Database schema
-- [docs/pages.md](./docs/pages.md) — Page layouts and structure
+---
 
-## Tech Stack
+## Структура
 
-TBD
+```
+nha-trang/
+├── ONBOARDING.md       # Начни отсюда
+├── tasks/              # Задачи для выполнения
+│   └── visa/           # Визовый сайт
+└── docs/               # Документация проектов
+    └── rent/           # Сайт аренды жилья
+```
 
-## Getting Started
+---
 
-TBD
+## Задачи
 
-## License
+| Проект | Описание | Сложность |
+|--------|----------|-----------|
+| [tasks/visa/](./tasks/visa/) | Информационный сайт про визу | Начальный |
 
-Private
+---
+
+## Документация
+
+| Проект | Описание |
+|--------|----------|
+| [docs/rent/](./docs/rent/) | Сайт аренды квартир в Нячанге |
+
+---
+
+## Как это работает
+
+1. Получи доступ к аккаунту Claude
+2. Пройди [ONBOARDING](./ONBOARDING.md)
+3. Выбери задачу из [tasks/](./tasks/)
+4. Выполняй с помощью Claude Code
+5. Создай Pull Request
+
+---
+
+## Требования
+
+- Windows 10/11
+- Интернет
+- Доступ к аккаунту Claude (получишь от куратора)
