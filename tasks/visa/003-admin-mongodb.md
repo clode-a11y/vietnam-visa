@@ -56,9 +56,9 @@
 3. Выбери **"Connect your application"**
 4. Скопируй строку подключения (выглядит как):
    ```
-   mongodb+srv://username:<password>@cluster0.xxxxx.mongodb.net/?retryWrites=true&w=majority
+   mongodb+srv://USERNAME:PASSWORD@cluster0.xxxxx.mongodb.net/?retryWrites=true&w=majority
    ```
-5. Замени `<password>` на свой реальный пароль
+5. Замени `USERNAME` и `PASSWORD` на свои реальные данные
 
 ⚠️ **Сохрани эту строку — это твой MONGODB_URI!**
 
@@ -85,8 +85,8 @@ claude
 ```
 У меня есть визовый сайт на Next.js.
 
-Я зарегистрировался в MongoDB Atlas и получил строку подключения:
-mongodb+srv://username:password@cluster0.xxxxx.mongodb.net/visa-website
+Я зарегистрировался в MongoDB Atlas и получил строку подключения.
+(строка подключения в .env.local)
 
 Помоги мне:
 
