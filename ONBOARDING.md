@@ -98,8 +98,8 @@ git config --global user.email "твой@email.com"
 
 **Пример:**
 ```bash
-git config --global user.name "Alena Ivanova"
-git config --global user.email "alena@gmail.com"
+git config --global user.name "Ivan Petrov"
+git config --global user.email "ivan@gmail.com"
 ```
 
 ---
