@@ -1,0 +1,28 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --green-light: #86EFAC;
+  --green: #22C55E;
+  --green-dark: #166534;
+  --pink-light: #FECDD3;
+  --pink: #FB7185;
+  --orange-light: #FED7AA;
+  --orange: #F97316;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.gradient-bg {
+  background: linear-gradient(135deg, #86EFAC 0%, #FECDD3 50%, #FED7AA 100%);
+}
+
+.gradient-text {
+  background: linear-gradient(135deg, #22C55E 0%, #FB7185 50%, #F97316 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}

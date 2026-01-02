@@ -1,0 +1,91 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  password  String
+  name      String?
+  role      String   @default("admin")
+  createdAt DateTime @default(now())
+}
+
+model VisaType {
+  id          String   @id @default(cuid())
+  nameRu      String
+  nameEn      String
+  icon        String   @default("📋")
+  duration    String   // "45 дней", "90 дней", etc.
+  description String
+  price       Int      @default(0)
+  priceNote   String?
+  isPopular   Boolean  @default(false)
+  order       Int      @default(0)
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model ProcessStep {
+  id          String   @id @default(cuid())
+  number      Int
+  titleRu     String
+  titleEn     String
+  description String
+  icon        String   @default("📌")
+  order       Int      @default(0)
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model FAQ {
+  id        String   @id @default(cuid())
+  question  String
+  answer    String
+  category  String   @default("general") // general, documents, process, payment
+  order     Int      @default(0)
+  isActive  Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model PricingPackage {
+  id          String   @id @default(cuid())
+  nameRu      String
+  nameEn      String
+  description String
+  price       Int
+  currency    String   @default("USD")
+  features    String[] // JSON array of features
+  isPopular   Boolean  @default(false)
+  order       Int      @default(0)
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model ContactRequest {
+  id        String   @id @default(cuid())
+  name      String
+  email     String?
+  phone     String
+  messenger String   // telegram, whatsapp, zalo
+  visaType  String
+  message   String?
+  status    String   @default("new") // new, contacted, completed, cancelled
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model SiteSetting {
+  id    String @id @default(cuid())
+  key   String @unique
+  value String
+}
