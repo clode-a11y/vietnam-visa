@@ -39,6 +39,11 @@ export async function GET(request: Request) {
           where: { isCover: true },
           take: 1,
         },
+        amenities: {
+          include: {
+            amenity: true,
+          },
+        },
       },
       orderBy: { createdAt: 'desc' },
     })

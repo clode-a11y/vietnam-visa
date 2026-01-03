@@ -24,6 +24,15 @@ interface ApartmentImage {
   isCover: boolean
 }
 
+interface Amenity {
+  id: string
+  nameRu: string
+  nameEn: string
+  nameVi: string
+  icon: string
+  category: string
+}
+
 interface Apartment {
   id: string
   titleRu: string
@@ -35,6 +44,7 @@ interface Apartment {
   isAvailable: boolean
   district: District
   images: ApartmentImage[]
+  amenities?: { amenity: Amenity }[]
 }
 
 export default function ApartmentsPage() {
@@ -49,6 +59,9 @@ export default function ApartmentsPage() {
   const [sortBy, setSortBy] = useState<string>('')
   const [apartments, setApartments] = useState<Apartment[]>([])
   const [districts, setDistricts] = useState<District[]>([])
+  const [amenities, setAmenities] = useState<Amenity[]>([])
+  const [selectedAmenities, setSelectedAmenities] = useState<string[]>([])
+  const [showAmenityFilter, setShowAmenityFilter] = useState(false)
   const [loading, setLoading] = useState(true)
 
   // Get recently viewed apartments (maintain order from recentIds)
@@ -70,9 +83,10 @@ export default function ApartmentsPage() {
 
   const fetchData = async () => {
     try {
-      const [apartmentsRes, districtsRes] = await Promise.all([
+      const [apartmentsRes, districtsRes, amenitiesRes] = await Promise.all([
         fetch('/api/rent/apartments'),
         fetch('/api/admin/districts'),
+        fetch('/api/rent/amenities'),
       ])
 
       if (apartmentsRes.ok) {
@@ -84,11 +98,28 @@ export default function ApartmentsPage() {
         const data = await districtsRes.json()
         setDistricts(data)
       }
+
+      if (amenitiesRes.ok) {
+        const data = await amenitiesRes.json()
+        setAmenities(data)
+      }
     } catch (error) {
       console.error('Error fetching data:', error)
     } finally {
       setLoading(false)
     }
+  }
+
+  const getAmenityName = (a: Amenity) => {
+    if (locale === 'vi') return a.nameVi
+    if (locale === 'en') return a.nameEn
+    return a.nameRu
+  }
+
+  const toggleAmenity = (id: string) => {
+    setSelectedAmenities(prev =>
+      prev.includes(id) ? prev.filter(a => a !== id) : [...prev, id]
+    )
   }
 
   const getDistrictName = (d: District) => {
@@ -125,6 +156,12 @@ export default function ApartmentsPage() {
         if (apt.priceUsd < priceRange.min || apt.priceUsd > priceRange.max) return false
       }
       if (onlyAvailable && !apt.isAvailable) return false
+      // Amenities filter
+      if (selectedAmenities.length > 0) {
+        const aptAmenityIds = apt.amenities?.map(a => a.amenity.id) || []
+        const hasAllSelected = selectedAmenities.every(id => aptAmenityIds.includes(id))
+        if (!hasAllSelected) return false
+      }
       return true
     })
     .sort((a, b) => {
@@ -257,7 +294,60 @@ export default function ApartmentsPage() {
                 {locale === 'ru' ? 'Только свободные' : 'Available only'}
               </span>
             </label>
+
+            {/* Amenities filter button */}
+            <button
+              onClick={() => setShowAmenityFilter(!showAmenityFilter)}
+              className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-medium transition ${
+                selectedAmenities.length > 0
+                  ? 'bg-blue-100 dark:bg-blue-900/50 text-blue-700 dark:text-blue-300 border border-blue-300 dark:border-blue-700'
+                  : 'bg-gray-50 dark:bg-slate-700 text-gray-700 dark:text-gray-200 border border-gray-200 dark:border-slate-600 hover:bg-gray-100 dark:hover:bg-slate-600'
+              }`}
+            >
+              <span>✨</span>
+              <span>{locale === 'ru' ? 'Удобства' : locale === 'en' ? 'Amenities' : 'Tiện nghi'}</span>
+              {selectedAmenities.length > 0 && (
+                <span className="bg-blue-600 text-white text-xs px-1.5 py-0.5 rounded-full">
+                  {selectedAmenities.length}
+                </span>
+              )}
+            </button>
           </div>
+
+          {/* Amenities filter dropdown */}
+          {showAmenityFilter && amenities.length > 0 && (
+            <div className="mt-4 pt-4 border-t dark:border-slate-700">
+              <div className="flex items-center justify-between mb-3">
+                <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                  {locale === 'ru' ? 'Выберите удобства:' : locale === 'en' ? 'Select amenities:' : 'Chọn tiện nghi:'}
+                </span>
+                {selectedAmenities.length > 0 && (
+                  <button
+                    onClick={() => setSelectedAmenities([])}
+                    className="text-xs text-blue-600 dark:text-blue-400 hover:underline"
+                  >
+                    {locale === 'ru' ? 'Сбросить' : 'Clear'}
+                  </button>
+                )}
+              </div>
+              <div className="flex flex-wrap gap-2">
+                {amenities.map(amenity => (
+                  <button
+                    key={amenity.id}
+                    onClick={() => toggleAmenity(amenity.id)}
+                    className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm transition ${
+                      selectedAmenities.includes(amenity.id)
+                        ? 'bg-blue-600 text-white'
+                        : 'bg-gray-100 dark:bg-slate-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-slate-600'
+                    }`}
+                  >
+                    <span>{amenity.icon}</span>
+                    <span>{getAmenityName(amenity)}</span>
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
         </div>
 
         {/* Recently viewed */}
