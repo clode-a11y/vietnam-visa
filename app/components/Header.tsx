@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import { useState } from 'react'
 import LanguageSwitcher from './LanguageSwitcher'
+import ThemeToggle from './ThemeToggle'
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -51,7 +52,8 @@ export default function Header() {
         </nav>
 
         {/* Desktop actions */}
-        <div className="hidden md:flex items-center gap-4">
+        <div className="hidden md:flex items-center gap-3">
+          <ThemeToggle />
           <LanguageSwitcher />
           <a
             href="#calculator"
@@ -103,12 +105,15 @@ export default function Header() {
         <div className="p-6">
           <div className="flex justify-between items-center mb-8">
             <span className="text-xl font-bold">Меню</span>
-            <button
-              onClick={() => setIsMenuOpen(false)}
-              className="w-10 h-10 flex items-center justify-center text-2xl text-gray-500 hover:text-gray-700"
-            >
-              ×
-            </button>
+            <div className="flex items-center gap-2">
+              <ThemeToggle />
+              <button
+                onClick={() => setIsMenuOpen(false)}
+                className="w-10 h-10 flex items-center justify-center text-2xl text-gray-500 hover:text-gray-700"
+              >
+                ×
+              </button>
+            </div>
           </div>
 
           <nav className="flex flex-col gap-4">
@@ -118,7 +123,7 @@ export default function Header() {
                   key={item.href}
                   href={item.href}
                   onClick={handleMenuClick}
-                  className="text-lg text-gray-700 hover:text-green-600 font-medium py-2 border-b border-gray-100 transition"
+                  className="text-lg text-gray-700 hover:text-blue-600 font-medium py-2 border-b border-gray-100 transition"
                 >
                   {item.label}
                 </Link>
@@ -127,7 +132,7 @@ export default function Header() {
                   key={item.href}
                   href={item.href}
                   onClick={handleMenuClick}
-                  className="text-lg text-gray-700 hover:text-green-600 font-medium py-2 border-b border-gray-100 transition"
+                  className="text-lg text-gray-700 hover:text-blue-600 font-medium py-2 border-b border-gray-100 transition"
                 >
                   {item.label}
                 </a>

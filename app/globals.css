@@ -30,6 +30,29 @@
   --gradient-accent: linear-gradient(135deg, #3B82F6 0%, #0EA5E9 50%, #06B6D4 100%);
 }
 
+/* Dark theme */
+html.dark {
+  --blue-lightest: #1E3A5F;
+  --blue-light: #1E40AF;
+  --sky-light: #0C4A6E;
+  --white: #0F172A;
+  --white-cold: #1E293B;
+  --gray-50: #1E293B;
+  --gray-100: #334155;
+  --gray-200: #475569;
+  --gray-600: #CBD5E1;
+  --black: #F8FAFC;
+  --text-primary: #F8FAFC;
+  --text-secondary: #CBD5E1;
+  --text-muted: #94A3B8;
+  --text-inverse: #0F172A;
+  --card-bg: rgba(30, 41, 59, 0.9);
+  --card-bg-solid: #1E293B;
+  --card-border: rgba(59, 130, 246, 0.3);
+  --card-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  --gradient-main: linear-gradient(135deg, #0F172A 0%, #1E293B 50%, #0F172A 100%);
+}
+
 body {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -392,4 +415,211 @@ html.dyslexia-font th {
   clip: rect(0, 0, 0, 0);
   white-space: nowrap;
   border: 0;
+}
+
+/* ========================================
+   DARK THEME STYLES
+   ======================================== */
+
+html.dark body {
+  background: #0F172A;
+  color: #F8FAFC;
+}
+
+html.dark .gradient-bg-animated {
+  background: linear-gradient(135deg, #0F172A 0%, #1E293B 25%, #0F172A 50%, #1E3A5F 75%, #0F172A 100%);
+}
+
+/* Header dark mode */
+html.dark header {
+  background: rgba(15, 23, 42, 0.8) !important;
+  border-color: rgba(59, 130, 246, 0.2) !important;
+}
+
+html.dark header.scrolled {
+  background: rgba(15, 23, 42, 0.95) !important;
+}
+
+/* Cards dark mode */
+html.dark .bg-white\/80,
+html.dark .bg-white\/90,
+html.dark [class*="bg-white"] {
+  background: rgba(30, 41, 59, 0.8) !important;
+  border-color: rgba(59, 130, 246, 0.2) !important;
+}
+
+html.dark .bg-white {
+  background: #1E293B !important;
+}
+
+/* Text colors dark mode */
+html.dark .text-gray-700,
+html.dark .text-gray-800,
+html.dark .text-gray-900 {
+  color: #F1F5F9 !important;
+}
+
+html.dark .text-gray-600 {
+  color: #CBD5E1 !important;
+}
+
+html.dark .text-gray-500 {
+  color: #94A3B8 !important;
+}
+
+html.dark .text-gray-400 {
+  color: #64748B !important;
+}
+
+html.dark .text-black,
+html.dark [class*="text-black"] {
+  color: #F8FAFC !important;
+}
+
+/* Border colors dark mode */
+html.dark .border-white\/50,
+html.dark .border-gray-100,
+html.dark .border-gray-200 {
+  border-color: rgba(59, 130, 246, 0.2) !important;
+}
+
+html.dark .border-black\/5 {
+  border-color: rgba(248, 250, 252, 0.1) !important;
+}
+
+/* Input fields dark mode */
+html.dark input,
+html.dark select,
+html.dark textarea {
+  background: #1E293B !important;
+  color: #F8FAFC !important;
+  border-color: #475569 !important;
+}
+
+html.dark input::placeholder,
+html.dark textarea::placeholder {
+  color: #64748B !important;
+}
+
+html.dark input:focus,
+html.dark select:focus,
+html.dark textarea:focus {
+  border-color: #3B82F6 !important;
+}
+
+/* Backdrop blur dark mode */
+html.dark .backdrop-blur-xl,
+html.dark .backdrop-blur {
+  background: rgba(15, 23, 42, 0.7) !important;
+}
+
+/* Hover states dark mode */
+html.dark .hover\:bg-gray-50:hover,
+html.dark .hover\:bg-gray-100:hover {
+  background: rgba(51, 65, 85, 0.5) !important;
+}
+
+/* Table dark mode */
+html.dark table {
+  background: rgba(30, 41, 59, 0.8);
+}
+
+html.dark th {
+  background: rgba(30, 58, 95, 0.5) !important;
+  color: #F1F5F9 !important;
+}
+
+html.dark td {
+  color: #CBD5E1 !important;
+}
+
+html.dark tr:hover {
+  background: rgba(51, 65, 85, 0.3) !important;
+}
+
+/* FAQ dark mode */
+html.dark .faq-item {
+  background: rgba(30, 41, 59, 0.8) !important;
+}
+
+html.dark .faq-question:hover {
+  background: rgba(51, 65, 85, 0.5) !important;
+}
+
+/* Footer dark mode */
+html.dark footer {
+  background: transparent;
+  border-color: rgba(248, 250, 252, 0.1) !important;
+}
+
+/* Shadows dark mode */
+html.dark .shadow-lg,
+html.dark .shadow-xl,
+html.dark [class*="shadow"] {
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4) !important;
+}
+
+/* Map image dark mode - invert for better visibility */
+html.dark .vietnam-map {
+  filter: brightness(0.9) contrast(1.1);
+}
+
+/* Accessibility panel dark mode */
+html.dark #accessibility-panel {
+  background: #1E293B !important;
+}
+
+html.dark #accessibility-panel h2,
+html.dark #accessibility-panel h3,
+html.dark #accessibility-panel label {
+  color: #F1F5F9 !important;
+}
+
+html.dark #accessibility-panel p {
+  color: #94A3B8 !important;
+}
+
+html.dark #accessibility-panel .bg-gray-100 {
+  background: #334155 !important;
+}
+
+html.dark #accessibility-panel .bg-blue-50 {
+  background: rgba(59, 130, 246, 0.1) !important;
+}
+
+/* Cookie banner dark mode */
+html.dark .cookie-banner {
+  background: #1E293B !important;
+  border-color: rgba(59, 130, 246, 0.2) !important;
+}
+
+/* Mobile menu dark mode */
+html.dark .mobile-menu {
+  background: #1E293B !important;
+}
+
+/* Floating contact dark mode */
+html.dark .floating-contact {
+  background: rgba(30, 41, 59, 0.9) !important;
+}
+
+/* Stat values remain gradient */
+html.dark .bg-gradient-to-r {
+  /* Keep gradient buttons visible */
+}
+
+/* Links dark mode */
+html.dark a:not([class*="bg-gradient"]):not([class*="text-white"]) {
+  color: #93C5FD;
+}
+
+html.dark a:hover:not([class*="bg-gradient"]):not([class*="text-white"]) {
+  color: #60A5FA;
+}
+
+/* System preference dark mode */
+@media (prefers-color-scheme: dark) {
+  html:not(.light) body {
+    /* Auto dark mode based on system preference */
+  }
 }

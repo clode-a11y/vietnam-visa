@@ -4,11 +4,14 @@ import { useState, useEffect } from 'react'
 
 type FontSize = 'normal' | 'large' | 'xlarge'
 
+type ThemeMode = 'light' | 'dark' | 'system'
+
 interface AccessibilitySettings {
   highContrast: boolean
   fontSize: FontSize
   reduceMotion: boolean
   dyslexiaFont: boolean
+  theme: ThemeMode
 }
 
 const defaultSettings: AccessibilitySettings = {
@@ -16,6 +19,7 @@ const defaultSettings: AccessibilitySettings = {
   fontSize: 'normal',
   reduceMotion: false,
   dyslexiaFont: false,
+  theme: 'system',
 }
 
 export default function AccessibilityPanel() {
@@ -49,6 +53,19 @@ export default function AccessibilityPanel() {
 
     // Dyslexia font
     html.classList.toggle('dyslexia-font', s.dyslexiaFont)
+
+    // Theme
+    html.classList.remove('dark', 'light')
+    if (s.theme === 'dark') {
+      html.classList.add('dark')
+    } else if (s.theme === 'light') {
+      html.classList.add('light')
+    } else {
+      // System preference
+      if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        html.classList.add('dark')
+      }
+    }
   }
 
   // Update and save settings
@@ -73,6 +90,12 @@ export default function AccessibilityPanel() {
     normal: 'A',
     large: 'A+',
     xlarge: 'A++',
+  }
+
+  const themeLabels: Record<ThemeMode, { icon: string; label: string }> = {
+    light: { icon: '☀️', label: 'Светлая' },
+    dark: { icon: '🌙', label: 'Тёмная' },
+    system: { icon: '💻', label: 'Авто' },
   }
 
   return (
@@ -133,6 +156,30 @@ export default function AccessibilityPanel() {
 
           {/* Settings */}
           <div className="space-y-6">
+            {/* Theme */}
+            <div>
+              <label className="block text-sm font-semibold text-gray-700 mb-3">
+                Тема оформления
+              </label>
+              <div className="flex gap-2">
+                {(['light', 'dark', 'system'] as ThemeMode[]).map((mode) => (
+                  <button
+                    key={mode}
+                    onClick={() => updateSetting('theme', mode)}
+                    className={`flex-1 py-3 px-2 rounded-xl font-medium text-sm transition flex flex-col items-center gap-1 ${
+                      settings.theme === mode
+                        ? 'bg-blue-600 text-white'
+                        : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                    }`}
+                    aria-pressed={settings.theme === mode}
+                  >
+                    <span className="text-lg">{themeLabels[mode].icon}</span>
+                    <span>{themeLabels[mode].label}</span>
+                  </button>
+                ))}
+              </div>
+            </div>
+
             {/* Font size */}
             <div>
               <label className="block text-sm font-semibold text-gray-700 mb-3">
