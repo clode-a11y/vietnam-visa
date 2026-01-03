@@ -10,6 +10,7 @@ import { useLocale } from '@/lib/i18n/context'
 import { translations } from '@/lib/i18n/translations'
 import { FavoriteButton } from '@/lib/favorites'
 import { useRecentlyViewed } from '@/lib/recently-viewed'
+import { CompareButton, CompareBar } from '@/lib/compare'
 
 interface District {
   id: string
@@ -431,11 +432,10 @@ export default function ApartmentsPage() {
                 key={apt.id}
                 className="bg-white dark:bg-slate-800 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition group relative"
               >
-                <FavoriteButton
-                  apartmentId={apt.id}
-                  className="absolute top-3 right-3 z-10"
-                  size="md"
-                />
+                <div className="absolute top-3 right-3 z-10 flex gap-1.5">
+                  <CompareButton apartmentId={apt.id} size="md" />
+                  <FavoriteButton apartmentId={apt.id} size="md" />
+                </div>
                 <Link href={`/rent/apartments/${apt.id}`}>
                   <div className="aspect-[4/3] relative bg-gradient-to-br from-blue-100 to-blue-200 dark:from-slate-700 dark:to-slate-600 overflow-hidden">
                     {getCoverImage(apt) ? (
@@ -476,6 +476,7 @@ export default function ApartmentsPage() {
         )}
       </main>
 
+      <CompareBar locale={locale} />
       <FloatingContact />
     </div>
   )
