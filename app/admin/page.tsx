@@ -26,13 +26,39 @@ interface Stats {
     status: string
     createdAt: string
   }>
+  viewingRequests: {
+    total: number
+    new: number
+    today: number
+    week: number
+    byStatus: Record<string, number>
+    byType: Record<string, number>
+  }
+  recentViewingRequests: Array<{
+    id: string
+    name: string
+    type: string
+    status: string
+    apartmentTitle: string
+    createdAt: string
+  }>
+  apartments: {
+    total: number
+    available: number
+  }
 }
 
 const quickActions = [
+  { label: 'Заявки на аренду', href: '/admin/viewing-requests', icon: '🔑' },
+  { label: 'Добавить квартиру', href: '/admin/apartments/new', icon: '🏠' },
+  { label: 'Заявки на визы', href: '/admin/requests', icon: '📩' },
   { label: 'Добавить тип визы', href: '/admin/visa-types/new', icon: '➕' },
-  { label: 'Новый FAQ', href: '/admin/faq/new', icon: '❓' },
-  { label: 'Просмотреть заявки', href: '/admin/requests', icon: '📩' },
 ]
+
+const typeLabels: Record<string, string> = {
+  viewing: '🏠 Просмотр',
+  video_call: '🎥 Видео',
+}
 
 const statusLabels: Record<string, string> = {
   new: 'Новая',
@@ -95,36 +121,40 @@ export default function AdminDashboard() {
 
   const statCards = [
     {
-      label: 'Новых заявок',
+      label: 'Заявки аренда',
+      value: stats?.viewingRequests.new || 0,
+      change: `+${stats?.viewingRequests.today || 0} сегодня`,
+      color: 'text-blue-600',
+      bgColor: 'bg-blue-50',
+      icon: '🔑',
+      href: '/admin/viewing-requests',
+    },
+    {
+      label: 'Квартиры',
+      value: stats?.apartments.available || 0,
+      change: `из ${stats?.apartments.total || 0} всего`,
+      color: 'text-cyan-600',
+      bgColor: 'bg-cyan-50',
+      icon: '🏠',
+      href: '/admin/apartments',
+    },
+    {
+      label: 'Заявки визы',
       value: stats?.requests.new || 0,
       change: `+${stats?.requests.today || 0} сегодня`,
       color: 'text-green-600',
       bgColor: 'bg-green-50',
-      icon: '📩'
+      icon: '📩',
+      href: '/admin/requests',
     },
     {
-      label: 'Всего заявок',
-      value: stats?.requests.total || 0,
-      change: `${stats?.requests.week || 0} за неделю`,
-      color: 'text-blue-600',
-      bgColor: 'bg-blue-50',
-      icon: '📊'
-    },
-    {
-      label: 'Типов виз',
+      label: 'Типы виз',
       value: stats?.visaTypes.active || 0,
       change: `из ${stats?.visaTypes.total || 0} всего`,
       color: 'text-purple-600',
       bgColor: 'bg-purple-50',
-      icon: '🛂'
-    },
-    {
-      label: 'FAQ вопросов',
-      value: stats?.faqs.active || 0,
-      change: `из ${stats?.faqs.total || 0} всего`,
-      color: 'text-orange-600',
-      bgColor: 'bg-orange-50',
-      icon: '❓'
+      icon: '🛂',
+      href: '/admin/visa-types',
     },
   ]
 
@@ -133,7 +163,7 @@ export default function AdminDashboard() {
       {/* Stats */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         {statCards.map((stat, i) => (
-          <div key={i} className="bg-white rounded-2xl p-6 shadow-sm hover:shadow-md transition">
+          <Link key={i} href={stat.href} className="bg-white rounded-2xl p-6 shadow-sm hover:shadow-md transition block">
             <div className="flex items-start justify-between">
               <div>
                 <p className="text-gray-500 text-sm mb-1">{stat.label}</p>
@@ -144,14 +174,47 @@ export default function AdminDashboard() {
                 {stat.icon}
               </div>
             </div>
-          </div>
+          </Link>
         ))}
       </div>
 
-      {/* Status breakdown */}
+      {/* Viewing requests status breakdown */}
+      {stats?.viewingRequests.total && stats.viewingRequests.total > 0 && (
+        <div className="bg-white rounded-2xl p-6 shadow-sm">
+          <div className="flex items-center justify-between mb-4">
+            <h2 className="text-lg font-bold">Заявки на аренду</h2>
+            <span className="text-sm text-gray-500">Всего: {stats.viewingRequests.total}</span>
+          </div>
+          <div className="flex gap-6 flex-wrap">
+            <div className="flex gap-3 flex-wrap">
+              {Object.entries(stats.viewingRequests.byStatus).map(([status, count]) => (
+                <div key={status} className="flex items-center gap-2">
+                  <span className={`px-3 py-1 rounded-full text-sm ${statusColors[status] || 'bg-gray-100'}`}>
+                    {statusLabels[status] || status}
+                  </span>
+                  <span className="font-bold text-gray-700">{count}</span>
+                </div>
+              ))}
+            </div>
+            <div className="border-l pl-6 flex gap-3">
+              {Object.entries(stats.viewingRequests.byType).map(([type, count]) => (
+                <div key={type} className="flex items-center gap-2">
+                  <span className="text-sm text-gray-600">{typeLabels[type] || type}</span>
+                  <span className="font-bold text-gray-700">{count}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Visa requests status breakdown */}
       {stats?.requests.total && stats.requests.total > 0 && (
         <div className="bg-white rounded-2xl p-6 shadow-sm">
-          <h2 className="text-lg font-bold mb-4">Заявки по статусам</h2>
+          <div className="flex items-center justify-between mb-4">
+            <h2 className="text-lg font-bold">Заявки на визы</h2>
+            <span className="text-sm text-gray-500">Всего: {stats.requests.total}</span>
+          </div>
           <div className="flex gap-4 flex-wrap">
             {Object.entries(stats.requests.byStatus).map(([status, count]) => (
               <div key={status} className="flex items-center gap-2">
@@ -165,30 +228,49 @@ export default function AdminDashboard() {
         </div>
       )}
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        {/* Quick Actions */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        {/* Recent Viewing Requests */}
         <div className="bg-white rounded-2xl p-6 shadow-sm">
-          <h2 className="text-lg font-bold mb-4">Быстрые действия</h2>
+          <div className="flex justify-between items-center mb-4">
+            <h2 className="text-lg font-bold">Заявки на аренду</h2>
+            <Link href="/admin/viewing-requests" className="text-blue-600 text-sm hover:underline">
+              Все →
+            </Link>
+          </div>
           <div className="space-y-3">
-            {quickActions.map((action, i) => (
-              <Link
-                key={i}
-                href={action.href}
-                className="flex items-center gap-3 p-4 bg-gray-50 rounded-xl hover:bg-green-50 hover:text-green-700 transition"
-              >
-                <span className="text-2xl">{action.icon}</span>
-                <span className="font-medium">{action.label}</span>
-              </Link>
-            ))}
+            {stats?.recentViewingRequests && stats.recentViewingRequests.length > 0 ? (
+              stats.recentViewingRequests.map((req) => (
+                <div
+                  key={req.id}
+                  className="flex items-center justify-between p-4 bg-gray-50 rounded-xl hover:bg-gray-100 transition"
+                >
+                  <div className="min-w-0 flex-1">
+                    <p className="font-medium truncate">{req.name}</p>
+                    <p className="text-sm text-gray-500 truncate">{req.apartmentTitle}</p>
+                  </div>
+                  <div className="text-right ml-3 flex-shrink-0">
+                    <span className={`inline-block px-2 py-1 text-xs rounded-full ${statusColors[req.status] || 'bg-gray-100'}`}>
+                      {statusLabels[req.status] || req.status}
+                    </span>
+                    <p className="text-xs text-gray-400 mt-1">{timeAgo(req.createdAt)}</p>
+                  </div>
+                </div>
+              ))
+            ) : (
+              <div className="text-center py-8 text-gray-500">
+                <p className="text-4xl mb-2">🔑</p>
+                <p>Заявок пока нет</p>
+              </div>
+            )}
           </div>
         </div>
 
-        {/* Recent Requests */}
-        <div className="bg-white rounded-2xl p-6 shadow-sm lg:col-span-2">
+        {/* Recent Visa Requests */}
+        <div className="bg-white rounded-2xl p-6 shadow-sm">
           <div className="flex justify-between items-center mb-4">
-            <h2 className="text-lg font-bold">Последние заявки</h2>
+            <h2 className="text-lg font-bold">Заявки на визы</h2>
             <Link href="/admin/requests" className="text-green-600 text-sm hover:underline">
-              Все заявки →
+              Все →
             </Link>
           </div>
           <div className="space-y-3">
@@ -198,11 +280,11 @@ export default function AdminDashboard() {
                   key={req.id}
                   className="flex items-center justify-between p-4 bg-gray-50 rounded-xl hover:bg-gray-100 transition"
                 >
-                  <div>
-                    <p className="font-medium">{req.name}</p>
-                    <p className="text-sm text-gray-500">{req.visaType || 'Не указан'}</p>
+                  <div className="min-w-0 flex-1">
+                    <p className="font-medium truncate">{req.name}</p>
+                    <p className="text-sm text-gray-500 truncate">{req.visaType || 'Не указан'}</p>
                   </div>
-                  <div className="text-right">
+                  <div className="text-right ml-3 flex-shrink-0">
                     <span className={`inline-block px-2 py-1 text-xs rounded-full ${statusColors[req.status] || 'bg-gray-100'}`}>
                       {statusLabels[req.status] || req.status}
                     </span>
@@ -217,6 +299,23 @@ export default function AdminDashboard() {
               </div>
             )}
           </div>
+        </div>
+      </div>
+
+      {/* Quick Actions */}
+      <div className="bg-white rounded-2xl p-6 shadow-sm">
+        <h2 className="text-lg font-bold mb-4">Быстрые действия</h2>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+          {quickActions.map((action, i) => (
+            <Link
+              key={i}
+              href={action.href}
+              className="flex items-center gap-3 p-4 bg-gray-50 rounded-xl hover:bg-blue-50 hover:text-blue-700 transition"
+            >
+              <span className="text-2xl">{action.icon}</span>
+              <span className="font-medium text-sm">{action.label}</span>
+            </Link>
+          ))}
         </div>
       </div>
 
