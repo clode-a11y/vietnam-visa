@@ -213,3 +213,179 @@ textarea:focus-visible {
     min-height: 44px;
   }
 }
+
+/* ========================================
+   ACCESSIBILITY MODES
+   ======================================== */
+
+/* Skip navigation link */
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--black);
+  color: var(--white);
+  padding: 1rem 2rem;
+  border-radius: 0 0 12px 12px;
+  font-weight: 600;
+  z-index: 9999;
+  transition: top 0.3s;
+}
+
+.skip-link:focus {
+  top: 0;
+}
+
+/* Font size modes */
+html.font-large {
+  font-size: 120%;
+}
+
+html.font-xlarge {
+  font-size: 140%;
+}
+
+html.font-large body,
+html.font-xlarge body {
+  line-height: 1.8;
+}
+
+/* High contrast mode */
+html.high-contrast {
+  filter: contrast(1.2);
+}
+
+html.high-contrast body {
+  background: #000 !important;
+  color: #fff !important;
+}
+
+html.high-contrast .gradient-bg-animated {
+  display: none;
+}
+
+html.high-contrast header,
+html.high-contrast footer,
+html.high-contrast section {
+  background: #000 !important;
+}
+
+html.high-contrast .bg-white,
+html.high-contrast .bg-white\/80,
+html.high-contrast .bg-white\/90,
+html.high-contrast [class*="bg-white"] {
+  background: #000 !important;
+  border: 2px solid #fff !important;
+}
+
+html.high-contrast .text-gray-600,
+html.high-contrast .text-gray-700,
+html.high-contrast .text-gray-500,
+html.high-contrast .text-gray-400,
+html.high-contrast [class*="text-gray"] {
+  color: #fff !important;
+}
+
+html.high-contrast .text-green-600,
+html.high-contrast .text-green-700,
+html.high-contrast [class*="text-green"] {
+  color: #0f0 !important;
+}
+
+html.high-contrast a {
+  color: #ff0 !important;
+  text-decoration: underline !important;
+}
+
+html.high-contrast button,
+html.high-contrast [type="submit"] {
+  background: #fff !important;
+  color: #000 !important;
+  border: 2px solid #fff !important;
+}
+
+html.high-contrast input,
+html.high-contrast select,
+html.high-contrast textarea {
+  background: #000 !important;
+  color: #fff !important;
+  border: 2px solid #fff !important;
+}
+
+html.high-contrast input::placeholder,
+html.high-contrast textarea::placeholder {
+  color: #aaa !important;
+}
+
+html.high-contrast table {
+  border: 2px solid #fff !important;
+}
+
+html.high-contrast th,
+html.high-contrast td {
+  border: 1px solid #fff !important;
+  color: #fff !important;
+}
+
+html.high-contrast .shadow-lg,
+html.high-contrast .shadow-xl,
+html.high-contrast [class*="shadow"] {
+  box-shadow: none !important;
+}
+
+html.high-contrast .backdrop-blur-xl,
+html.high-contrast [class*="backdrop-blur"] {
+  backdrop-filter: none !important;
+}
+
+html.high-contrast .bg-gradient-to-r,
+html.high-contrast [class*="bg-gradient"] {
+  background: #333 !important;
+}
+
+/* Reduce motion mode */
+html.reduce-motion *,
+html.reduce-motion *::before,
+html.reduce-motion *::after {
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01ms !important;
+  scroll-behavior: auto !important;
+}
+
+html.reduce-motion .gradient-bg-animated {
+  animation: none !important;
+}
+
+html.reduce-motion .reveal {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+/* Dyslexia-friendly font */
+html.dyslexia-font body {
+  font-family: 'OpenDyslexic', 'Comic Sans MS', 'Arial', sans-serif !important;
+  letter-spacing: 0.05em;
+  word-spacing: 0.1em;
+}
+
+html.dyslexia-font p,
+html.dyslexia-font li,
+html.dyslexia-font td,
+html.dyslexia-font th {
+  line-height: 2 !important;
+}
+
+/* Screen reader only text */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}

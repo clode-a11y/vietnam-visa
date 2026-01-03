@@ -67,6 +67,11 @@ export default async function HomePage() {
 
   return (
     <>
+      {/* Skip link for keyboard navigation */}
+      <a href="#main-content" className="skip-link">
+        Перейти к содержимому
+      </a>
+
       {/* SEO Schema.org */}
       <script
         type="application/ld+json"
@@ -83,6 +88,7 @@ export default async function HomePage() {
       <Header />
 
       {/* Hero */}
+      <main id="main-content">
       <section className="pt-32 pb-16 px-6">
         <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
           <div className="text-center md:text-left">
@@ -194,6 +200,8 @@ export default async function HomePage() {
           Оформить e-Visa →
         </a>
       </section>
+
+      </main>
 
       {/* Footer */}
       <footer className="py-12 px-6 border-t border-black/5">

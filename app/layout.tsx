@@ -5,6 +5,7 @@ import { Providers } from './providers'
 import CookieBanner from './components/CookieBanner'
 import FloatingContact from './components/FloatingContact'
 import ServiceWorkerRegistration from './components/ServiceWorkerRegistration'
+import AccessibilityPanel from './components/AccessibilityPanel'
 
 const inter = Inter({ subsets: ['latin', 'cyrillic'] })
 
@@ -82,6 +83,7 @@ export default function RootLayout({
         <Providers>
           {children}
           <FloatingContact />
+          <AccessibilityPanel />
           <CookieBanner />
           <ServiceWorkerRegistration />
         </Providers>
