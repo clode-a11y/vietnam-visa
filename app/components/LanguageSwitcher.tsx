@@ -14,7 +14,7 @@ export default function LanguageSwitcher() {
     <div className="relative">
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center gap-2 px-3 py-2 bg-white/80 backdrop-blur rounded-xl text-sm font-medium hover:bg-white transition"
+        className="flex items-center gap-2 px-3 py-2 bg-white/80 dark:bg-slate-700/80 backdrop-blur rounded-xl text-sm font-medium text-gray-700 dark:text-gray-200 hover:bg-white dark:hover:bg-slate-600 transition"
       >
         <span>{localeFlags[locale]}</span>
         <span className="hidden sm:inline">{localeNames[locale]}</span>
@@ -29,7 +29,7 @@ export default function LanguageSwitcher() {
             className="fixed inset-0 z-40"
             onClick={() => setIsOpen(false)}
           />
-          <div className="absolute right-0 mt-2 w-40 bg-white rounded-xl shadow-lg border border-gray-100 overflow-hidden z-50">
+          <div className="absolute right-0 mt-2 w-40 bg-white dark:bg-slate-800 rounded-xl shadow-lg border border-gray-100 dark:border-slate-700 overflow-hidden z-50">
             {locales.map((l) => (
               <button
                 key={l}
@@ -37,14 +37,14 @@ export default function LanguageSwitcher() {
                   setLocale(l)
                   setIsOpen(false)
                 }}
-                className={`w-full flex items-center gap-3 px-4 py-3 text-left hover:bg-gray-50 transition ${
-                  locale === l ? 'bg-green-50 text-green-700' : 'text-gray-700'
+                className={`w-full flex items-center gap-3 px-4 py-3 text-left hover:bg-gray-50 dark:hover:bg-slate-700 transition ${
+                  locale === l ? 'bg-blue-50 dark:bg-blue-900/50 text-blue-700 dark:text-blue-300' : 'text-gray-700 dark:text-gray-200'
                 }`}
               >
                 <span>{localeFlags[l]}</span>
                 <span>{localeNames[l]}</span>
                 {locale === l && (
-                  <svg className="w-4 h-4 ml-auto text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-4 h-4 ml-auto text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                   </svg>
                 )}
