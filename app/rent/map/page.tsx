@@ -45,6 +45,7 @@ export default function MapPage() {
   const [selectedDistrict, setSelectedDistrict] = useState('')
   const [selectedRooms, setSelectedRooms] = useState<number | null>(null)
   const [priceRange, setPriceRange] = useState<{ min: number; max: number } | null>(null)
+  const [onlyAvailable, setOnlyAvailable] = useState(false)
   const [sortBy, setSortBy] = useState<string>('')
   const [selectedApartmentId, setSelectedApartmentId] = useState<string | null>(null)
   const [loading, setLoading] = useState(true)
@@ -110,6 +111,7 @@ export default function MapPage() {
       if (priceRange) {
         if (apt.priceUsd < priceRange.min || apt.priceUsd > priceRange.max) return false
       }
+      if (onlyAvailable && !apt.isAvailable) return false
       return true
     })
     .sort((a, b) => {
@@ -221,6 +223,19 @@ export default function MapPage() {
               </option>
             ))}
           </select>
+
+          {/* Only available toggle */}
+          <label className="flex items-center gap-1.5 cursor-pointer select-none">
+            <input
+              type="checkbox"
+              checked={onlyAvailable}
+              onChange={(e) => setOnlyAvailable(e.target.checked)}
+              className="w-3.5 h-3.5 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
+            />
+            <span className="text-xs text-gray-600 dark:text-gray-300">
+              {locale === 'ru' ? 'Свободные' : 'Available'}
+            </span>
+          </label>
 
           <div className="text-sm text-gray-500 dark:text-gray-400">
             {apartmentsWithCoords.length} {locale === 'ru' ? 'на карте' : locale === 'en' ? 'on map' : 'trên bản đồ'}

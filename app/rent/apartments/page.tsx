@@ -42,6 +42,7 @@ export default function ApartmentsPage() {
   const [selectedDistrict, setSelectedDistrict] = useState('')
   const [selectedRooms, setSelectedRooms] = useState<number | null>(null)
   const [priceRange, setPriceRange] = useState<{ min: number; max: number } | null>(null)
+  const [onlyAvailable, setOnlyAvailable] = useState(false)
   const [sortBy, setSortBy] = useState<string>('')
   const [apartments, setApartments] = useState<Apartment[]>([])
   const [districts, setDistricts] = useState<District[]>([])
@@ -114,6 +115,7 @@ export default function ApartmentsPage() {
       if (priceRange) {
         if (apt.priceUsd < priceRange.min || apt.priceUsd > priceRange.max) return false
       }
+      if (onlyAvailable && !apt.isAvailable) return false
       return true
     })
     .sort((a, b) => {
@@ -233,6 +235,19 @@ export default function ApartmentsPage() {
               <option value="area-asc">{locale === 'ru' ? 'Площадь: по возрастанию' : 'Area: small to large'}</option>
               <option value="area-desc">{locale === 'ru' ? 'Площадь: по убыванию' : 'Area: large to small'}</option>
             </select>
+
+            {/* Only available toggle */}
+            <label className="flex items-center gap-2 cursor-pointer select-none">
+              <input
+                type="checkbox"
+                checked={onlyAvailable}
+                onChange={(e) => setOnlyAvailable(e.target.checked)}
+                className="w-4 h-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
+              />
+              <span className="text-sm text-gray-700 dark:text-gray-300">
+                {locale === 'ru' ? 'Только свободные' : 'Available only'}
+              </span>
+            </label>
           </div>
         </div>
 
