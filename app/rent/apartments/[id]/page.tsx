@@ -65,18 +65,38 @@ const categoryLabels: Record<string, Record<string, string>> = {
   entertainment: { ru: 'Развлечения', en: 'Entertainment', vi: 'Giải trí' },
 }
 
+interface SimilarApartment {
+  id: string
+  titleRu: string
+  titleEn: string
+  titleVi: string
+  priceUsd: number
+  rooms: number
+  area: number
+  isAvailable: boolean
+  district: District
+  images: { url: string; isCover: boolean }[]
+}
+
 export default function ApartmentDetailPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = use(params)
   const { locale } = useLocale()
   const t = (key: string) => translations[locale][key] || key
   const [modalType, setModalType] = useState<'viewing' | 'video_call' | null>(null)
   const [apartment, setApartment] = useState<Apartment | null>(null)
+  const [similarApartments, setSimilarApartments] = useState<SimilarApartment[]>([])
   const [loading, setLoading] = useState(true)
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
 
   useEffect(() => {
     fetchApartment()
   }, [id])
+
+  useEffect(() => {
+    if (apartment) {
+      fetchSimilarApartments()
+    }
+  }, [apartment])
 
   const fetchApartment = async () => {
     try {
@@ -89,6 +109,36 @@ export default function ApartmentDetailPage({ params }: { params: Promise<{ id: 
       console.error('Error fetching apartment:', error)
     } finally {
       setLoading(false)
+    }
+  }
+
+  const fetchSimilarApartments = async () => {
+    if (!apartment) return
+    try {
+      const res = await fetch('/api/rent/apartments')
+      if (res.ok) {
+        const allApartments: SimilarApartment[] = await res.json()
+        // Filter similar: same district OR similar price (±30%) OR same rooms
+        const similar = allApartments
+          .filter(apt => apt.id !== apartment.id)
+          .map(apt => {
+            let score = 0
+            // Same district - highest priority
+            if (apt.district.id === apartment.district.id) score += 3
+            // Similar price (within 30%)
+            const priceDiff = Math.abs(apt.priceUsd - apartment.priceUsd) / apartment.priceUsd
+            if (priceDiff <= 0.3) score += 2
+            // Same number of rooms
+            if (apt.rooms === apartment.rooms) score += 1
+            return { ...apt, score }
+          })
+          .filter(apt => apt.score > 0)
+          .sort((a, b) => b.score - a.score)
+          .slice(0, 4)
+        setSimilarApartments(similar)
+      }
+    } catch (error) {
+      console.error('Error fetching similar apartments:', error)
     }
   }
 
@@ -150,6 +200,23 @@ export default function ApartmentDetailPage({ params }: { params: Promise<{ id: 
 
   const getCategoryLabel = (category: string) => {
     return categoryLabels[category]?.[locale] || category
+  }
+
+  const getSimilarTitle = (apt: SimilarApartment) => {
+    if (locale === 'vi') return apt.titleVi
+    if (locale === 'en') return apt.titleEn
+    return apt.titleRu
+  }
+
+  const getSimilarDistrict = (d: District) => {
+    if (locale === 'vi') return d.nameVi
+    if (locale === 'en') return d.nameEn
+    return d.nameRu
+  }
+
+  const getSimilarCoverImage = (apt: SimilarApartment) => {
+    const cover = apt.images.find(img => img.isCover)
+    return cover?.url || apt.images[0]?.url
   }
 
   // Group amenities by category
@@ -384,6 +451,67 @@ export default function ApartmentDetailPage({ params }: { params: Promise<{ id: 
             </div>
           </div>
         </div>
+
+        {/* Similar apartments */}
+        {similarApartments.length > 0 && (
+          <div className="mt-12">
+            <h2 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mb-6">
+              {locale === 'ru' ? 'Похожие квартиры' : locale === 'en' ? 'Similar apartments' : 'Căn hộ tương tự'}
+            </h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+              {similarApartments.map(apt => (
+                <div
+                  key={apt.id}
+                  className="bg-white dark:bg-slate-800 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition group relative"
+                >
+                  <FavoriteButton
+                    apartmentId={apt.id}
+                    className="absolute top-3 right-3 z-10"
+                    size="sm"
+                  />
+                  <Link href={`/rent/apartments/${apt.id}`}>
+                    <div className="aspect-[4/3] relative bg-gradient-to-br from-blue-100 to-blue-200 dark:from-slate-700 dark:to-slate-600 overflow-hidden">
+                      {getSimilarCoverImage(apt) ? (
+                        <Image
+                          src={getSimilarCoverImage(apt)!}
+                          alt={getSimilarTitle(apt)}
+                          fill
+                          className="object-cover group-hover:scale-105 transition"
+                          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                        />
+                      ) : (
+                        <div className="flex items-center justify-center h-full text-4xl group-hover:scale-105 transition">
+                          🏠
+                        </div>
+                      )}
+                      {!apt.isAvailable && (
+                        <div className="absolute top-3 left-3 bg-red-500 text-white text-xs font-medium px-2 py-1 rounded-full">
+                          {locale === 'ru' ? 'Занята' : locale === 'en' ? 'Occupied' : 'Đã thuê'}
+                        </div>
+                      )}
+                    </div>
+                    <div className="p-4">
+                      <h3 className="font-semibold text-gray-900 dark:text-white text-sm line-clamp-1 mb-1">
+                        {getSimilarTitle(apt)}
+                      </h3>
+                      <p className="text-xs text-gray-500 dark:text-gray-400 mb-1">
+                        {getSimilarDistrict(apt.district)}
+                      </p>
+                      <div className="flex items-center justify-between">
+                        <span className="text-xs text-gray-600 dark:text-gray-300">
+                          {apt.rooms === 0 ? (locale === 'ru' ? 'Студия' : 'Studio') : `${apt.rooms} ${locale === 'ru' ? 'комн.' : 'rm'}`} • {apt.area} {locale === 'ru' ? 'м²' : 'm²'}
+                        </span>
+                        <span className="font-bold text-blue-600 dark:text-blue-400 text-sm">
+                          ${apt.priceUsd}
+                        </span>
+                      </div>
+                    </div>
+                  </Link>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
       </main>
 
       <FloatingContact />
