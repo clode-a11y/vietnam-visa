@@ -9,6 +9,7 @@ import { ViewingRequestModal } from '@/app/components/rent/ViewingRequestModal'
 import { useLocale } from '@/lib/i18n/context'
 import { translations } from '@/lib/i18n/translations'
 import { FavoriteButton } from '@/lib/favorites'
+import { useRecentlyViewed } from '@/lib/recently-viewed'
 
 interface ApartmentImage {
   id: string
@@ -82,6 +83,7 @@ export default function ApartmentDetailPage({ params }: { params: Promise<{ id: 
   const { id } = use(params)
   const { locale } = useLocale()
   const t = (key: string) => translations[locale][key] || key
+  const { addToRecent } = useRecentlyViewed()
   const [modalType, setModalType] = useState<'viewing' | 'video_call' | null>(null)
   const [apartment, setApartment] = useState<Apartment | null>(null)
   const [similarApartments, setSimilarApartments] = useState<SimilarApartment[]>([])
@@ -91,6 +93,13 @@ export default function ApartmentDetailPage({ params }: { params: Promise<{ id: 
   useEffect(() => {
     fetchApartment()
   }, [id])
+
+  // Track recently viewed
+  useEffect(() => {
+    if (apartment) {
+      addToRecent(apartment.id)
+    }
+  }, [apartment])
 
   useEffect(() => {
     if (apartment) {

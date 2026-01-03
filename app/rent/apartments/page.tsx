@@ -9,6 +9,7 @@ import FloatingContact from '@/app/components/FloatingContact'
 import { useLocale } from '@/lib/i18n/context'
 import { translations } from '@/lib/i18n/translations'
 import { FavoriteButton } from '@/lib/favorites'
+import { useRecentlyViewed } from '@/lib/recently-viewed'
 
 interface District {
   id: string
@@ -39,6 +40,7 @@ interface Apartment {
 export default function ApartmentsPage() {
   const { locale } = useLocale()
   const t = (key: string) => translations[locale][key] || key
+  const { recentIds } = useRecentlyViewed()
   const [searchQuery, setSearchQuery] = useState('')
   const [selectedDistrict, setSelectedDistrict] = useState('')
   const [selectedRooms, setSelectedRooms] = useState<number | null>(null)
@@ -48,6 +50,12 @@ export default function ApartmentsPage() {
   const [apartments, setApartments] = useState<Apartment[]>([])
   const [districts, setDistricts] = useState<District[]>([])
   const [loading, setLoading] = useState(true)
+
+  // Get recently viewed apartments (maintain order from recentIds)
+  const recentlyViewedApartments = recentIds
+    .map(id => apartments.find(apt => apt.id === id))
+    .filter((apt): apt is Apartment => apt !== undefined)
+    .slice(0, 6)
 
   const priceRanges = [
     { min: 0, max: 400, label: '< $400' },
@@ -251,6 +259,59 @@ export default function ApartmentsPage() {
             </label>
           </div>
         </div>
+
+        {/* Recently viewed */}
+        {!loading && recentlyViewedApartments.length > 0 && (
+          <div className="mb-8">
+            <h2 className="text-lg font-bold text-gray-900 dark:text-white mb-4">
+              {locale === 'ru' ? 'Недавно просмотренные' : locale === 'en' ? 'Recently viewed' : 'Đã xem gần đây'}
+            </h2>
+            <div className="flex gap-4 overflow-x-auto pb-4 -mx-4 px-4 sm:mx-0 sm:px-0 scrollbar-hide">
+              {recentlyViewedApartments.map(apt => (
+                <div
+                  key={apt.id}
+                  className="flex-shrink-0 w-64 bg-white dark:bg-slate-800 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition group relative"
+                >
+                  <FavoriteButton
+                    apartmentId={apt.id}
+                    className="absolute top-2 right-2 z-10"
+                    size="sm"
+                  />
+                  <Link href={`/rent/apartments/${apt.id}`}>
+                    <div className="aspect-[4/3] relative bg-gradient-to-br from-blue-100 to-blue-200 dark:from-slate-700 dark:to-slate-600 overflow-hidden">
+                      {getCoverImage(apt) ? (
+                        <Image
+                          src={getCoverImage(apt)!}
+                          alt={getAptTitle(apt)}
+                          fill
+                          className="object-cover group-hover:scale-105 transition"
+                          sizes="256px"
+                        />
+                      ) : (
+                        <div className="flex items-center justify-center h-full text-4xl">🏠</div>
+                      )}
+                      {!apt.isAvailable && (
+                        <div className="absolute top-2 left-2 bg-red-500 text-white text-xs font-medium px-2 py-0.5 rounded-full">
+                          {locale === 'ru' ? 'Занята' : 'Occupied'}
+                        </div>
+                      )}
+                    </div>
+                    <div className="p-3">
+                      <h3 className="font-semibold text-gray-900 dark:text-white text-sm line-clamp-1">{getAptTitle(apt)}</h3>
+                      <p className="text-xs text-gray-500 dark:text-gray-400 mt-0.5">{getDistrictName(apt.district)}</p>
+                      <div className="flex items-center justify-between mt-1">
+                        <span className="text-xs text-gray-600 dark:text-gray-300">
+                          {apt.rooms === 0 ? 'Ст.' : `${apt.rooms} к.`} • {apt.area} м²
+                        </span>
+                        <span className="font-bold text-blue-600 dark:text-blue-400 text-sm">${apt.priceUsd}</span>
+                      </div>
+                    </div>
+                  </Link>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
 
         {/* Loading */}
         {loading && (
