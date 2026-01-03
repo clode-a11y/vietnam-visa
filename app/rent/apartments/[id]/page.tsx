@@ -12,6 +12,7 @@ import { FavoriteButton } from '@/lib/favorites'
 import { useRecentlyViewed } from '@/lib/recently-viewed'
 import { ShareButton } from '@/app/components/rent/ShareButton'
 import { CostCalculator } from '@/app/components/rent/CostCalculator'
+import { CurrencyConverter } from '@/app/components/rent/CurrencyConverter'
 
 interface ApartmentImage {
   id: string
@@ -434,6 +435,12 @@ export default function ApartmentDetailPage({ params }: { params: Promise<{ id: 
                     ≈ {apartment.priceVnd.toLocaleString()} VND
                   </div>
                 )}
+
+                {/* Currency Converter */}
+                <div className="mt-4">
+                  <CurrencyConverter priceUsd={apartment.priceUsd} locale={locale} />
+                </div>
+
                 <div className="mt-3">
                   {apartment.isAvailable ? (
                     <span className="inline-flex items-center gap-1 px-3 py-1 bg-green-100 dark:bg-green-900/50 text-green-700 dark:text-green-300 rounded-full text-sm font-medium">
