@@ -53,6 +53,24 @@ export default function RentPage() {
                 {t('rent.viewAll')}
               </Link>
             </div>
+
+            {/* Quick links */}
+            <div className="flex gap-3 mt-4">
+              <Link
+                href="/rent/apartments"
+                className="flex items-center gap-2 px-4 py-2 bg-white/20 backdrop-blur-sm text-white rounded-full hover:bg-white/30 transition text-sm"
+              >
+                <span>📋</span>
+                {locale === 'ru' ? 'Каталог' : locale === 'en' ? 'Catalog' : 'Danh mục'}
+              </Link>
+              <Link
+                href="/rent/map"
+                className="flex items-center gap-2 px-4 py-2 bg-white/20 backdrop-blur-sm text-white rounded-full hover:bg-white/30 transition text-sm"
+              >
+                <span>🗺️</span>
+                {locale === 'ru' ? 'На карте' : locale === 'en' ? 'On Map' : 'Trên bản đồ'}
+              </Link>
+            </div>
           </div>
         </div>
 

@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
+import { useRouter } from 'next/navigation'
 import Header from '@/app/components/Header'
 import FloatingContact from '@/app/components/FloatingContact'
 import { useLocale } from '@/lib/i18n/context'
@@ -101,10 +102,19 @@ export default function ApartmentsPage() {
       <Header />
 
       <main className="max-w-7xl mx-auto px-4 sm:px-6 py-6 pt-24">
-        {/* Page title */}
-        <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-6">
-          {t('rent.title')}
-        </h1>
+        {/* Page title with map toggle */}
+        <div className="flex items-center justify-between mb-6">
+          <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white">
+            {t('rent.title')}
+          </h1>
+          <Link
+            href="/rent/map"
+            className="flex items-center gap-2 px-4 py-2 bg-white dark:bg-slate-800 text-gray-700 dark:text-gray-200 rounded-xl border border-gray-200 dark:border-slate-600 hover:bg-gray-50 dark:hover:bg-slate-700 transition shadow-sm"
+          >
+            <span>🗺️</span>
+            <span className="hidden sm:inline">{locale === 'ru' ? 'Карта' : locale === 'en' ? 'Map' : 'Bản đồ'}</span>
+          </Link>
+        </div>
 
         {/* Filters */}
         <div className="bg-white dark:bg-slate-800 rounded-2xl p-4 shadow-sm mb-6">
