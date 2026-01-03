@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server'
 import { prisma } from '@/lib/prisma'
+import { sendViewingRequestNotification } from '@/lib/telegram'
 
 export async function POST(request: Request) {
   try {
@@ -21,6 +22,12 @@ export async function POST(request: Request) {
       )
     }
 
+    // Get apartment title for notification
+    const apartment = await prisma.apartment.findUnique({
+      where: { id: apartmentId },
+      select: { titleRu: true }
+    })
+
     // Create viewing request
     const viewingRequest = await prisma.viewingRequest.create({
       data: {
@@ -35,7 +42,17 @@ export async function POST(request: Request) {
       },
     })
 
-    // TODO: Send notification to Telegram
+    // Send Telegram notification
+    await sendViewingRequestNotification({
+      name,
+      phone,
+      messenger: messenger || 'whatsapp',
+      type: type || 'viewing',
+      date: date || null,
+      comment: comment || null,
+      apartmentTitle: apartment?.titleRu || 'Неизвестная квартира',
+      apartmentId,
+    })
 
     return NextResponse.json(viewingRequest, { status: 201 })
   } catch (error) {
