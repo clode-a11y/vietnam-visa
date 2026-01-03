@@ -33,153 +33,51 @@ async function getFaqs() {
 export default async function HomePage() {
   const [visaTypes, faqs] = await Promise.all([getVisaTypes(), getFaqs()])
 
+  // FAQ Schema for SEO
+  const faqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqs.map(faq => ({
+      '@type': 'Question',
+      name: faq.question,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: faq.answer,
+      },
+    })),
+  }
+
+  // Service Schema for SEO
+  const serviceSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    name: 'Оформление визы во Вьетнам',
+    description: 'Помощь в оформлении электронной визы e-Visa во Вьетнам для россиян',
+    provider: {
+      '@type': 'Organization',
+      name: 'VietVisa',
+      url: 'https://visa-beta-azure.vercel.app',
+    },
+    areaServed: {
+      '@type': 'Country',
+      name: 'Russia',
+    },
+    serviceType: 'Visa Services',
+  }
+
   return (
     <>
-      <style>{`
-        :root {
-          --green-light: #86EFAC;
-          --green: #22C55E;
-          --green-dark: #166534;
-          --pink-light: #FECDD3;
-          --pink: #FB7185;
-          --pink-dark: #E11D48;
-          --orange-light: #FED7AA;
-          --orange: #F97316;
-          --orange-dark: #EA580C;
-          --white: #FFFFFF;
-          --black: #1A1A1A;
-          --text-primary: #1A1A1A;
-          --text-secondary: rgba(26, 26, 26, 0.7);
-          --text-muted: rgba(26, 26, 26, 0.5);
-          --text-inverse: #FFFFFF;
-          --card-bg: rgba(255, 255, 255, 0.85);
-          --card-bg-solid: #FFFFFF;
-          --card-border: rgba(255, 255, 255, 0.5);
-          --card-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
-          --gradient-main: linear-gradient(135deg, #86EFAC 0%, #FECDD3 50%, #FED7AA 100%);
-          --gradient-accent: linear-gradient(135deg, #22C55E 0%, #FB7185 50%, #F97316 100%);
-        }
+      {/* SEO Schema.org */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
+      />
 
-        .gradient-bg-animated {
-          position: fixed;
-          inset: 0;
-          background: linear-gradient(135deg, #86EFAC 0%, #A7F3D0 15%, #FECDD3 35%, #FBCFE8 50%, #FED7AA 70%, #FDBA74 85%, #FED7AA 100%);
-          background-size: 400% 400%;
-          animation: gradientFlow 20s ease infinite;
-          z-index: -1;
-        }
-
-        @keyframes gradientFlow {
-          0% { background-position: 0% 50%; }
-          25% { background-position: 50% 100%; }
-          50% { background-position: 100% 50%; }
-          75% { background-position: 50% 0%; }
-          100% { background-position: 0% 50%; }
-        }
-
-        .reveal {
-          opacity: 0;
-          transform: translateY(50px);
-          transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        .reveal.visible {
-          opacity: 1;
-          transform: translateY(0);
-        }
-
-        .reveal-delay-1 { transition-delay: 0.1s; }
-        .reveal-delay-2 { transition-delay: 0.2s; }
-        .reveal-delay-3 { transition-delay: 0.3s; }
-        .reveal-delay-4 { transition-delay: 0.4s; }
-
-        header.scrolled {
-          background: rgba(255, 255, 255, 0.95) !important;
-          box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-        }
-
-        .calc-result {
-          display: none;
-          margin-top: 2rem;
-          padding: 2rem;
-          background: linear-gradient(135deg, rgba(134, 239, 172, 0.2), rgba(254, 205, 211, 0.2));
-          border-radius: 24px;
-          text-align: center;
-        }
-
-        .calc-result.show {
-          display: block;
-          animation: fadeIn 0.5s ease;
-        }
-
-        @keyframes fadeIn {
-          from { opacity: 0; transform: translateY(20px); }
-          to { opacity: 1; transform: translateY(0); }
-        }
-
-        .result-emoji { font-size: 4rem; margin-bottom: 1rem; }
-        .result-visa { font-size: 1.75rem; font-weight: 800; margin-bottom: 0.5rem; }
-        .result-desc { color: var(--text-secondary); margin-bottom: 1.5rem; }
-
-        .result-stats {
-          display: grid;
-          grid-template-columns: repeat(3, 1fr);
-          gap: 1rem;
-        }
-
-        .result-stat-value {
-          font-size: 2rem;
-          font-weight: 800;
-          background: var(--gradient-accent);
-          -webkit-background-clip: text;
-          -webkit-text-fill-color: transparent;
-        }
-
-        .result-stat-label {
-          font-size: 0.85rem;
-          color: var(--text-muted);
-        }
-
-        .faq-item .faq-answer {
-          max-height: 0;
-          overflow: hidden;
-          transition: max-height 0.3s ease;
-        }
-
-        .faq-item.active .faq-answer {
-          max-height: 200px;
-        }
-
-        .faq-item.active .faq-icon {
-          transform: rotate(45deg);
-        }
-
-        .vietnam-map {
-          max-width: 280px;
-          margin: 0 auto;
-          filter: drop-shadow(0 20px 40px rgba(34, 197, 94, 0.3));
-        }
-
-        .map-shape {
-          animation: mapPulse 3s ease-in-out infinite;
-        }
-
-        @keyframes mapPulse {
-          0%, 100% { filter: drop-shadow(0 0 20px rgba(34, 197, 94, 0.3)); }
-          50% { filter: drop-shadow(0 0 40px rgba(251, 113, 133, 0.4)); }
-        }
-
-        .city-marker {
-          animation: markerPulse 2s ease-in-out infinite;
-        }
-
-        @keyframes markerPulse {
-          0%, 100% { transform: scale(1); }
-          50% { transform: scale(1.1); }
-        }
-      `}</style>
-
-      <div className="gradient-bg-animated"></div>
+      <div className="gradient-bg-animated" aria-hidden="true"></div>
 
       {/* Header */}
       <Header />
@@ -192,10 +90,10 @@ export default async function HomePage() {
               <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
               Актуально на 2025 год
             </div>
-            <h1 className="reveal reveal-delay-1 text-5xl md:text-6xl font-black mb-6 leading-tight">
+            <h1 className="reveal reveal-delay-1 text-4xl sm:text-5xl md:text-6xl font-black mb-6 leading-tight">
               Виза во <span className="bg-gradient-to-r from-green-500 via-pink-500 to-orange-500 bg-clip-text text-transparent">Вьетнам</span>
             </h1>
-            <p className="reveal reveal-delay-2 text-xl text-gray-700 mb-8 max-w-lg">
+            <p className="reveal reveal-delay-2 text-lg sm:text-xl text-gray-700 mb-8 max-w-lg">
               Полный гайд для россиян: безвизовый въезд до 45 дней, электронная виза и виза по прилёту
             </p>
             <a href="#calculator" className="reveal reveal-delay-3 inline-flex items-center gap-2 px-8 py-4 bg-black text-white font-bold rounded-full hover:bg-gray-800 transition text-lg">

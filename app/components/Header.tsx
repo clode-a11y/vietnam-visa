@@ -64,8 +64,9 @@ export default function Header() {
         {/* Mobile hamburger button */}
         <button
           onClick={() => setIsMenuOpen(!isMenuOpen)}
-          className="md:hidden w-10 h-10 flex flex-col items-center justify-center gap-1.5"
-          aria-label="Menu"
+          className="md:hidden w-12 h-12 flex flex-col items-center justify-center gap-1.5 -mr-2"
+          aria-label={isMenuOpen ? 'Закрыть меню' : 'Открыть меню'}
+          aria-expanded={isMenuOpen}
         >
           <span
             className={`w-6 h-0.5 bg-gray-800 transition-all duration-300 ${

@@ -8,14 +8,31 @@
   --green-dark: #166534;
   --pink-light: #FECDD3;
   --pink: #FB7185;
+  --pink-dark: #E11D48;
   --orange-light: #FED7AA;
   --orange: #F97316;
+  --orange-dark: #EA580C;
+  --white: #FFFFFF;
+  --black: #1A1A1A;
+  --text-primary: #1A1A1A;
+  --text-secondary: rgba(26, 26, 26, 0.7);
+  --text-muted: rgba(26, 26, 26, 0.5);
+  --text-inverse: #FFFFFF;
+  --card-bg: rgba(255, 255, 255, 0.85);
+  --card-bg-solid: #FFFFFF;
+  --card-border: rgba(255, 255, 255, 0.5);
+  --card-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+  --gradient-main: linear-gradient(135deg, #86EFAC 0%, #FECDD3 50%, #FED7AA 100%);
+  --gradient-accent: linear-gradient(135deg, #22C55E 0%, #FB7185 50%, #F97316 100%);
 }
 
 body {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
+/* Gradient backgrounds */
 .gradient-bg {
   background: linear-gradient(135deg, #86EFAC 0%, #FECDD3 50%, #FED7AA 100%);
 }
@@ -25,4 +42,174 @@ body {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+}
+
+/* Animated gradient background - GPU optimized */
+.gradient-bg-animated {
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(135deg, #86EFAC 0%, #A7F3D0 15%, #FECDD3 35%, #FBCFE8 50%, #FED7AA 70%, #FDBA74 85%, #FED7AA 100%);
+  background-size: 400% 400%;
+  animation: gradientFlow 20s ease infinite;
+  z-index: -1;
+  will-change: background-position;
+}
+
+@keyframes gradientFlow {
+  0% { background-position: 0% 50%; }
+  25% { background-position: 50% 100%; }
+  50% { background-position: 100% 50%; }
+  75% { background-position: 50% 0%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Reduce motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .gradient-bg-animated {
+    animation: none;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .city-marker,
+  .map-shape {
+    animation: none;
+  }
+}
+
+/* Scroll reveal animations */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.4s; }
+
+/* Header scroll effect */
+header.scrolled {
+  background: rgba(255, 255, 255, 0.95) !important;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* Calculator result */
+.calc-result {
+  display: none;
+  margin-top: 2rem;
+  padding: 1.5rem;
+  background: linear-gradient(135deg, rgba(134, 239, 172, 0.2), rgba(254, 205, 211, 0.2));
+  border-radius: 24px;
+  text-align: center;
+}
+
+.calc-result.show {
+  display: block;
+  animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.result-emoji { font-size: 3rem; margin-bottom: 1rem; }
+.result-visa { font-size: 1.5rem; font-weight: 800; margin-bottom: 0.5rem; }
+.result-desc { color: var(--text-secondary); margin-bottom: 1.5rem; }
+
+.result-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+.result-stat-value {
+  font-size: 1.5rem;
+  font-weight: 800;
+  background: var(--gradient-accent);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.result-stat-label {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+@media (min-width: 768px) {
+  .result-emoji { font-size: 4rem; }
+  .result-visa { font-size: 1.75rem; }
+  .result-stat-value { font-size: 2rem; }
+  .result-stat-label { font-size: 0.85rem; }
+}
+
+/* FAQ accordion */
+.faq-item .faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+}
+
+.faq-item.active .faq-answer {
+  max-height: 500px;
+}
+
+.faq-item.active .faq-icon {
+  transform: rotate(45deg);
+}
+
+/* Vietnam map */
+.vietnam-map {
+  max-width: 280px;
+  margin: 0 auto;
+  filter: drop-shadow(0 20px 40px rgba(34, 197, 94, 0.3));
+}
+
+.map-shape {
+  animation: mapPulse 3s ease-in-out infinite;
+  will-change: filter;
+}
+
+@keyframes mapPulse {
+  0%, 100% { filter: drop-shadow(0 0 20px rgba(34, 197, 94, 0.3)); }
+  50% { filter: drop-shadow(0 0 40px rgba(251, 113, 133, 0.4)); }
+}
+
+.city-marker {
+  animation: markerPulse 2s ease-in-out infinite;
+  will-change: transform;
+}
+
+@keyframes markerPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
+/* Focus visible for keyboard navigation */
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--green);
+  outline-offset: 2px;
+}
+
+/* Touch-friendly tap targets */
+@media (pointer: coarse) {
+  button,
+  a,
+  input,
+  select {
+    min-height: 44px;
+  }
 }
