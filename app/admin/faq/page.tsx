@@ -1,35 +1,88 @@
 'use client'
 
 import Link from 'next/link'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
-const categories = {
-  general: 'Общие',
-  documents: 'Документы',
-  process: 'Процесс',
-  payment: 'Оплата',
+interface FAQ {
+  id: string
+  question: string
+  answer: string
+  category: string
+  isActive: boolean
 }
 
-const initialFaqs = [
-  { id: '1', question: 'Нужна ли виза россиянам во Вьетнам?', category: 'general', isActive: true },
-  { id: '2', question: 'Сколько стоит электронная виза?', category: 'payment', isActive: true },
-  { id: '3', question: 'Как долго оформляется виза?', category: 'process', isActive: true },
-  { id: '4', question: 'Какие документы нужны для e-Visa?', category: 'documents', isActive: true },
-  { id: '5', question: 'Можно ли продлить визу?', category: 'general', isActive: true },
-]
+const categoryLabels: Record<string, string> = {
+  general: 'Общие',
+  evisa: 'E-Visa',
+  voa: 'Виза по прилёту',
+  work: 'Рабочая виза',
+}
 
 export default function FAQPage() {
-  const [faqs, setFaqs] = useState(initialFaqs)
+  const [faqs, setFaqs] = useState<FAQ[]>([])
+  const [loading, setLoading] = useState(true)
   const [filter, setFilter] = useState('all')
+
+  useEffect(() => {
+    fetchFaqs()
+  }, [])
+
+  const fetchFaqs = async () => {
+    try {
+      const res = await fetch('/api/faq')
+      if (res.ok) {
+        const data = await res.json()
+        setFaqs(data)
+      }
+    } catch (error) {
+      console.error('Error fetching FAQs:', error)
+    } finally {
+      setLoading(false)
+    }
+  }
 
   const filteredFaqs = filter === 'all'
     ? faqs
     : faqs.filter(f => f.category === filter)
 
-  const toggleActive = (id: string) => {
-    setFaqs(faqs.map(f =>
-      f.id === id ? { ...f, isActive: !f.isActive } : f
-    ))
+  const toggleActive = async (id: string, currentStatus: boolean) => {
+    try {
+      const res = await fetch(`/api/faq/${id}`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ isActive: !currentStatus }),
+      })
+      if (res.ok) {
+        setFaqs(faqs.map(f =>
+          f.id === id ? { ...f, isActive: !currentStatus } : f
+        ))
+      }
+    } catch (error) {
+      console.error('Error toggling status:', error)
+    }
+  }
+
+  const deleteFaq = async (id: string) => {
+    if (!confirm('Удалить этот вопрос?')) return
+
+    try {
+      const res = await fetch(`/api/faq/${id}`, {
+        method: 'DELETE',
+      })
+      if (res.ok) {
+        setFaqs(faqs.filter(f => f.id !== id))
+      }
+    } catch (error) {
+      console.error('Error deleting FAQ:', error)
+    }
+  }
+
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center h-64">
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-green-500"></div>
+      </div>
+    )
   }
 
   return (
@@ -37,7 +90,7 @@ export default function FAQPage() {
       <div className="flex justify-between items-center">
         <div>
           <h1 className="text-2xl font-bold text-gray-900">FAQ</h1>
-          <p className="text-gray-500">Управление частыми вопросами</p>
+          <p className="text-gray-500">Управление частыми вопросами ({faqs.length})</p>
         </div>
         <Link
           href="/admin/faq/new"
@@ -57,7 +110,7 @@ export default function FAQPage() {
         >
           Все ({faqs.length})
         </button>
-        {Object.entries(categories).map(([key, label]) => (
+        {Object.entries(categoryLabels).map(([key, label]) => (
           <button
             key={key}
             onClick={() => setFilter(key)}
@@ -72,40 +125,57 @@ export default function FAQPage() {
 
       {/* FAQ List */}
       <div className="space-y-3">
-        {filteredFaqs.map((faq, index) => (
-          <div
-            key={faq.id}
-            className="bg-white rounded-2xl p-4 shadow-sm flex items-center justify-between gap-4"
-          >
-            <div className="flex items-center gap-4">
-              <span className="text-gray-400 text-sm w-6">{index + 1}.</span>
-              <div>
-                <p className="font-medium">{faq.question}</p>
-                <span className="text-xs text-gray-500 bg-gray-100 px-2 py-0.5 rounded">
-                  {categories[faq.category as keyof typeof categories]}
-                </span>
+        {filteredFaqs.length === 0 ? (
+          <div className="bg-white rounded-2xl p-8 text-center text-gray-500">
+            Нет вопросов. <Link href="/admin/faq/new" className="text-green-600 hover:underline">Добавить первый</Link>
+          </div>
+        ) : (
+          filteredFaqs.map((faq, index) => (
+            <div
+              key={faq.id}
+              className="bg-white rounded-2xl p-4 shadow-sm flex items-center justify-between gap-4"
+            >
+              <div className="flex items-center gap-4 flex-1 min-w-0">
+                <span className="text-gray-400 text-sm w-6 flex-shrink-0">{index + 1}.</span>
+                <div className="min-w-0">
+                  <p className="font-medium truncate">{faq.question}</p>
+                  <div className="flex items-center gap-2 mt-1">
+                    <span className="text-xs text-gray-500 bg-gray-100 px-2 py-0.5 rounded">
+                      {categoryLabels[faq.category] || faq.category}
+                    </span>
+                    <span className="text-xs text-gray-400 truncate">
+                      {faq.answer.substring(0, 50)}...
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <div className="flex items-center gap-3 flex-shrink-0">
+                <button
+                  onClick={() => toggleActive(faq.id, faq.isActive)}
+                  className={`px-3 py-1 text-xs rounded-full transition ${
+                    faq.isActive
+                      ? 'bg-green-100 text-green-700 hover:bg-green-200'
+                      : 'bg-gray-100 text-gray-500 hover:bg-gray-200'
+                  }`}
+                >
+                  {faq.isActive ? 'Опубликован' : 'Скрыт'}
+                </button>
+                <Link
+                  href={`/admin/faq/${faq.id}`}
+                  className="text-green-600 hover:text-green-700 font-medium text-sm"
+                >
+                  Редактировать
+                </Link>
+                <button
+                  onClick={() => deleteFaq(faq.id)}
+                  className="text-red-500 hover:text-red-700 font-medium text-sm"
+                >
+                  Удалить
+                </button>
               </div>
             </div>
-            <div className="flex items-center gap-3">
-              <button
-                onClick={() => toggleActive(faq.id)}
-                className={`px-3 py-1 text-xs rounded-full ${
-                  faq.isActive
-                    ? 'bg-green-100 text-green-700'
-                    : 'bg-gray-100 text-gray-500'
-                }`}
-              >
-                {faq.isActive ? 'Опубликован' : 'Скрыт'}
-              </button>
-              <Link
-                href={`/admin/faq/${faq.id}`}
-                className="text-green-600 hover:text-green-700 font-medium text-sm"
-              >
-                Редактировать
-              </Link>
-            </div>
-          </div>
-        ))}
+          ))
+        )}
       </div>
     </div>
   )

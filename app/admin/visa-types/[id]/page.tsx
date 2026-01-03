@@ -1,12 +1,16 @@
 'use client'
 
 import Link from 'next/link'
-import { useState } from 'react'
-import { useRouter } from 'next/navigation'
+import { useState, useEffect } from 'react'
+import { useRouter, useParams } from 'next/navigation'
 
-export default function NewVisaTypePage() {
+export default function EditVisaTypePage() {
   const router = useRouter()
-  const [loading, setLoading] = useState(false)
+  const params = useParams()
+  const id = params.id as string
+
+  const [loading, setLoading] = useState(true)
+  const [saving, setSaving] = useState(false)
   const [error, setError] = useState('')
 
   const [formData, setFormData] = useState({
@@ -20,6 +24,36 @@ export default function NewVisaTypePage() {
     isActive: true,
   })
 
+  useEffect(() => {
+    fetchVisaType()
+  }, [id])
+
+  const fetchVisaType = async () => {
+    try {
+      const res = await fetch(`/api/visa-types/${id}`)
+      if (res.ok) {
+        const data = await res.json()
+        setFormData({
+          nameRu: data.nameRu || '',
+          nameEn: data.nameEn || '',
+          icon: data.icon || '',
+          duration: data.duration || '',
+          price: data.price?.toString() || '0',
+          description: data.description || '',
+          isPopular: data.isPopular || false,
+          isActive: data.isActive ?? true,
+        })
+      } else {
+        setError('Тип визы не найден')
+      }
+    } catch (err) {
+      setError('Ошибка загрузки данных')
+      console.error(err)
+    } finally {
+      setLoading(false)
+    }
+  }
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value, type } = e.target
     setFormData(prev => ({
@@ -30,18 +64,21 @@ export default function NewVisaTypePage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    setLoading(true)
+    setSaving(true)
     setError('')
 
     try {
-      const res = await fetch('/api/visa-types', {
-        method: 'POST',
+      const res = await fetch(`/api/visa-types/${id}`, {
+        method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          ...formData,
+          price: parseInt(formData.price) || 0,
+        }),
       })
 
       if (!res.ok) {
-        throw new Error('Failed to create visa type')
+        throw new Error('Failed to update visa type')
       }
 
       router.push('/admin/visa-types')
@@ -50,8 +87,34 @@ export default function NewVisaTypePage() {
       setError('Ошибка при сохранении. Попробуйте ещё раз.')
       console.error(err)
     } finally {
-      setLoading(false)
+      setSaving(false)
     }
+  }
+
+  const handleDelete = async () => {
+    if (!confirm('Удалить этот тип визы?')) return
+
+    try {
+      const res = await fetch(`/api/visa-types/${id}`, {
+        method: 'DELETE',
+      })
+
+      if (res.ok) {
+        router.push('/admin/visa-types')
+        router.refresh()
+      }
+    } catch (err) {
+      setError('Ошибка при удалении')
+      console.error(err)
+    }
+  }
+
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center h-64">
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-green-500"></div>
+      </div>
+    )
   }
 
   return (
@@ -60,7 +123,7 @@ export default function NewVisaTypePage() {
         <Link href="/admin/visa-types" className="text-gray-500 hover:text-gray-700 text-sm">
           ← Назад к списку
         </Link>
-        <h1 className="text-2xl font-bold text-gray-900 mt-2">Новый тип визы</h1>
+        <h1 className="text-2xl font-bold text-gray-900 mt-2">Редактировать тип визы</h1>
       </div>
 
       {error && (
@@ -177,7 +240,7 @@ export default function NewVisaTypePage() {
                 onChange={handleChange}
                 className="w-5 h-5 rounded border-gray-300 text-green-600 focus:ring-green-500"
               />
-              <span className="text-sm font-medium text-gray-700">Популярная (выделить на сайте)</span>
+              <span className="text-sm font-medium text-gray-700">Популярная</span>
             </label>
 
             <label className="flex items-center gap-2 cursor-pointer">
@@ -196,10 +259,10 @@ export default function NewVisaTypePage() {
         <div className="flex gap-4 pt-4 border-t">
           <button
             type="submit"
-            disabled={loading}
+            disabled={saving}
             className="px-6 py-3 bg-green-600 text-white font-semibold rounded-xl hover:bg-green-700 transition disabled:opacity-50"
           >
-            {loading ? 'Сохранение...' : 'Сохранить'}
+            {saving ? 'Сохранение...' : 'Сохранить'}
           </button>
           <Link
             href="/admin/visa-types"
@@ -207,6 +270,13 @@ export default function NewVisaTypePage() {
           >
             Отмена
           </Link>
+          <button
+            type="button"
+            onClick={handleDelete}
+            className="px-6 py-3 bg-red-50 text-red-600 font-semibold rounded-xl hover:bg-red-100 transition ml-auto"
+          >
+            Удалить
+          </button>
         </div>
       </form>
     </div>
