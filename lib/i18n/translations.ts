@@ -111,6 +111,71 @@ export const translations: Record<Locale, Record<string, string>> = {
     'footer.cities': 'Города',
     'footer.privacy': 'Конфиденциальность',
     'footer.admin': 'Админ',
+
+    // Rent Section
+    'rent.title': 'Аренда квартир',
+    'rent.subtitle': 'Найдите идеальную квартиру для долгосрочной аренды в Нячанге',
+    'rent.search': 'Район, адрес или название...',
+    'rent.popularDistricts': 'Популярные районы',
+    'rent.newListings': 'Новые квартиры',
+    'rent.viewAll': 'Смотреть все',
+    'rent.apartments': 'квартир',
+    'rent.perMonth': '/мес',
+    'rent.rooms': 'комнат',
+    'rent.area': 'м²',
+    'rent.floor': 'Этаж',
+    'rent.available': 'Свободна',
+    'rent.availableFrom': 'Свободна с',
+    'rent.notAvailable': 'Занята',
+    'rent.cannotShow': 'Показ невозможен',
+    'rent.description': 'Описание',
+    'rent.amenities': 'Удобства',
+    'rent.location': 'Расположение',
+    'rent.requestViewing': 'Записаться на просмотр',
+    'rent.requestVideoCall': 'Видео-звонок',
+    'rent.similar': 'Похожие квартиры',
+    'rent.features.video': 'Видео-звонки',
+    'rent.features.videoDesc': 'Покажем квартиру онлайн, если вы ещё не в Нячанге',
+    'rent.features.verified': 'Проверенные объекты',
+    'rent.features.verifiedDesc': 'Все квартиры проверены лично нашей командой',
+    'rent.features.russian': 'Поддержка на русском',
+    'rent.features.russianDesc': 'Говорим на вашем языке и поможем с любым вопросом',
+
+    // Rent Filters
+    'rent.filters.district': 'Район',
+    'rent.filters.all': 'Все',
+    'rent.filters.minPrice': 'Мин. цена',
+    'rent.filters.maxPrice': 'Макс. цена',
+    'rent.filters.reset': 'Сбросить',
+    'rent.filters.apply': 'Применить',
+
+    // Rent Request Modal
+    'rent.request.title': 'Заявка на просмотр',
+    'rent.request.videoTitle': 'Заявка на видео-звонок',
+    'rent.request.name': 'Ваше имя',
+    'rent.request.phone': 'Телефон',
+    'rent.request.messenger': 'Мессенджер для связи',
+    'rent.request.preferredDate': 'Предпочтительная дата',
+    'rent.request.comment': 'Комментарий',
+    'rent.request.submit': 'Отправить заявку',
+    'rent.request.success': 'Заявка отправлена! Мы свяжемся с вами в ближайшее время.',
+    'rent.request.error': 'Произошла ошибка. Попробуйте позже.',
+
+    // Rent Map
+    'rent.map.title': 'Карта квартир',
+    'rent.map.showList': 'Показать список',
+    'rent.map.hideList': 'Скрыть список',
+
+    // Rent Favorites
+    'rent.favorites.title': 'Избранное',
+    'rent.favorites.empty': 'Вы пока не добавили квартиры в избранное',
+    'rent.favorites.browse': 'Смотреть квартиры',
+
+    // Nav Rent
+    'nav.rent': 'Аренда',
+    'nav.rentApartments': 'Квартиры',
+    'nav.rentMap': 'Карта',
+    'nav.rentFavorites': 'Избранное',
   },
 
   en: {
@@ -223,6 +288,71 @@ export const translations: Record<Locale, Record<string, string>> = {
     'footer.cities': 'Cities',
     'footer.privacy': 'Privacy',
     'footer.admin': 'Admin',
+
+    // Rent Section
+    'rent.title': 'Apartment Rentals',
+    'rent.subtitle': 'Find the perfect apartment for long-term rent in Nha Trang',
+    'rent.search': 'District, address or name...',
+    'rent.popularDistricts': 'Popular Districts',
+    'rent.newListings': 'New Listings',
+    'rent.viewAll': 'View All',
+    'rent.apartments': 'apartments',
+    'rent.perMonth': '/mo',
+    'rent.rooms': 'rooms',
+    'rent.area': 'm²',
+    'rent.floor': 'Floor',
+    'rent.available': 'Available',
+    'rent.availableFrom': 'Available from',
+    'rent.notAvailable': 'Occupied',
+    'rent.cannotShow': 'Cannot show',
+    'rent.description': 'Description',
+    'rent.amenities': 'Amenities',
+    'rent.location': 'Location',
+    'rent.requestViewing': 'Request Viewing',
+    'rent.requestVideoCall': 'Video Call',
+    'rent.similar': 'Similar Apartments',
+    'rent.features.video': 'Video Calls',
+    'rent.features.videoDesc': "We'll show you the apartment online if you're not in Nha Trang yet",
+    'rent.features.verified': 'Verified Properties',
+    'rent.features.verifiedDesc': 'All apartments are personally verified by our team',
+    'rent.features.russian': 'Russian Support',
+    'rent.features.russianDesc': 'We speak your language and help with any questions',
+
+    // Rent Filters
+    'rent.filters.district': 'District',
+    'rent.filters.all': 'All',
+    'rent.filters.minPrice': 'Min price',
+    'rent.filters.maxPrice': 'Max price',
+    'rent.filters.reset': 'Reset',
+    'rent.filters.apply': 'Apply',
+
+    // Rent Request Modal
+    'rent.request.title': 'Viewing Request',
+    'rent.request.videoTitle': 'Video Call Request',
+    'rent.request.name': 'Your Name',
+    'rent.request.phone': 'Phone',
+    'rent.request.messenger': 'Preferred Messenger',
+    'rent.request.preferredDate': 'Preferred Date',
+    'rent.request.comment': 'Comment',
+    'rent.request.submit': 'Submit Request',
+    'rent.request.success': 'Request sent! We will contact you shortly.',
+    'rent.request.error': 'An error occurred. Please try again later.',
+
+    // Rent Map
+    'rent.map.title': 'Apartment Map',
+    'rent.map.showList': 'Show List',
+    'rent.map.hideList': 'Hide List',
+
+    // Rent Favorites
+    'rent.favorites.title': 'Favorites',
+    'rent.favorites.empty': "You haven't added any apartments to favorites yet",
+    'rent.favorites.browse': 'Browse Apartments',
+
+    // Nav Rent
+    'nav.rent': 'Rent',
+    'nav.rentApartments': 'Apartments',
+    'nav.rentMap': 'Map',
+    'nav.rentFavorites': 'Favorites',
   },
 
   vi: {
@@ -335,6 +465,71 @@ export const translations: Record<Locale, Record<string, string>> = {
     'footer.cities': 'Thành phố',
     'footer.privacy': 'Bảo mật',
     'footer.admin': 'Admin',
+
+    // Rent Section
+    'rent.title': 'Thuê căn hộ',
+    'rent.subtitle': 'Tìm căn hộ hoàn hảo để thuê dài hạn tại Nha Trang',
+    'rent.search': 'Quận, địa chỉ hoặc tên...',
+    'rent.popularDistricts': 'Quận phổ biến',
+    'rent.newListings': 'Căn hộ mới',
+    'rent.viewAll': 'Xem tất cả',
+    'rent.apartments': 'căn hộ',
+    'rent.perMonth': '/tháng',
+    'rent.rooms': 'phòng',
+    'rent.area': 'm²',
+    'rent.floor': 'Tầng',
+    'rent.available': 'Còn trống',
+    'rent.availableFrom': 'Trống từ',
+    'rent.notAvailable': 'Đã có người ở',
+    'rent.cannotShow': 'Không thể xem',
+    'rent.description': 'Mô tả',
+    'rent.amenities': 'Tiện nghi',
+    'rent.location': 'Vị trí',
+    'rent.requestViewing': 'Đặt lịch xem',
+    'rent.requestVideoCall': 'Gọi video',
+    'rent.similar': 'Căn hộ tương tự',
+    'rent.features.video': 'Gọi video',
+    'rent.features.videoDesc': 'Chúng tôi sẽ cho bạn xem căn hộ online nếu bạn chưa ở Nha Trang',
+    'rent.features.verified': 'Đã xác minh',
+    'rent.features.verifiedDesc': 'Tất cả căn hộ đã được nhóm của chúng tôi xác minh',
+    'rent.features.russian': 'Hỗ trợ tiếng Nga',
+    'rent.features.russianDesc': 'Chúng tôi nói ngôn ngữ của bạn và giúp đỡ mọi câu hỏi',
+
+    // Rent Filters
+    'rent.filters.district': 'Quận',
+    'rent.filters.all': 'Tất cả',
+    'rent.filters.minPrice': 'Giá tối thiểu',
+    'rent.filters.maxPrice': 'Giá tối đa',
+    'rent.filters.reset': 'Đặt lại',
+    'rent.filters.apply': 'Áp dụng',
+
+    // Rent Request Modal
+    'rent.request.title': 'Yêu cầu xem',
+    'rent.request.videoTitle': 'Yêu cầu gọi video',
+    'rent.request.name': 'Tên của bạn',
+    'rent.request.phone': 'Điện thoại',
+    'rent.request.messenger': 'Messenger ưa thích',
+    'rent.request.preferredDate': 'Ngày ưu tiên',
+    'rent.request.comment': 'Bình luận',
+    'rent.request.submit': 'Gửi yêu cầu',
+    'rent.request.success': 'Yêu cầu đã được gửi! Chúng tôi sẽ liên hệ sớm.',
+    'rent.request.error': 'Đã xảy ra lỗi. Vui lòng thử lại sau.',
+
+    // Rent Map
+    'rent.map.title': 'Bản đồ căn hộ',
+    'rent.map.showList': 'Hiện danh sách',
+    'rent.map.hideList': 'Ẩn danh sách',
+
+    // Rent Favorites
+    'rent.favorites.title': 'Yêu thích',
+    'rent.favorites.empty': 'Bạn chưa thêm căn hộ nào vào danh sách yêu thích',
+    'rent.favorites.browse': 'Xem căn hộ',
+
+    // Nav Rent
+    'nav.rent': 'Thuê',
+    'nav.rentApartments': 'Căn hộ',
+    'nav.rentMap': 'Bản đồ',
+    'nav.rentFavorites': 'Yêu thích',
   },
 }
 

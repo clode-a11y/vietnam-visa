@@ -9,8 +9,8 @@ export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
   const menuItems = [
-    { href: '#features', label: 'Типы виз' },
-    { href: '#comparison', label: 'Сравнение' },
+    { href: '#features', label: 'Визы' },
+    { href: '/rent', label: 'Аренда', isPage: true },
     { href: '#calculator', label: 'Калькулятор' },
     { href: '/blog', label: 'Блог', isPage: true },
     { href: '#contact', label: 'Заявка' },

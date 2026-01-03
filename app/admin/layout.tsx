@@ -7,9 +7,13 @@ import { signOut, useSession } from 'next-auth/react'
 const navItems = [
   { href: '/admin', label: 'Dashboard', icon: '📊' },
   { href: '/admin/visa-types', label: 'Типы виз', icon: '📋' },
+  { href: '/admin/apartments', label: 'Квартиры', icon: '🏠' },
+  { href: '/admin/districts', label: 'Районы', icon: '📍' },
+  { href: '/admin/amenities', label: 'Удобства', icon: '✨' },
+  { href: '/admin/viewing-requests', label: 'Заявки аренды', icon: '🔑' },
   { href: '/admin/faq', label: 'FAQ', icon: '❓' },
   { href: '/admin/blog', label: 'Блог', icon: '📝' },
-  { href: '/admin/requests', label: 'Заявки', icon: '📩' },
+  { href: '/admin/requests', label: 'Заявки виз', icon: '📩' },
   { href: '/admin/settings', label: 'Настройки', icon: '⚙️' },
 ]
 
@@ -45,7 +49,7 @@ export default function AdminLayout({
                     href={item.href}
                     className={`flex items-center gap-3 px-4 py-3 rounded-xl transition ${
                       isActive
-                        ? 'bg-green-50 text-green-700 font-semibold'
+                        ? 'bg-blue-50 text-blue-700 font-semibold'
                         : 'text-gray-600 hover:bg-gray-50'
                     }`}
                   >

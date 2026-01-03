@@ -108,3 +108,90 @@ model BlogPost {
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 }
+
+// ==================== RENTAL MODELS ====================
+
+model District {
+  id          String      @id @default(cuid())
+  nameRu      String
+  nameEn      String
+  nameVi      String
+  description String?
+  coverImage  String?
+  order       Int         @default(0)
+  isActive    Boolean     @default(true)
+  apartments  Apartment[]
+  createdAt   DateTime    @default(now())
+}
+
+model Apartment {
+  id            String             @id @default(cuid())
+  titleRu       String
+  titleEn       String
+  titleVi       String
+  descriptionRu String             @db.Text
+  descriptionEn String             @db.Text
+  descriptionVi String             @db.Text
+  priceUsd      Int
+  priceVnd      Int
+  rooms         Int
+  area          Float
+  floor         Int?
+  totalFloors   Int?
+  address       String
+  lat           Float
+  lng           Float
+  availableFrom DateTime?
+  isAvailable   Boolean            @default(true)
+  canShow       Boolean            @default(true)
+  hasVideo      Boolean            @default(false)
+  districtId    String
+  district      District           @relation(fields: [districtId], references: [id])
+  images        ApartmentImage[]
+  amenities     ApartmentAmenity[]
+  requests      ViewingRequest[]
+  createdAt     DateTime           @default(now())
+  updatedAt     DateTime           @updatedAt
+}
+
+model ApartmentImage {
+  id          String    @id @default(cuid())
+  url         String
+  order       Int       @default(0)
+  isCover     Boolean   @default(false)
+  apartmentId String
+  apartment   Apartment @relation(fields: [apartmentId], references: [id], onDelete: Cascade)
+}
+
+model Amenity {
+  id         String             @id @default(cuid())
+  nameRu     String
+  nameEn     String
+  nameVi     String
+  icon       String
+  category   String // general, kitchen, bathroom, building
+  apartments ApartmentAmenity[]
+}
+
+model ApartmentAmenity {
+  apartmentId String
+  amenityId   String
+  apartment   Apartment @relation(fields: [apartmentId], references: [id], onDelete: Cascade)
+  amenity     Amenity   @relation(fields: [amenityId], references: [id], onDelete: Cascade)
+
+  @@id([apartmentId, amenityId])
+}
+
+model ViewingRequest {
+  id          String    @id @default(cuid())
+  name        String
+  phone       String
+  messenger   String // whatsapp, telegram, zalo
+  type        String // viewing, video_call
+  date        DateTime?
+  comment     String?
+  status      String    @default("new") // new, contacted, completed, cancelled
+  apartmentId String
+  apartment   Apartment @relation(fields: [apartmentId], references: [id])
+  createdAt   DateTime  @default(now())
+}
