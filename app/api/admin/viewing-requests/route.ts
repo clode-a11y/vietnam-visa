@@ -10,7 +10,7 @@ export async function GET() {
     const requests = await prisma.viewingRequest.findMany({
       include: {
         apartment: {
-          select: { titleRu: true },
+          select: { id: true, titleRu: true },
         },
       },
       orderBy: { createdAt: 'desc' },
