@@ -331,9 +331,14 @@ export default async function HomePage() {
         </div>
         <div className="max-w-5xl mx-auto pt-8 border-t border-gray-100 flex justify-between items-center">
           <p className="text-gray-500 text-sm">© 2025 VietVisa</p>
-          <Link href="/admin" className="text-gray-400 hover:text-gray-600 text-sm">
-            Админ
-          </Link>
+          <div className="flex gap-4">
+            <Link href="/privacy" className="text-gray-400 hover:text-gray-600 text-sm">
+              Конфиденциальность
+            </Link>
+            <Link href="/admin" className="text-gray-400 hover:text-gray-600 text-sm">
+              Админ
+            </Link>
+          </div>
         </div>
       </footer>
     </>
