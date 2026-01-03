@@ -52,7 +52,7 @@ export default function FloatingContact() {
         className={`w-16 h-16 rounded-full shadow-lg flex items-center justify-center transition-all duration-300 ${
           isOpen
             ? 'bg-gray-700 hover:bg-gray-800 rotate-45'
-            : 'bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700'
+            : 'bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700'
         }`}
         aria-label={isOpen ? 'Закрыть контакты' : 'Открыть контакты'}
         aria-expanded={isOpen}

@@ -34,7 +34,7 @@ export default function Header() {
               <Link
                 key={item.href}
                 href={item.href}
-                className="text-gray-700 hover:text-green-600 font-medium transition"
+                className="text-gray-700 hover:text-blue-600 font-medium transition"
               >
                 {item.label}
               </Link>
@@ -42,7 +42,7 @@ export default function Header() {
               <a
                 key={item.href}
                 href={item.href}
-                className="text-gray-700 hover:text-green-600 font-medium transition"
+                className="text-gray-700 hover:text-blue-600 font-medium transition"
               >
                 {item.label}
               </a>
@@ -55,7 +55,7 @@ export default function Header() {
           <LanguageSwitcher />
           <a
             href="#calculator"
-            className="px-5 py-2.5 bg-gradient-to-r from-green-500 via-pink-500 to-orange-500 text-white font-bold rounded-full hover:shadow-lg transition"
+            className="px-5 py-2.5 bg-gradient-to-r from-blue-500 via-sky-500 to-cyan-500 text-white font-bold rounded-full hover:shadow-lg transition"
           >
             Рассчитать визу
           </a>
@@ -138,7 +138,7 @@ export default function Header() {
           <a
             href="#calculator"
             onClick={handleMenuClick}
-            className="mt-8 block w-full py-4 bg-gradient-to-r from-green-500 via-pink-500 to-orange-500 text-white font-bold rounded-xl text-center hover:shadow-lg transition"
+            className="mt-8 block w-full py-4 bg-gradient-to-r from-blue-500 via-sky-500 to-cyan-500 text-white font-bold rounded-xl text-center hover:shadow-lg transition"
           >
             Рассчитать визу
           </a>

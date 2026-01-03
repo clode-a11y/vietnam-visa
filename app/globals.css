@@ -3,27 +3,31 @@
 @tailwind utilities;
 
 :root {
-  --green-light: #86EFAC;
-  --green: #22C55E;
-  --green-dark: #166534;
-  --pink-light: #FECDD3;
-  --pink: #FB7185;
-  --pink-dark: #E11D48;
-  --orange-light: #FED7AA;
-  --orange: #F97316;
-  --orange-dark: #EA580C;
+  --blue-lightest: #EFF6FF;
+  --blue-light: #BFDBFE;
+  --blue: #3B82F6;
+  --blue-dark: #1D4ED8;
+  --blue-darker: #1E3A8A;
+  --sky-light: #E0F2FE;
+  --sky: #0EA5E9;
+  --sky-dark: #0369A1;
   --white: #FFFFFF;
-  --black: #1A1A1A;
-  --text-primary: #1A1A1A;
-  --text-secondary: rgba(26, 26, 26, 0.7);
-  --text-muted: rgba(26, 26, 26, 0.5);
+  --white-cold: #F8FAFC;
+  --gray-50: #F8FAFC;
+  --gray-100: #F1F5F9;
+  --gray-200: #E2E8F0;
+  --gray-600: #475569;
+  --black: #0F172A;
+  --text-primary: #0F172A;
+  --text-secondary: #475569;
+  --text-muted: #94A3B8;
   --text-inverse: #FFFFFF;
-  --card-bg: rgba(255, 255, 255, 0.85);
+  --card-bg: rgba(255, 255, 255, 0.9);
   --card-bg-solid: #FFFFFF;
-  --card-border: rgba(255, 255, 255, 0.5);
-  --card-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
-  --gradient-main: linear-gradient(135deg, #86EFAC 0%, #FECDD3 50%, #FED7AA 100%);
-  --gradient-accent: linear-gradient(135deg, #22C55E 0%, #FB7185 50%, #F97316 100%);
+  --card-border: rgba(59, 130, 246, 0.2);
+  --card-shadow: 0 20px 60px rgba(15, 23, 42, 0.08);
+  --gradient-main: linear-gradient(135deg, #EFF6FF 0%, #DBEAFE 50%, #E0F2FE 100%);
+  --gradient-accent: linear-gradient(135deg, #3B82F6 0%, #0EA5E9 50%, #06B6D4 100%);
 }
 
 body {
@@ -34,11 +38,11 @@ body {
 
 /* Gradient backgrounds */
 .gradient-bg {
-  background: linear-gradient(135deg, #86EFAC 0%, #FECDD3 50%, #FED7AA 100%);
+  background: linear-gradient(135deg, #EFF6FF 0%, #DBEAFE 50%, #E0F2FE 100%);
 }
 
 .gradient-text {
-  background: linear-gradient(135deg, #22C55E 0%, #FB7185 50%, #F97316 100%);
+  background: linear-gradient(135deg, #3B82F6 0%, #0EA5E9 50%, #06B6D4 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -48,7 +52,7 @@ body {
 .gradient-bg-animated {
   position: fixed;
   inset: 0;
-  background: linear-gradient(135deg, #86EFAC 0%, #A7F3D0 15%, #FECDD3 35%, #FBCFE8 50%, #FED7AA 70%, #FDBA74 85%, #FED7AA 100%);
+  background: linear-gradient(135deg, #EFF6FF 0%, #DBEAFE 15%, #BFDBFE 35%, #E0F2FE 50%, #BAE6FD 70%, #E0F2FE 85%, #EFF6FF 100%);
   background-size: 400% 400%;
   animation: gradientFlow 20s ease infinite;
   z-index: -1;
@@ -107,7 +111,7 @@ header.scrolled {
   display: none;
   margin-top: 2rem;
   padding: 1.5rem;
-  background: linear-gradient(135deg, rgba(134, 239, 172, 0.2), rgba(254, 205, 211, 0.2));
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(14, 165, 233, 0.1));
   border-radius: 24px;
   text-align: center;
 }
@@ -171,7 +175,7 @@ header.scrolled {
 .vietnam-map {
   max-width: 280px;
   margin: 0 auto;
-  filter: drop-shadow(0 20px 40px rgba(34, 197, 94, 0.3));
+  filter: drop-shadow(0 20px 40px rgba(59, 130, 246, 0.3));
 }
 
 .map-shape {
@@ -180,8 +184,8 @@ header.scrolled {
 }
 
 @keyframes mapPulse {
-  0%, 100% { filter: drop-shadow(0 0 20px rgba(34, 197, 94, 0.3)); }
-  50% { filter: drop-shadow(0 0 40px rgba(251, 113, 133, 0.4)); }
+  0%, 100% { filter: drop-shadow(0 0 20px rgba(59, 130, 246, 0.3)); }
+  50% { filter: drop-shadow(0 0 40px rgba(14, 165, 233, 0.4)); }
 }
 
 .city-marker {
@@ -200,7 +204,7 @@ a:focus-visible,
 input:focus-visible,
 select:focus-visible,
 textarea:focus-visible {
-  outline: 2px solid var(--green);
+  outline: 2px solid var(--blue);
   outline-offset: 2px;
 }
 
@@ -287,10 +291,10 @@ html.high-contrast [class*="text-gray"] {
   color: #fff !important;
 }
 
-html.high-contrast .text-green-600,
-html.high-contrast .text-green-700,
-html.high-contrast [class*="text-green"] {
-  color: #0f0 !important;
+html.high-contrast .text-blue-600,
+html.high-contrast .text-blue-700,
+html.high-contrast [class*="text-blue"] {
+  color: #0ff !important;
 }
 
 html.high-contrast a {

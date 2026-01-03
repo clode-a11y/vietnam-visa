@@ -12,7 +12,7 @@ const inter = Inter({ subsets: ['latin', 'cyrillic'] })
 export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
-  themeColor: '#22C55E',
+  themeColor: '#3B82F6',
 }
 
 export const metadata: Metadata = {
