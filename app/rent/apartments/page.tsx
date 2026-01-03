@@ -40,9 +40,17 @@ export default function ApartmentsPage() {
   const t = (key: string) => translations[locale][key] || key
   const [selectedDistrict, setSelectedDistrict] = useState('')
   const [selectedRooms, setSelectedRooms] = useState<number | null>(null)
+  const [priceRange, setPriceRange] = useState<{ min: number; max: number } | null>(null)
   const [apartments, setApartments] = useState<Apartment[]>([])
   const [districts, setDistricts] = useState<District[]>([])
   const [loading, setLoading] = useState(true)
+
+  const priceRanges = [
+    { min: 0, max: 400, label: '< $400' },
+    { min: 400, max: 600, label: '$400-600' },
+    { min: 600, max: 1000, label: '$600-1000' },
+    { min: 1000, max: 99999, label: '$1000+' },
+  ]
 
   useEffect(() => {
     fetchData()
@@ -88,6 +96,9 @@ export default function ApartmentsPage() {
     if (selectedRooms !== null) {
       if (selectedRooms === 3 && apt.rooms < 3) return false
       if (selectedRooms !== 3 && apt.rooms !== selectedRooms) return false
+    }
+    if (priceRange) {
+      if (apt.priceUsd < priceRange.min || apt.priceUsd > priceRange.max) return false
     }
     return true
   })
@@ -153,6 +164,27 @@ export default function ApartmentsPage() {
                 </button>
               ))}
             </div>
+
+            {/* Price filter */}
+            <select
+              value={priceRange ? `${priceRange.min}-${priceRange.max}` : ''}
+              onChange={(e) => {
+                if (!e.target.value) {
+                  setPriceRange(null)
+                } else {
+                  const [min, max] = e.target.value.split('-').map(Number)
+                  setPriceRange({ min, max })
+                }
+              }}
+              className="px-4 py-2.5 bg-gray-50 dark:bg-slate-700 border border-gray-200 dark:border-slate-600 rounded-xl text-base text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+            >
+              <option value="">{locale === 'ru' ? 'Цена: Все' : 'Price: All'}</option>
+              {priceRanges.map(range => (
+                <option key={`${range.min}-${range.max}`} value={`${range.min}-${range.max}`}>
+                  {range.label}
+                </option>
+              ))}
+            </select>
           </div>
         </div>
 
