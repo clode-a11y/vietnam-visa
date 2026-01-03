@@ -41,6 +41,7 @@ export default function MapPage() {
   const t = (key: string) => translations[locale][key] || key
   const [apartments, setApartments] = useState<Apartment[]>([])
   const [districts, setDistricts] = useState<District[]>([])
+  const [searchQuery, setSearchQuery] = useState('')
   const [selectedDistrict, setSelectedDistrict] = useState('')
   const [selectedRooms, setSelectedRooms] = useState<number | null>(null)
   const [priceRange, setPriceRange] = useState<{ min: number; max: number } | null>(null)
@@ -90,6 +91,17 @@ export default function MapPage() {
 
   const filteredApartments = apartments
     .filter(apt => {
+      // Search filter
+      if (searchQuery) {
+        const query = searchQuery.toLowerCase()
+        const matchesTitle = apt.titleRu.toLowerCase().includes(query) ||
+          apt.titleEn.toLowerCase().includes(query) ||
+          apt.titleVi.toLowerCase().includes(query)
+        const matchesDistrict = apt.district.nameRu.toLowerCase().includes(query) ||
+          apt.district.nameEn.toLowerCase().includes(query) ||
+          apt.district.nameVi.toLowerCase().includes(query)
+        if (!matchesTitle && !matchesDistrict) return false
+      }
       if (selectedDistrict && apt.district.id !== selectedDistrict) return false
       if (selectedRooms !== null) {
         if (selectedRooms === 3 && apt.rooms < 3) return false
@@ -143,6 +155,18 @@ export default function MapPage() {
       <main className="flex-1 pt-16 flex flex-col lg:flex-row overflow-hidden">
         {/* Filters bar */}
         <div className="bg-white dark:bg-slate-800 border-b dark:border-slate-700 px-4 py-3 flex items-center gap-3 flex-wrap lg:absolute lg:top-20 lg:left-4 lg:z-[1000] lg:rounded-xl lg:shadow-lg lg:border dark:lg:border-slate-600">
+          {/* Search */}
+          <div className="relative">
+            <input
+              type="text"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              placeholder={locale === 'ru' ? 'Поиск...' : 'Search...'}
+              className="w-36 px-3 py-2 pl-8 bg-gray-50 dark:bg-slate-700 border border-gray-200 dark:border-slate-600 rounded-lg text-sm text-gray-900 dark:text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+            <span className="absolute left-2.5 top-1/2 -translate-y-1/2 text-gray-400 text-xs">🔍</span>
+          </div>
+
           <select
             value={selectedDistrict}
             onChange={(e) => setSelectedDistrict(e.target.value)}

@@ -38,6 +38,7 @@ interface Apartment {
 export default function ApartmentsPage() {
   const { locale } = useLocale()
   const t = (key: string) => translations[locale][key] || key
+  const [searchQuery, setSearchQuery] = useState('')
   const [selectedDistrict, setSelectedDistrict] = useState('')
   const [selectedRooms, setSelectedRooms] = useState<number | null>(null)
   const [priceRange, setPriceRange] = useState<{ min: number; max: number } | null>(null)
@@ -94,6 +95,17 @@ export default function ApartmentsPage() {
 
   const filteredApartments = apartments
     .filter(apt => {
+      // Search filter
+      if (searchQuery) {
+        const query = searchQuery.toLowerCase()
+        const matchesTitle = apt.titleRu.toLowerCase().includes(query) ||
+          apt.titleEn.toLowerCase().includes(query) ||
+          apt.titleVi.toLowerCase().includes(query)
+        const matchesDistrict = apt.district.nameRu.toLowerCase().includes(query) ||
+          apt.district.nameEn.toLowerCase().includes(query) ||
+          apt.district.nameVi.toLowerCase().includes(query)
+        if (!matchesTitle && !matchesDistrict) return false
+      }
       if (selectedDistrict && apt.district.id !== selectedDistrict) return false
       if (selectedRooms !== null) {
         if (selectedRooms === 3 && apt.rooms < 3) return false
@@ -141,6 +153,18 @@ export default function ApartmentsPage() {
         {/* Filters */}
         <div className="bg-white dark:bg-slate-800 rounded-2xl p-4 shadow-sm mb-6">
           <div className="flex flex-wrap gap-3">
+            {/* Search */}
+            <div className="relative">
+              <input
+                type="text"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                placeholder={locale === 'ru' ? 'Поиск...' : 'Search...'}
+                className="w-48 px-4 py-2.5 pl-10 bg-gray-50 dark:bg-slate-700 border border-gray-200 dark:border-slate-600 rounded-xl text-base text-gray-900 dark:text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+              <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">🔍</span>
+            </div>
+
             {/* District filter */}
             <select
               value={selectedDistrict}
