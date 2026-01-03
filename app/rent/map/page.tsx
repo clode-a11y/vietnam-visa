@@ -44,6 +44,7 @@ export default function MapPage() {
   const [selectedDistrict, setSelectedDistrict] = useState('')
   const [selectedRooms, setSelectedRooms] = useState<number | null>(null)
   const [priceRange, setPriceRange] = useState<{ min: number; max: number } | null>(null)
+  const [sortBy, setSortBy] = useState<string>('')
   const [selectedApartmentId, setSelectedApartmentId] = useState<string | null>(null)
   const [loading, setLoading] = useState(true)
   const [showList, setShowList] = useState(false)
@@ -87,17 +88,27 @@ export default function MapPage() {
     return apt.titleRu
   }
 
-  const filteredApartments = apartments.filter(apt => {
-    if (selectedDistrict && apt.district.id !== selectedDistrict) return false
-    if (selectedRooms !== null) {
-      if (selectedRooms === 3 && apt.rooms < 3) return false
-      if (selectedRooms !== 3 && apt.rooms !== selectedRooms) return false
-    }
-    if (priceRange) {
-      if (apt.priceUsd < priceRange.min || apt.priceUsd > priceRange.max) return false
-    }
-    return true
-  })
+  const filteredApartments = apartments
+    .filter(apt => {
+      if (selectedDistrict && apt.district.id !== selectedDistrict) return false
+      if (selectedRooms !== null) {
+        if (selectedRooms === 3 && apt.rooms < 3) return false
+        if (selectedRooms !== 3 && apt.rooms !== selectedRooms) return false
+      }
+      if (priceRange) {
+        if (apt.priceUsd < priceRange.min || apt.priceUsd > priceRange.max) return false
+      }
+      return true
+    })
+    .sort((a, b) => {
+      switch (sortBy) {
+        case 'price-asc': return a.priceUsd - b.priceUsd
+        case 'price-desc': return b.priceUsd - a.priceUsd
+        case 'area-asc': return a.area - b.area
+        case 'area-desc': return b.area - a.area
+        default: return 0
+      }
+    })
 
   const priceRanges = [
     { min: 0, max: 99999, label: locale === 'ru' ? 'Все' : 'All' },
@@ -221,9 +232,22 @@ export default function MapPage() {
         {/* Apartment list sidebar */}
         <div className={`lg:w-96 bg-white dark:bg-slate-800 border-l dark:border-slate-700 overflow-y-auto ${!showList ? 'hidden lg:block' : ''}`}>
           <div className="p-4 border-b dark:border-slate-700 sticky top-0 bg-white dark:bg-slate-800 z-10">
-            <h2 className="font-bold text-gray-900 dark:text-white">
-              {filteredApartments.length} {locale === 'ru' ? 'квартир' : locale === 'en' ? 'apartments' : 'căn hộ'}
-            </h2>
+            <div className="flex items-center justify-between gap-2">
+              <h2 className="font-bold text-gray-900 dark:text-white">
+                {filteredApartments.length} {locale === 'ru' ? 'квартир' : locale === 'en' ? 'apartments' : 'căn hộ'}
+              </h2>
+              <select
+                value={sortBy}
+                onChange={(e) => setSortBy(e.target.value)}
+                className="px-2 py-1 text-xs bg-gray-50 dark:bg-slate-700 border border-gray-200 dark:border-slate-600 rounded-lg text-gray-900 dark:text-white focus:outline-none"
+              >
+                <option value="">{locale === 'ru' ? 'Сортировка' : 'Sort'}</option>
+                <option value="price-asc">{locale === 'ru' ? 'Цена ↑' : 'Price ↑'}</option>
+                <option value="price-desc">{locale === 'ru' ? 'Цена ↓' : 'Price ↓'}</option>
+                <option value="area-asc">{locale === 'ru' ? 'Площадь ↑' : 'Area ↑'}</option>
+                <option value="area-desc">{locale === 'ru' ? 'Площадь ↓' : 'Area ↓'}</option>
+              </select>
+            </div>
           </div>
 
           <div className="divide-y dark:divide-slate-700">

@@ -41,6 +41,7 @@ export default function ApartmentsPage() {
   const [selectedDistrict, setSelectedDistrict] = useState('')
   const [selectedRooms, setSelectedRooms] = useState<number | null>(null)
   const [priceRange, setPriceRange] = useState<{ min: number; max: number } | null>(null)
+  const [sortBy, setSortBy] = useState<string>('')
   const [apartments, setApartments] = useState<Apartment[]>([])
   const [districts, setDistricts] = useState<District[]>([])
   const [loading, setLoading] = useState(true)
@@ -91,17 +92,27 @@ export default function ApartmentsPage() {
     return apt.titleRu
   }
 
-  const filteredApartments = apartments.filter(apt => {
-    if (selectedDistrict && apt.district.id !== selectedDistrict) return false
-    if (selectedRooms !== null) {
-      if (selectedRooms === 3 && apt.rooms < 3) return false
-      if (selectedRooms !== 3 && apt.rooms !== selectedRooms) return false
-    }
-    if (priceRange) {
-      if (apt.priceUsd < priceRange.min || apt.priceUsd > priceRange.max) return false
-    }
-    return true
-  })
+  const filteredApartments = apartments
+    .filter(apt => {
+      if (selectedDistrict && apt.district.id !== selectedDistrict) return false
+      if (selectedRooms !== null) {
+        if (selectedRooms === 3 && apt.rooms < 3) return false
+        if (selectedRooms !== 3 && apt.rooms !== selectedRooms) return false
+      }
+      if (priceRange) {
+        if (apt.priceUsd < priceRange.min || apt.priceUsd > priceRange.max) return false
+      }
+      return true
+    })
+    .sort((a, b) => {
+      switch (sortBy) {
+        case 'price-asc': return a.priceUsd - b.priceUsd
+        case 'price-desc': return b.priceUsd - a.priceUsd
+        case 'area-asc': return a.area - b.area
+        case 'area-desc': return b.area - a.area
+        default: return 0
+      }
+    })
 
   const getCoverImage = (apt: Apartment) => {
     const cover = apt.images.find(img => img.isCover)
@@ -184,6 +195,19 @@ export default function ApartmentsPage() {
                   {range.label}
                 </option>
               ))}
+            </select>
+
+            {/* Sort */}
+            <select
+              value={sortBy}
+              onChange={(e) => setSortBy(e.target.value)}
+              className="px-4 py-2.5 bg-gray-50 dark:bg-slate-700 border border-gray-200 dark:border-slate-600 rounded-xl text-base text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+            >
+              <option value="">{locale === 'ru' ? 'Сортировка' : 'Sort'}</option>
+              <option value="price-asc">{locale === 'ru' ? 'Цена: по возрастанию' : 'Price: low to high'}</option>
+              <option value="price-desc">{locale === 'ru' ? 'Цена: по убыванию' : 'Price: high to low'}</option>
+              <option value="area-asc">{locale === 'ru' ? 'Площадь: по возрастанию' : 'Area: small to large'}</option>
+              <option value="area-desc">{locale === 'ru' ? 'Площадь: по убыванию' : 'Area: large to small'}</option>
             </select>
           </div>
         </div>
