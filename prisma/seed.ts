@@ -131,6 +131,61 @@ const amenities = [
   { nameRu: 'Утюг', nameEn: 'Iron', nameVi: 'Bàn ủi', icon: '👔', category: 'general' },
 ]
 
+// Test apartment images from Unsplash
+const apartmentImages = {
+  studio: [
+    'https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=800', // Living room
+    'https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=800', // Modern interior
+    'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800', // Kitchen
+    'https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=800', // Bathroom
+  ],
+  oneBedroom: [
+    'https://images.unsplash.com/photo-1560185007-cde436f6a4d0?w=800', // Bedroom
+    'https://images.unsplash.com/photo-1536376072261-38c75010e6c9?w=800', // Living area
+    'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800', // Kitchen
+    'https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=800', // Balcony view
+    'https://images.unsplash.com/photo-1620626011761-996317b8d101?w=800', // Bathroom
+  ],
+  twoBedroom: [
+    'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800', // Exterior
+    'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800', // Living room
+    'https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=800', // Master bedroom
+    'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800', // Kitchen
+    'https://images.unsplash.com/photo-1600573472550-8090b5e0745e?w=800', // Second bedroom
+    'https://images.unsplash.com/photo-1600566752355-35792bedcfea?w=800', // Bathroom
+  ],
+  threeBedroom: [
+    'https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?w=800', // Exterior
+    'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=800', // Living room
+    'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=800', // Dining
+    'https://images.unsplash.com/photo-1616137466211-f939a420be84?w=800', // Master bedroom
+    'https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=800', // Kitchen
+    'https://images.unsplash.com/photo-1586105251261-72a756497a11?w=800', // Bedroom 2
+    'https://images.unsplash.com/photo-1600566752734-2a0cd66c42e0?w=800', // Bathroom
+  ],
+  luxury: [
+    'https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=800', // Luxury exterior
+    'https://images.unsplash.com/photo-1600607687644-c7171b42498f?w=800', // Luxury living
+    'https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=800', // Luxury bedroom
+    'https://images.unsplash.com/photo-1600566753151-384129cf4e3e?w=800', // Luxury kitchen
+    'https://images.unsplash.com/photo-1600585154363-67eb9e2e2099?w=800', // Luxury bathroom
+    'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800', // Terrace
+    'https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?w=800', // Pool view
+  ],
+  seaView: [
+    'https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=800', // Sea view balcony
+    'https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=800', // Resort style
+    'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800', // Beach view
+    'https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=800', // Ocean room
+    'https://images.unsplash.com/photo-1540541338287-41700207dee6?w=800', // Beach apartment
+  ],
+  budget: [
+    'https://images.unsplash.com/photo-1630699144867-37acec97df5a?w=800', // Simple room
+    'https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?w=800', // Basic interior
+    'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800', // Small kitchen
+  ],
+}
+
 // Test apartments data
 const testApartments = [
   {
@@ -154,6 +209,7 @@ const testApartments = [
     canShow: true,
     hasVideo: true,
     amenities: ['Air Conditioning', 'Wi-Fi', 'TV', 'Balcony', 'Sea View', 'Kitchen', 'Refrigerator', 'Elevator', 'Swimming Pool', 'Gym', 'Washing Machine'],
+    imageSet: 'seaView',
   },
   {
     titleRu: '2-комнатная квартира в Vincom',
@@ -176,6 +232,7 @@ const testApartments = [
     canShow: true,
     hasVideo: false,
     amenities: ['Air Conditioning', 'Wi-Fi', 'TV', 'City View', 'Kitchen', 'Refrigerator', 'Microwave', 'Stove', 'Elevator', 'Parking', '24/7 Security'],
+    imageSet: 'twoBedroom',
   },
   {
     titleRu: '1-комнатная у пляжа',
@@ -198,6 +255,7 @@ const testApartments = [
     canShow: true,
     hasVideo: true,
     amenities: ['Air Conditioning', 'Wi-Fi', 'TV', 'Balcony', 'Sea View', 'Kitchen', 'Refrigerator', 'Hot Water', 'Double Bed', 'Elevator'],
+    imageSet: 'seaView',
   },
   {
     titleRu: 'Семейная 3-комнатная квартира',
@@ -220,6 +278,7 @@ const testApartments = [
     canShow: true,
     hasVideo: false,
     amenities: ['Air Conditioning', 'Wi-Fi', 'TV', 'City View', 'Kitchen', 'Refrigerator', 'Microwave', 'Stove', 'Dishwasher', 'Elevator', 'Swimming Pool', 'Gym', 'Parking', 'Playground'],
+    imageSet: 'threeBedroom',
   },
   {
     titleRu: 'Студия в новом доме',
@@ -242,6 +301,7 @@ const testApartments = [
     canShow: true,
     hasVideo: false,
     amenities: ['Air Conditioning', 'Wi-Fi', 'TV', 'Kitchen', 'Refrigerator', 'Hot Water', 'Elevator', '24/7 Security', 'Washing Machine'],
+    imageSet: 'studio',
   },
   {
     titleRu: '1-комнатная с видом на горы',
@@ -264,6 +324,7 @@ const testApartments = [
     canShow: false,
     hasVideo: false,
     amenities: ['Air Conditioning', 'Wi-Fi', 'TV', 'Balcony', 'Kitchen', 'Refrigerator', 'Hot Water', 'Parking'],
+    imageSet: 'oneBedroom',
   },
   {
     titleRu: 'Премиум апартаменты в An Viên',
@@ -286,6 +347,7 @@ const testApartments = [
     canShow: false,
     hasVideo: true,
     amenities: ['Air Conditioning', 'Wi-Fi', 'TV', 'Balcony', 'Sea View', 'Workspace', 'Safe', 'Kitchen', 'Refrigerator', 'Dishwasher', 'Bathtub', 'Elevator', 'Swimming Pool', 'Gym', 'Parking', '24/7 Security', 'Concierge'],
+    imageSet: 'luxury',
   },
   {
     titleRu: 'Бюджетная студия для студентов',
@@ -308,6 +370,7 @@ const testApartments = [
     canShow: true,
     hasVideo: false,
     amenities: ['Air Conditioning', 'Wi-Fi', 'Kitchen', 'Refrigerator', 'Hot Water', 'Single Bed'],
+    imageSet: 'budget',
   },
   {
     titleRu: '2-комнатная рядом с ночным рынком',
@@ -330,6 +393,7 @@ const testApartments = [
     canShow: true,
     hasVideo: true,
     amenities: ['Air Conditioning', 'Wi-Fi', 'TV', 'Kitchen', 'Refrigerator', 'Hot Water', 'Double Bed', 'Washing Machine'],
+    imageSet: 'twoBedroom',
   },
   {
     titleRu: '1-комнатная у порта',
@@ -352,6 +416,7 @@ const testApartments = [
     canShow: true,
     hasVideo: false,
     amenities: ['Air Conditioning', 'Wi-Fi', 'TV', 'Balcony', 'Sea View', 'Kitchen', 'Refrigerator', 'Hot Water', 'Elevator', 'Parking'],
+    imageSet: 'oneBedroom',
   },
   {
     titleRu: 'Пентхаус с террасой',
@@ -374,6 +439,7 @@ const testApartments = [
     canShow: false,
     hasVideo: true,
     amenities: ['Air Conditioning', 'Wi-Fi', 'TV', 'Balcony', 'Sea View', 'City View', 'Workspace', 'Safe', 'Kitchen', 'Refrigerator', 'Dishwasher', 'Bathtub', 'Elevator', 'Swimming Pool', 'Gym', 'Parking', '24/7 Security', 'Concierge', 'Garden'],
+    imageSet: 'luxury',
   },
   {
     titleRu: 'Уютная 1-комнатная в тихом месте',
@@ -396,6 +462,7 @@ const testApartments = [
     canShow: true,
     hasVideo: false,
     amenities: ['Air Conditioning', 'Wi-Fi', 'TV', 'Balcony', 'Kitchen', 'Refrigerator', 'Hot Water', 'Double Bed', 'Parking', 'Playground', 'Garden'],
+    imageSet: 'oneBedroom',
   },
 ]
 
@@ -467,7 +534,68 @@ async function seedTestApartments() {
       }
     }
 
-    console.log(`  Added ${apt.amenities.length} amenities`)
+    // Add images
+    const imageSet = apt.imageSet as keyof typeof apartmentImages
+    const images = apartmentImages[imageSet] || apartmentImages.studio
+    for (let i = 0; i < images.length; i++) {
+      await prisma.apartmentImage.create({
+        data: {
+          apartmentId: apartment.id,
+          url: images[i],
+          order: i,
+          isCover: i === 0, // First image is cover
+        },
+      })
+    }
+
+    console.log(`  Added ${apt.amenities.length} amenities, ${images.length} images`)
+  }
+}
+
+async function addImagesToExistingApartments() {
+  console.log('\nAdding images to existing apartments...')
+
+  // Get all apartments without images
+  const apartments = await prisma.apartment.findMany({
+    include: { images: true },
+  })
+
+  for (const apt of apartments) {
+    if (apt.images.length > 0) {
+      console.log(`Skipped (has images): ${apt.titleRu}`)
+      continue
+    }
+
+    // Find matching imageSet based on apartment characteristics
+    let imageSet: keyof typeof apartmentImages = 'studio'
+
+    if (apt.priceUsd >= 1000) {
+      imageSet = 'luxury'
+    } else if (apt.titleRu.toLowerCase().includes('море') || apt.titleRu.toLowerCase().includes('пляж')) {
+      imageSet = 'seaView'
+    } else if (apt.rooms === 0) {
+      imageSet = apt.priceUsd < 350 ? 'budget' : 'studio'
+    } else if (apt.rooms === 1) {
+      imageSet = 'oneBedroom'
+    } else if (apt.rooms === 2) {
+      imageSet = 'twoBedroom'
+    } else if (apt.rooms >= 3) {
+      imageSet = 'threeBedroom'
+    }
+
+    const images = apartmentImages[imageSet]
+    for (let i = 0; i < images.length; i++) {
+      await prisma.apartmentImage.create({
+        data: {
+          apartmentId: apt.id,
+          url: images[i],
+          order: i,
+          isCover: i === 0,
+        },
+      })
+    }
+
+    console.log(`Added ${images.length} images to: ${apt.titleRu}`)
   }
 }
 
@@ -508,6 +636,9 @@ async function main() {
 
   // Seed test apartments
   await seedTestApartments()
+
+  // Add images to existing apartments without images
+  await addImagesToExistingApartments()
 
   console.log('\nSeeding completed!')
 }
