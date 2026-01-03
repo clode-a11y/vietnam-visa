@@ -3,6 +3,8 @@ import { Inter } from 'next/font/google'
 import './globals.css'
 import { Providers } from './providers'
 import CookieBanner from './components/CookieBanner'
+import FloatingContact from './components/FloatingContact'
+import ServiceWorkerRegistration from './components/ServiceWorkerRegistration'
 
 const inter = Inter({ subsets: ['latin', 'cyrillic'] })
 
@@ -15,6 +17,15 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   title: 'Виза во Вьетнам 2025 | VietVisa - Гайд для россиян',
   description: 'Полный гайд по визам во Вьетнам для россиян. Безвизовый въезд до 45 дней, электронная виза E-Visa за $25, виза по прилёту. Калькулятор визы и консультация.',
+  manifest: '/manifest.json',
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: 'default',
+    title: 'VietVisa',
+  },
+  formatDetection: {
+    telephone: false,
+  },
   keywords: [
     'виза вьетнам',
     'виза во вьетнам',
@@ -70,7 +81,9 @@ export default function RootLayout({
       <body className={inter.className}>
         <Providers>
           {children}
+          <FloatingContact />
           <CookieBanner />
+          <ServiceWorkerRegistration />
         </Providers>
       </body>
     </html>

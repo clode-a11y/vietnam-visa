@@ -8,6 +8,7 @@ const navItems = [
   { href: '/admin', label: 'Dashboard', icon: '📊' },
   { href: '/admin/visa-types', label: 'Типы виз', icon: '📋' },
   { href: '/admin/faq', label: 'FAQ', icon: '❓' },
+  { href: '/admin/blog', label: 'Блог', icon: '📝' },
   { href: '/admin/requests', label: 'Заявки', icon: '📩' },
   { href: '/admin/settings', label: 'Настройки', icon: '⚙️' },
 ]

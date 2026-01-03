@@ -2,15 +2,16 @@
 
 import Link from 'next/link'
 import { useState } from 'react'
+import LanguageSwitcher from './LanguageSwitcher'
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
   const menuItems = [
     { href: '#features', label: 'Типы виз' },
-    { href: '#process', label: 'Процесс' },
+    { href: '#comparison', label: 'Сравнение' },
     { href: '#calculator', label: 'Калькулятор' },
-    { href: '#faq', label: 'FAQ' },
+    { href: '/blog', label: 'Блог', isPage: true },
     { href: '#contact', label: 'Заявка' },
   ]
 
@@ -29,23 +30,36 @@ export default function Header() {
         {/* Desktop menu */}
         <nav className="hidden md:flex gap-8">
           {menuItems.map((item) => (
-            <a
-              key={item.href}
-              href={item.href}
-              className="text-gray-700 hover:text-green-600 font-medium transition"
-            >
-              {item.label}
-            </a>
+            item.isPage ? (
+              <Link
+                key={item.href}
+                href={item.href}
+                className="text-gray-700 hover:text-green-600 font-medium transition"
+              >
+                {item.label}
+              </Link>
+            ) : (
+              <a
+                key={item.href}
+                href={item.href}
+                className="text-gray-700 hover:text-green-600 font-medium transition"
+              >
+                {item.label}
+              </a>
+            )
           ))}
         </nav>
 
-        {/* Desktop CTA */}
-        <a
-          href="#calculator"
-          className="hidden md:block px-5 py-2.5 bg-gradient-to-r from-green-500 via-pink-500 to-orange-500 text-white font-bold rounded-full hover:shadow-lg transition"
-        >
-          Рассчитать визу
-        </a>
+        {/* Desktop actions */}
+        <div className="hidden md:flex items-center gap-4">
+          <LanguageSwitcher />
+          <a
+            href="#calculator"
+            className="px-5 py-2.5 bg-gradient-to-r from-green-500 via-pink-500 to-orange-500 text-white font-bold rounded-full hover:shadow-lg transition"
+          >
+            Рассчитать визу
+          </a>
+        </div>
 
         {/* Mobile hamburger button */}
         <button
@@ -98,14 +112,25 @@ export default function Header() {
 
           <nav className="flex flex-col gap-4">
             {menuItems.map((item) => (
-              <a
-                key={item.href}
-                href={item.href}
-                onClick={handleMenuClick}
-                className="text-lg text-gray-700 hover:text-green-600 font-medium py-2 border-b border-gray-100 transition"
-              >
-                {item.label}
-              </a>
+              item.isPage ? (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  onClick={handleMenuClick}
+                  className="text-lg text-gray-700 hover:text-green-600 font-medium py-2 border-b border-gray-100 transition"
+                >
+                  {item.label}
+                </Link>
+              ) : (
+                <a
+                  key={item.href}
+                  href={item.href}
+                  onClick={handleMenuClick}
+                  className="text-lg text-gray-700 hover:text-green-600 font-medium py-2 border-b border-gray-100 transition"
+                >
+                  {item.label}
+                </a>
+              )
             ))}
           </nav>
 

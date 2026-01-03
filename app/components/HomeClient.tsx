@@ -167,6 +167,189 @@ export default function HomeClient({ visaTypes, faqs }: HomeClientProps) {
         </div>
       </section>
 
+      {/* Visa Comparison Table */}
+      <section id="comparison" className="py-20 px-6">
+        <div className="max-w-5xl mx-auto">
+          <div className="text-center mb-12">
+            <p className="reveal text-sm font-bold text-green-700 uppercase tracking-wider mb-2">Сравнение</p>
+            <h2 className="reveal reveal-delay-1 text-4xl font-black">Какая виза вам подходит?</h2>
+            <p className="reveal reveal-delay-2 text-lg text-gray-600 mt-2">Детальное сравнение всех вариантов</p>
+          </div>
+
+          <div className="reveal reveal-delay-3 bg-white/80 backdrop-blur-xl rounded-3xl shadow-lg border border-white/50 overflow-hidden">
+            <div className="overflow-x-auto">
+              <table className="w-full">
+                <thead>
+                  <tr className="bg-gradient-to-r from-green-500/10 via-pink-500/10 to-orange-500/10">
+                    <th className="px-6 py-4 text-left font-bold text-gray-700">Параметр</th>
+                    <th className="px-6 py-4 text-center font-bold text-gray-700">Безвизовый</th>
+                    <th className="px-6 py-4 text-center font-bold text-gray-700">E-Visa</th>
+                    <th className="px-6 py-4 text-center font-bold text-gray-700">По прилёту</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-gray-100">
+                  <tr className="hover:bg-gray-50/50">
+                    <td className="px-6 py-4 font-medium">Срок пребывания</td>
+                    <td className="px-6 py-4 text-center">до 45 дней</td>
+                    <td className="px-6 py-4 text-center">до 90 дней</td>
+                    <td className="px-6 py-4 text-center">до 30 дней</td>
+                  </tr>
+                  <tr className="hover:bg-gray-50/50">
+                    <td className="px-6 py-4 font-medium">Стоимость</td>
+                    <td className="px-6 py-4 text-center text-green-600 font-bold">Бесплатно</td>
+                    <td className="px-6 py-4 text-center">$25-50</td>
+                    <td className="px-6 py-4 text-center">$25-50</td>
+                  </tr>
+                  <tr className="hover:bg-gray-50/50">
+                    <td className="px-6 py-4 font-medium">Время оформления</td>
+                    <td className="px-6 py-4 text-center text-green-600 font-bold">Сразу</td>
+                    <td className="px-6 py-4 text-center">3-5 дней</td>
+                    <td className="px-6 py-4 text-center">На месте</td>
+                  </tr>
+                  <tr className="hover:bg-gray-50/50">
+                    <td className="px-6 py-4 font-medium">Продление</td>
+                    <td className="px-6 py-4 text-center">
+                      <span className="text-red-500">✗</span>
+                    </td>
+                    <td className="px-6 py-4 text-center">
+                      <span className="text-green-500">✓</span>
+                    </td>
+                    <td className="px-6 py-4 text-center">
+                      <span className="text-green-500">✓</span>
+                    </td>
+                  </tr>
+                  <tr className="hover:bg-gray-50/50">
+                    <td className="px-6 py-4 font-medium">Многократный въезд</td>
+                    <td className="px-6 py-4 text-center">
+                      <span className="text-red-500">✗</span>
+                    </td>
+                    <td className="px-6 py-4 text-center">
+                      <span className="text-green-500">✓ ($50)</span>
+                    </td>
+                    <td className="px-6 py-4 text-center">
+                      <span className="text-green-500">✓ ($50)</span>
+                    </td>
+                  </tr>
+                  <tr className="hover:bg-gray-50/50">
+                    <td className="px-6 py-4 font-medium">Пункты въезда</td>
+                    <td className="px-6 py-4 text-center">Все</td>
+                    <td className="px-6 py-4 text-center">13 аэропортов</td>
+                    <td className="px-6 py-4 text-center">Только аэропорты</td>
+                  </tr>
+                  <tr className="hover:bg-gray-50/50">
+                    <td className="px-6 py-4 font-medium">Приглашение</td>
+                    <td className="px-6 py-4 text-center">
+                      <span className="text-green-500">Не нужно</span>
+                    </td>
+                    <td className="px-6 py-4 text-center">
+                      <span className="text-green-500">Не нужно</span>
+                    </td>
+                    <td className="px-6 py-4 text-center">
+                      <span className="text-orange-500">Нужно</span>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Document Checklist */}
+      <section id="documents" className="py-20 px-6">
+        <div className="max-w-5xl mx-auto">
+          <div className="text-center mb-12">
+            <p className="reveal text-sm font-bold text-green-700 uppercase tracking-wider mb-2">Документы</p>
+            <h2 className="reveal reveal-delay-1 text-4xl font-black">Чек-лист документов</h2>
+            <p className="reveal reveal-delay-2 text-lg text-gray-600 mt-2">Что нужно подготовить для каждого типа визы</p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-6">
+            {/* Visa-free */}
+            <div className="reveal reveal-delay-1 bg-white/80 backdrop-blur-xl rounded-3xl p-6 shadow-lg border border-white/50">
+              <div className="flex items-center gap-3 mb-6">
+                <div className="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center text-2xl">
+                  🎉
+                </div>
+                <div>
+                  <h3 className="font-bold text-lg">Безвизовый въезд</h3>
+                  <span className="text-sm text-green-600">до 45 дней</span>
+                </div>
+              </div>
+              <ul className="space-y-3">
+                {[
+                  'Загранпаспорт (6+ мес.)',
+                  'Обратный билет',
+                  'Бронь отеля',
+                  'Страховка (рекоменд.)',
+                ].map((item, i) => (
+                  <li key={i} className="flex items-start gap-3">
+                    <span className="w-5 h-5 bg-green-100 rounded flex items-center justify-center text-green-600 text-sm flex-shrink-0 mt-0.5">✓</span>
+                    <span className="text-gray-700">{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* E-Visa */}
+            <div className="reveal reveal-delay-2 bg-white/80 backdrop-blur-xl rounded-3xl p-6 shadow-lg border border-green-400 ring-2 ring-green-400/20">
+              <div className="flex items-center gap-3 mb-6">
+                <div className="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center text-2xl">
+                  💻
+                </div>
+                <div>
+                  <h3 className="font-bold text-lg">E-Visa</h3>
+                  <span className="text-sm text-green-600">до 90 дней</span>
+                </div>
+              </div>
+              <ul className="space-y-3">
+                {[
+                  'Загранпаспорт (6+ мес.)',
+                  'Фото паспорта (скан)',
+                  'Фото 4x6 см (цифровое)',
+                  'Банковская карта ($25)',
+                  'Email для получения',
+                  'Даты поездки',
+                ].map((item, i) => (
+                  <li key={i} className="flex items-start gap-3">
+                    <span className="w-5 h-5 bg-green-100 rounded flex items-center justify-center text-green-600 text-sm flex-shrink-0 mt-0.5">✓</span>
+                    <span className="text-gray-700">{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* VOA */}
+            <div className="reveal reveal-delay-3 bg-white/80 backdrop-blur-xl rounded-3xl p-6 shadow-lg border border-white/50">
+              <div className="flex items-center gap-3 mb-6">
+                <div className="w-12 h-12 bg-orange-100 rounded-xl flex items-center justify-center text-2xl">
+                  ✈️
+                </div>
+                <div>
+                  <h3 className="font-bold text-lg">Виза по прилёту</h3>
+                  <span className="text-sm text-orange-600">до 30 дней</span>
+                </div>
+              </div>
+              <ul className="space-y-3">
+                {[
+                  'Загранпаспорт (6+ мес.)',
+                  'Пригласительное письмо',
+                  '2 фото 4x6 см',
+                  'Анкета (на месте)',
+                  'Сбор $25 наличными',
+                  'Штамповый сбор $25',
+                ].map((item, i) => (
+                  <li key={i} className="flex items-start gap-3">
+                    <span className="w-5 h-5 bg-orange-100 rounded flex items-center justify-center text-orange-600 text-sm flex-shrink-0 mt-0.5">✓</span>
+                    <span className="text-gray-700">{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Process */}
       <section id="process" className="py-20 px-6">
         <div className="max-w-5xl mx-auto">
@@ -273,6 +456,63 @@ export default function HomeClient({ visaTypes, faqs }: HomeClientProps) {
                 </button>
                 <div className="faq-answer">
                   <div className="px-6 pb-5 text-gray-600">{faq.answer}</div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Testimonials */}
+      <section id="testimonials" className="py-20 px-6">
+        <div className="max-w-5xl mx-auto">
+          <div className="text-center mb-12">
+            <p className="reveal text-sm font-bold text-green-700 uppercase tracking-wider mb-2">Отзывы</p>
+            <h2 className="reveal reveal-delay-1 text-4xl font-black">Что говорят клиенты</h2>
+            <p className="reveal reveal-delay-2 text-lg text-gray-600 mt-2">Истории успешного оформления виз</p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-6">
+            {[
+              {
+                name: 'Алексей М.',
+                location: 'Москва',
+                text: 'Оформил e-Visa за 3 дня. Всё прошло гладко, на границе никаких вопросов. Рекомендую!',
+                rating: 5,
+                visa: 'E-Visa 90 дней',
+              },
+              {
+                name: 'Екатерина С.',
+                location: 'Санкт-Петербург',
+                text: 'Первый раз летела во Вьетнам. Благодаря калькулятору поняла, что виза не нужна. Супер удобно!',
+                rating: 5,
+                visa: 'Безвизовый въезд',
+              },
+              {
+                name: 'Дмитрий К.',
+                location: 'Новосибирск',
+                text: 'Долго искал информацию по визам. Здесь всё понятно и актуально. Сэкономил время и нервы.',
+                rating: 5,
+                visa: 'E-Visa 30 дней',
+              },
+            ].map((review, i) => (
+              <div key={i} className={`reveal reveal-delay-${i + 1} bg-white/80 backdrop-blur-xl rounded-3xl p-6 shadow-lg border border-white/50`}>
+                <div className="flex items-center gap-1 mb-4">
+                  {[...Array(review.rating)].map((_, j) => (
+                    <svg key={j} className="w-5 h-5 text-yellow-400 fill-current" viewBox="0 0 20 20">
+                      <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/>
+                    </svg>
+                  ))}
+                </div>
+                <p className="text-gray-700 mb-4 leading-relaxed">&ldquo;{review.text}&rdquo;</p>
+                <div className="flex items-center justify-between pt-4 border-t border-gray-100">
+                  <div>
+                    <p className="font-bold text-gray-900">{review.name}</p>
+                    <p className="text-sm text-gray-500">{review.location}</p>
+                  </div>
+                  <span className="px-3 py-1 bg-green-100 text-green-700 text-xs font-semibold rounded-full">
+                    {review.visa}
+                  </span>
                 </div>
               </div>
             ))}
