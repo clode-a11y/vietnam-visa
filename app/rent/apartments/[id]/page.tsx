@@ -11,6 +11,7 @@ import { translations } from '@/lib/i18n/translations'
 import { FavoriteButton } from '@/lib/favorites'
 import { useRecentlyViewed } from '@/lib/recently-viewed'
 import { ShareButton } from '@/app/components/rent/ShareButton'
+import { CostCalculator } from '@/app/components/rent/CostCalculator'
 
 interface ApartmentImage {
   id: string
@@ -468,6 +469,11 @@ export default function ApartmentDetailPage({ params }: { params: Promise<{ id: 
                   {t('rent.cannotShow')}
                 </p>
               )}
+
+              {/* Cost Calculator */}
+              <div className="mt-6">
+                <CostCalculator rentUsd={apartment.priceUsd} locale={locale} />
+              </div>
             </div>
           </div>
         </div>
