@@ -10,6 +10,7 @@ import { useLocale } from '@/lib/i18n/context'
 import { translations } from '@/lib/i18n/translations'
 import { FavoriteButton } from '@/lib/favorites'
 import { useRecentlyViewed } from '@/lib/recently-viewed'
+import { ShareButton } from '@/app/components/rent/ShareButton'
 
 interface ApartmentImage {
   id: string
@@ -272,11 +273,16 @@ export default function ApartmentDetailPage({ params }: { params: Promise<{ id: 
             {/* Image gallery */}
             {images.length > 0 ? (
               <div className="relative">
-                <FavoriteButton
-                  apartmentId={apartment.id}
-                  className="absolute top-4 right-4 z-20"
-                  size="lg"
-                />
+                <div className="absolute top-4 right-4 z-20 flex gap-2">
+                  <ShareButton
+                    url={`/rent/apartments/${apartment.id}`}
+                    title={getTitle()}
+                  />
+                  <FavoriteButton
+                    apartmentId={apartment.id}
+                    size="lg"
+                  />
+                </div>
                 <div className="aspect-[16/10] relative rounded-2xl overflow-hidden bg-gray-200 dark:bg-slate-700">
                   <Image
                     src={currentImage.url}
@@ -334,11 +340,16 @@ export default function ApartmentDetailPage({ params }: { params: Promise<{ id: 
               </div>
             ) : (
               <div className="aspect-[16/10] bg-gradient-to-br from-blue-100 to-blue-200 dark:from-slate-700 dark:to-slate-600 rounded-2xl flex items-center justify-center text-8xl relative">
-                <FavoriteButton
-                  apartmentId={apartment.id}
-                  className="absolute top-4 right-4 z-20"
-                  size="lg"
-                />
+                <div className="absolute top-4 right-4 z-20 flex gap-2">
+                  <ShareButton
+                    url={`/rent/apartments/${apartment.id}`}
+                    title={getTitle()}
+                  />
+                  <FavoriteButton
+                    apartmentId={apartment.id}
+                    size="lg"
+                  />
+                </div>
                 🏠
               </div>
             )}
