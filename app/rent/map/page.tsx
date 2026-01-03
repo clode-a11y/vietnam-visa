@@ -7,6 +7,7 @@ import dynamic from 'next/dynamic'
 import Header from '@/app/components/Header'
 import { useLocale } from '@/lib/i18n/context'
 import { translations } from '@/lib/i18n/translations'
+import { FavoriteButton } from '@/lib/favorites'
 
 // Dynamic import for map (SSR disabled - Leaflet needs window)
 const ApartmentMap = dynamic(
@@ -291,54 +292,60 @@ export default function MapPage() {
 
           <div className="divide-y dark:divide-slate-700">
             {filteredApartments.map(apt => (
-              <Link
+              <div
                 key={apt.id}
                 id={`apt-${apt.id}`}
-                href={`/rent/apartments/${apt.id}`}
-                className={`block p-4 hover:bg-gray-50 dark:hover:bg-slate-700/50 transition ${
+                className={`relative p-4 hover:bg-gray-50 dark:hover:bg-slate-700/50 transition ${
                   selectedApartmentId === apt.id ? 'bg-blue-50 dark:bg-slate-700' : ''
                 }`}
                 onMouseEnter={() => setSelectedApartmentId(apt.id)}
                 onMouseLeave={() => setSelectedApartmentId(null)}
               >
-                <div className="flex gap-3">
-                  {/* Image */}
-                  <div className="w-24 h-20 relative rounded-lg overflow-hidden bg-gray-200 dark:bg-slate-600 flex-shrink-0">
-                    {getCoverImage(apt) ? (
-                      <Image
-                        src={getCoverImage(apt)!}
-                        alt={getAptTitle(apt)}
-                        fill
-                        className="object-cover"
-                        sizes="96px"
-                      />
-                    ) : (
-                      <div className="flex items-center justify-center h-full text-2xl">🏠</div>
-                    )}
-                    {!apt.isAvailable && (
-                      <div className="absolute top-1 left-1 bg-red-500 text-white text-[10px] font-medium px-1.5 py-0.5 rounded">
-                        {locale === 'ru' ? 'Занята' : locale === 'en' ? 'Occupied' : 'Đã thuê'}
-                      </div>
-                    )}
-                  </div>
+                <FavoriteButton
+                  apartmentId={apt.id}
+                  className="absolute top-2 right-2 z-10"
+                  size="sm"
+                />
+                <Link href={`/rent/apartments/${apt.id}`} className="block">
+                  <div className="flex gap-3">
+                    {/* Image */}
+                    <div className="w-24 h-20 relative rounded-lg overflow-hidden bg-gray-200 dark:bg-slate-600 flex-shrink-0">
+                      {getCoverImage(apt) ? (
+                        <Image
+                          src={getCoverImage(apt)!}
+                          alt={getAptTitle(apt)}
+                          fill
+                          className="object-cover"
+                          sizes="96px"
+                        />
+                      ) : (
+                        <div className="flex items-center justify-center h-full text-2xl">🏠</div>
+                      )}
+                      {!apt.isAvailable && (
+                        <div className="absolute top-1 left-1 bg-red-500 text-white text-[10px] font-medium px-1.5 py-0.5 rounded">
+                          {locale === 'ru' ? 'Занята' : locale === 'en' ? 'Occupied' : 'Đã thuê'}
+                        </div>
+                      )}
+                    </div>
 
-                  {/* Info */}
-                  <div className="flex-1 min-w-0">
-                    <h3 className="font-medium text-gray-900 dark:text-white text-sm line-clamp-1">
-                      {getAptTitle(apt)}
-                    </h3>
-                    <p className="text-xs text-gray-500 dark:text-gray-400 mt-0.5">
-                      {getDistrictName(apt.district)}
-                    </p>
-                    <p className="text-xs text-gray-600 dark:text-gray-300 mt-1">
-                      {apt.rooms === 0 ? (locale === 'ru' ? 'Студия' : 'Studio') : `${apt.rooms} ${locale === 'ru' ? 'комн.' : 'rm'}`} • {apt.area} {locale === 'ru' ? 'м²' : 'm²'}
-                    </p>
-                    <p className="font-bold text-blue-600 dark:text-blue-400 mt-1">
-                      ${apt.priceUsd}{t('rent.perMonth')}
-                    </p>
+                    {/* Info */}
+                    <div className="flex-1 min-w-0">
+                      <h3 className="font-medium text-gray-900 dark:text-white text-sm line-clamp-1">
+                        {getAptTitle(apt)}
+                      </h3>
+                      <p className="text-xs text-gray-500 dark:text-gray-400 mt-0.5">
+                        {getDistrictName(apt.district)}
+                      </p>
+                      <p className="text-xs text-gray-600 dark:text-gray-300 mt-1">
+                        {apt.rooms === 0 ? (locale === 'ru' ? 'Студия' : 'Studio') : `${apt.rooms} ${locale === 'ru' ? 'комн.' : 'rm'}`} • {apt.area} {locale === 'ru' ? 'м²' : 'm²'}
+                      </p>
+                      <p className="font-bold text-blue-600 dark:text-blue-400 mt-1">
+                        ${apt.priceUsd}{t('rent.perMonth')}
+                      </p>
+                    </div>
                   </div>
-                </div>
-              </Link>
+                </Link>
+              </div>
             ))}
 
             {filteredApartments.length === 0 && !loading && (

@@ -4,9 +4,11 @@ import Link from 'next/link'
 import { useState } from 'react'
 import LanguageSwitcher from './LanguageSwitcher'
 import ThemeToggle from './ThemeToggle'
+import { useFavorites } from '@/lib/favorites'
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const { favorites } = useFavorites()
 
   const menuItems = [
     { href: '#features', label: 'Визы' },
@@ -53,6 +55,20 @@ export default function Header() {
 
         {/* Desktop actions */}
         <div className="hidden md:flex items-center gap-3">
+          <Link
+            href="/rent/favorites"
+            className="relative w-10 h-10 flex items-center justify-center text-gray-600 dark:text-gray-300 hover:text-red-500 dark:hover:text-red-400 hover:bg-gray-100 dark:hover:bg-slate-700 rounded-full transition"
+            title="Избранное"
+          >
+            <svg className="w-5 h-5" fill={favorites.length > 0 ? 'currentColor' : 'none'} stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+            </svg>
+            {favorites.length > 0 && (
+              <span className="absolute -top-0.5 -right-0.5 w-5 h-5 bg-red-500 text-white text-xs font-bold rounded-full flex items-center justify-center">
+                {favorites.length > 9 ? '9+' : favorites.length}
+              </span>
+            )}
+          </Link>
           <ThemeToggle />
           <LanguageSwitcher />
           <a
@@ -138,6 +154,21 @@ export default function Header() {
                 </a>
               )
             ))}
+            <Link
+              href="/rent/favorites"
+              onClick={handleMenuClick}
+              className="flex items-center gap-3 text-lg text-gray-700 dark:text-gray-200 hover:text-red-500 dark:hover:text-red-400 font-medium py-2 border-b border-gray-100 dark:border-slate-700 transition"
+            >
+              <svg className="w-5 h-5" fill={favorites.length > 0 ? 'currentColor' : 'none'} stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+              </svg>
+              Избранное
+              {favorites.length > 0 && (
+                <span className="ml-auto bg-red-500 text-white text-sm font-bold px-2 py-0.5 rounded-full">
+                  {favorites.length}
+                </span>
+              )}
+            </Link>
           </nav>
 
           <a

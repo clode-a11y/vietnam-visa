@@ -8,6 +8,7 @@ import Header from '@/app/components/Header'
 import FloatingContact from '@/app/components/FloatingContact'
 import { useLocale } from '@/lib/i18n/context'
 import { translations } from '@/lib/i18n/translations'
+import { FavoriteButton } from '@/lib/favorites'
 
 interface District {
   id: string
@@ -275,31 +276,36 @@ export default function ApartmentsPage() {
         {!loading && filteredApartments.length > 0 && (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
             {filteredApartments.map(apt => (
-              <Link
+              <div
                 key={apt.id}
-                href={`/rent/apartments/${apt.id}`}
-                className="bg-white dark:bg-slate-800 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition group"
+                className="bg-white dark:bg-slate-800 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition group relative"
               >
-                <div className="aspect-[4/3] relative bg-gradient-to-br from-blue-100 to-blue-200 dark:from-slate-700 dark:to-slate-600 overflow-hidden">
-                  {getCoverImage(apt) ? (
-                    <Image
-                      src={getCoverImage(apt)!}
-                      alt={getAptTitle(apt)}
-                      fill
-                      className="object-cover group-hover:scale-105 transition"
-                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                    />
-                  ) : (
-                    <div className="flex items-center justify-center h-full text-5xl group-hover:scale-105 transition">
-                      🏠
-                    </div>
-                  )}
-                  {!apt.isAvailable && (
-                    <div className="absolute top-3 left-3 bg-red-500 text-white text-xs font-medium px-2 py-1 rounded-full">
-                      Занята
-                    </div>
-                  )}
-                </div>
+                <FavoriteButton
+                  apartmentId={apt.id}
+                  className="absolute top-3 right-3 z-10"
+                  size="md"
+                />
+                <Link href={`/rent/apartments/${apt.id}`}>
+                  <div className="aspect-[4/3] relative bg-gradient-to-br from-blue-100 to-blue-200 dark:from-slate-700 dark:to-slate-600 overflow-hidden">
+                    {getCoverImage(apt) ? (
+                      <Image
+                        src={getCoverImage(apt)!}
+                        alt={getAptTitle(apt)}
+                        fill
+                        className="object-cover group-hover:scale-105 transition"
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                      />
+                    ) : (
+                      <div className="flex items-center justify-center h-full text-5xl group-hover:scale-105 transition">
+                        🏠
+                      </div>
+                    )}
+                    {!apt.isAvailable && (
+                      <div className="absolute top-3 left-3 bg-red-500 text-white text-xs font-medium px-2 py-1 rounded-full">
+                        Занята
+                      </div>
+                    )}
+                  </div>
                 <div className="p-4">
                   <div className="flex items-start justify-between gap-2 mb-2">
                     <h3 className="font-semibold text-gray-900 dark:text-white line-clamp-1">{getAptTitle(apt)}</h3>
@@ -312,7 +318,8 @@ export default function ApartmentsPage() {
                     {apt.rooms === 0 ? 'Студия' : `${apt.rooms} ${t('rent.rooms')}`} • {apt.area} {t('rent.area')}
                   </p>
                 </div>
-              </Link>
+                </Link>
+              </div>
             ))}
           </div>
         )}
