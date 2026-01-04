@@ -13,6 +13,7 @@ import { useRecentlyViewed } from '@/lib/recently-viewed'
 import { ShareButton } from '@/app/components/rent/ShareButton'
 import { CostCalculator } from '@/app/components/rent/CostCalculator'
 import { CurrencyConverter } from '@/app/components/rent/CurrencyConverter'
+import { AvailabilityCalendar } from '@/app/components/rent/AvailabilityCalendar'
 import { distanceToBeach, formatDistance } from '@/lib/distance'
 
 interface ApartmentImage {
@@ -55,6 +56,7 @@ interface Apartment {
   address: string
   lat: number | null
   lng: number | null
+  availableFrom: string | null
   isAvailable: boolean
   canShow: boolean
   hasVideo: boolean
@@ -451,18 +453,15 @@ export default function ApartmentDetailPage({ params }: { params: Promise<{ id: 
                 <div className="mt-4">
                   <CurrencyConverter priceUsd={apartment.priceUsd} locale={locale} />
                 </div>
+              </div>
 
-                <div className="mt-3">
-                  {apartment.isAvailable ? (
-                    <span className="inline-flex items-center gap-1 px-3 py-1 bg-green-100 dark:bg-green-900/50 text-green-700 dark:text-green-300 rounded-full text-sm font-medium">
-                      <span>✓</span> {t('rent.available')}
-                    </span>
-                  ) : (
-                    <span className="inline-flex items-center gap-1 px-3 py-1 bg-red-100 dark:bg-red-900/50 text-red-700 dark:text-red-300 rounded-full text-sm font-medium">
-                      <span>✗</span> {t('rent.notAvailable')}
-                    </span>
-                  )}
-                </div>
+              {/* Availability Calendar */}
+              <div className="mt-4">
+                <AvailabilityCalendar
+                  isAvailable={apartment.isAvailable}
+                  availableFrom={apartment.availableFrom}
+                  locale={locale}
+                />
               </div>
 
               {/* Action buttons */}
