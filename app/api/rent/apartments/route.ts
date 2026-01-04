@@ -13,9 +13,7 @@ export async function GET(request: Request) {
     const maxPrice = searchParams.get('maxPrice')
     const rooms = searchParams.get('rooms')
 
-    const where: Record<string, unknown> = {
-      isAvailable: true,
-    }
+    const where: Record<string, unknown> = {}
 
     if (districtId) {
       where.districtId = districtId

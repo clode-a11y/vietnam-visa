@@ -46,6 +46,7 @@ interface Apartment {
   district: District
   images: ApartmentImage[]
   amenities?: { amenity: Amenity }[]
+  createdAt: string
 }
 
 export default function ApartmentsPage() {
@@ -171,6 +172,10 @@ export default function ApartmentsPage() {
         case 'price-desc': return b.priceUsd - a.priceUsd
         case 'area-asc': return a.area - b.area
         case 'area-desc': return b.area - a.area
+        case 'rooms-asc': return a.rooms - b.rooms
+        case 'rooms-desc': return b.rooms - a.rooms
+        case 'date-desc': return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+        case 'date-asc': return new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime()
         default: return 0
       }
     })
@@ -276,11 +281,14 @@ export default function ApartmentsPage() {
               onChange={(e) => setSortBy(e.target.value)}
               className="px-4 py-2.5 bg-gray-50 dark:bg-slate-700 border border-gray-200 dark:border-slate-600 rounded-xl text-base text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
             >
-              <option value="">{locale === 'ru' ? 'Сортировка' : 'Sort'}</option>
-              <option value="price-asc">{locale === 'ru' ? 'Цена: по возрастанию' : 'Price: low to high'}</option>
-              <option value="price-desc">{locale === 'ru' ? 'Цена: по убыванию' : 'Price: high to low'}</option>
-              <option value="area-asc">{locale === 'ru' ? 'Площадь: по возрастанию' : 'Area: small to large'}</option>
-              <option value="area-desc">{locale === 'ru' ? 'Площадь: по убыванию' : 'Area: large to small'}</option>
+              <option value="">{locale === 'ru' ? 'Сортировка' : locale === 'vi' ? 'Sắp xếp' : 'Sort'}</option>
+              <option value="date-desc">{locale === 'ru' ? 'Сначала новые' : locale === 'vi' ? 'Mới nhất' : 'Newest first'}</option>
+              <option value="price-asc">{locale === 'ru' ? 'Цена ↑' : locale === 'vi' ? 'Giá ↑' : 'Price ↑'}</option>
+              <option value="price-desc">{locale === 'ru' ? 'Цена ↓' : locale === 'vi' ? 'Giá ↓' : 'Price ↓'}</option>
+              <option value="area-desc">{locale === 'ru' ? 'Площадь ↓' : locale === 'vi' ? 'Diện tích ↓' : 'Area ↓'}</option>
+              <option value="area-asc">{locale === 'ru' ? 'Площадь ↑' : locale === 'vi' ? 'Diện tích ↑' : 'Area ↑'}</option>
+              <option value="rooms-desc">{locale === 'ru' ? 'Комнаты ↓' : locale === 'vi' ? 'Phòng ↓' : 'Rooms ↓'}</option>
+              <option value="rooms-asc">{locale === 'ru' ? 'Комнаты ↑' : locale === 'vi' ? 'Phòng ↑' : 'Rooms ↑'}</option>
             </select>
 
             {/* Only available toggle */}
