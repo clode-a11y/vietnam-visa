@@ -1,12 +1,13 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import { prisma } from '@/lib/prisma'
 import Header from './components/Header'
 import Footer from './components/Footer'
 import HomeHeroClient from './components/HomeHeroClient'
 import { Metadata } from 'next'
 
-export const dynamic = 'force-dynamic'
-export const revalidate = 0
+// ISR: revalidate every 60 seconds for fresh data with caching
+export const revalidate = 60
 
 export const metadata: Metadata = {
   title: 'VietVisa - Визы и аренда во Вьетнаме | Нячанг',
@@ -274,10 +275,13 @@ export default async function HomePage() {
                   >
                     <div className="aspect-[4/3] relative bg-gradient-to-br from-teal-100 to-teal-200 dark:from-slate-700 dark:to-slate-600 overflow-hidden">
                       {apt.images[0]?.url ? (
-                        <img
+                        <Image
                           src={apt.images[0].url}
                           alt={apt.titleRu}
-                          className="w-full h-full object-cover group-hover:scale-105 transition-transform"
+                          fill
+                          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                          className="object-cover group-hover:scale-105 transition-transform"
+                          loading="lazy"
                         />
                       ) : (
                         <div className="flex items-center justify-center h-full text-4xl group-hover:scale-110 transition-transform">
@@ -345,10 +349,13 @@ export default async function HomePage() {
                   >
                     {post.coverImage && (
                       <div className="aspect-[16/9] relative overflow-hidden">
-                        <img
+                        <Image
                           src={post.coverImage}
                           alt={post.titleRu}
-                          className="w-full h-full object-cover group-hover:scale-105 transition-transform"
+                          fill
+                          sizes="(max-width: 768px) 100vw, 33vw"
+                          className="object-cover group-hover:scale-105 transition-transform"
+                          loading="lazy"
                         />
                       </div>
                     )}

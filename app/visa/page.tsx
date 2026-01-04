@@ -4,8 +4,8 @@ import Header from '@/app/components/Header'
 import Footer from '@/app/components/Footer'
 import { Metadata } from 'next'
 
-export const dynamic = 'force-dynamic'
-export const revalidate = 0
+// ISR: revalidate every 5 minutes (visa info changes rarely)
+export const revalidate = 300
 
 export const metadata: Metadata = {
   title: 'Виза во Вьетнам для россиян 2025 | VietVisa',

@@ -2,7 +2,8 @@ import Link from 'next/link'
 import { prisma } from '@/lib/prisma'
 import Header from '../components/Header'
 
-export const dynamic = 'force-dynamic'
+// ISR: revalidate every 2 minutes
+export const revalidate = 120
 
 async function getBlogPosts() {
   try {
