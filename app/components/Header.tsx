@@ -67,7 +67,7 @@ export default function Header() {
       <header id="header" className="fixed top-0 left-0 right-0 z-50 px-4 sm:px-6 py-3 sm:py-4 flex justify-between items-center bg-white/70 dark:bg-slate-900/80 backdrop-blur-xl border-b border-white/50 dark:border-slate-700/50 transition-all">
         <Link href="/" className="flex items-center gap-2 text-lg sm:text-xl font-extrabold text-gray-900 dark:text-white">
           <span>🇻🇳</span>
-          <span className="bg-gradient-to-r from-blue-600 via-sky-500 to-cyan-500 bg-clip-text text-transparent">
+          <span className="bg-gradient-to-r from-teal-700 via-teal-500 to-teal-400 bg-clip-text text-transparent">
             VietVisa
           </span>
         </Link>
@@ -80,7 +80,7 @@ export default function Header() {
               href={item.href}
               className={`flex items-center gap-2 px-4 py-2 rounded-xl font-medium transition ${
                 isActive(item.href)
-                  ? 'bg-blue-100 dark:bg-blue-900/50 text-blue-700 dark:text-blue-400'
+                  ? 'bg-teal-100 dark:bg-teal-900/50 text-teal-700 dark:text-teal-400'
                   : 'text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-slate-700'
               }`}
             >
@@ -114,7 +114,7 @@ export default function Header() {
           <LanguageSwitcher />
           <Link
             href="/visa#calculator"
-            className="px-4 py-2.5 bg-gradient-to-r from-blue-500 via-sky-500 to-cyan-500 text-white font-bold rounded-xl hover:shadow-lg active:scale-[0.98] transition text-sm"
+            className="px-4 py-2.5 bg-gradient-to-r from-teal-700 via-teal-500 to-teal-400 text-white font-bold rounded-xl hover:shadow-lg active:scale-[0.98] transition text-sm"
           >
             {t.cta}
           </Link>
@@ -200,7 +200,7 @@ export default function Header() {
                 onClick={handleMenuClick}
                 className={`flex items-center gap-3 text-lg font-medium py-3 px-4 rounded-xl transition ${
                   isActive(item.href)
-                    ? 'bg-blue-100 dark:bg-blue-900/50 text-blue-700 dark:text-blue-400'
+                    ? 'bg-teal-100 dark:bg-teal-900/50 text-teal-700 dark:text-teal-400'
                     : 'text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-slate-700'
                 }`}
               >
@@ -236,7 +236,7 @@ export default function Header() {
           <Link
             href="/visa#calculator"
             onClick={handleMenuClick}
-            className="mt-6 block w-full py-4 bg-gradient-to-r from-blue-500 via-sky-500 to-cyan-500 text-white font-bold rounded-xl text-center hover:shadow-lg active:scale-[0.98] transition"
+            className="mt-6 block w-full py-4 bg-gradient-to-r from-teal-700 via-teal-500 to-teal-400 text-white font-bold rounded-xl text-center hover:shadow-lg active:scale-[0.98] transition"
           >
             {t.cta}
           </Link>

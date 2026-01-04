@@ -17,7 +17,7 @@ async function getBlogPosts() {
 }
 
 const categoryLabels: Record<string, { label: string; color: string }> = {
-  guides: { label: 'Гайды', color: 'bg-blue-100 text-blue-700' },
+  guides: { label: 'Гайды', color: 'bg-teal-100 text-teal-700' },
   news: { label: 'Новости', color: 'bg-green-100 text-green-700' },
   tips: { label: 'Советы', color: 'bg-orange-100 text-orange-700' },
 }
@@ -32,7 +32,7 @@ export default async function BlogPage() {
       <main className="pt-24 pb-16 px-6 min-h-screen bg-gradient-to-br from-green-50 via-pink-50 to-orange-50">
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-12">
-            <h1 className="text-4xl font-black mb-4">Блог о визах</h1>
+            <h1 className="text-4xl font-black mb-4 bg-gradient-to-r from-teal-700 via-teal-500 to-teal-400 bg-clip-text text-transparent">Блог о визах</h1>
             <p className="text-lg text-gray-600">Полезные статьи, новости и советы для путешественников</p>
           </div>
 
@@ -66,7 +66,7 @@ export default async function BlogPage() {
                       </span>
                       <span className="text-xs text-gray-400">{post.readTime} мин</span>
                     </div>
-                    <h2 className="text-xl font-bold mb-2 group-hover:text-green-600 transition-colors">
+                    <h2 className="text-xl font-bold mb-2 group-hover:text-teal-600 transition-colors">
                       {post.titleRu}
                     </h2>
                     <p className="text-gray-600 text-sm line-clamp-3">
@@ -91,7 +91,7 @@ export default async function BlogPage() {
 
       <footer className="py-8 px-6 border-t border-gray-100 bg-white/50">
         <div className="max-w-5xl mx-auto text-center">
-          <Link href="/" className="text-green-600 hover:underline">
+          <Link href="/" className="text-teal-600 hover:underline">
             ← Вернуться на главную
           </Link>
         </div>

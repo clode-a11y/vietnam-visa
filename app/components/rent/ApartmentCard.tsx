@@ -139,7 +139,7 @@ export function ApartmentCard({
       <div className="mt-3">
         <div className="flex items-start justify-between gap-2">
           <h3 className="font-semibold text-gray-900 dark:text-white line-clamp-1">{title}</h3>
-          <span className="font-bold text-blue-600 dark:text-blue-400 whitespace-nowrap">
+          <span className="font-bold text-teal-600 dark:text-teal-400 whitespace-nowrap">
             {formatPrice(priceUsd)}{t('rent.perMonth')}
           </span>
         </div>

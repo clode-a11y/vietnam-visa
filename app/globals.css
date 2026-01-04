@@ -3,91 +3,116 @@
 @tailwind utilities;
 
 :root {
-  --blue-lightest: #EFF6FF;
-  --blue-light: #BFDBFE;
-  --blue: #3B82F6;
-  --blue-dark: #1D4ED8;
-  --blue-darker: #1E3A8A;
-  --sky-light: #E0F2FE;
-  --sky: #0EA5E9;
-  --sky-dark: #0369A1;
+  /* New teal color palette from Vietnam map */
+  --teal-light: #A8D8D8;
+  --teal: #3D9DA1;
+  --teal-dark: #115E67;
+
+  /* Supporting colors */
   --white: #FFFFFF;
-  --white-cold: #F8FAFC;
-  --gray-50: #F8FAFC;
-  --gray-100: #F1F5F9;
-  --gray-200: #E2E8F0;
-  --gray-600: #475569;
-  --black: #0F172A;
-  --text-primary: #0F172A;
-  --text-secondary: #475569;
-  --text-muted: #94A3B8;
+  --white-soft: #F8FAFA;
+  --gray-50: #F0F7F7;
+  --gray-100: #E6F0F0;
+  --gray-200: #D1E0E0;
+  --gray-400: #8BA8A8;
+  --gray-500: #6B8A8A;
+  --gray-600: #4A6B6B;
+  --gray-700: #3A5555;
+  --gray-800: #2A4040;
+  --gray-900: #1A2A2A;
+  --black: #0D1717;
+
+  /* Text colors */
+  --text-primary: #1A2A2A;
+  --text-secondary: #4A6B6B;
+  --text-muted: #8BA8A8;
   --text-inverse: #FFFFFF;
-  --card-bg: rgba(255, 255, 255, 0.9);
+
+  /* Card styles */
+  --card-bg: rgba(255, 255, 255, 0.95);
   --card-bg-solid: #FFFFFF;
-  --card-border: rgba(59, 130, 246, 0.2);
-  --card-shadow: 0 20px 60px rgba(15, 23, 42, 0.08);
-  --gradient-main: linear-gradient(135deg, #EFF6FF 0%, #DBEAFE 50%, #E0F2FE 100%);
-  --gradient-accent: linear-gradient(135deg, #3B82F6 0%, #0EA5E9 50%, #06B6D4 100%);
+  --card-border: rgba(61, 157, 161, 0.2);
+  --card-shadow: 0 20px 60px rgba(17, 94, 103, 0.08);
+
+  /* Gradients */
+  --gradient-main: linear-gradient(135deg, #FFFFFF 0%, #F0F7F7 50%, #E6F0F0 100%);
+  --gradient-accent: linear-gradient(135deg, #115E67 0%, #3D9DA1 50%, #A8D8D8 100%);
+  --gradient-accent-reverse: linear-gradient(135deg, #A8D8D8 0%, #3D9DA1 50%, #115E67 100%);
 }
 
 /* Dark theme */
 html.dark {
-  --blue-lightest: #1E3A5F;
-  --blue-light: #1E40AF;
-  --sky-light: #0C4A6E;
-  --white: #0F172A;
-  --white-cold: #1E293B;
-  --gray-50: #1E293B;
-  --gray-100: #334155;
-  --gray-200: #475569;
-  --gray-600: #CBD5E1;
-  --black: #F8FAFC;
-  --text-primary: #F8FAFC;
-  --text-secondary: #CBD5E1;
-  --text-muted: #94A3B8;
-  --text-inverse: #0F172A;
-  --card-bg: rgba(30, 41, 59, 0.9);
-  --card-bg-solid: #1E293B;
-  --card-border: rgba(59, 130, 246, 0.3);
-  --card-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-  --gradient-main: linear-gradient(135deg, #0F172A 0%, #1E293B 50%, #0F172A 100%);
+  --teal-light: #1E4A4D;
+  --teal: #3D9DA1;
+  --teal-dark: #A8D8D8;
+
+  --white: #0D1717;
+  --white-soft: #1A2A2A;
+  --gray-50: #1A2A2A;
+  --gray-100: #2A4040;
+  --gray-200: #3A5555;
+  --gray-400: #6B8A8A;
+  --gray-500: #8BA8A8;
+  --gray-600: #A8C8C8;
+  --gray-700: #C8E0E0;
+  --gray-800: #E6F0F0;
+  --gray-900: #F8FAFA;
+  --black: #FFFFFF;
+
+  --text-primary: #F8FAFA;
+  --text-secondary: #A8C8C8;
+  --text-muted: #6B8A8A;
+  --text-inverse: #0D1717;
+
+  --card-bg: rgba(26, 42, 42, 0.95);
+  --card-bg-solid: #1A2A2A;
+  --card-border: rgba(61, 157, 161, 0.3);
+  --card-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+
+  --gradient-main: linear-gradient(135deg, #0D1717 0%, #1A2A2A 50%, #0D1717 100%);
 }
 
 body {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background: var(--white);
 }
 
-/* Gradient backgrounds */
+/* Gradient backgrounds - predominantly white with subtle teal */
 .gradient-bg {
-  background: linear-gradient(135deg, #EFF6FF 0%, #DBEAFE 50%, #E0F2FE 100%);
+  background: linear-gradient(180deg, #FFFFFF 0%, #F8FAFA 50%, #F0F7F7 100%);
 }
 
 .gradient-text {
-  background: linear-gradient(135deg, #3B82F6 0%, #0EA5E9 50%, #06B6D4 100%);
+  background: linear-gradient(135deg, #115E67 0%, #3D9DA1 50%, #A8D8D8 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
-/* Animated gradient background - GPU optimized */
+/* Animated gradient background - very subtle, white dominant */
 .gradient-bg-animated {
   position: fixed;
   inset: 0;
-  background: linear-gradient(135deg, #EFF6FF 0%, #DBEAFE 15%, #BFDBFE 35%, #E0F2FE 50%, #BAE6FD 70%, #E0F2FE 85%, #EFF6FF 100%);
-  background-size: 400% 400%;
-  animation: gradientFlow 20s ease infinite;
+  background: linear-gradient(
+    180deg,
+    #FFFFFF 0%,
+    #FFFFFF 40%,
+    rgba(168, 216, 216, 0.15) 70%,
+    rgba(61, 157, 161, 0.08) 85%,
+    rgba(168, 216, 216, 0.12) 100%
+  );
+  background-size: 100% 200%;
+  animation: gradientFlow 25s ease infinite;
   z-index: -1;
   will-change: background-position;
 }
 
 @keyframes gradientFlow {
-  0% { background-position: 0% 50%; }
-  25% { background-position: 50% 100%; }
-  50% { background-position: 100% 50%; }
-  75% { background-position: 50% 0%; }
-  100% { background-position: 0% 50%; }
+  0% { background-position: 0% 0%; }
+  50% { background-position: 0% 100%; }
+  100% { background-position: 0% 0%; }
 }
 
 /* Reduce motion for accessibility */
@@ -125,8 +150,8 @@ body {
 
 /* Header scroll effect */
 header.scrolled {
-  background: rgba(255, 255, 255, 0.95) !important;
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  background: rgba(255, 255, 255, 0.98) !important;
+  box-shadow: 0 4px 30px rgba(17, 94, 103, 0.08);
 }
 
 /* Calculator result */
@@ -134,7 +159,7 @@ header.scrolled {
   display: none;
   margin-top: 2rem;
   padding: 1.5rem;
-  background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(14, 165, 233, 0.1));
+  background: linear-gradient(135deg, rgba(168, 216, 216, 0.2), rgba(61, 157, 161, 0.15));
   border-radius: 24px;
   text-align: center;
 }
@@ -150,7 +175,7 @@ header.scrolled {
 }
 
 .result-emoji { font-size: 3rem; margin-bottom: 1rem; }
-.result-visa { font-size: 1.5rem; font-weight: 800; margin-bottom: 0.5rem; }
+.result-visa { font-size: 1.5rem; font-weight: 800; margin-bottom: 0.5rem; color: var(--teal-dark); }
 .result-desc { color: var(--text-secondary); margin-bottom: 1.5rem; }
 
 .result-stats {
@@ -194,11 +219,12 @@ header.scrolled {
   transform: rotate(45deg);
 }
 
-/* Vietnam map */
+/* Vietnam map - no background, blends with page */
 .vietnam-map {
   max-width: 280px;
   margin: 0 auto;
-  filter: drop-shadow(0 20px 40px rgba(59, 130, 246, 0.3));
+  filter: drop-shadow(0 20px 40px rgba(17, 94, 103, 0.25));
+  mix-blend-mode: multiply;
 }
 
 .map-shape {
@@ -207,8 +233,8 @@ header.scrolled {
 }
 
 @keyframes mapPulse {
-  0%, 100% { filter: drop-shadow(0 0 20px rgba(59, 130, 246, 0.3)); }
-  50% { filter: drop-shadow(0 0 40px rgba(14, 165, 233, 0.4)); }
+  0%, 100% { filter: drop-shadow(0 0 20px rgba(61, 157, 161, 0.3)); }
+  50% { filter: drop-shadow(0 0 40px rgba(17, 94, 103, 0.4)); }
 }
 
 .city-marker {
@@ -227,7 +253,7 @@ a:focus-visible,
 input:focus-visible,
 select:focus-visible,
 textarea:focus-visible {
-  outline: 2px solid var(--blue);
+  outline: 2px solid var(--teal);
   outline-offset: 2px;
 }
 
@@ -251,7 +277,7 @@ textarea:focus-visible {
   top: -100px;
   left: 50%;
   transform: translateX(-50%);
-  background: var(--black);
+  background: var(--teal-dark);
   color: var(--white);
   padding: 1rem 2rem;
   border-radius: 0 0 12px 12px;
@@ -314,9 +340,9 @@ html.high-contrast [class*="text-gray"] {
   color: #fff !important;
 }
 
-html.high-contrast .text-blue-600,
-html.high-contrast .text-blue-700,
-html.high-contrast [class*="text-blue"] {
+html.high-contrast .text-teal-600,
+html.high-contrast .text-teal-700,
+html.high-contrast [class*="text-teal"] {
   color: #0ff !important;
 }
 
@@ -422,199 +448,203 @@ html.dyslexia-font th {
    ======================================== */
 
 html.dark body {
-  background: #0F172A;
-  color: #F8FAFC;
+  background: #0D1717;
+  color: #F8FAFA;
 }
 
 html.dark .gradient-bg-animated {
-  background: linear-gradient(135deg, #0F172A 0%, #1E293B 25%, #0F172A 50%, #1E3A5F 75%, #0F172A 100%);
+  background: linear-gradient(
+    180deg,
+    #0D1717 0%,
+    #0D1717 40%,
+    rgba(61, 157, 161, 0.1) 70%,
+    rgba(17, 94, 103, 0.15) 85%,
+    rgba(61, 157, 161, 0.08) 100%
+  );
 }
 
 /* Header dark mode */
 html.dark header {
-  background: rgba(15, 23, 42, 0.8) !important;
-  border-color: rgba(59, 130, 246, 0.2) !important;
+  background: rgba(13, 23, 23, 0.9) !important;
+  border-color: rgba(61, 157, 161, 0.2) !important;
 }
 
 html.dark header.scrolled {
-  background: rgba(15, 23, 42, 0.95) !important;
+  background: rgba(13, 23, 23, 0.98) !important;
 }
 
 /* Cards dark mode */
 html.dark .bg-white\/80,
 html.dark .bg-white\/90,
+html.dark .bg-white\/95,
 html.dark [class*="bg-white"] {
-  background: rgba(30, 41, 59, 0.8) !important;
-  border-color: rgba(59, 130, 246, 0.2) !important;
+  background: rgba(26, 42, 42, 0.9) !important;
+  border-color: rgba(61, 157, 161, 0.2) !important;
 }
 
 html.dark .bg-white {
-  background: #1E293B !important;
+  background: #1A2A2A !important;
 }
 
 /* Text colors dark mode */
 html.dark .text-gray-700,
 html.dark .text-gray-800,
 html.dark .text-gray-900 {
-  color: #F1F5F9 !important;
+  color: #E6F0F0 !important;
 }
 
 html.dark .text-gray-600 {
-  color: #CBD5E1 !important;
+  color: #A8C8C8 !important;
 }
 
 html.dark .text-gray-500 {
-  color: #94A3B8 !important;
+  color: #8BA8A8 !important;
 }
 
 html.dark .text-gray-400 {
-  color: #64748B !important;
+  color: #6B8A8A !important;
 }
 
 html.dark .text-black,
 html.dark [class*="text-black"] {
-  color: #F8FAFC !important;
+  color: #F8FAFA !important;
 }
 
 /* Border colors dark mode */
 html.dark .border-white\/50,
 html.dark .border-gray-100,
 html.dark .border-gray-200 {
-  border-color: rgba(59, 130, 246, 0.2) !important;
+  border-color: rgba(61, 157, 161, 0.2) !important;
 }
 
 html.dark .border-black\/5 {
-  border-color: rgba(248, 250, 252, 0.1) !important;
+  border-color: rgba(248, 250, 250, 0.1) !important;
 }
 
 /* Input fields dark mode */
 html.dark input,
 html.dark select,
 html.dark textarea {
-  background: #1E293B !important;
-  color: #F8FAFC !important;
-  border-color: #475569 !important;
+  background: #1A2A2A !important;
+  color: #F8FAFA !important;
+  border-color: #3A5555 !important;
 }
 
 html.dark input::placeholder,
 html.dark textarea::placeholder {
-  color: #64748B !important;
+  color: #6B8A8A !important;
 }
 
 html.dark input:focus,
 html.dark select:focus,
 html.dark textarea:focus {
-  border-color: #3B82F6 !important;
+  border-color: #3D9DA1 !important;
 }
 
 /* Backdrop blur dark mode */
 html.dark .backdrop-blur-xl,
 html.dark .backdrop-blur {
-  background: rgba(15, 23, 42, 0.7) !important;
+  background: rgba(13, 23, 23, 0.8) !important;
 }
 
 /* Hover states dark mode */
 html.dark .hover\:bg-gray-50:hover,
 html.dark .hover\:bg-gray-100:hover {
-  background: rgba(51, 65, 85, 0.5) !important;
+  background: rgba(58, 85, 85, 0.5) !important;
 }
 
 /* Table dark mode */
 html.dark table {
-  background: rgba(30, 41, 59, 0.8);
+  background: rgba(26, 42, 42, 0.8);
 }
 
 html.dark th {
-  background: rgba(30, 58, 95, 0.5) !important;
-  color: #F1F5F9 !important;
+  background: rgba(17, 94, 103, 0.3) !important;
+  color: #E6F0F0 !important;
 }
 
 html.dark td {
-  color: #CBD5E1 !important;
+  color: #A8C8C8 !important;
 }
 
 html.dark tr:hover {
-  background: rgba(51, 65, 85, 0.3) !important;
+  background: rgba(58, 85, 85, 0.3) !important;
 }
 
 /* FAQ dark mode */
 html.dark .faq-item {
-  background: rgba(30, 41, 59, 0.8) !important;
+  background: rgba(26, 42, 42, 0.9) !important;
 }
 
 html.dark .faq-question:hover {
-  background: rgba(51, 65, 85, 0.5) !important;
+  background: rgba(58, 85, 85, 0.5) !important;
 }
 
 /* Footer dark mode */
 html.dark footer {
   background: transparent;
-  border-color: rgba(248, 250, 252, 0.1) !important;
+  border-color: rgba(248, 250, 250, 0.1) !important;
 }
 
 /* Shadows dark mode */
 html.dark .shadow-lg,
 html.dark .shadow-xl,
 html.dark [class*="shadow"] {
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4) !important;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5) !important;
 }
 
-/* Map image dark mode - invert for better visibility */
+/* Map image dark mode */
 html.dark .vietnam-map {
-  filter: brightness(0.9) contrast(1.1);
+  filter: brightness(0.85) saturate(1.2);
+  mix-blend-mode: normal;
 }
 
 /* Accessibility panel dark mode */
 html.dark #accessibility-panel {
-  background: #1E293B !important;
+  background: #1A2A2A !important;
 }
 
 html.dark #accessibility-panel h2,
 html.dark #accessibility-panel h3,
 html.dark #accessibility-panel label {
-  color: #F1F5F9 !important;
+  color: #E6F0F0 !important;
 }
 
 html.dark #accessibility-panel p {
-  color: #94A3B8 !important;
+  color: #8BA8A8 !important;
 }
 
 html.dark #accessibility-panel .bg-gray-100 {
-  background: #334155 !important;
+  background: #3A5555 !important;
 }
 
-html.dark #accessibility-panel .bg-blue-50 {
-  background: rgba(59, 130, 246, 0.1) !important;
+html.dark #accessibility-panel .bg-teal-50 {
+  background: rgba(61, 157, 161, 0.1) !important;
 }
 
 /* Cookie banner dark mode */
 html.dark .cookie-banner {
-  background: #1E293B !important;
-  border-color: rgba(59, 130, 246, 0.2) !important;
+  background: #1A2A2A !important;
+  border-color: rgba(61, 157, 161, 0.2) !important;
 }
 
 /* Mobile menu dark mode */
 html.dark .mobile-menu {
-  background: #1E293B !important;
+  background: #1A2A2A !important;
 }
 
 /* Floating contact dark mode */
 html.dark .floating-contact {
-  background: rgba(30, 41, 59, 0.9) !important;
-}
-
-/* Stat values remain gradient */
-html.dark .bg-gradient-to-r {
-  /* Keep gradient buttons visible */
+  background: rgba(26, 42, 42, 0.95) !important;
 }
 
 /* Links dark mode */
 html.dark a:not([class*="bg-gradient"]):not([class*="text-white"]) {
-  color: #93C5FD;
+  color: #A8D8D8;
 }
 
 html.dark a:hover:not([class*="bg-gradient"]):not([class*="text-white"]) {
-  color: #60A5FA;
+  color: #3D9DA1;
 }
 
 /* System preference dark mode */

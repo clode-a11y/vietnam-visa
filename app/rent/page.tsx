@@ -30,13 +30,13 @@ export default function RentPage() {
       <Header />
 
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-blue-600 via-sky-600 to-cyan-600 text-white pt-20">
+      <section className="relative bg-gradient-to-br from-teal-700 via-teal-600 to-teal-500 text-white pt-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-12 sm:py-20">
           <div className="max-w-2xl">
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
               {t('rent.title')}
             </h1>
-            <p className="text-lg sm:text-xl text-blue-100 mb-8">
+            <p className="text-lg sm:text-xl text-teal-100 mb-8">
               {t('rent.subtitle')}
             </p>
 
@@ -49,7 +49,7 @@ export default function RentPage() {
               />
               <Link
                 href="/rent/apartments"
-                className="px-6 py-4 bg-white text-blue-600 font-bold rounded-xl hover:bg-blue-50 active:scale-95 transition"
+                className="px-6 py-4 bg-white text-teal-600 font-bold rounded-xl hover:bg-teal-50 active:scale-95 transition"
               >
                 {t('rent.viewAll')}
               </Link>
@@ -92,7 +92,7 @@ export default function RentPage() {
             </h2>
             <Link
               href="/rent/apartments"
-              className="text-blue-600 dark:text-blue-400 hover:text-blue-700 font-medium text-sm"
+              className="text-teal-600 dark:text-teal-400 hover:text-teal-700 font-medium text-sm"
             >
               {t('rent.viewAll')} →
             </Link>
@@ -103,7 +103,7 @@ export default function RentPage() {
               <Link
                 key={district.id}
                 href={`/rent/apartments?district=${district.id}`}
-                className="group relative aspect-square rounded-2xl overflow-hidden bg-gradient-to-br from-blue-100 to-blue-200 dark:from-slate-700 dark:to-slate-800 hover:shadow-lg transition"
+                className="group relative aspect-square rounded-2xl overflow-hidden bg-gradient-to-br from-teal-100 to-teal-200 dark:from-slate-700 dark:to-slate-800 hover:shadow-lg transition"
               >
                 <div className="absolute inset-0 flex items-center justify-center text-6xl opacity-30 group-hover:scale-110 transition">
                   🏢
@@ -126,7 +126,7 @@ export default function RentPage() {
             </h2>
             <Link
               href="/rent/apartments"
-              className="text-blue-600 dark:text-blue-400 hover:text-blue-700 font-medium text-sm"
+              className="text-teal-600 dark:text-teal-400 hover:text-teal-700 font-medium text-sm"
             >
               {t('rent.viewAll')} →
             </Link>
@@ -144,13 +144,13 @@ export default function RentPage() {
                 href={`/rent/apartments/${apt.id}`}
                 className="bg-white dark:bg-slate-800 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition group"
               >
-                <div className="aspect-[4/3] bg-gradient-to-br from-blue-100 to-blue-200 dark:from-slate-700 dark:to-slate-600 flex items-center justify-center text-4xl group-hover:scale-105 transition">
+                <div className="aspect-[4/3] bg-gradient-to-br from-teal-100 to-teal-200 dark:from-slate-700 dark:to-slate-600 flex items-center justify-center text-4xl group-hover:scale-105 transition">
                   🏠
                 </div>
                 <div className="p-4">
                   <div className="flex items-start justify-between gap-2 mb-2">
                     <h3 className="font-semibold text-gray-900 dark:text-white line-clamp-1">{apt.title}</h3>
-                    <span className="font-bold text-blue-600 dark:text-blue-400 whitespace-nowrap">
+                    <span className="font-bold text-teal-600 dark:text-teal-400 whitespace-nowrap">
                       ${apt.price}{t('rent.perMonth')}
                     </span>
                   </div>

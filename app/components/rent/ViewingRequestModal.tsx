@@ -102,7 +102,7 @@ export function ViewingRequestModal({
               required
               value={formData.name}
               onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-              className="w-full px-4 py-3 border dark:border-slate-600 rounded-xl text-base bg-white dark:bg-slate-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-4 py-3 border dark:border-slate-600 rounded-xl text-base bg-white dark:bg-slate-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-teal-500"
             />
           </div>
 
@@ -116,7 +116,7 @@ export function ViewingRequestModal({
               required
               value={formData.phone}
               onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-              className="w-full px-4 py-3 border dark:border-slate-600 rounded-xl text-base bg-white dark:bg-slate-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-4 py-3 border dark:border-slate-600 rounded-xl text-base bg-white dark:bg-slate-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-teal-500"
               placeholder="+7 999 123 4567"
             />
           </div>
@@ -134,7 +134,7 @@ export function ViewingRequestModal({
                   onClick={() => setFormData({ ...formData, messenger: m })}
                   className={`flex-1 py-2.5 px-3 rounded-xl border text-sm font-medium transition ${
                     formData.messenger === m
-                      ? 'bg-blue-50 dark:bg-blue-900/50 border-blue-500 text-blue-700 dark:text-blue-300'
+                      ? 'bg-teal-50 dark:bg-teal-900/50 border-teal-500 text-teal-700 dark:text-teal-300'
                       : 'border-gray-200 dark:border-slate-600 text-gray-600 dark:text-gray-300 hover:border-gray-300'
                   }`}
                 >
@@ -153,7 +153,7 @@ export function ViewingRequestModal({
               type="date"
               value={formData.date}
               onChange={(e) => setFormData({ ...formData, date: e.target.value })}
-              className="w-full px-4 py-3 border dark:border-slate-600 rounded-xl text-base bg-white dark:bg-slate-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-4 py-3 border dark:border-slate-600 rounded-xl text-base bg-white dark:bg-slate-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-teal-500"
             />
           </div>
 
@@ -166,7 +166,7 @@ export function ViewingRequestModal({
               value={formData.comment}
               onChange={(e) => setFormData({ ...formData, comment: e.target.value })}
               rows={3}
-              className="w-full px-4 py-3 border dark:border-slate-600 rounded-xl text-base bg-white dark:bg-slate-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"
+              className="w-full px-4 py-3 border dark:border-slate-600 rounded-xl text-base bg-white dark:bg-slate-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-teal-500 resize-none"
             />
           </div>
 
@@ -174,7 +174,7 @@ export function ViewingRequestModal({
           <button
             type="submit"
             disabled={status === 'loading' || status === 'success'}
-            className="w-full py-3.5 bg-gradient-to-r from-blue-500 via-sky-500 to-cyan-500 text-white font-bold rounded-xl hover:shadow-lg active:scale-[0.98] transition disabled:opacity-50"
+            className="w-full py-3.5 bg-gradient-to-r from-teal-700 via-teal-500 to-teal-400 text-white font-bold rounded-xl hover:shadow-lg active:scale-[0.98] transition disabled:opacity-50"
           >
             {status === 'loading' ? '...' : status === 'success' ? '✓' : t('rent.request.submit')}
           </button>

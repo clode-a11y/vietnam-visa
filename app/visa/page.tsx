@@ -120,17 +120,17 @@ export default async function VisaPage() {
         <section className="pt-32 pb-16 px-6">
           <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
             <div className="text-center md:text-left">
-              <div className="reveal inline-flex items-center gap-2 px-4 py-2 bg-white/80 dark:bg-slate-800/80 backdrop-blur rounded-full text-sm font-semibold text-blue-700 dark:text-blue-400 mb-6">
-                <span className="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></span>
+              <div className="reveal inline-flex items-center gap-2 px-4 py-2 bg-white/80 dark:bg-slate-800/80 backdrop-blur rounded-full text-sm font-semibold text-teal-700 dark:text-teal-400 mb-6">
+                <span className="w-2 h-2 bg-teal-500 rounded-full animate-pulse"></span>
                 Актуально на 2025 год
               </div>
               <h1 className="reveal reveal-delay-1 text-4xl sm:text-5xl md:text-6xl font-black mb-6 leading-tight dark:text-white">
-                Виза во <span className="bg-gradient-to-r from-blue-500 via-sky-500 to-cyan-500 bg-clip-text text-transparent">Вьетнам</span>
+                Виза во <span className="bg-gradient-to-r from-teal-700 via-teal-500 to-teal-400 bg-clip-text text-transparent">Вьетнам</span>
               </h1>
               <p className="reveal reveal-delay-2 text-lg sm:text-xl text-gray-700 dark:text-gray-300 mb-8 max-w-lg">
                 Полный гайд для россиян: безвизовый въезд до 45 дней, электронная виза и виза по прилёту
               </p>
-              <a href="#calculator" className="reveal reveal-delay-3 inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-blue-500 via-sky-500 to-cyan-500 text-white font-bold rounded-full hover:shadow-lg active:scale-[0.98] transition text-lg">
+              <a href="#calculator" className="reveal reveal-delay-3 inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-teal-700 via-teal-500 to-teal-400 text-white font-bold rounded-full hover:shadow-lg active:scale-[0.98] transition text-lg">
                 Рассчитать визу
                 <span>→</span>
               </a>
@@ -138,11 +138,16 @@ export default async function VisaPage() {
 
             {/* Vietnam Map */}
             <div className="reveal reveal-delay-4 relative flex justify-center">
-              <img
-                src="https://static.vecteezy.com/system/resources/previews/045/058/373/non_2x/isolated-illustration-icon-with-simplified-blue-silhouette-of-vietnam-map-polygonal-geometric-style-white-background-vector.jpg"
-                alt="Карта Вьетнама"
-                className="vietnam-map w-full max-w-xs md:max-w-sm object-contain"
-              />
+              <svg viewBox="0 0 100 200" className="vietnam-map w-full max-w-[180px] md:max-w-[220px] h-auto" fill="url(#vietnamGradient2)">
+                <defs>
+                  <linearGradient id="vietnamGradient2" x1="0%" y1="0%" x2="0%" y2="100%">
+                    <stop offset="0%" stopColor="#115E67" />
+                    <stop offset="50%" stopColor="#3D9DA1" />
+                    <stop offset="100%" stopColor="#A8D8D8" />
+                  </linearGradient>
+                </defs>
+                <path d="M55 5 C60 8, 65 12, 68 18 C72 25, 70 32, 65 38 C60 44, 55 48, 52 55 C50 60, 52 65, 55 70 C58 75, 62 78, 65 82 C68 88, 66 94, 62 100 C58 106, 54 112, 52 118 C50 125, 52 132, 55 138 C58 145, 60 152, 58 160 C56 168, 52 175, 48 182 C45 188, 42 192, 40 195 C38 192, 36 188, 35 182 C33 175, 32 168, 34 160 C36 152, 40 145, 42 138 C44 130, 42 122, 38 115 C34 108, 30 102, 28 95 C26 88, 28 80, 32 73 C36 66, 40 60, 42 52 C44 44, 42 36, 38 28 C35 22, 38 15, 45 10 C48 7, 52 5, 55 5 Z" />
+              </svg>
 
               {/* Decorative badges */}
               <div className="absolute top-4 right-4 px-3 py-2 bg-white/90 dark:bg-slate-800/90 backdrop-blur rounded-xl shadow-lg flex items-center gap-2">
@@ -166,8 +171,8 @@ export default async function VisaPage() {
               { value: '3', label: 'дня оформление' },
               { value: '90', label: 'дней максимум' },
             ].map((stat, i) => (
-              <div key={i} className={`reveal reveal-delay-${i + 1} bg-white/80 dark:bg-slate-800/80 backdrop-blur-xl rounded-3xl p-6 text-center shadow-lg border border-white/50 dark:border-slate-700/50 hover:shadow-xl hover:-translate-y-2 transition-all`}>
-                <div className="text-4xl font-black bg-gradient-to-r from-blue-500 via-sky-500 to-cyan-500 bg-clip-text text-transparent mb-2">{stat.value}</div>
+              <div key={i} className={`reveal reveal-delay-${i + 1} bg-white/95 dark:bg-slate-800/80 backdrop-blur-xl rounded-3xl p-6 text-center shadow-lg border border-white/50 dark:border-slate-700/50 hover:shadow-xl hover:-translate-y-2 transition-all`}>
+                <div className="text-4xl font-black bg-gradient-to-r from-teal-700 via-teal-500 to-teal-400 bg-clip-text text-transparent mb-2">{stat.value}</div>
                 <div className="text-gray-600 dark:text-gray-400 font-medium">{stat.label}</div>
               </div>
             ))}
@@ -182,7 +187,7 @@ export default async function VisaPage() {
           <div className="reveal text-6xl mb-4">🌴</div>
           <h2 className="reveal reveal-delay-1 text-4xl font-black dark:text-white mb-4">Готовы к приключению?</h2>
           <p className="reveal reveal-delay-2 text-xl text-gray-600 dark:text-gray-400 mb-8">Вьетнам ждёт вас!</p>
-          <a href="https://evisa.xuatnhapcanh.gov.vn" target="_blank" rel="noopener noreferrer" className="reveal reveal-delay-3 inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-blue-500 via-sky-500 to-cyan-500 text-white font-bold rounded-full hover:shadow-lg active:scale-[0.98] transition text-lg">
+          <a href="https://evisa.xuatnhapcanh.gov.vn" target="_blank" rel="noopener noreferrer" className="reveal reveal-delay-3 inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-teal-700 via-teal-500 to-teal-400 text-white font-bold rounded-full hover:shadow-lg active:scale-[0.98] transition text-lg">
             Оформить e-Visa →
           </a>
         </section>

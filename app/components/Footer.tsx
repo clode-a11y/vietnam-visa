@@ -77,13 +77,13 @@ export default function Footer() {
         <div>
           <h4 className="font-bold mb-4 text-gray-800 dark:text-white">{t.sections}</h4>
           <div className="space-y-2">
-            <Link href="/visa" className="block text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 text-sm">
+            <Link href="/visa" className="block text-gray-600 dark:text-gray-400 hover:text-teal-600 dark:hover:text-teal-400 text-sm">
               {t.visa}
             </Link>
-            <Link href="/rent" className="block text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 text-sm">
+            <Link href="/rent" className="block text-gray-600 dark:text-gray-400 hover:text-teal-600 dark:hover:text-teal-400 text-sm">
               {t.rent}
             </Link>
-            <Link href="/blog" className="block text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 text-sm">
+            <Link href="/blog" className="block text-gray-600 dark:text-gray-400 hover:text-teal-600 dark:hover:text-teal-400 text-sm">
               {t.blog}
             </Link>
           </div>
@@ -91,7 +91,7 @@ export default function Footer() {
         <div>
           <h4 className="font-bold mb-4 text-gray-800 dark:text-white">{t.useful}</h4>
           <div className="space-y-2">
-            <a href="https://evisa.xuatnhapcanh.gov.vn" target="_blank" rel="noopener noreferrer" className="block text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 text-sm">
+            <a href="https://evisa.xuatnhapcanh.gov.vn" target="_blank" rel="noopener noreferrer" className="block text-gray-600 dark:text-gray-400 hover:text-teal-600 dark:hover:text-teal-400 text-sm">
               {t.evisa}
             </a>
           </div>

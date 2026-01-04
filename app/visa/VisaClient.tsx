@@ -143,23 +143,23 @@ export default function VisaClient({ visaTypes, faqs }: VisaClientProps) {
       <section id="features" className="py-20 px-6">
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-12">
-            <p className="reveal text-sm font-bold text-blue-700 dark:text-blue-400 uppercase tracking-wider mb-2">Типы виз</p>
+            <p className="reveal text-sm font-bold text-teal-700 dark:text-teal-400 uppercase tracking-wider mb-2">Типы виз</p>
             <h2 className="reveal reveal-delay-1 text-4xl font-black dark:text-white">Выберите подходящий вариант</h2>
             <p className="reveal reveal-delay-2 text-lg text-gray-600 dark:text-gray-400 mt-2">Способы легально находиться во Вьетнаме</p>
           </div>
 
           <div className="grid md:grid-cols-3 gap-6">
             {visaTypes.map((visa, i) => (
-              <div key={visa.id} className={`reveal reveal-delay-${(i % 3) + 1} bg-white/80 dark:bg-slate-800/80 backdrop-blur-xl rounded-3xl p-6 shadow-lg border ${visa.isPopular ? 'border-blue-400 ring-2 ring-blue-400/20' : 'border-white/50 dark:border-slate-700/50'} hover:shadow-xl hover:-translate-y-2 transition-all`}>
+              <div key={visa.id} className={`reveal reveal-delay-${(i % 3) + 1} bg-white/95 dark:bg-slate-800/80 backdrop-blur-xl rounded-3xl p-6 shadow-lg border ${visa.isPopular ? 'border-teal-400 ring-2 ring-teal-400/20' : 'border-white/50 dark:border-slate-700/50'} hover:shadow-xl hover:-translate-y-2 transition-all`}>
                 {visa.isPopular && (
-                  <div className="text-xs font-bold text-blue-600 dark:text-blue-400 mb-3">ПОПУЛЯРНО</div>
+                  <div className="text-xs font-bold text-teal-600 dark:text-teal-400 mb-3">ПОПУЛЯРНО</div>
                 )}
                 <div className="text-5xl mb-4">{visa.icon}</div>
                 <h3 className="text-xl font-bold dark:text-white mb-2">{visa.nameRu}</h3>
                 <p className="text-gray-600 dark:text-gray-400 mb-4">{visa.description}</p>
                 <div className="flex justify-between items-center pt-4 border-t border-gray-100 dark:border-slate-700">
                   <span className="text-sm text-gray-500 dark:text-gray-400">{visa.duration}</span>
-                  <span className="font-bold text-blue-600 dark:text-blue-400">{visa.price === 0 ? 'Бесплатно' : `$${visa.price}`}</span>
+                  <span className="font-bold text-teal-600 dark:text-teal-400">{visa.price === 0 ? 'Бесплатно' : `$${visa.price}`}</span>
                 </div>
               </div>
             ))}
@@ -171,16 +171,16 @@ export default function VisaClient({ visaTypes, faqs }: VisaClientProps) {
       <section id="comparison" className="py-20 px-6">
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-12">
-            <p className="reveal text-sm font-bold text-blue-700 dark:text-blue-400 uppercase tracking-wider mb-2">Сравнение</p>
+            <p className="reveal text-sm font-bold text-teal-700 dark:text-teal-400 uppercase tracking-wider mb-2">Сравнение</p>
             <h2 className="reveal reveal-delay-1 text-4xl font-black dark:text-white">Какая виза вам подходит?</h2>
             <p className="reveal reveal-delay-2 text-lg text-gray-600 dark:text-gray-400 mt-2">Детальное сравнение всех вариантов</p>
           </div>
 
-          <div className="reveal reveal-delay-3 bg-white/80 dark:bg-slate-800/80 backdrop-blur-xl rounded-3xl shadow-lg border border-white/50 dark:border-slate-700/50 overflow-hidden">
+          <div className="reveal reveal-delay-3 bg-white/95 dark:bg-slate-800/80 backdrop-blur-xl rounded-3xl shadow-lg border border-white/50 dark:border-slate-700/50 overflow-hidden">
             <div className="overflow-x-auto">
               <table className="w-full">
                 <thead>
-                  <tr className="bg-gradient-to-r from-blue-500/10 via-sky-500/10 to-cyan-500/10">
+                  <tr className="bg-gradient-to-r from-teal-500/10 via-teal-400/10 to-teal-300/10">
                     <th className="px-6 py-4 text-left font-bold text-gray-700 dark:text-gray-200">Параметр</th>
                     <th className="px-6 py-4 text-center font-bold text-gray-700 dark:text-gray-200">Безвизовый</th>
                     <th className="px-6 py-4 text-center font-bold text-gray-700 dark:text-gray-200">E-Visa</th>
@@ -196,13 +196,13 @@ export default function VisaClient({ visaTypes, faqs }: VisaClientProps) {
                   </tr>
                   <tr className="hover:bg-gray-50/50 dark:hover:bg-slate-700/50">
                     <td className="px-6 py-4 font-medium dark:text-white">Стоимость</td>
-                    <td className="px-6 py-4 text-center text-blue-600 dark:text-blue-400 font-bold">Бесплатно</td>
+                    <td className="px-6 py-4 text-center text-teal-600 dark:text-teal-400 font-bold">Бесплатно</td>
                     <td className="px-6 py-4 text-center dark:text-gray-300">$25-50</td>
                     <td className="px-6 py-4 text-center dark:text-gray-300">$25-50</td>
                   </tr>
                   <tr className="hover:bg-gray-50/50 dark:hover:bg-slate-700/50">
                     <td className="px-6 py-4 font-medium dark:text-white">Время оформления</td>
-                    <td className="px-6 py-4 text-center text-blue-600 dark:text-blue-400 font-bold">Сразу</td>
+                    <td className="px-6 py-4 text-center text-teal-600 dark:text-teal-400 font-bold">Сразу</td>
                     <td className="px-6 py-4 text-center dark:text-gray-300">3-5 дней</td>
                     <td className="px-6 py-4 text-center dark:text-gray-300">На месте</td>
                   </tr>
@@ -212,10 +212,10 @@ export default function VisaClient({ visaTypes, faqs }: VisaClientProps) {
                       <span className="text-red-500">✗</span>
                     </td>
                     <td className="px-6 py-4 text-center">
-                      <span className="text-blue-500">✓</span>
+                      <span className="text-teal-500">✓</span>
                     </td>
                     <td className="px-6 py-4 text-center">
-                      <span className="text-blue-500">✓</span>
+                      <span className="text-teal-500">✓</span>
                     </td>
                   </tr>
                   <tr className="hover:bg-gray-50/50 dark:hover:bg-slate-700/50">
@@ -259,21 +259,21 @@ export default function VisaClient({ visaTypes, faqs }: VisaClientProps) {
       <section id="documents" className="py-20 px-6">
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-12">
-            <p className="reveal text-sm font-bold text-blue-700 dark:text-blue-400 uppercase tracking-wider mb-2">Документы</p>
+            <p className="reveal text-sm font-bold text-teal-700 dark:text-teal-400 uppercase tracking-wider mb-2">Документы</p>
             <h2 className="reveal reveal-delay-1 text-4xl font-black dark:text-white">Чек-лист документов</h2>
             <p className="reveal reveal-delay-2 text-lg text-gray-600 dark:text-gray-400 mt-2">Что нужно подготовить для каждого типа визы</p>
           </div>
 
           <div className="grid md:grid-cols-3 gap-6">
             {/* Visa-free */}
-            <div className="reveal reveal-delay-1 bg-white/80 dark:bg-slate-800/80 backdrop-blur-xl rounded-3xl p-6 shadow-lg border border-white/50 dark:border-slate-700/50">
+            <div className="reveal reveal-delay-1 bg-white/95 dark:bg-slate-800/80 backdrop-blur-xl rounded-3xl p-6 shadow-lg border border-white/50 dark:border-slate-700/50">
               <div className="flex items-center gap-3 mb-6">
-                <div className="w-12 h-12 bg-blue-100 dark:bg-blue-900/50 rounded-xl flex items-center justify-center text-2xl">
+                <div className="w-12 h-12 bg-teal-100 dark:bg-teal-900/50 rounded-xl flex items-center justify-center text-2xl">
                   🎉
                 </div>
                 <div>
                   <h3 className="font-bold text-lg dark:text-white">Безвизовый въезд</h3>
-                  <span className="text-sm text-blue-600 dark:text-blue-400">до 45 дней</span>
+                  <span className="text-sm text-teal-600 dark:text-teal-400">до 45 дней</span>
                 </div>
               </div>
               <ul className="space-y-3">
@@ -284,7 +284,7 @@ export default function VisaClient({ visaTypes, faqs }: VisaClientProps) {
                   'Страховка (рекоменд.)',
                 ].map((item, i) => (
                   <li key={i} className="flex items-start gap-3">
-                    <span className="w-5 h-5 bg-blue-100 dark:bg-blue-900/50 rounded flex items-center justify-center text-blue-600 dark:text-blue-400 text-sm flex-shrink-0 mt-0.5">✓</span>
+                    <span className="w-5 h-5 bg-teal-100 dark:bg-teal-900/50 rounded flex items-center justify-center text-teal-600 dark:text-teal-400 text-sm flex-shrink-0 mt-0.5">✓</span>
                     <span className="text-gray-700 dark:text-gray-300">{item}</span>
                   </li>
                 ))}
@@ -292,14 +292,14 @@ export default function VisaClient({ visaTypes, faqs }: VisaClientProps) {
             </div>
 
             {/* E-Visa */}
-            <div className="reveal reveal-delay-2 bg-white/80 dark:bg-slate-800/80 backdrop-blur-xl rounded-3xl p-6 shadow-lg border border-blue-400 ring-2 ring-blue-400/20">
+            <div className="reveal reveal-delay-2 bg-white/95 dark:bg-slate-800/80 backdrop-blur-xl rounded-3xl p-6 shadow-lg border border-teal-400 ring-2 ring-teal-400/20">
               <div className="flex items-center gap-3 mb-6">
-                <div className="w-12 h-12 bg-blue-100 dark:bg-blue-900/50 rounded-xl flex items-center justify-center text-2xl">
+                <div className="w-12 h-12 bg-teal-100 dark:bg-teal-900/50 rounded-xl flex items-center justify-center text-2xl">
                   💻
                 </div>
                 <div>
                   <h3 className="font-bold text-lg dark:text-white">E-Visa</h3>
-                  <span className="text-sm text-blue-600 dark:text-blue-400">до 90 дней</span>
+                  <span className="text-sm text-teal-600 dark:text-teal-400">до 90 дней</span>
                 </div>
               </div>
               <ul className="space-y-3">
@@ -312,7 +312,7 @@ export default function VisaClient({ visaTypes, faqs }: VisaClientProps) {
                   'Даты поездки',
                 ].map((item, i) => (
                   <li key={i} className="flex items-start gap-3">
-                    <span className="w-5 h-5 bg-blue-100 dark:bg-blue-900/50 rounded flex items-center justify-center text-blue-600 dark:text-blue-400 text-sm flex-shrink-0 mt-0.5">✓</span>
+                    <span className="w-5 h-5 bg-teal-100 dark:bg-teal-900/50 rounded flex items-center justify-center text-teal-600 dark:text-teal-400 text-sm flex-shrink-0 mt-0.5">✓</span>
                     <span className="text-gray-700 dark:text-gray-300">{item}</span>
                   </li>
                 ))}
@@ -320,7 +320,7 @@ export default function VisaClient({ visaTypes, faqs }: VisaClientProps) {
             </div>
 
             {/* VOA */}
-            <div className="reveal reveal-delay-3 bg-white/80 dark:bg-slate-800/80 backdrop-blur-xl rounded-3xl p-6 shadow-lg border border-white/50 dark:border-slate-700/50">
+            <div className="reveal reveal-delay-3 bg-white/95 dark:bg-slate-800/80 backdrop-blur-xl rounded-3xl p-6 shadow-lg border border-white/50 dark:border-slate-700/50">
               <div className="flex items-center gap-3 mb-6">
                 <div className="w-12 h-12 bg-orange-100 dark:bg-orange-900/50 rounded-xl flex items-center justify-center text-2xl">
                   ✈️
@@ -354,7 +354,7 @@ export default function VisaClient({ visaTypes, faqs }: VisaClientProps) {
       <section id="process" className="py-20 px-6">
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-12">
-            <p className="reveal text-sm font-bold text-blue-700 dark:text-blue-400 uppercase tracking-wider mb-2">Процесс</p>
+            <p className="reveal text-sm font-bold text-teal-700 dark:text-teal-400 uppercase tracking-wider mb-2">Процесс</p>
             <h2 className="reveal reveal-delay-1 text-4xl font-black dark:text-white">Как получить e-Visa</h2>
           </div>
 
@@ -366,7 +366,7 @@ export default function VisaClient({ visaTypes, faqs }: VisaClientProps) {
               { num: '4', title: 'Получите на email', desc: 'Через 3 дня' },
             ].map((step, i) => (
               <div key={i} className={`reveal reveal-delay-${i + 1} text-center`}>
-                <div className="w-20 h-20 mx-auto mb-4 bg-gradient-to-r from-blue-500 via-sky-500 to-cyan-500 rounded-full flex items-center justify-center text-white text-3xl font-black shadow-lg">
+                <div className="w-20 h-20 mx-auto mb-4 bg-gradient-to-r from-teal-700 via-teal-500 to-teal-400 rounded-full flex items-center justify-center text-white text-3xl font-black shadow-lg">
                   {step.num}
                 </div>
                 <h4 className="font-bold mb-1 dark:text-white">{step.title}</h4>
@@ -381,23 +381,23 @@ export default function VisaClient({ visaTypes, faqs }: VisaClientProps) {
       <section id="calculator" className="py-20 px-6">
         <div className="max-w-2xl mx-auto">
           <div className="text-center mb-12">
-            <p className="reveal text-sm font-bold text-blue-700 dark:text-blue-400 uppercase tracking-wider mb-2">Калькулятор</p>
+            <p className="reveal text-sm font-bold text-teal-700 dark:text-teal-400 uppercase tracking-wider mb-2">Калькулятор</p>
             <h2 className="reveal reveal-delay-1 text-4xl font-black dark:text-white">Узнайте какая виза нужна</h2>
           </div>
 
-          <div className="reveal reveal-delay-2 bg-white/80 dark:bg-slate-800/80 backdrop-blur-xl rounded-3xl p-8 shadow-lg border border-white/50 dark:border-slate-700/50">
+          <div className="reveal reveal-delay-2 bg-white/95 dark:bg-slate-800/80 backdrop-blur-xl rounded-3xl p-8 shadow-lg border border-white/50 dark:border-slate-700/50">
             <div className="grid grid-cols-2 gap-6 mb-6">
               <div>
                 <label className="block text-sm font-semibold text-gray-600 dark:text-gray-400 mb-2">Дата прилёта</label>
-                <input type="date" id="arrival" className="w-full px-4 py-3 rounded-xl border border-gray-200 dark:border-slate-600 bg-white dark:bg-slate-700 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none" />
+                <input type="date" id="arrival" className="w-full px-4 py-3 rounded-xl border border-gray-200 dark:border-slate-600 bg-white dark:bg-slate-700 dark:text-white focus:ring-2 focus:ring-teal-500 focus:border-transparent outline-none" />
               </div>
               <div>
                 <label className="block text-sm font-semibold text-gray-600 dark:text-gray-400 mb-2">Дата вылета</label>
-                <input type="date" id="departure" className="w-full px-4 py-3 rounded-xl border border-gray-200 dark:border-slate-600 bg-white dark:bg-slate-700 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none" />
+                <input type="date" id="departure" className="w-full px-4 py-3 rounded-xl border border-gray-200 dark:border-slate-600 bg-white dark:bg-slate-700 dark:text-white focus:ring-2 focus:ring-teal-500 focus:border-transparent outline-none" />
               </div>
               <div>
                 <label className="block text-sm font-semibold text-gray-600 dark:text-gray-400 mb-2">Цель поездки</label>
-                <select id="purpose" className="w-full px-4 py-3 rounded-xl border border-gray-200 dark:border-slate-600 bg-white dark:bg-slate-700 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none">
+                <select id="purpose" className="w-full px-4 py-3 rounded-xl border border-gray-200 dark:border-slate-600 bg-white dark:bg-slate-700 dark:text-white focus:ring-2 focus:ring-teal-500 focus:border-transparent outline-none">
                   <option value="tourism">🏖️ Туризм</option>
                   <option value="business">💼 Бизнес</option>
                   <option value="work">👔 Работа</option>
@@ -405,14 +405,14 @@ export default function VisaClient({ visaTypes, faqs }: VisaClientProps) {
               </div>
               <div>
                 <label className="block text-sm font-semibold text-gray-600 dark:text-gray-400 mb-2">Въезды</label>
-                <select id="entries" className="w-full px-4 py-3 rounded-xl border border-gray-200 dark:border-slate-600 bg-white dark:bg-slate-700 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none">
+                <select id="entries" className="w-full px-4 py-3 rounded-xl border border-gray-200 dark:border-slate-600 bg-white dark:bg-slate-700 dark:text-white focus:ring-2 focus:ring-teal-500 focus:border-transparent outline-none">
                   <option value="single">Однократный</option>
                   <option value="multiple">Многократный</option>
                 </select>
               </div>
             </div>
 
-            <button onClick={calculateVisa} className="w-full py-4 bg-gradient-to-r from-blue-500 via-sky-500 to-cyan-500 text-white font-bold rounded-xl hover:shadow-lg hover:opacity-90 active:scale-[0.98] transition text-lg">
+            <button onClick={calculateVisa} className="w-full py-4 bg-gradient-to-r from-teal-700 via-teal-500 to-teal-400 text-white font-bold rounded-xl hover:shadow-lg hover:opacity-90 active:scale-[0.98] transition text-lg">
               Рассчитать →
             </button>
 
@@ -443,16 +443,16 @@ export default function VisaClient({ visaTypes, faqs }: VisaClientProps) {
       <section id="faq" className="py-20 px-6">
         <div className="max-w-3xl mx-auto">
           <div className="text-center mb-12">
-            <p className="reveal text-sm font-bold text-blue-700 dark:text-blue-400 uppercase tracking-wider mb-2">FAQ</p>
+            <p className="reveal text-sm font-bold text-teal-700 dark:text-teal-400 uppercase tracking-wider mb-2">FAQ</p>
             <h2 className="reveal reveal-delay-1 text-4xl font-black dark:text-white">Частые вопросы</h2>
           </div>
 
           <div className="space-y-4">
             {faqs.map((faq, i) => (
-              <div key={faq.id} className={`reveal reveal-delay-${(i % 4) + 1} faq-item bg-white/80 dark:bg-slate-800/80 backdrop-blur-xl rounded-2xl shadow-lg border border-white/50 dark:border-slate-700/50 overflow-hidden`}>
+              <div key={faq.id} className={`reveal reveal-delay-${(i % 4) + 1} faq-item bg-white/95 dark:bg-slate-800/80 backdrop-blur-xl rounded-2xl shadow-lg border border-white/50 dark:border-slate-700/50 overflow-hidden`}>
                 <button onClick={toggleFaq} className="faq-question w-full px-6 py-5 text-left font-bold dark:text-white flex justify-between items-center hover:bg-gray-50 dark:hover:bg-slate-700/50 transition">
                   {faq.question}
-                  <span className="faq-icon text-blue-600 dark:text-blue-400 text-2xl transition-transform">+</span>
+                  <span className="faq-icon text-teal-600 dark:text-teal-400 text-2xl transition-transform">+</span>
                 </button>
                 <div className="faq-answer">
                   <div className="px-6 pb-5 text-gray-600 dark:text-gray-400">{faq.answer}</div>
@@ -467,7 +467,7 @@ export default function VisaClient({ visaTypes, faqs }: VisaClientProps) {
       <section id="testimonials" className="py-20 px-6">
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-12">
-            <p className="reveal text-sm font-bold text-blue-700 dark:text-blue-400 uppercase tracking-wider mb-2">Отзывы</p>
+            <p className="reveal text-sm font-bold text-teal-700 dark:text-teal-400 uppercase tracking-wider mb-2">Отзывы</p>
             <h2 className="reveal reveal-delay-1 text-4xl font-black dark:text-white">Что говорят клиенты</h2>
             <p className="reveal reveal-delay-2 text-lg text-gray-600 dark:text-gray-400 mt-2">Истории успешного оформления виз</p>
           </div>
@@ -496,7 +496,7 @@ export default function VisaClient({ visaTypes, faqs }: VisaClientProps) {
                 visa: 'E-Visa 30 дней',
               },
             ].map((review, i) => (
-              <div key={i} className={`reveal reveal-delay-${i + 1} bg-white/80 dark:bg-slate-800/80 backdrop-blur-xl rounded-3xl p-6 shadow-lg border border-white/50 dark:border-slate-700/50`}>
+              <div key={i} className={`reveal reveal-delay-${i + 1} bg-white/95 dark:bg-slate-800/80 backdrop-blur-xl rounded-3xl p-6 shadow-lg border border-white/50 dark:border-slate-700/50`}>
                 <div className="flex items-center gap-1 mb-4">
                   {[...Array(review.rating)].map((_, j) => (
                     <svg key={j} className="w-5 h-5 text-yellow-400 fill-current" viewBox="0 0 20 20">
@@ -510,7 +510,7 @@ export default function VisaClient({ visaTypes, faqs }: VisaClientProps) {
                     <p className="font-bold text-gray-900 dark:text-white">{review.name}</p>
                     <p className="text-sm text-gray-500 dark:text-gray-400">{review.location}</p>
                   </div>
-                  <span className="px-3 py-1 bg-blue-100 dark:bg-blue-900/50 text-blue-700 dark:text-blue-400 text-xs font-semibold rounded-full">
+                  <span className="px-3 py-1 bg-teal-100 dark:bg-teal-900/50 text-teal-700 dark:text-teal-400 text-xs font-semibold rounded-full">
                     {review.visa}
                   </span>
                 </div>
@@ -524,12 +524,12 @@ export default function VisaClient({ visaTypes, faqs }: VisaClientProps) {
       <section id="contact" className="py-20 px-6">
         <div className="max-w-2xl mx-auto">
           <div className="text-center mb-12">
-            <p className="reveal text-sm font-bold text-blue-700 dark:text-blue-400 uppercase tracking-wider mb-2">Консультация</p>
+            <p className="reveal text-sm font-bold text-teal-700 dark:text-teal-400 uppercase tracking-wider mb-2">Консультация</p>
             <h2 className="reveal reveal-delay-1 text-4xl font-black dark:text-white">Оставить заявку</h2>
             <p className="reveal reveal-delay-2 text-lg text-gray-600 dark:text-gray-400 mt-2">Мы свяжемся с вами в ближайшее время</p>
           </div>
 
-          <div className="reveal reveal-delay-3 bg-white/80 dark:bg-slate-800/80 backdrop-blur-xl rounded-3xl p-8 shadow-lg border border-white/50 dark:border-slate-700/50">
+          <div className="reveal reveal-delay-3 bg-white/95 dark:bg-slate-800/80 backdrop-blur-xl rounded-3xl p-8 shadow-lg border border-white/50 dark:border-slate-700/50">
             {formStatus === 'success' ? (
               <div className="text-center py-8">
                 <div className="text-6xl mb-4">✅</div>
@@ -554,7 +554,7 @@ export default function VisaClient({ visaTypes, faqs }: VisaClientProps) {
                       onChange={handleFormChange}
                       required
                       placeholder="Иван"
-                      className="w-full px-4 py-3 rounded-xl border border-gray-200 dark:border-slate-600 bg-white dark:bg-slate-700 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none"
+                      className="w-full px-4 py-3 rounded-xl border border-gray-200 dark:border-slate-600 bg-white dark:bg-slate-700 dark:text-white focus:ring-2 focus:ring-teal-500 focus:border-transparent outline-none"
                     />
                   </div>
                   <div>
@@ -566,7 +566,7 @@ export default function VisaClient({ visaTypes, faqs }: VisaClientProps) {
                       onChange={handleFormChange}
                       required
                       placeholder="+7 999 123 4567"
-                      className="w-full px-4 py-3 rounded-xl border border-gray-200 dark:border-slate-600 bg-white dark:bg-slate-700 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none"
+                      className="w-full px-4 py-3 rounded-xl border border-gray-200 dark:border-slate-600 bg-white dark:bg-slate-700 dark:text-white focus:ring-2 focus:ring-teal-500 focus:border-transparent outline-none"
                     />
                   </div>
                 </div>
@@ -578,7 +578,7 @@ export default function VisaClient({ visaTypes, faqs }: VisaClientProps) {
                       name="messenger"
                       value={formData.messenger}
                       onChange={handleFormChange}
-                      className="w-full px-4 py-3 rounded-xl border border-gray-200 dark:border-slate-600 bg-white dark:bg-slate-700 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none"
+                      className="w-full px-4 py-3 rounded-xl border border-gray-200 dark:border-slate-600 bg-white dark:bg-slate-700 dark:text-white focus:ring-2 focus:ring-teal-500 focus:border-transparent outline-none"
                     >
                       <option value="telegram">Telegram</option>
                       <option value="whatsapp">WhatsApp</option>
@@ -591,7 +591,7 @@ export default function VisaClient({ visaTypes, faqs }: VisaClientProps) {
                       name="visaType"
                       value={formData.visaType}
                       onChange={handleFormChange}
-                      className="w-full px-4 py-3 rounded-xl border border-gray-200 dark:border-slate-600 bg-white dark:bg-slate-700 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none"
+                      className="w-full px-4 py-3 rounded-xl border border-gray-200 dark:border-slate-600 bg-white dark:bg-slate-700 dark:text-white focus:ring-2 focus:ring-teal-500 focus:border-transparent outline-none"
                     >
                       <option value="">Не знаю / нужна консультация</option>
                       {visaTypes.map(visa => (
@@ -622,7 +622,7 @@ export default function VisaClient({ visaTypes, faqs }: VisaClientProps) {
                 <button
                   type="submit"
                   disabled={formStatus === 'loading'}
-                  className="w-full py-4 bg-gradient-to-r from-blue-500 via-sky-500 to-cyan-500 text-white font-bold rounded-xl hover:shadow-lg hover:opacity-90 active:scale-[0.98] transition text-lg disabled:opacity-50"
+                  className="w-full py-4 bg-gradient-to-r from-teal-700 via-teal-500 to-teal-400 text-white font-bold rounded-xl hover:shadow-lg hover:opacity-90 active:scale-[0.98] transition text-lg disabled:opacity-50"
                 >
                   {formStatus === 'loading' ? 'Отправка...' : 'Отправить заявку'}
                 </button>
