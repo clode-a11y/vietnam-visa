@@ -145,6 +145,7 @@ model Apartment {
   isAvailable   Boolean            @default(true)
   canShow       Boolean            @default(true)
   hasVideo      Boolean            @default(false)
+  views         Int                @default(0)
   districtId    String
   district      District           @relation(fields: [districtId], references: [id])
   images        ApartmentImage[]

@@ -15,6 +15,7 @@ import { CostCalculator } from '@/app/components/rent/CostCalculator'
 import { CurrencyConverter } from '@/app/components/rent/CurrencyConverter'
 import { AvailabilityCalendar } from '@/app/components/rent/AvailabilityCalendar'
 import { ExportPdfButton } from '@/app/components/rent/ExportPdfButton'
+import { ViewCounter } from '@/app/components/rent/ViewCounter'
 import { distanceToBeach, formatDistance } from '@/lib/distance'
 
 interface ApartmentImage {
@@ -369,7 +370,11 @@ export default function ApartmentDetailPage({ params }: { params: Promise<{ id: 
               <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-2">
                 {getTitle()}
               </h1>
-              <p className="text-gray-500 dark:text-gray-400 mb-4">{getDistrict()} • {apartment.address}</p>
+              <p className="text-gray-500 dark:text-gray-400 mb-2">{getDistrict()} • {apartment.address}</p>
+
+              <div className="mb-4">
+                <ViewCounter apartmentId={apartment.id} locale={locale} />
+              </div>
 
               <div className="flex flex-wrap gap-4 mb-6">
                 <div className="flex items-center gap-2 text-gray-700 dark:text-gray-300">
