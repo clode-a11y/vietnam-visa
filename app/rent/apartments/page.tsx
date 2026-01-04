@@ -40,9 +40,13 @@ interface Apartment {
   titleRu: string
   titleEn: string
   titleVi: string
+  descriptionRu: string
+  descriptionEn: string
+  descriptionVi: string
   priceUsd: number
   rooms: number
   area: number
+  address: string
   lat: number | null
   lng: number | null
   isAvailable: boolean
@@ -150,7 +154,11 @@ export default function ApartmentsPage() {
         const matchesDistrict = apt.district.nameRu.toLowerCase().includes(query) ||
           apt.district.nameEn.toLowerCase().includes(query) ||
           apt.district.nameVi.toLowerCase().includes(query)
-        if (!matchesTitle && !matchesDistrict) return false
+        const matchesAddress = apt.address.toLowerCase().includes(query)
+        const matchesDescription = apt.descriptionRu.toLowerCase().includes(query) ||
+          apt.descriptionEn.toLowerCase().includes(query) ||
+          apt.descriptionVi.toLowerCase().includes(query)
+        if (!matchesTitle && !matchesDistrict && !matchesAddress && !matchesDescription) return false
       }
       if (selectedDistrict && apt.district.id !== selectedDistrict) return false
       if (selectedRooms !== null) {
@@ -211,15 +219,23 @@ export default function ApartmentsPage() {
         <div className="bg-white dark:bg-slate-800 rounded-2xl p-4 shadow-sm mb-6">
           <div className="flex flex-wrap gap-3">
             {/* Search */}
-            <div className="relative">
+            <div className="relative flex-1 min-w-[200px] max-w-md">
               <input
                 type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder={locale === 'ru' ? 'Поиск...' : 'Search...'}
-                className="w-48 px-4 py-2.5 pl-10 bg-gray-50 dark:bg-slate-700 border border-gray-200 dark:border-slate-600 rounded-xl text-base text-gray-900 dark:text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                placeholder={locale === 'ru' ? 'Название, адрес, район...' : locale === 'vi' ? 'Tên, địa chỉ, quận...' : 'Name, address, district...'}
+                className="w-full px-4 py-2.5 pl-10 bg-gray-50 dark:bg-slate-700 border border-gray-200 dark:border-slate-600 rounded-xl text-base text-gray-900 dark:text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
               <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">🔍</span>
+              {searchQuery && (
+                <button
+                  onClick={() => setSearchQuery('')}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 dark:hover:text-gray-200"
+                >
+                  ✕
+                </button>
+              )}
             </div>
 
             {/* District filter */}
