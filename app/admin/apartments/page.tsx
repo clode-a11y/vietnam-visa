@@ -69,7 +69,7 @@ export default function ApartmentsPage() {
         <h1 className="text-2xl font-bold text-gray-900">Квартиры</h1>
         <Link
           href="/admin/apartments/new"
-          className="px-4 py-2 bg-blue-600 text-white font-medium rounded-xl hover:bg-blue-700 transition"
+          className="px-4 py-2 bg-teal-600 text-white font-medium rounded-xl hover:bg-teal-700 transition"
         >
           + Добавить квартиру
         </Link>
@@ -81,7 +81,7 @@ export default function ApartmentsPage() {
           <p className="text-gray-600 mb-4">Квартиры пока не добавлены</p>
           <Link
             href="/admin/apartments/new"
-            className="inline-block px-4 py-2 bg-blue-600 text-white font-medium rounded-xl hover:bg-blue-700 transition"
+            className="inline-block px-4 py-2 bg-teal-600 text-white font-medium rounded-xl hover:bg-teal-700 transition"
           >
             Добавить первую квартиру
           </Link>
@@ -110,7 +110,7 @@ export default function ApartmentsPage() {
                     {apartment.district?.nameRu || '—'}
                   </td>
                   <td className="px-6 py-4">
-                    <span className="font-semibold text-blue-600">${apartment.priceUsd}</span>
+                    <span className="font-semibold text-teal-600">${apartment.priceUsd}</span>
                     <span className="text-gray-500">/мес</span>
                   </td>
                   <td className="px-6 py-4 text-gray-600">{apartment.rooms}</td>
@@ -136,7 +136,7 @@ export default function ApartmentsPage() {
                     <div className="flex justify-end gap-2">
                       <Link
                         href={`/admin/apartments/${apartment.id}`}
-                        className="px-3 py-1.5 text-sm text-blue-600 hover:bg-blue-50 rounded-lg transition"
+                        className="px-3 py-1.5 text-sm text-teal-600 hover:bg-teal-50 rounded-lg transition"
                       >
                         Редактировать
                       </Link>

@@ -186,7 +186,7 @@ export default function ApartmentDetailPage({ params }: { params: Promise<{ id: 
             <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
               Квартира не найдена
             </h1>
-            <Link href="/rent/apartments" className="text-blue-600 hover:underline">
+            <Link href="/rent/apartments" className="text-teal-600 hover:underline">
               ← Вернуться к списку
             </Link>
           </div>
@@ -333,7 +333,7 @@ export default function ApartmentDetailPage({ params }: { params: Promise<{ id: 
                         onClick={() => setCurrentImageIndex(index)}
                         className={`relative w-20 h-20 flex-shrink-0 rounded-lg overflow-hidden border-2 transition ${
                           index === currentImageIndex
-                            ? 'border-blue-500'
+                            ? 'border-teal-500'
                             : 'border-transparent opacity-70 hover:opacity-100'
                         }`}
                       >
@@ -350,7 +350,7 @@ export default function ApartmentDetailPage({ params }: { params: Promise<{ id: 
                 )}
               </div>
             ) : (
-              <div className="aspect-[16/10] bg-gradient-to-br from-blue-100 to-blue-200 dark:from-slate-700 dark:to-slate-600 rounded-2xl flex items-center justify-center text-8xl relative">
+              <div className="aspect-[16/10] bg-gradient-to-br from-teal-100 to-teal-200 dark:from-slate-700 dark:to-slate-600 rounded-2xl flex items-center justify-center text-8xl relative">
                 <div className="absolute top-4 right-4 z-20 flex gap-2">
                   <ShareButton
                     url={`/rent/apartments/${apartment.id}`}
@@ -445,7 +445,7 @@ export default function ApartmentDetailPage({ params }: { params: Promise<{ id: 
             <div className="sticky top-24 bg-white dark:bg-slate-800 rounded-2xl p-5 sm:p-6 shadow-sm">
               {/* Price */}
               <div className="text-center mb-6">
-                <div className="text-3xl sm:text-4xl font-bold text-blue-600 dark:text-blue-400">
+                <div className="text-3xl sm:text-4xl font-bold text-teal-600 dark:text-teal-400">
                   ${apartment.priceUsd}
                   <span className="text-lg font-normal text-gray-500 dark:text-gray-400">{t('rent.perMonth')}</span>
                 </div>
@@ -475,13 +475,13 @@ export default function ApartmentDetailPage({ params }: { params: Promise<{ id: 
                 <button
                   onClick={() => setModalType('viewing')}
                   disabled={!apartment.canShow}
-                  className="w-full py-3.5 bg-gradient-to-r from-blue-500 via-sky-500 to-cyan-500 text-white font-bold rounded-xl hover:shadow-lg active:scale-[0.98] transition disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="w-full py-3.5 bg-gradient-to-r from-teal-600 via-teal-500 to-teal-400 text-white font-bold rounded-xl hover:shadow-lg active:scale-[0.98] transition disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   📅 {t('rent.requestViewing')}
                 </button>
                 <button
                   onClick={() => setModalType('video_call')}
-                  className="w-full py-3.5 bg-white dark:bg-slate-700 text-blue-600 dark:text-blue-400 font-bold rounded-xl border-2 border-blue-600 dark:border-blue-500 hover:bg-blue-50 dark:hover:bg-slate-600 active:scale-[0.98] transition"
+                  className="w-full py-3.5 bg-white dark:bg-slate-700 text-teal-600 dark:text-teal-400 font-bold rounded-xl border-2 border-teal-600 dark:border-teal-500 hover:bg-teal-50 dark:hover:bg-slate-600 active:scale-[0.98] transition"
                 >
                   🎥 {t('rent.requestVideoCall')}
                 </button>
@@ -528,7 +528,7 @@ export default function ApartmentDetailPage({ params }: { params: Promise<{ id: 
                     size="sm"
                   />
                   <Link href={`/rent/apartments/${apt.id}`}>
-                    <div className="aspect-[4/3] relative bg-gradient-to-br from-blue-100 to-blue-200 dark:from-slate-700 dark:to-slate-600 overflow-hidden">
+                    <div className="aspect-[4/3] relative bg-gradient-to-br from-teal-100 to-teal-200 dark:from-slate-700 dark:to-slate-600 overflow-hidden">
                       {getSimilarCoverImage(apt) ? (
                         <Image
                           src={getSimilarCoverImage(apt)!}
@@ -562,7 +562,7 @@ export default function ApartmentDetailPage({ params }: { params: Promise<{ id: 
                             <span className="text-cyan-600 dark:text-cyan-400"> • 🏖️ {formatDistance(distanceToBeach(apt.lat, apt.lng), locale)}</span>
                           )}
                         </span>
-                        <span className="font-bold text-blue-600 dark:text-blue-400 text-sm">
+                        <span className="font-bold text-teal-600 dark:text-teal-400 text-sm">
                           ${apt.priceUsd}
                         </span>
                       </div>

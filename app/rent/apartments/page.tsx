@@ -225,7 +225,7 @@ export default function ApartmentsPage() {
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder={locale === 'ru' ? 'Название, адрес, район...' : locale === 'vi' ? 'Tên, địa chỉ, quận...' : 'Name, address, district...'}
-                className="w-full px-4 py-2.5 pl-10 bg-gray-50 dark:bg-slate-700 border border-gray-200 dark:border-slate-600 rounded-xl text-base text-gray-900 dark:text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-4 py-2.5 pl-10 bg-gray-50 dark:bg-slate-700 border border-gray-200 dark:border-slate-600 rounded-xl text-base text-gray-900 dark:text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-teal-500"
               />
               <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">🔍</span>
               {searchQuery && (
@@ -242,7 +242,7 @@ export default function ApartmentsPage() {
             <select
               value={selectedDistrict}
               onChange={(e) => setSelectedDistrict(e.target.value)}
-              className="px-4 py-2.5 bg-gray-50 dark:bg-slate-700 border border-gray-200 dark:border-slate-600 rounded-xl text-base text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="px-4 py-2.5 bg-gray-50 dark:bg-slate-700 border border-gray-200 dark:border-slate-600 rounded-xl text-base text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-teal-500"
             >
               <option value="">{t('rent.filters.district')}: {t('rent.filters.all')}</option>
               {districts.map(d => (
@@ -284,7 +284,7 @@ export default function ApartmentsPage() {
                   setPriceRange({ min, max })
                 }
               }}
-              className="px-4 py-2.5 bg-gray-50 dark:bg-slate-700 border border-gray-200 dark:border-slate-600 rounded-xl text-base text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="px-4 py-2.5 bg-gray-50 dark:bg-slate-700 border border-gray-200 dark:border-slate-600 rounded-xl text-base text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-teal-500"
             >
               <option value="">{locale === 'ru' ? 'Цена: Все' : 'Price: All'}</option>
               {priceRanges.map(range => (
@@ -298,7 +298,7 @@ export default function ApartmentsPage() {
             <select
               value={sortBy}
               onChange={(e) => setSortBy(e.target.value)}
-              className="px-4 py-2.5 bg-gray-50 dark:bg-slate-700 border border-gray-200 dark:border-slate-600 rounded-xl text-base text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="px-4 py-2.5 bg-gray-50 dark:bg-slate-700 border border-gray-200 dark:border-slate-600 rounded-xl text-base text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-teal-500"
             >
               <option value="">{locale === 'ru' ? 'Сортировка' : locale === 'vi' ? 'Sắp xếp' : 'Sort'}</option>
               <option value="date-desc">{locale === 'ru' ? 'Сначала новые' : locale === 'vi' ? 'Mới nhất' : 'Newest first'}</option>
@@ -316,7 +316,7 @@ export default function ApartmentsPage() {
                 type="checkbox"
                 checked={onlyAvailable}
                 onChange={(e) => setOnlyAvailable(e.target.checked)}
-                className="w-4 h-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
+                className="w-4 h-4 rounded border-gray-300 text-teal-600 focus:ring-teal-500"
               />
               <span className="text-sm text-gray-700 dark:text-gray-300">
                 {locale === 'ru' ? 'Только свободные' : 'Available only'}
@@ -328,14 +328,14 @@ export default function ApartmentsPage() {
               onClick={() => setShowAmenityFilter(!showAmenityFilter)}
               className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-medium transition ${
                 selectedAmenities.length > 0
-                  ? 'bg-blue-100 dark:bg-blue-900/50 text-blue-700 dark:text-blue-300 border border-blue-300 dark:border-blue-700'
+                  ? 'bg-teal-100 dark:bg-teal-900/50 text-teal-700 dark:text-teal-300 border border-teal-300 dark:border-teal-700'
                   : 'bg-gray-50 dark:bg-slate-700 text-gray-700 dark:text-gray-200 border border-gray-200 dark:border-slate-600 hover:bg-gray-100 dark:hover:bg-slate-600'
               }`}
             >
               <span>✨</span>
               <span>{locale === 'ru' ? 'Удобства' : locale === 'en' ? 'Amenities' : 'Tiện nghi'}</span>
               {selectedAmenities.length > 0 && (
-                <span className="bg-blue-600 text-white text-xs px-1.5 py-0.5 rounded-full">
+                <span className="bg-teal-600 text-white text-xs px-1.5 py-0.5 rounded-full">
                   {selectedAmenities.length}
                 </span>
               )}
@@ -352,7 +352,7 @@ export default function ApartmentsPage() {
                 {selectedAmenities.length > 0 && (
                   <button
                     onClick={() => setSelectedAmenities([])}
-                    className="text-xs text-blue-600 dark:text-blue-400 hover:underline"
+                    className="text-xs text-teal-600 dark:text-teal-400 hover:underline"
                   >
                     {locale === 'ru' ? 'Сбросить' : 'Clear'}
                   </button>
@@ -365,7 +365,7 @@ export default function ApartmentsPage() {
                     onClick={() => toggleAmenity(amenity.id)}
                     className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm transition ${
                       selectedAmenities.includes(amenity.id)
-                        ? 'bg-blue-600 text-white'
+                        ? 'bg-teal-600 text-white'
                         : 'bg-gray-100 dark:bg-slate-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-slate-600'
                     }`}
                   >
@@ -396,7 +396,7 @@ export default function ApartmentsPage() {
                     size="sm"
                   />
                   <Link href={`/rent/apartments/${apt.id}`}>
-                    <div className="aspect-[4/3] relative bg-gradient-to-br from-blue-100 to-blue-200 dark:from-slate-700 dark:to-slate-600 overflow-hidden">
+                    <div className="aspect-[4/3] relative bg-gradient-to-br from-teal-100 to-teal-200 dark:from-slate-700 dark:to-slate-600 overflow-hidden">
                       {getCoverImage(apt) ? (
                         <Image
                           src={getCoverImage(apt)!}
@@ -424,7 +424,7 @@ export default function ApartmentsPage() {
                             <span className="text-cyan-600 dark:text-cyan-400"> • 🏖️ {formatDistance(distanceToBeach(apt.lat, apt.lng), locale)}</span>
                           )}
                         </span>
-                        <span className="font-bold text-blue-600 dark:text-blue-400 text-sm">${apt.priceUsd}</span>
+                        <span className="font-bold text-teal-600 dark:text-teal-400 text-sm">${apt.priceUsd}</span>
                       </div>
                     </div>
                   </Link>
@@ -467,7 +467,7 @@ export default function ApartmentsPage() {
                   <FavoriteButton apartmentId={apt.id} size="md" />
                 </div>
                 <Link href={`/rent/apartments/${apt.id}`}>
-                  <div className="aspect-[4/3] relative bg-gradient-to-br from-blue-100 to-blue-200 dark:from-slate-700 dark:to-slate-600 overflow-hidden">
+                  <div className="aspect-[4/3] relative bg-gradient-to-br from-teal-100 to-teal-200 dark:from-slate-700 dark:to-slate-600 overflow-hidden">
                     {getCoverImage(apt) ? (
                       <Image
                         src={getCoverImage(apt)!}
@@ -490,7 +490,7 @@ export default function ApartmentsPage() {
                 <div className="p-4">
                   <div className="flex items-start justify-between gap-2 mb-2">
                     <h3 className="font-semibold text-gray-900 dark:text-white line-clamp-1">{getAptTitle(apt)}</h3>
-                    <span className="font-bold text-blue-600 dark:text-blue-400 whitespace-nowrap">
+                    <span className="font-bold text-teal-600 dark:text-teal-400 whitespace-nowrap">
                       ${apt.priceUsd}{t('rent.perMonth')}
                     </span>
                   </div>

@@ -101,7 +101,7 @@ export function CurrencyConverter({ priceUsd, locale }: CurrencyConverterProps) 
             onClick={() => setSelectedCurrency(currency)}
             className={`px-3 py-2 rounded-lg text-sm font-medium transition ${
               selectedCurrency === currency
-                ? 'bg-blue-600 text-white'
+                ? 'bg-teal-600 text-white'
                 : 'bg-white dark:bg-slate-700 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-slate-600 border border-gray-200 dark:border-slate-600'
             }`}
           >
@@ -112,7 +112,7 @@ export function CurrencyConverter({ priceUsd, locale }: CurrencyConverterProps) 
 
       {/* Converted price */}
       <div className="text-center py-3 bg-white dark:bg-slate-800 rounded-xl">
-        <div className="text-2xl font-bold text-blue-600 dark:text-blue-400">
+        <div className="text-2xl font-bold text-teal-600 dark:text-teal-400">
           {CURRENCY_INFO[selectedCurrency].symbol}{formatPrice(convertedPrice, selectedCurrency)}
           <span className="text-sm font-normal text-gray-500 dark:text-gray-400">{t.perMonth}</span>
         </div>

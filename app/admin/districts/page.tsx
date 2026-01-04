@@ -141,7 +141,7 @@ export default function DistrictsPage() {
                 required
                 value={formData.nameRu}
                 onChange={(e) => setFormData({ ...formData, nameRu: e.target.value })}
-                className="w-full px-4 py-2 border rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-4 py-2 border rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-500"
                 placeholder="Центр"
               />
             </div>
@@ -155,7 +155,7 @@ export default function DistrictsPage() {
                 required
                 value={formData.nameEn}
                 onChange={(e) => setFormData({ ...formData, nameEn: e.target.value })}
-                className="w-full px-4 py-2 border rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-4 py-2 border rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-500"
                 placeholder="Center"
               />
             </div>
@@ -169,7 +169,7 @@ export default function DistrictsPage() {
                 required
                 value={formData.nameVi}
                 onChange={(e) => setFormData({ ...formData, nameVi: e.target.value })}
-                className="w-full px-4 py-2 border rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-4 py-2 border rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-500"
                 placeholder="Trung tâm"
               />
             </div>
@@ -182,7 +182,7 @@ export default function DistrictsPage() {
                 value={formData.description}
                 onChange={(e) => setFormData({ ...formData, description: e.target.value })}
                 rows={2}
-                className="w-full px-4 py-2 border rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-4 py-2 border rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-500"
               />
             </div>
 
@@ -195,7 +195,7 @@ export default function DistrictsPage() {
                   type="number"
                   value={formData.order}
                   onChange={(e) => setFormData({ ...formData, order: e.target.value })}
-                  className="w-full px-4 py-2 border rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-4 py-2 border rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-500"
                 />
               </div>
               <div className="flex items-end pb-2">
@@ -204,7 +204,7 @@ export default function DistrictsPage() {
                     type="checkbox"
                     checked={formData.isActive}
                     onChange={(e) => setFormData({ ...formData, isActive: e.target.checked })}
-                    className="w-5 h-5 rounded text-blue-600"
+                    className="w-5 h-5 rounded text-teal-600"
                   />
                   <span className="text-gray-700">Активен</span>
                 </label>
@@ -223,7 +223,7 @@ export default function DistrictsPage() {
               )}
               <button
                 type="submit"
-                className="px-4 py-2 bg-blue-600 text-white font-medium rounded-xl hover:bg-blue-700 transition"
+                className="px-4 py-2 bg-teal-600 text-white font-medium rounded-xl hover:bg-teal-700 transition"
               >
                 {editingId ? 'Сохранить' : 'Добавить'}
               </button>
@@ -264,7 +264,7 @@ export default function DistrictsPage() {
                       <div className="flex justify-end gap-1">
                         <button
                           onClick={() => handleEdit(district)}
-                          className="px-2 py-1 text-sm text-blue-600 hover:bg-blue-50 rounded transition"
+                          className="px-2 py-1 text-sm text-teal-600 hover:bg-teal-50 rounded transition"
                         >
                           ✏️
                         </button>

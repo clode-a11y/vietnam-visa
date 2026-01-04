@@ -27,7 +27,7 @@ export function ShareButton({ url, title, className = '' }: ShareButtonProps) {
     {
       name: 'Telegram',
       icon: '✈️',
-      color: 'hover:bg-blue-50 dark:hover:bg-blue-900/30',
+      color: 'hover:bg-teal-50 dark:hover:bg-teal-900/30',
       onClick: () => {
         window.open(`https://t.me/share/url?url=${encodeURIComponent(fullUrl)}&text=${encodeURIComponent(title)}`, '_blank')
         setIsOpen(false)

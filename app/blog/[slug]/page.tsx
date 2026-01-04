@@ -17,7 +17,7 @@ async function getBlogPost(slug: string) {
 }
 
 const categoryLabels: Record<string, { label: string; color: string }> = {
-  guides: { label: 'Гайды', color: 'bg-blue-100 text-blue-700' },
+  guides: { label: 'Гайды', color: 'bg-teal-100 text-teal-700' },
   news: { label: 'Новости', color: 'bg-green-100 text-green-700' },
   tips: { label: 'Советы', color: 'bg-orange-100 text-orange-700' },
 }

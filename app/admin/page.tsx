@@ -124,8 +124,8 @@ export default function AdminDashboard() {
       label: 'Заявки аренда',
       value: stats?.viewingRequests.new || 0,
       change: `+${stats?.viewingRequests.today || 0} сегодня`,
-      color: 'text-blue-600',
-      bgColor: 'bg-blue-50',
+      color: 'text-teal-600',
+      bgColor: 'bg-teal-50',
       icon: '🔑',
       href: '/admin/viewing-requests',
     },
@@ -233,7 +233,7 @@ export default function AdminDashboard() {
         <div className="bg-white rounded-2xl p-6 shadow-sm">
           <div className="flex justify-between items-center mb-4">
             <h2 className="text-lg font-bold">Заявки на аренду</h2>
-            <Link href="/admin/viewing-requests" className="text-blue-600 text-sm hover:underline">
+            <Link href="/admin/viewing-requests" className="text-teal-600 text-sm hover:underline">
               Все →
             </Link>
           </div>
@@ -310,7 +310,7 @@ export default function AdminDashboard() {
             <Link
               key={i}
               href={action.href}
-              className="flex items-center gap-3 p-4 bg-gray-50 rounded-xl hover:bg-blue-50 hover:text-blue-700 transition"
+              className="flex items-center gap-3 p-4 bg-gray-50 rounded-xl hover:bg-teal-50 hover:text-teal-700 transition"
             >
               <span className="text-2xl">{action.icon}</span>
               <span className="font-medium text-sm">{action.label}</span>

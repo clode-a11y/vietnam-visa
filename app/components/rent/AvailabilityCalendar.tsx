@@ -131,7 +131,7 @@ export function AvailabilityCalendar({ isAvailable, availableFrom, locale }: Ava
         <div
           key={day}
           className={`h-8 flex items-center justify-center text-sm rounded-lg ${bgClass} ${textClass} ${
-            isToday ? 'ring-2 ring-blue-500 ring-offset-1 dark:ring-offset-slate-800' : ''
+            isToday ? 'ring-2 ring-teal-500 ring-offset-1 dark:ring-offset-slate-800' : ''
           } ${isAvailableFromDay ? 'font-bold' : ''}`}
         >
           {day}

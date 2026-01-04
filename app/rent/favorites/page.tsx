@@ -90,7 +90,7 @@ export default function FavoritesPage() {
           </h1>
           <Link
             href="/rent/apartments"
-            className="text-blue-600 hover:text-blue-700 text-sm font-medium"
+            className="text-teal-600 hover:text-teal-700 text-sm font-medium"
           >
             {t('rent.viewAll')} →
           </Link>
@@ -98,7 +98,7 @@ export default function FavoritesPage() {
 
         {loading ? (
           <div className="flex items-center justify-center h-64">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500"></div>
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-teal-500"></div>
           </div>
         ) : apartments.length === 0 ? (
           <div className="bg-white dark:bg-slate-800 rounded-2xl p-12 text-center">
@@ -111,7 +111,7 @@ export default function FavoritesPage() {
             </p>
             <Link
               href="/rent/apartments"
-              className="inline-block px-6 py-3 bg-gradient-to-r from-blue-500 via-sky-500 to-cyan-500 text-white font-bold rounded-xl hover:shadow-lg transition"
+              className="inline-block px-6 py-3 bg-gradient-to-r from-teal-600 via-teal-500 to-teal-400 text-white font-bold rounded-xl hover:shadow-lg transition"
             >
               {t('rent.favorites.browse')}
             </Link>
@@ -129,7 +129,7 @@ export default function FavoritesPage() {
                   size="md"
                 />
                 <Link href={`/rent/apartments/${apt.id}`}>
-                  <div className="aspect-[4/3] relative bg-gradient-to-br from-blue-100 to-blue-200 dark:from-slate-700 dark:to-slate-600 overflow-hidden">
+                  <div className="aspect-[4/3] relative bg-gradient-to-br from-teal-100 to-teal-200 dark:from-slate-700 dark:to-slate-600 overflow-hidden">
                     {getCoverImage(apt) ? (
                       <Image
                         src={getCoverImage(apt)!}
@@ -152,7 +152,7 @@ export default function FavoritesPage() {
                   <div className="p-4">
                     <div className="flex items-start justify-between gap-2 mb-2">
                       <h3 className="font-semibold text-gray-900 dark:text-white line-clamp-1">{getAptTitle(apt)}</h3>
-                      <span className="font-bold text-blue-600 dark:text-blue-400 whitespace-nowrap">
+                      <span className="font-bold text-teal-600 dark:text-teal-400 whitespace-nowrap">
                         ${apt.priceUsd}{t('rent.perMonth')}
                       </span>
                     </div>

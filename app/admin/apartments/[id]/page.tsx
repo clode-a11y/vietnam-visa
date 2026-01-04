@@ -178,7 +178,7 @@ export default function EditApartmentPage({ params }: { params: Promise<{ id: st
                 required
                 value={formData.titleRu}
                 onChange={(e) => setFormData({ ...formData, titleRu: e.target.value })}
-                className="w-full px-4 py-2 border rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-4 py-2 border rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-500"
               />
             </div>
 
@@ -188,7 +188,7 @@ export default function EditApartmentPage({ params }: { params: Promise<{ id: st
                 type="text"
                 value={formData.titleEn}
                 onChange={(e) => setFormData({ ...formData, titleEn: e.target.value })}
-                className="w-full px-4 py-2 border rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-4 py-2 border rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-500"
               />
             </div>
 
@@ -198,7 +198,7 @@ export default function EditApartmentPage({ params }: { params: Promise<{ id: st
                 type="text"
                 value={formData.titleVi}
                 onChange={(e) => setFormData({ ...formData, titleVi: e.target.value })}
-                className="w-full px-4 py-2 border rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-4 py-2 border rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-500"
               />
             </div>
 
@@ -209,7 +209,7 @@ export default function EditApartmentPage({ params }: { params: Promise<{ id: st
                 value={formData.descriptionRu}
                 onChange={(e) => setFormData({ ...formData, descriptionRu: e.target.value })}
                 rows={4}
-                className="w-full px-4 py-2 border rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-4 py-2 border rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-500"
               />
             </div>
 
@@ -219,7 +219,7 @@ export default function EditApartmentPage({ params }: { params: Promise<{ id: st
                 value={formData.descriptionEn}
                 onChange={(e) => setFormData({ ...formData, descriptionEn: e.target.value })}
                 rows={4}
-                className="w-full px-4 py-2 border rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-4 py-2 border rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-500"
               />
             </div>
 
@@ -229,7 +229,7 @@ export default function EditApartmentPage({ params }: { params: Promise<{ id: st
                 value={formData.descriptionVi}
                 onChange={(e) => setFormData({ ...formData, descriptionVi: e.target.value })}
                 rows={4}
-                className="w-full px-4 py-2 border rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-4 py-2 border rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-500"
               />
             </div>
           </div>
@@ -244,7 +244,7 @@ export default function EditApartmentPage({ params }: { params: Promise<{ id: st
                 required
                 value={formData.districtId}
                 onChange={(e) => setFormData({ ...formData, districtId: e.target.value })}
-                className="w-full px-4 py-2 border rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-4 py-2 border rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-500"
               >
                 <option value="">Выберите район</option>
                 {districts.map((d) => (
@@ -261,7 +261,7 @@ export default function EditApartmentPage({ params }: { params: Promise<{ id: st
                   required
                   value={formData.priceUsd}
                   onChange={(e) => setFormData({ ...formData, priceUsd: e.target.value })}
-                  className="w-full px-4 py-2 border rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-4 py-2 border rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-500"
                 />
               </div>
               <div>
@@ -270,7 +270,7 @@ export default function EditApartmentPage({ params }: { params: Promise<{ id: st
                   type="number"
                   value={formData.priceVnd}
                   onChange={(e) => setFormData({ ...formData, priceVnd: e.target.value })}
-                  className="w-full px-4 py-2 border rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-4 py-2 border rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-500"
                 />
               </div>
             </div>
@@ -281,7 +281,7 @@ export default function EditApartmentPage({ params }: { params: Promise<{ id: st
                 <select
                   value={formData.rooms}
                   onChange={(e) => setFormData({ ...formData, rooms: e.target.value })}
-                  className="w-full px-4 py-2 border rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-4 py-2 border rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-500"
                 >
                   <option value="0">Студия</option>
                   <option value="1">1</option>
@@ -298,7 +298,7 @@ export default function EditApartmentPage({ params }: { params: Promise<{ id: st
                   step="0.1"
                   value={formData.area}
                   onChange={(e) => setFormData({ ...formData, area: e.target.value })}
-                  className="w-full px-4 py-2 border rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-4 py-2 border rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-500"
                 />
               </div>
             </div>
@@ -310,7 +310,7 @@ export default function EditApartmentPage({ params }: { params: Promise<{ id: st
                   type="number"
                   value={formData.floor}
                   onChange={(e) => setFormData({ ...formData, floor: e.target.value })}
-                  className="w-full px-4 py-2 border rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-4 py-2 border rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-500"
                 />
               </div>
               <div>
@@ -319,7 +319,7 @@ export default function EditApartmentPage({ params }: { params: Promise<{ id: st
                   type="number"
                   value={formData.totalFloors}
                   onChange={(e) => setFormData({ ...formData, totalFloors: e.target.value })}
-                  className="w-full px-4 py-2 border rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-4 py-2 border rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-500"
                 />
               </div>
             </div>
@@ -331,7 +331,7 @@ export default function EditApartmentPage({ params }: { params: Promise<{ id: st
                 required
                 value={formData.address}
                 onChange={(e) => setFormData({ ...formData, address: e.target.value })}
-                className="w-full px-4 py-2 border rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-4 py-2 border rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-500"
               />
             </div>
 
@@ -343,7 +343,7 @@ export default function EditApartmentPage({ params }: { params: Promise<{ id: st
                   step="any"
                   value={formData.lat}
                   onChange={(e) => setFormData({ ...formData, lat: e.target.value })}
-                  className="w-full px-4 py-2 border rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-4 py-2 border rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-500"
                 />
               </div>
               <div>
@@ -353,7 +353,7 @@ export default function EditApartmentPage({ params }: { params: Promise<{ id: st
                   step="any"
                   value={formData.lng}
                   onChange={(e) => setFormData({ ...formData, lng: e.target.value })}
-                  className="w-full px-4 py-2 border rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-4 py-2 border rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-500"
                 />
               </div>
             </div>
@@ -365,7 +365,7 @@ export default function EditApartmentPage({ params }: { params: Promise<{ id: st
                   type="checkbox"
                   checked={formData.isAvailable}
                   onChange={(e) => setFormData({ ...formData, isAvailable: e.target.checked })}
-                  className="w-5 h-5 rounded text-blue-600"
+                  className="w-5 h-5 rounded text-teal-600"
                 />
                 <span className="text-gray-700">Свободна</span>
               </label>
@@ -374,7 +374,7 @@ export default function EditApartmentPage({ params }: { params: Promise<{ id: st
                   type="checkbox"
                   checked={formData.canShow}
                   onChange={(e) => setFormData({ ...formData, canShow: e.target.checked })}
-                  className="w-5 h-5 rounded text-blue-600"
+                  className="w-5 h-5 rounded text-teal-600"
                 />
                 <span className="text-gray-700">Можно показать</span>
               </label>
@@ -383,7 +383,7 @@ export default function EditApartmentPage({ params }: { params: Promise<{ id: st
                   type="checkbox"
                   checked={formData.hasVideo}
                   onChange={(e) => setFormData({ ...formData, hasVideo: e.target.checked })}
-                  className="w-5 h-5 rounded text-blue-600"
+                  className="w-5 h-5 rounded text-teal-600"
                 />
                 <span className="text-gray-700">Есть видео</span>
               </label>
@@ -418,7 +418,7 @@ export default function EditApartmentPage({ params }: { params: Promise<{ id: st
           <button
             type="submit"
             disabled={saving}
-            className="px-6 py-2 bg-blue-600 text-white font-medium rounded-xl hover:bg-blue-700 transition disabled:opacity-50"
+            className="px-6 py-2 bg-teal-600 text-white font-medium rounded-xl hover:bg-teal-700 transition disabled:opacity-50"
           >
             {saving ? 'Сохранение...' : 'Сохранить'}
           </button>

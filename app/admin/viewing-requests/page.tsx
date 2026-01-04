@@ -20,7 +20,7 @@ interface ViewingRequest {
 }
 
 const statusLabels: Record<string, { label: string; color: string }> = {
-  new: { label: 'Новая', color: 'bg-blue-100 text-blue-700' },
+  new: { label: 'Новая', color: 'bg-teal-100 text-teal-700' },
   contacted: { label: 'Связались', color: 'bg-yellow-100 text-yellow-700' },
   completed: { label: 'Завершена', color: 'bg-green-100 text-green-700' },
   cancelled: { label: 'Отменена', color: 'bg-red-100 text-red-700' },
@@ -115,7 +115,7 @@ export default function ViewingRequestsPage() {
   if (loading) {
     return (
       <div className="flex items-center justify-center h-64">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500"></div>
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-teal-500"></div>
       </div>
     )
   }
@@ -128,7 +128,7 @@ export default function ViewingRequestsPage() {
           <p className="text-gray-500">
             Всего заявок: {requests.length}
             {newCount > 0 && (
-              <span className="ml-2 px-2 py-0.5 bg-blue-100 text-blue-700 text-sm rounded-full">
+              <span className="ml-2 px-2 py-0.5 bg-teal-100 text-teal-700 text-sm rounded-full">
                 {newCount} новых
               </span>
             )}
@@ -137,7 +137,7 @@ export default function ViewingRequestsPage() {
         {requests.length > 0 && (
           <a
             href="/api/admin/viewing-requests/export"
-            className="px-4 py-2 bg-blue-600 text-white font-semibold rounded-xl hover:bg-blue-700 transition flex items-center gap-2"
+            className="px-4 py-2 bg-teal-600 text-white font-semibold rounded-xl hover:bg-teal-700 transition flex items-center gap-2"
           >
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
@@ -154,7 +154,7 @@ export default function ViewingRequestsPage() {
           <button
             onClick={() => setFilter('all')}
             className={`px-4 py-2 rounded-xl text-sm font-medium transition ${
-              filter === 'all' ? 'bg-blue-600 text-white' : 'bg-white text-gray-600 hover:bg-gray-50'
+              filter === 'all' ? 'bg-teal-600 text-white' : 'bg-white text-gray-600 hover:bg-gray-50'
             }`}
           >
             Все ({requests.length})
@@ -164,7 +164,7 @@ export default function ViewingRequestsPage() {
               key={key}
               onClick={() => setFilter(key)}
               className={`px-4 py-2 rounded-xl text-sm font-medium transition ${
-                filter === key ? 'bg-blue-600 text-white' : 'bg-white text-gray-600 hover:bg-gray-50'
+                filter === key ? 'bg-teal-600 text-white' : 'bg-white text-gray-600 hover:bg-gray-50'
               }`}
             >
               {label} ({requests.filter(r => r.status === key).length})
@@ -224,7 +224,7 @@ export default function ViewingRequestsPage() {
             </thead>
             <tbody className="divide-y">
               {filteredRequests.map((request) => (
-                <tr key={request.id} className={`hover:bg-gray-50 ${request.status === 'new' ? 'bg-blue-50/50' : ''}`}>
+                <tr key={request.id} className={`hover:bg-gray-50 ${request.status === 'new' ? 'bg-teal-50/50' : ''}`}>
                   <td className="px-6 py-4">
                     <div className="font-medium text-gray-900">{request.name}</div>
                     <div className="text-sm text-gray-500">{request.phone}</div>
@@ -240,7 +240,7 @@ export default function ViewingRequestsPage() {
                   <td className="px-6 py-4">
                     <Link
                       href={`/admin/apartments/${request.apartment?.id}`}
-                      className="text-blue-600 hover:text-blue-800 hover:underline font-medium"
+                      className="text-teal-600 hover:text-teal-800 hover:underline font-medium"
                     >
                       {request.apartment?.titleRu || '—'}
                     </Link>

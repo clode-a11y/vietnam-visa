@@ -156,7 +156,7 @@ export default function AmenitiesPage() {
                     onClick={() => setFormData({ ...formData, icon })}
                     className={`w-10 h-10 text-xl rounded-lg border-2 transition ${
                       formData.icon === icon
-                        ? 'border-blue-500 bg-blue-50'
+                        ? 'border-teal-500 bg-teal-50'
                         : 'border-gray-200 hover:border-gray-300'
                     }`}
                   >
@@ -168,7 +168,7 @@ export default function AmenitiesPage() {
                 type="text"
                 value={formData.icon}
                 onChange={(e) => setFormData({ ...formData, icon: e.target.value })}
-                className="w-full px-4 py-2 border rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-4 py-2 border rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-500"
                 placeholder="Или введите свою иконку"
               />
             </div>
@@ -181,7 +181,7 @@ export default function AmenitiesPage() {
                 required
                 value={formData.category}
                 onChange={(e) => setFormData({ ...formData, category: e.target.value })}
-                className="w-full px-4 py-2 border rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-4 py-2 border rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-500"
               >
                 {categories.map((cat) => (
                   <option key={cat.value} value={cat.value}>
@@ -200,7 +200,7 @@ export default function AmenitiesPage() {
                 required
                 value={formData.nameRu}
                 onChange={(e) => setFormData({ ...formData, nameRu: e.target.value })}
-                className="w-full px-4 py-2 border rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-4 py-2 border rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-500"
                 placeholder="Кондиционер"
               />
             </div>
@@ -214,7 +214,7 @@ export default function AmenitiesPage() {
                 required
                 value={formData.nameEn}
                 onChange={(e) => setFormData({ ...formData, nameEn: e.target.value })}
-                className="w-full px-4 py-2 border rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-4 py-2 border rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-500"
                 placeholder="Air Conditioning"
               />
             </div>
@@ -228,7 +228,7 @@ export default function AmenitiesPage() {
                 required
                 value={formData.nameVi}
                 onChange={(e) => setFormData({ ...formData, nameVi: e.target.value })}
-                className="w-full px-4 py-2 border rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-4 py-2 border rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-500"
                 placeholder="Điều hòa"
               />
             </div>
@@ -245,7 +245,7 @@ export default function AmenitiesPage() {
               )}
               <button
                 type="submit"
-                className="flex-1 px-4 py-2 bg-blue-600 text-white font-medium rounded-xl hover:bg-blue-700 transition"
+                className="flex-1 px-4 py-2 bg-teal-600 text-white font-medium rounded-xl hover:bg-teal-700 transition"
               >
                 {editingId ? 'Сохранить' : 'Добавить'}
               </button>
@@ -290,7 +290,7 @@ export default function AmenitiesPage() {
                           <div className="flex gap-1">
                             <button
                               onClick={() => handleEdit(amenity)}
-                              className="px-2 py-1 text-sm text-blue-600 hover:bg-blue-50 rounded transition"
+                              className="px-2 py-1 text-sm text-teal-600 hover:bg-teal-50 rounded transition"
                             >
                               ✏️
                             </button>

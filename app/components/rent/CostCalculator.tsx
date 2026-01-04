@@ -132,7 +132,7 @@ export function CostCalculator({ rentUsd, locale }: CostCalculatorProps) {
               max="200"
               value={electricity}
               onChange={(e) => setElectricity(Number(e.target.value))}
-              className="w-20 accent-blue-500"
+              className="w-20 accent-teal-500"
             />
             <span className="text-xs text-gray-500 w-16">{electricity} {t.electricityUnit}</span>
             <span className="font-medium text-gray-900 dark:text-white w-10 text-right">${electricityCost}</span>
@@ -152,7 +152,7 @@ export function CostCalculator({ rentUsd, locale }: CostCalculatorProps) {
               max="20"
               value={water}
               onChange={(e) => setWater(Number(e.target.value))}
-              className="w-20 accent-blue-500"
+              className="w-20 accent-teal-500"
             />
             <span className="text-xs text-gray-500 w-16">{water} {t.waterUnit}</span>
             <span className="font-medium text-gray-900 dark:text-white w-10 text-right">${waterCost}</span>
@@ -166,7 +166,7 @@ export function CostCalculator({ rentUsd, locale }: CostCalculatorProps) {
               type="checkbox"
               checked={internet}
               onChange={(e) => setInternet(e.target.checked)}
-              className="w-4 h-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
+              className="w-4 h-4 rounded border-gray-300 text-teal-600 focus:ring-teal-500"
             />
             <span>🌐</span>
             <span>{t.internet}</span>
@@ -181,7 +181,7 @@ export function CostCalculator({ rentUsd, locale }: CostCalculatorProps) {
               type="checkbox"
               checked={cleaning}
               onChange={(e) => setCleaning(e.target.checked)}
-              className="w-4 h-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
+              className="w-4 h-4 rounded border-gray-300 text-teal-600 focus:ring-teal-500"
             />
             <span>🧹</span>
             <span>{t.cleaning}</span>
@@ -194,7 +194,7 @@ export function CostCalculator({ rentUsd, locale }: CostCalculatorProps) {
       <div className="border-t dark:border-slate-600 pt-3 space-y-2">
         <div className="flex justify-between items-center">
           <span className="font-medium text-gray-700 dark:text-gray-200">{t.total}</span>
-          <span className="text-xl font-bold text-blue-600 dark:text-blue-400">${totalMonthly}</span>
+          <span className="text-xl font-bold text-teal-600 dark:text-teal-400">${totalMonthly}</span>
         </div>
         <div className="flex justify-between items-center text-sm">
           <span className="text-gray-500 dark:text-gray-400">{t.deposit}</span>

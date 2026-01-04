@@ -103,7 +103,7 @@ export default function AccessibilityPanel() {
       {/* Accessibility toggle button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="fixed left-4 bottom-6 z-50 w-14 h-14 bg-blue-600 hover:bg-blue-700 text-white rounded-full shadow-lg flex items-center justify-center transition-all focus:outline-none focus:ring-4 focus:ring-blue-300"
+        className="fixed left-4 bottom-6 z-50 w-14 h-14 bg-teal-600 hover:bg-teal-700 text-white rounded-full shadow-lg flex items-center justify-center transition-all focus:outline-none focus:ring-4 focus:ring-teal-300"
         aria-label="Настройки доступности"
         aria-expanded={isOpen}
         aria-controls="accessibility-panel"
@@ -137,7 +137,7 @@ export default function AccessibilityPanel() {
           {/* Header */}
           <div className="flex items-center justify-between mb-6">
             <h2 className="text-xl font-bold text-gray-900 flex items-center gap-2">
-              <svg className="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-6 h-6 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
               </svg>
@@ -168,7 +168,7 @@ export default function AccessibilityPanel() {
                     onClick={() => updateSetting('theme', mode)}
                     className={`flex-1 py-3 px-2 rounded-xl font-medium text-sm transition flex flex-col items-center gap-1 ${
                       settings.theme === mode
-                        ? 'bg-blue-600 text-white'
+                        ? 'bg-teal-600 text-white'
                         : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                     }`}
                     aria-pressed={settings.theme === mode}
@@ -192,7 +192,7 @@ export default function AccessibilityPanel() {
                     onClick={() => updateSetting('fontSize', size)}
                     className={`flex-1 py-3 px-4 rounded-xl font-bold text-lg transition ${
                       settings.fontSize === size
-                        ? 'bg-blue-600 text-white'
+                        ? 'bg-teal-600 text-white'
                         : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                     }`}
                     aria-pressed={settings.fontSize === size}
@@ -216,7 +216,7 @@ export default function AccessibilityPanel() {
               <button
                 onClick={() => updateSetting('highContrast', !settings.highContrast)}
                 className={`relative w-14 h-8 rounded-full transition ${
-                  settings.highContrast ? 'bg-blue-600' : 'bg-gray-300'
+                  settings.highContrast ? 'bg-teal-600' : 'bg-gray-300'
                 }`}
                 role="switch"
                 aria-checked={settings.highContrast}
@@ -243,7 +243,7 @@ export default function AccessibilityPanel() {
               <button
                 onClick={() => updateSetting('reduceMotion', !settings.reduceMotion)}
                 className={`relative w-14 h-8 rounded-full transition ${
-                  settings.reduceMotion ? 'bg-blue-600' : 'bg-gray-300'
+                  settings.reduceMotion ? 'bg-teal-600' : 'bg-gray-300'
                 }`}
                 role="switch"
                 aria-checked={settings.reduceMotion}
@@ -270,7 +270,7 @@ export default function AccessibilityPanel() {
               <button
                 onClick={() => updateSetting('dyslexiaFont', !settings.dyslexiaFont)}
                 className={`relative w-14 h-8 rounded-full transition ${
-                  settings.dyslexiaFont ? 'bg-blue-600' : 'bg-gray-300'
+                  settings.dyslexiaFont ? 'bg-teal-600' : 'bg-gray-300'
                 }`}
                 role="switch"
                 aria-checked={settings.dyslexiaFont}
@@ -294,14 +294,14 @@ export default function AccessibilityPanel() {
           </div>
 
           {/* Keyboard shortcuts info */}
-          <div className="mt-8 p-4 bg-blue-50 rounded-xl">
-            <h3 className="text-sm font-semibold text-blue-900 mb-2">
+          <div className="mt-8 p-4 bg-teal-50 rounded-xl">
+            <h3 className="text-sm font-semibold text-teal-900 mb-2">
               Горячие клавиши
             </h3>
-            <ul className="text-xs text-blue-800 space-y-1">
-              <li><kbd className="px-1.5 py-0.5 bg-blue-100 rounded">Tab</kbd> — навигация</li>
-              <li><kbd className="px-1.5 py-0.5 bg-blue-100 rounded">Enter</kbd> — активация</li>
-              <li><kbd className="px-1.5 py-0.5 bg-blue-100 rounded">Esc</kbd> — закрыть</li>
+            <ul className="text-xs text-teal-800 space-y-1">
+              <li><kbd className="px-1.5 py-0.5 bg-teal-100 rounded">Tab</kbd> — навигация</li>
+              <li><kbd className="px-1.5 py-0.5 bg-teal-100 rounded">Enter</kbd> — активация</li>
+              <li><kbd className="px-1.5 py-0.5 bg-teal-100 rounded">Esc</kbd> — закрыть</li>
             </ul>
           </div>
         </div>

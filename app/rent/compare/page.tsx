@@ -169,7 +169,7 @@ export default function ComparePage() {
         <Header />
         <main className="max-w-7xl mx-auto px-4 sm:px-6 py-6 pt-24">
           <div className="flex items-center justify-center h-64">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500"></div>
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-teal-500"></div>
           </div>
         </main>
       </div>
@@ -187,7 +187,7 @@ export default function ComparePage() {
             <p className="text-gray-500 dark:text-gray-400 mb-6">{t.emptyDesc}</p>
             <Link
               href="/rent/apartments"
-              className="inline-block px-6 py-3 bg-gradient-to-r from-blue-500 via-sky-500 to-cyan-500 text-white font-bold rounded-xl hover:shadow-lg transition"
+              className="inline-block px-6 py-3 bg-gradient-to-r from-teal-600 via-teal-500 to-teal-400 text-white font-bold rounded-xl hover:shadow-lg transition"
             >
               {t.browse}
             </Link>
@@ -257,7 +257,7 @@ export default function ComparePage() {
                               size="sm"
                             />
                           </div>
-                          <h3 className="font-semibold text-gray-900 dark:text-white text-sm line-clamp-2 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition">
+                          <h3 className="font-semibold text-gray-900 dark:text-white text-sm line-clamp-2 group-hover:text-teal-600 dark:group-hover:text-teal-400 transition">
                             {getTitle(apt)}
                           </h3>
                         </Link>
@@ -274,7 +274,7 @@ export default function ComparePage() {
                   </td>
                   {apartments.map(apt => (
                     <td key={apt.id} className="p-4">
-                      <span className="text-xl font-bold text-blue-600 dark:text-blue-400">
+                      <span className="text-xl font-bold text-teal-600 dark:text-teal-400">
                         ${apt.priceUsd}
                       </span>
                       <span className="text-gray-500 dark:text-gray-400 text-sm">{t.perMonth}</span>
@@ -385,7 +385,7 @@ export default function ComparePage() {
                     <td key={apt.id} className="p-4">
                       <Link
                         href={`/rent/apartments/${apt.id}`}
-                        className="block w-full py-2.5 bg-gradient-to-r from-blue-500 via-sky-500 to-cyan-500 text-white font-medium rounded-xl text-center text-sm hover:shadow-lg transition"
+                        className="block w-full py-2.5 bg-gradient-to-r from-teal-600 via-teal-500 to-teal-400 text-white font-medium rounded-xl text-center text-sm hover:shadow-lg transition"
                       >
                         {t.view}
                       </Link>

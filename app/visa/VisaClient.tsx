@@ -224,10 +224,10 @@ export default function VisaClient({ visaTypes, faqs }: VisaClientProps) {
                       <span className="text-red-500">✗</span>
                     </td>
                     <td className="px-6 py-4 text-center">
-                      <span className="text-blue-500">✓ ($50)</span>
+                      <span className="text-teal-500">✓ ($50)</span>
                     </td>
                     <td className="px-6 py-4 text-center">
-                      <span className="text-blue-500">✓ ($50)</span>
+                      <span className="text-teal-500">✓ ($50)</span>
                     </td>
                   </tr>
                   <tr className="hover:bg-gray-50/50 dark:hover:bg-slate-700/50">
@@ -239,10 +239,10 @@ export default function VisaClient({ visaTypes, faqs }: VisaClientProps) {
                   <tr className="hover:bg-gray-50/50 dark:hover:bg-slate-700/50">
                     <td className="px-6 py-4 font-medium dark:text-white">Приглашение</td>
                     <td className="px-6 py-4 text-center">
-                      <span className="text-blue-500">Не нужно</span>
+                      <span className="text-teal-500">Не нужно</span>
                     </td>
                     <td className="px-6 py-4 text-center">
-                      <span className="text-blue-500">Не нужно</span>
+                      <span className="text-teal-500">Не нужно</span>
                     </td>
                     <td className="px-6 py-4 text-center">
                       <span className="text-orange-500">Нужно</span>
@@ -609,7 +609,7 @@ export default function VisaClient({ visaTypes, faqs }: VisaClientProps) {
                     onChange={handleFormChange}
                     rows={3}
                     placeholder="Расскажите о вашей ситуации..."
-                    className="w-full px-4 py-3 rounded-xl border border-gray-200 dark:border-slate-600 bg-white dark:bg-slate-700 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none resize-none"
+                    className="w-full px-4 py-3 rounded-xl border border-gray-200 dark:border-slate-600 bg-white dark:bg-slate-700 dark:text-white focus:ring-2 focus:ring-teal-500 focus:border-transparent outline-none resize-none"
                   />
                 </div>
 

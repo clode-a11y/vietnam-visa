@@ -49,7 +49,7 @@ export default function AdminLayout({
                     href={item.href}
                     className={`flex items-center gap-3 px-4 py-3 rounded-xl transition ${
                       isActive
-                        ? 'bg-blue-50 text-blue-700 font-semibold'
+                        ? 'bg-teal-50 text-teal-700 font-semibold'
                         : 'text-gray-600 hover:bg-gray-50'
                     }`}
                   >
