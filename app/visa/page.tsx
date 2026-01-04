@@ -138,16 +138,11 @@ export default async function VisaPage() {
 
             {/* Vietnam Map */}
             <div className="reveal reveal-delay-4 relative flex justify-center">
-              <svg viewBox="0 0 100 200" className="vietnam-map w-full max-w-[180px] md:max-w-[220px] h-auto" fill="url(#vietnamGradient2)">
-                <defs>
-                  <linearGradient id="vietnamGradient2" x1="0%" y1="0%" x2="0%" y2="100%">
-                    <stop offset="0%" stopColor="#115E67" />
-                    <stop offset="50%" stopColor="#3D9DA1" />
-                    <stop offset="100%" stopColor="#A8D8D8" />
-                  </linearGradient>
-                </defs>
-                <path d="M55 5 C60 8, 65 12, 68 18 C72 25, 70 32, 65 38 C60 44, 55 48, 52 55 C50 60, 52 65, 55 70 C58 75, 62 78, 65 82 C68 88, 66 94, 62 100 C58 106, 54 112, 52 118 C50 125, 52 132, 55 138 C58 145, 60 152, 58 160 C56 168, 52 175, 48 182 C45 188, 42 192, 40 195 C38 192, 36 188, 35 182 C33 175, 32 168, 34 160 C36 152, 40 145, 42 138 C44 130, 42 122, 38 115 C34 108, 30 102, 28 95 C26 88, 28 80, 32 73 C36 66, 40 60, 42 52 C44 44, 42 36, 38 28 C35 22, 38 15, 45 10 C48 7, 52 5, 55 5 Z" />
-              </svg>
+              <img
+                src="/vietnam-map.jpg"
+                alt="Карта Вьетнама"
+                className="vietnam-map w-full max-w-[180px] md:max-w-[220px] h-auto"
+              />
 
               {/* Decorative badges */}
               <div className="absolute top-4 right-4 px-3 py-2 bg-white/90 dark:bg-slate-800/90 backdrop-blur rounded-xl shadow-lg flex items-center gap-2">
