@@ -13,6 +13,7 @@ import { useRecentlyViewed } from '@/lib/recently-viewed'
 import { ShareButton } from '@/app/components/rent/ShareButton'
 import { CostCalculator } from '@/app/components/rent/CostCalculator'
 import { CurrencyConverter } from '@/app/components/rent/CurrencyConverter'
+import { distanceToBeach, formatDistance } from '@/lib/distance'
 
 interface ApartmentImage {
   id: string
@@ -52,6 +53,8 @@ interface Apartment {
   floor: number | null
   totalFloors: number | null
   address: string
+  lat: number | null
+  lng: number | null
   isAvailable: boolean
   canShow: boolean
   hasVideo: boolean
@@ -77,6 +80,8 @@ interface SimilarApartment {
   priceUsd: number
   rooms: number
   area: number
+  lat: number | null
+  lng: number | null
   isAvailable: boolean
   district: District
   images: { url: string; isCover: boolean }[]
@@ -384,6 +389,12 @@ export default function ApartmentDetailPage({ params }: { params: Promise<{ id: 
                     <span>Есть видео</span>
                   </div>
                 )}
+                {distanceToBeach(apartment.lat, apartment.lng) !== null && (
+                  <div className="flex items-center gap-2 text-cyan-600 dark:text-cyan-400">
+                    <span>🏖️</span>
+                    <span>{locale === 'ru' ? 'До пляжа' : locale === 'vi' ? 'Đến biển' : 'To beach'} {formatDistance(distanceToBeach(apartment.lat, apartment.lng), locale)}</span>
+                  </div>
+                )}
               </div>
 
               <div className="border-t dark:border-slate-700 pt-6">
@@ -533,6 +544,9 @@ export default function ApartmentDetailPage({ params }: { params: Promise<{ id: 
                       <div className="flex items-center justify-between">
                         <span className="text-xs text-gray-600 dark:text-gray-300">
                           {apt.rooms === 0 ? (locale === 'ru' ? 'Студия' : 'Studio') : `${apt.rooms} ${locale === 'ru' ? 'комн.' : 'rm'}`} • {apt.area} {locale === 'ru' ? 'м²' : 'm²'}
+                          {distanceToBeach(apt.lat, apt.lng) !== null && (
+                            <span className="text-cyan-600 dark:text-cyan-400"> • 🏖️ {formatDistance(distanceToBeach(apt.lat, apt.lng), locale)}</span>
+                          )}
                         </span>
                         <span className="font-bold text-blue-600 dark:text-blue-400 text-sm">
                           ${apt.priceUsd}

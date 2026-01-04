@@ -11,6 +11,7 @@ import { translations } from '@/lib/i18n/translations'
 import { FavoriteButton } from '@/lib/favorites'
 import { useRecentlyViewed } from '@/lib/recently-viewed'
 import { CompareButton, CompareBar } from '@/lib/compare'
+import { distanceToBeach, formatDistance } from '@/lib/distance'
 
 interface District {
   id: string
@@ -42,6 +43,8 @@ interface Apartment {
   priceUsd: number
   rooms: number
   area: number
+  lat: number | null
+  lng: number | null
   isAvailable: boolean
   district: District
   images: ApartmentImage[]
@@ -401,6 +404,9 @@ export default function ApartmentsPage() {
                       <div className="flex items-center justify-between mt-1">
                         <span className="text-xs text-gray-600 dark:text-gray-300">
                           {apt.rooms === 0 ? 'Ст.' : `${apt.rooms} к.`} • {apt.area} м²
+                          {distanceToBeach(apt.lat, apt.lng) !== null && (
+                            <span className="text-cyan-600 dark:text-cyan-400"> • 🏖️ {formatDistance(distanceToBeach(apt.lat, apt.lng), locale)}</span>
+                          )}
                         </span>
                         <span className="font-bold text-blue-600 dark:text-blue-400 text-sm">${apt.priceUsd}</span>
                       </div>
@@ -475,6 +481,9 @@ export default function ApartmentsPage() {
                   <p className="text-sm text-gray-500 dark:text-gray-400">{getDistrictName(apt.district)}</p>
                   <p className="text-sm text-gray-600 dark:text-gray-300 mt-1">
                     {apt.rooms === 0 ? 'Студия' : `${apt.rooms} ${t('rent.rooms')}`} • {apt.area} {t('rent.area')}
+                    {distanceToBeach(apt.lat, apt.lng) !== null && (
+                      <span className="text-cyan-600 dark:text-cyan-400"> • 🏖️ {formatDistance(distanceToBeach(apt.lat, apt.lng), locale)}</span>
+                    )}
                   </p>
                 </div>
                 </Link>
