@@ -139,7 +139,7 @@ export default async function VisaPage() {
             {/* Vietnam Map */}
             <div className="reveal reveal-delay-4 relative flex justify-center">
               <img
-                src="/vietnam-map.jpg"
+                src="/map-vietnam.jpg"
                 alt="Карта Вьетнама"
                 className="vietnam-map w-full max-w-[180px] md:max-w-[220px] h-auto"
               />
