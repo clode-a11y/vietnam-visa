@@ -14,6 +14,7 @@ import { ShareButton } from '@/app/components/rent/ShareButton'
 import { CostCalculator } from '@/app/components/rent/CostCalculator'
 import { CurrencyConverter } from '@/app/components/rent/CurrencyConverter'
 import { AvailabilityCalendar } from '@/app/components/rent/AvailabilityCalendar'
+import { ExportPdfButton } from '@/app/components/rent/ExportPdfButton'
 import { distanceToBeach, formatDistance } from '@/lib/distance'
 
 interface ApartmentImage {
@@ -490,6 +491,15 @@ export default function ApartmentDetailPage({ params }: { params: Promise<{ id: 
               {/* Cost Calculator */}
               <div className="mt-6">
                 <CostCalculator rentUsd={apartment.priceUsd} locale={locale} />
+              </div>
+
+              {/* Export PDF */}
+              <div className="mt-4">
+                <ExportPdfButton
+                  apartment={apartment}
+                  locale={locale}
+                  className="w-full"
+                />
               </div>
             </div>
           </div>
