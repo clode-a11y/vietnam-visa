@@ -2,21 +2,61 @@
 
 import Link from 'next/link'
 import { useState } from 'react'
+import { usePathname } from 'next/navigation'
 import LanguageSwitcher from './LanguageSwitcher'
 import ThemeToggle from './ThemeToggle'
 import { useFavorites } from '@/lib/favorites'
+import { useLocale } from '@/lib/i18n/context'
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const { favorites } = useFavorites()
+  const pathname = usePathname()
+  const { locale } = useLocale()
+
+  const labels = {
+    ru: {
+      visa: 'Визы',
+      rent: 'Аренда',
+      map: 'Карта',
+      blog: 'Блог',
+      favorites: 'Избранное',
+      menu: 'Меню',
+      cta: 'Рассчитать визу',
+    },
+    en: {
+      visa: 'Visas',
+      rent: 'Rentals',
+      map: 'Map',
+      blog: 'Blog',
+      favorites: 'Favorites',
+      menu: 'Menu',
+      cta: 'Calculate Visa',
+    },
+    vi: {
+      visa: 'Visa',
+      rent: 'Thuê nhà',
+      map: 'Bản đồ',
+      blog: 'Blog',
+      favorites: 'Yêu thích',
+      menu: 'Menu',
+      cta: 'Tính toán Visa',
+    },
+  }
+
+  const t = labels[locale as keyof typeof labels] || labels.ru
 
   const menuItems = [
-    { href: '#features', label: 'Визы' },
-    { href: '/rent', label: 'Аренда', isPage: true },
-    { href: '#calculator', label: 'Калькулятор' },
-    { href: '/blog', label: 'Блог', isPage: true },
-    { href: '#contact', label: 'Заявка' },
+    { href: '/visa', label: t.visa, icon: '📋' },
+    { href: '/rent', label: t.rent, icon: '🏠' },
+    { href: '/rent/map', label: t.map, icon: '🗺️' },
+    { href: '/blog', label: t.blog, icon: '📖' },
   ]
+
+  const isActive = (href: string) => {
+    if (href === '/') return pathname === '/'
+    return pathname.startsWith(href)
+  }
 
   const handleMenuClick = () => {
     setIsMenuOpen(false)
@@ -24,41 +64,42 @@ export default function Header() {
 
   return (
     <>
-      <header id="header" className="fixed top-0 left-0 right-0 z-50 px-6 py-4 flex justify-between items-center bg-white/70 dark:bg-slate-900/80 backdrop-blur-xl border-b border-white/50 dark:border-slate-700/50 transition-all">
-        <Link href="/" className="flex items-center gap-2 text-xl font-extrabold text-gray-900 dark:text-white">
+      <header id="header" className="fixed top-0 left-0 right-0 z-50 px-4 sm:px-6 py-3 sm:py-4 flex justify-between items-center bg-white/70 dark:bg-slate-900/80 backdrop-blur-xl border-b border-white/50 dark:border-slate-700/50 transition-all">
+        <Link href="/" className="flex items-center gap-2 text-lg sm:text-xl font-extrabold text-gray-900 dark:text-white">
           <span>🇻🇳</span>
-          VietVisa
+          <span className="bg-gradient-to-r from-blue-600 via-sky-500 to-cyan-500 bg-clip-text text-transparent">
+            VietVisa
+          </span>
         </Link>
 
         {/* Desktop menu */}
-        <nav className="hidden md:flex gap-8">
+        <nav className="hidden md:flex gap-1">
           {menuItems.map((item) => (
-            item.isPage ? (
-              <Link
-                key={item.href}
-                href={item.href}
-                className="text-gray-700 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400 font-medium transition"
-              >
-                {item.label}
-              </Link>
-            ) : (
-              <a
-                key={item.href}
-                href={item.href}
-                className="text-gray-700 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400 font-medium transition"
-              >
-                {item.label}
-              </a>
-            )
+            <Link
+              key={item.href}
+              href={item.href}
+              className={`flex items-center gap-2 px-4 py-2 rounded-xl font-medium transition ${
+                isActive(item.href)
+                  ? 'bg-blue-100 dark:bg-blue-900/50 text-blue-700 dark:text-blue-400'
+                  : 'text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-slate-700'
+              }`}
+            >
+              <span className="text-sm">{item.icon}</span>
+              <span>{item.label}</span>
+            </Link>
           ))}
         </nav>
 
         {/* Desktop actions */}
-        <div className="hidden md:flex items-center gap-3">
+        <div className="hidden md:flex items-center gap-2">
           <Link
             href="/rent/favorites"
-            className="relative w-10 h-10 flex items-center justify-center text-gray-600 dark:text-gray-300 hover:text-red-500 dark:hover:text-red-400 hover:bg-gray-100 dark:hover:bg-slate-700 rounded-full transition"
-            title="Избранное"
+            className={`relative w-10 h-10 flex items-center justify-center rounded-full transition ${
+              favorites.length > 0
+                ? 'text-red-500 dark:text-red-400 bg-red-50 dark:bg-red-900/30'
+                : 'text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-slate-700'
+            }`}
+            title={t.favorites}
           >
             <svg className="w-5 h-5" fill={favorites.length > 0 ? 'currentColor' : 'none'} stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
@@ -71,37 +112,56 @@ export default function Header() {
           </Link>
           <ThemeToggle />
           <LanguageSwitcher />
-          <a
-            href="#calculator"
-            className="px-5 py-2.5 bg-gradient-to-r from-blue-500 via-sky-500 to-cyan-500 text-white font-bold rounded-full hover:shadow-lg transition"
+          <Link
+            href="/visa#calculator"
+            className="px-4 py-2.5 bg-gradient-to-r from-blue-500 via-sky-500 to-cyan-500 text-white font-bold rounded-xl hover:shadow-lg active:scale-[0.98] transition text-sm"
           >
-            Рассчитать визу
-          </a>
+            {t.cta}
+          </Link>
         </div>
 
         {/* Mobile hamburger button */}
-        <button
-          onClick={() => setIsMenuOpen(!isMenuOpen)}
-          className="md:hidden w-12 h-12 flex flex-col items-center justify-center gap-1.5 -mr-2"
-          aria-label={isMenuOpen ? 'Закрыть меню' : 'Открыть меню'}
-          aria-expanded={isMenuOpen}
-        >
-          <span
-            className={`w-6 h-0.5 bg-gray-800 dark:bg-gray-200 transition-all duration-300 ${
-              isMenuOpen ? 'rotate-45 translate-y-2' : ''
+        <div className="flex items-center gap-2 md:hidden">
+          <Link
+            href="/rent/favorites"
+            className={`relative w-10 h-10 flex items-center justify-center rounded-full transition ${
+              favorites.length > 0
+                ? 'text-red-500 dark:text-red-400'
+                : 'text-gray-600 dark:text-gray-300'
             }`}
-          />
-          <span
-            className={`w-6 h-0.5 bg-gray-800 dark:bg-gray-200 transition-all duration-300 ${
-              isMenuOpen ? 'opacity-0' : ''
-            }`}
-          />
-          <span
-            className={`w-6 h-0.5 bg-gray-800 dark:bg-gray-200 transition-all duration-300 ${
-              isMenuOpen ? '-rotate-45 -translate-y-2' : ''
-            }`}
-          />
-        </button>
+          >
+            <svg className="w-5 h-5" fill={favorites.length > 0 ? 'currentColor' : 'none'} stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+            </svg>
+            {favorites.length > 0 && (
+              <span className="absolute -top-0.5 -right-0.5 w-4 h-4 bg-red-500 text-white text-[10px] font-bold rounded-full flex items-center justify-center">
+                {favorites.length > 9 ? '9+' : favorites.length}
+              </span>
+            )}
+          </Link>
+          <button
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            className="w-10 h-10 flex flex-col items-center justify-center gap-1.5"
+            aria-label={isMenuOpen ? 'Закрыть меню' : 'Открыть меню'}
+            aria-expanded={isMenuOpen}
+          >
+            <span
+              className={`w-5 h-0.5 bg-gray-800 dark:bg-gray-200 transition-all duration-300 ${
+                isMenuOpen ? 'rotate-45 translate-y-2' : ''
+              }`}
+            />
+            <span
+              className={`w-5 h-0.5 bg-gray-800 dark:bg-gray-200 transition-all duration-300 ${
+                isMenuOpen ? 'opacity-0' : ''
+              }`}
+            />
+            <span
+              className={`w-5 h-0.5 bg-gray-800 dark:bg-gray-200 transition-all duration-300 ${
+                isMenuOpen ? '-rotate-45 -translate-y-2' : ''
+              }`}
+            />
+          </button>
+        </div>
       </header>
 
       {/* Mobile menu overlay */}
@@ -120,7 +180,7 @@ export default function Header() {
       >
         <div className="p-6">
           <div className="flex justify-between items-center mb-8">
-            <span className="text-xl font-bold dark:text-white">Меню</span>
+            <span className="text-xl font-bold dark:text-white">{t.menu}</span>
             <div className="flex items-center gap-2">
               <ThemeToggle />
               <button
@@ -132,37 +192,35 @@ export default function Header() {
             </div>
           </div>
 
-          <nav className="flex flex-col gap-4">
+          <nav className="flex flex-col gap-2">
             {menuItems.map((item) => (
-              item.isPage ? (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  onClick={handleMenuClick}
-                  className="text-lg text-gray-700 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400 font-medium py-2 border-b border-gray-100 dark:border-slate-700 transition"
-                >
-                  {item.label}
-                </Link>
-              ) : (
-                <a
-                  key={item.href}
-                  href={item.href}
-                  onClick={handleMenuClick}
-                  className="text-lg text-gray-700 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400 font-medium py-2 border-b border-gray-100 dark:border-slate-700 transition"
-                >
-                  {item.label}
-                </a>
-              )
+              <Link
+                key={item.href}
+                href={item.href}
+                onClick={handleMenuClick}
+                className={`flex items-center gap-3 text-lg font-medium py-3 px-4 rounded-xl transition ${
+                  isActive(item.href)
+                    ? 'bg-blue-100 dark:bg-blue-900/50 text-blue-700 dark:text-blue-400'
+                    : 'text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-slate-700'
+                }`}
+              >
+                <span>{item.icon}</span>
+                <span>{item.label}</span>
+              </Link>
             ))}
             <Link
               href="/rent/favorites"
               onClick={handleMenuClick}
-              className="flex items-center gap-3 text-lg text-gray-700 dark:text-gray-200 hover:text-red-500 dark:hover:text-red-400 font-medium py-2 border-b border-gray-100 dark:border-slate-700 transition"
+              className={`flex items-center gap-3 text-lg font-medium py-3 px-4 rounded-xl transition ${
+                isActive('/rent/favorites')
+                  ? 'bg-red-100 dark:bg-red-900/50 text-red-600 dark:text-red-400'
+                  : 'text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-slate-700'
+              }`}
             >
               <svg className="w-5 h-5" fill={favorites.length > 0 ? 'currentColor' : 'none'} stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
               </svg>
-              Избранное
+              <span>{t.favorites}</span>
               {favorites.length > 0 && (
                 <span className="ml-auto bg-red-500 text-white text-sm font-bold px-2 py-0.5 rounded-full">
                   {favorites.length}
@@ -171,13 +229,17 @@ export default function Header() {
             </Link>
           </nav>
 
-          <a
-            href="#calculator"
+          <div className="mt-6 pt-6 border-t border-gray-200 dark:border-slate-700">
+            <LanguageSwitcher />
+          </div>
+
+          <Link
+            href="/visa#calculator"
             onClick={handleMenuClick}
-            className="mt-8 block w-full py-4 bg-gradient-to-r from-blue-500 via-sky-500 to-cyan-500 text-white font-bold rounded-xl text-center hover:shadow-lg transition"
+            className="mt-6 block w-full py-4 bg-gradient-to-r from-blue-500 via-sky-500 to-cyan-500 text-white font-bold rounded-xl text-center hover:shadow-lg active:scale-[0.98] transition"
           >
-            Рассчитать визу
-          </a>
+            {t.cta}
+          </Link>
         </div>
       </div>
     </>

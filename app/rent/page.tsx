@@ -2,6 +2,7 @@
 
 import Link from 'next/link'
 import Header from '@/app/components/Header'
+import Footer from '@/app/components/Footer'
 import FloatingContact from '@/app/components/FloatingContact'
 import { useLocale } from '@/lib/i18n/context'
 import { translations } from '@/lib/i18n/translations'
@@ -184,18 +185,7 @@ export default function RentPage() {
         </section>
       </main>
 
-      {/* Footer */}
-      <footer className="bg-gray-900 text-white mt-12">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-8">
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
-            <div className="flex items-center gap-2">
-              <span className="text-2xl">🏠</span>
-              <span className="font-bold">Nha Trang Rentals</span>
-            </div>
-            <p className="text-gray-400 text-sm">© 2025 VietVisa. All rights reserved.</p>
-          </div>
-        </div>
-      </footer>
+      <Footer />
 
       <FloatingContact />
     </div>
