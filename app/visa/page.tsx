@@ -143,16 +143,6 @@ export default async function VisaPage() {
                 alt="Карта Вьетнама"
                 className="vietnam-map w-full max-w-[180px] md:max-w-[220px] h-auto"
               />
-
-              {/* Decorative badges */}
-              <div className="absolute top-4 right-4 px-3 py-2 bg-white/90 dark:bg-slate-800/90 backdrop-blur rounded-xl shadow-lg flex items-center gap-2">
-                <span>🏖️</span>
-                <span className="text-sm font-semibold dark:text-white">Пляжи</span>
-              </div>
-              <div className="absolute bottom-20 left-4 px-3 py-2 bg-white/90 dark:bg-slate-800/90 backdrop-blur rounded-xl shadow-lg flex items-center gap-2">
-                <span>🍜</span>
-                <span className="text-sm font-semibold dark:text-white">Еда</span>
-              </div>
             </div>
           </div>
         </section>
