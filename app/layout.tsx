@@ -80,6 +80,25 @@ export default function RootLayout({
   return (
     <html lang="ru" suppressHydrationWarning>
       <head>
+        {/* Critical CSS for above-the-fold content - eliminates render blocking */}
+        <style
+          dangerouslySetInnerHTML={{
+            __html: `
+              :root{--teal-light:#A8D8D8;--teal:#3D9DA1;--teal-dark:#115E67;--text-primary:#1A2A2A;--text-secondary:#4A6B6B}
+              html.dark{--teal-light:#1E4A4D;--teal-dark:#A8D8D8;--text-primary:#F8FAFA;--text-secondary:#A8C8C8}
+              body{font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;-webkit-font-smoothing:antialiased;background:#fff;margin:0}
+              html.dark body{background:#0D1717;color:#F8FAFA}
+              .gradient-bg-animated{position:fixed;inset:0;background:linear-gradient(180deg,#fff 0%,#fff 40%,rgba(168,216,216,.15) 70%,rgba(61,157,161,.08) 85%,rgba(168,216,216,.12) 100%);z-index:-1}
+              html.dark .gradient-bg-animated{background:linear-gradient(180deg,#0D1717 0%,#0D1717 40%,rgba(61,157,161,.1) 70%,rgba(17,94,103,.15) 85%,rgba(61,157,161,.08) 100%)}
+              header{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(255,255,255,.9);backdrop-filter:blur(12px);border-bottom:1px solid rgba(0,0,0,.05)}
+              html.dark header{background:rgba(13,23,23,.9);border-color:rgba(61,157,161,.2)}
+              .skip-link{position:absolute;top:-100px;left:50%;transform:translateX(-50%);background:var(--teal-dark);color:#fff;padding:1rem 2rem;border-radius:0 0 12px 12px;font-weight:600;z-index:9999;transition:top .3s}
+              .skip-link:focus{top:0}
+              .reveal{opacity:1;transform:none}
+            `,
+          }}
+        />
+        {/* Theme detection script - runs before paint */}
         <script
           dangerouslySetInnerHTML={{
             __html: `
