@@ -112,28 +112,42 @@ export default async function HomePage() {
       <Header />
 
       <main id="main-content">
-        {/* Hero Section */}
-        <section className="pt-28 pb-16 px-6">
-          <div className="max-w-6xl mx-auto text-center">
-            <div className="reveal inline-flex items-center gap-2 px-4 py-2 bg-white/90 dark:bg-slate-800/80 backdrop-blur rounded-full text-sm font-semibold text-teal-700 dark:text-teal-400 mb-6 shadow-sm">
-              <span className="w-2 h-2 bg-teal-500 rounded-full animate-pulse"></span>
+        {/* Hero Section with Photo */}
+        <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden">
+          {/* Background Image */}
+          <div className="absolute inset-0">
+            <Image
+              src="https://images.unsplash.com/photo-1583417319070-4a69db38a482?w=1920&q=80"
+              alt="Нячанг, Вьетнам - пляж"
+              fill
+              className="object-cover"
+              priority
+            />
+            {/* Gradient Overlay */}
+            <div className="absolute inset-0 bg-gradient-to-b from-[#115E67]/70 via-[#115E67]/50 to-[#115E67]/80"></div>
+          </div>
+
+          {/* Content */}
+          <div className="relative z-10 max-w-6xl mx-auto text-center px-6 py-20">
+            <div className="reveal inline-flex items-center gap-2 px-4 py-2 bg-white/20 backdrop-blur-md rounded-full text-sm font-semibold text-white mb-6 border border-white/30">
+              <span className="w-2 h-2 bg-[#A8D8D8] rounded-full animate-pulse"></span>
               Актуально на 2025 год
             </div>
-            <h1 className="reveal reveal-delay-1 text-4xl sm:text-5xl md:text-6xl font-black mb-6 leading-tight dark:text-white">
+            <h1 className="reveal reveal-delay-1 text-4xl sm:text-5xl md:text-7xl font-black mb-6 leading-tight text-white">
               Всё для жизни во{' '}
-              <span className="bg-gradient-to-r from-teal-700 via-teal-500 to-teal-300 bg-clip-text text-transparent">
+              <span className="text-[#A8D8D8]">
                 Вьетнаме
               </span>
             </h1>
-            <p className="reveal reveal-delay-2 text-lg sm:text-xl text-gray-700 dark:text-gray-300 mb-10 max-w-2xl mx-auto">
+            <p className="reveal reveal-delay-2 text-lg sm:text-xl text-white/90 mb-10 max-w-2xl mx-auto">
               Визы, аренда квартир в Нячанге и полезные гайды для переезда и жизни во Вьетнаме
             </p>
 
             {/* Main CTA Buttons */}
-            <div className="reveal reveal-delay-3 flex flex-col sm:flex-row gap-4 justify-center mb-12">
+            <div className="reveal reveal-delay-3 flex flex-col sm:flex-row gap-4 justify-center">
               <Link
                 href="/visa"
-                className="inline-flex items-center justify-center gap-3 px-8 py-4 bg-gradient-to-r from-teal-700 via-teal-500 to-teal-400 text-white font-bold rounded-2xl hover:shadow-xl hover:shadow-teal-500/20 active:scale-[0.98] transition text-lg group"
+                className="inline-flex items-center justify-center gap-3 px-8 py-4 bg-[#3D9DA1] hover:bg-[#115E67] text-white font-bold rounded-2xl hover:shadow-xl hover:shadow-black/20 active:scale-[0.98] transition text-lg group"
               >
                 <span className="text-2xl">📋</span>
                 <span>Оформить визу</span>
@@ -141,7 +155,7 @@ export default async function HomePage() {
               </Link>
               <Link
                 href="/rent"
-                className="inline-flex items-center justify-center gap-3 px-8 py-4 bg-white dark:bg-slate-800 text-teal-700 dark:text-teal-400 font-bold rounded-2xl border-2 border-teal-500 hover:bg-teal-50 dark:hover:bg-slate-700 active:scale-[0.98] transition text-lg group"
+                className="inline-flex items-center justify-center gap-3 px-8 py-4 bg-white/20 backdrop-blur-md text-white font-bold rounded-2xl border-2 border-white/50 hover:bg-white/30 active:scale-[0.98] transition text-lg group"
               >
                 <span className="text-2xl">🏠</span>
                 <span>Снять квартиру</span>
@@ -149,22 +163,10 @@ export default async function HomePage() {
               </Link>
             </div>
 
-            {/* Vietnam Map - SVG without background */}
-            <div className="reveal reveal-delay-4 relative flex justify-center mb-8">
-              <svg
-                viewBox="0 0 100 200"
-                className="vietnam-map w-full max-w-[180px] md:max-w-[220px] h-auto"
-                fill="url(#vietnamGradient)"
-              >
-                <defs>
-                  <linearGradient id="vietnamGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-                    <stop offset="0%" stopColor="#115E67" />
-                    <stop offset="50%" stopColor="#3D9DA1" />
-                    <stop offset="100%" stopColor="#A8D8D8" />
-                  </linearGradient>
-                </defs>
-                {/* Simplified Vietnam shape */}
-                <path d="M55 5 C60 8, 65 12, 68 18 C72 25, 70 32, 65 38 C60 42, 55 45, 58 52 C62 60, 68 65, 65 72 C60 78, 55 82, 52 88 C50 95, 55 102, 60 108 C65 115, 62 122, 58 128 C54 135, 50 142, 48 150 C46 158, 50 165, 55 172 C60 178, 58 185, 52 190 C48 193, 42 195, 38 192 C32 188, 35 180, 38 172 C40 165, 35 158, 30 152 C25 145, 28 138, 32 132 C35 125, 30 118, 25 112 C20 105, 22 98, 28 92 C32 88, 28 82, 25 78 C22 72, 25 65, 30 60 C35 55, 32 48, 28 42 C25 35, 30 28, 38 22 C45 15, 50 10, 55 5 Z" />
+            {/* Scroll indicator */}
+            <div className="reveal reveal-delay-4 absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
+              <svg className="w-6 h-6 text-white/70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
               </svg>
             </div>
           </div>
@@ -200,48 +202,75 @@ export default async function HomePage() {
               {/* Visa Service */}
               <Link
                 href="/visa"
-                className="reveal reveal-delay-1 group bg-white/95 dark:bg-slate-800/80 backdrop-blur-xl rounded-3xl p-6 shadow-lg border border-teal-100 dark:border-teal-900/30 hover:shadow-xl hover:shadow-teal-500/10 hover:-translate-y-2 transition-all"
+                className="reveal reveal-delay-1 group relative rounded-3xl overflow-hidden shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all h-80"
               >
-                <div className="text-5xl mb-4 group-hover:scale-110 transition-transform">📋</div>
-                <h3 className="text-xl font-bold dark:text-white mb-2">Визы</h3>
-                <p className="text-gray-600 dark:text-gray-400 mb-4">
-                  Безвизовый въезд до 45 дней, электронная виза e-Visa, калькулятор визы
-                </p>
-                <div className="flex items-center gap-2 text-teal-600 dark:text-teal-400 font-semibold group-hover:gap-3 transition-all">
-                  <span>Подробнее</span>
-                  <span>→</span>
+                <Image
+                  src="https://images.unsplash.com/photo-1528127269322-539801943592?w=600&q=80"
+                  alt="Паспорт и виза"
+                  fill
+                  className="object-cover group-hover:scale-110 transition-transform duration-500"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#115E67] via-[#115E67]/60 to-transparent"></div>
+                <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
+                  <div className="text-4xl mb-2">📋</div>
+                  <h3 className="text-xl font-bold mb-2">Визы</h3>
+                  <p className="text-white/80 text-sm mb-3">
+                    Безвизовый въезд 45 дней, e-Visa, калькулятор
+                  </p>
+                  <div className="flex items-center gap-2 text-[#A8D8D8] font-semibold group-hover:gap-3 transition-all">
+                    <span>Подробнее</span>
+                    <span>→</span>
+                  </div>
                 </div>
               </Link>
 
               {/* Rent Service */}
               <Link
                 href="/rent"
-                className="reveal reveal-delay-2 group bg-white/95 dark:bg-slate-800/80 backdrop-blur-xl rounded-3xl p-6 shadow-lg border border-teal-100 dark:border-teal-900/30 hover:shadow-xl hover:shadow-teal-500/10 hover:-translate-y-2 transition-all"
+                className="reveal reveal-delay-2 group relative rounded-3xl overflow-hidden shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all h-80"
               >
-                <div className="text-5xl mb-4 group-hover:scale-110 transition-transform">🏠</div>
-                <h3 className="text-xl font-bold dark:text-white mb-2">Аренда</h3>
-                <p className="text-gray-600 dark:text-gray-400 mb-4">
-                  Квартиры в Нячанге от $300/мес, видео-просмотры, помощь с заселением
-                </p>
-                <div className="flex items-center gap-2 text-teal-600 dark:text-teal-400 font-semibold group-hover:gap-3 transition-all">
-                  <span>Каталог</span>
-                  <span>→</span>
+                <Image
+                  src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=600&q=80"
+                  alt="Квартира в аренду"
+                  fill
+                  className="object-cover group-hover:scale-110 transition-transform duration-500"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#115E67] via-[#115E67]/60 to-transparent"></div>
+                <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
+                  <div className="text-4xl mb-2">🏠</div>
+                  <h3 className="text-xl font-bold mb-2">Аренда</h3>
+                  <p className="text-white/80 text-sm mb-3">
+                    Квартиры в Нячанге от $300/мес, видео-просмотры
+                  </p>
+                  <div className="flex items-center gap-2 text-[#A8D8D8] font-semibold group-hover:gap-3 transition-all">
+                    <span>Каталог</span>
+                    <span>→</span>
+                  </div>
                 </div>
               </Link>
 
               {/* Blog Service */}
               <Link
                 href="/blog"
-                className="reveal reveal-delay-3 group bg-white/95 dark:bg-slate-800/80 backdrop-blur-xl rounded-3xl p-6 shadow-lg border border-teal-100 dark:border-teal-900/30 hover:shadow-xl hover:shadow-teal-500/10 hover:-translate-y-2 transition-all"
+                className="reveal reveal-delay-3 group relative rounded-3xl overflow-hidden shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all h-80"
               >
-                <div className="text-5xl mb-4 group-hover:scale-110 transition-transform">📖</div>
-                <h3 className="text-xl font-bold dark:text-white mb-2">Блог</h3>
-                <p className="text-gray-600 dark:text-gray-400 mb-4">
-                  Полезные статьи о жизни во Вьетнаме, советы, лайфхаки и новости
-                </p>
-                <div className="flex items-center gap-2 text-teal-600 dark:text-teal-400 font-semibold group-hover:gap-3 transition-all">
-                  <span>Читать</span>
-                  <span>→</span>
+                <Image
+                  src="https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=600&q=80"
+                  alt="Вьетнам улицы"
+                  fill
+                  className="object-cover group-hover:scale-110 transition-transform duration-500"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#115E67] via-[#115E67]/60 to-transparent"></div>
+                <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
+                  <div className="text-4xl mb-2">📖</div>
+                  <h3 className="text-xl font-bold mb-2">Блог</h3>
+                  <p className="text-white/80 text-sm mb-3">
+                    Статьи о жизни во Вьетнаме, советы, лайфхаки
+                  </p>
+                  <div className="flex items-center gap-2 text-[#A8D8D8] font-semibold group-hover:gap-3 transition-all">
+                    <span>Читать</span>
+                    <span>→</span>
+                  </div>
                 </div>
               </Link>
             </div>
@@ -393,23 +422,36 @@ export default async function HomePage() {
         )}
 
         {/* CTA Section */}
-        <section className="py-20 px-6 text-center">
-          <div className="reveal text-6xl mb-4">🌴</div>
-          <h2 className="reveal reveal-delay-1 text-3xl md:text-4xl font-black dark:text-white mb-4">Готовы к переезду?</h2>
-          <p className="reveal reveal-delay-2 text-xl text-gray-600 dark:text-gray-400 mb-8">Вьетнам ждёт вас!</p>
-          <div className="reveal reveal-delay-3 flex flex-col sm:flex-row gap-4 justify-center">
-            <Link
-              href="/visa"
-              className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-gradient-to-r from-teal-700 via-teal-500 to-teal-400 text-white font-bold rounded-full hover:shadow-lg hover:shadow-teal-500/20 active:scale-[0.98] transition text-lg"
-            >
-              Рассчитать визу →
-            </Link>
-            <Link
-              href="/rent/apartments"
-              className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white dark:bg-slate-800 text-teal-700 dark:text-teal-400 font-bold rounded-full border-2 border-teal-500 hover:bg-teal-50 dark:hover:bg-slate-700 active:scale-[0.98] transition text-lg"
-            >
-              Смотреть квартиры →
-            </Link>
+        <section className="relative py-32 px-6 overflow-hidden">
+          {/* Background Image */}
+          <div className="absolute inset-0">
+            <Image
+              src="https://images.unsplash.com/photo-1559592413-7cec4d0cae2b?w=1920&q=80"
+              alt="Вьетнам закат"
+              fill
+              className="object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-r from-[#115E67]/90 to-[#3D9DA1]/80"></div>
+          </div>
+
+          <div className="relative z-10 max-w-4xl mx-auto text-center">
+            <div className="reveal text-6xl mb-4">🌴</div>
+            <h2 className="reveal reveal-delay-1 text-3xl md:text-5xl font-black text-white mb-4">Готовы к переезду?</h2>
+            <p className="reveal reveal-delay-2 text-xl text-white/80 mb-8">Вьетнам ждёт вас!</p>
+            <div className="reveal reveal-delay-3 flex flex-col sm:flex-row gap-4 justify-center">
+              <Link
+                href="/visa"
+                className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white text-[#115E67] font-bold rounded-full hover:shadow-lg hover:shadow-black/20 active:scale-[0.98] transition text-lg"
+              >
+                Рассчитать визу →
+              </Link>
+              <Link
+                href="/rent/apartments"
+                className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-transparent text-white font-bold rounded-full border-2 border-white hover:bg-white/10 active:scale-[0.98] transition text-lg"
+              >
+                Смотреть квартиры →
+              </Link>
+            </div>
           </div>
         </section>
       </main>
