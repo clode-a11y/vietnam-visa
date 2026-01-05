@@ -24,7 +24,7 @@ export default function VisaCta() {
         <div className="reveal text-6xl mb-4">{t('cta.emoji')}</div>
         <h2 className="reveal reveal-delay-1 text-4xl font-black text-white mb-4">{t('cta.heading')}</h2>
         <p className="reveal reveal-delay-2 text-xl text-white/90 mb-8">{t('cta.subtitle')}</p>
-        <a href="https://evisa.xuatnhapcanh.gov.vn" target="_blank" rel="noopener noreferrer" className="reveal reveal-delay-3 inline-flex items-center gap-2 px-8 py-4 bg-white text-[#115E67] font-bold rounded-full hover:shadow-lg hover:scale-105 active:scale-[0.98] transition text-lg">
+        <a href="https://evisa.xuatnhapcanh.gov.vn" target="_blank" rel="noopener noreferrer" className="reveal reveal-delay-3 inline-flex items-center gap-2 px-8 py-4 bg-green-500 text-white font-bold rounded-full hover:bg-green-600 hover:shadow-lg hover:scale-105 active:scale-[0.98] transition text-lg">
           {t('cta.button')} →
         </a>
       </div>

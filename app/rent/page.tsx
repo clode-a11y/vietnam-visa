@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import Header from '@/app/components/Header'
 import Footer from '@/app/components/Footer'
 import FloatingContact from '@/app/components/FloatingContact'
@@ -30,8 +31,20 @@ export default function RentPage() {
       <Header />
 
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-teal-700 via-teal-600 to-teal-500 text-white pt-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-12 sm:py-20">
+      <section className="relative min-h-[60vh] flex items-center text-white pt-20 overflow-hidden">
+        {/* Background Image */}
+        <div className="absolute inset-0">
+          <Image
+            src="https://images.unsplash.com/photo-1559592413-7cec4d0cae2b?w=1920&q=80"
+            alt="Панорама Нячанга с высоты"
+            fill
+            className="object-cover"
+            priority
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-teal-900/90 via-teal-800/70 to-teal-700/50"></div>
+        </div>
+
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 py-12 sm:py-20">
           <div className="max-w-2xl">
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
               {t('rent.title')}
@@ -49,7 +62,7 @@ export default function RentPage() {
               />
               <Link
                 href="/rent/apartments"
-                className="px-6 py-4 bg-white text-teal-600 font-bold rounded-xl hover:bg-teal-50 active:scale-95 transition"
+                className="px-6 py-4 bg-green-500 text-white font-bold rounded-xl hover:bg-green-600 active:scale-95 transition"
               >
                 {t('rent.viewAll')}
               </Link>
@@ -73,13 +86,6 @@ export default function RentPage() {
               </Link>
             </div>
           </div>
-        </div>
-
-        {/* Wave decoration */}
-        <div className="absolute bottom-0 left-0 right-0">
-          <svg viewBox="0 0 1440 120" className="w-full h-12 sm:h-16 fill-gray-50 dark:fill-slate-900">
-            <path d="M0,64L80,69.3C160,75,320,85,480,80C640,75,800,53,960,48C1120,43,1280,53,1360,58.7L1440,64L1440,120L1360,120C1280,120,1120,120,960,120C800,120,640,120,480,120C320,120,160,120,80,120L0,120Z" />
-          </svg>
         </div>
       </section>
 

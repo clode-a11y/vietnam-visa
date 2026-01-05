@@ -34,7 +34,7 @@ export default function VisaHero() {
           <p className="reveal reveal-delay-2 text-lg sm:text-xl text-white/90 mb-8 max-w-2xl mx-auto">
             {t('hero.subtitle')}
           </p>
-          <a href="#calculator" className="reveal reveal-delay-3 inline-flex items-center gap-2 px-8 py-4 bg-white text-[#115E67] font-bold rounded-full hover:shadow-lg hover:scale-105 active:scale-[0.98] transition text-lg">
+          <a href="#calculator" className="reveal reveal-delay-3 inline-flex items-center gap-2 px-8 py-4 bg-green-500 text-white font-bold rounded-full hover:bg-green-600 hover:shadow-lg hover:scale-105 active:scale-[0.98] transition text-lg">
             {t('hero.cta')}
             <span>→</span>
           </a>
