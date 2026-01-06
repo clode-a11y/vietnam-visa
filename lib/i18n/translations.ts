@@ -105,6 +105,61 @@ export const translations: Record<Locale, Record<string, string>> = {
     'cta.subtitle': 'Вьетнам ждёт вас!',
     'cta.button': 'Оформить e-Visa',
 
+    // Calculator Results
+    'calc.checkDates': 'Проверьте даты!',
+    'calc.visaFree': 'Безвизовый въезд',
+    'calc.visaFreeDesc': 'Виза не требуется!',
+    'calc.evisa': 'Электронная виза',
+    'calc.evisaDesc': 'Оформите e-Visa онлайн',
+    'calc.longTerm': 'Долгосрочная виза',
+    'calc.longTermDesc': 'Обратитесь в посольство',
+    'calc.workVisa': 'Рабочая виза',
+    'calc.from': 'от',
+    'calc.days0': '0 дней',
+    'calc.days3': '3 дня',
+    'calc.days14plus': '14+ дней',
+    'calc.days14to30': '14-30 дней',
+
+    // Comparison Table Values
+    'table.upTo45days': 'до 45 дней',
+    'table.upTo90days': 'до 90 дней',
+    'table.upTo30days': 'до 30 дней',
+    'table.3to5days': '3-5 дней',
+    'table.13airports': '13 аэропортов',
+
+    // Documents Section
+    'docs.visaFreeEntry': 'Безвизовый въезд',
+    'docs.visaOnArrival': 'Виза по прилёту',
+    'docs.passport6months': 'Загранпаспорт (6+ мес.)',
+    'docs.returnTicket': 'Обратный билет',
+    'docs.hotelBooking': 'Бронь отеля',
+    'docs.insurance': 'Страховка (рекоменд.)',
+    'docs.passportPhoto': 'Фото паспорта (скан)',
+    'docs.photo4x6': 'Фото 4x6 см (цифровое)',
+    'docs.bankCard': 'Банковская карта ($25)',
+    'docs.emailReceipt': 'Email для получения',
+    'docs.travelDates': 'Даты поездки',
+    'docs.invitationLetter': 'Пригласительное письмо',
+    'docs.2photos': '2 фото 4x6 см',
+    'docs.formOnsite': 'Анкета (на месте)',
+    'docs.fee25cash': 'Сбор $25 наличными',
+    'docs.stampFee25': 'Штамповый сбор $25',
+
+    // Process Section
+    'process.title': 'Процесс',
+    'process.heading': 'Как получить e-Visa',
+    'process.step1title': 'Заполните анкету',
+    'process.step1desc': 'На сайте evisa.gov.vn',
+    'process.step2title': 'Загрузите фото',
+    'process.step2desc': 'Паспорт + фото 4x6',
+    'process.step3title': 'Оплатите $25',
+    'process.step3desc': 'Картой онлайн',
+    'process.step4title': 'Получите на email',
+    'process.step4desc': 'Через 3 дня',
+
+    // Error messages
+    'error.sending': 'Ошибка отправки. Попробуйте ещё раз.',
+
     // Footer
     'footer.sections': 'Разделы',
     'footer.useful': 'Полезное',
@@ -322,6 +377,61 @@ export const translations: Record<Locale, Record<string, string>> = {
     'cta.subtitle': 'Vietnam awaits!',
     'cta.button': 'Apply for e-Visa',
 
+    // Calculator Results
+    'calc.checkDates': 'Check your dates!',
+    'calc.visaFree': 'Visa-Free Entry',
+    'calc.visaFreeDesc': 'No visa required!',
+    'calc.evisa': 'Electronic Visa',
+    'calc.evisaDesc': 'Apply for e-Visa online',
+    'calc.longTerm': 'Long-term Visa',
+    'calc.longTermDesc': 'Contact the embassy',
+    'calc.workVisa': 'Work Visa',
+    'calc.from': 'from',
+    'calc.days0': '0 days',
+    'calc.days3': '3 days',
+    'calc.days14plus': '14+ days',
+    'calc.days14to30': '14-30 days',
+
+    // Comparison Table Values
+    'table.upTo45days': 'up to 45 days',
+    'table.upTo90days': 'up to 90 days',
+    'table.upTo30days': 'up to 30 days',
+    'table.3to5days': '3-5 days',
+    'table.13airports': '13 airports',
+
+    // Documents Section
+    'docs.visaFreeEntry': 'Visa-Free Entry',
+    'docs.visaOnArrival': 'Visa on Arrival',
+    'docs.passport6months': 'Passport (6+ months valid)',
+    'docs.returnTicket': 'Return ticket',
+    'docs.hotelBooking': 'Hotel booking',
+    'docs.insurance': 'Insurance (recommended)',
+    'docs.passportPhoto': 'Passport photo (scan)',
+    'docs.photo4x6': 'Photo 4x6 cm (digital)',
+    'docs.bankCard': 'Bank card ($25)',
+    'docs.emailReceipt': 'Email for receipt',
+    'docs.travelDates': 'Travel dates',
+    'docs.invitationLetter': 'Invitation letter',
+    'docs.2photos': '2 photos 4x6 cm',
+    'docs.formOnsite': 'Form (on-site)',
+    'docs.fee25cash': '$25 fee (cash)',
+    'docs.stampFee25': '$25 stamp fee',
+
+    // Process Section
+    'process.title': 'Process',
+    'process.heading': 'How to get e-Visa',
+    'process.step1title': 'Fill the form',
+    'process.step1desc': 'At evisa.gov.vn',
+    'process.step2title': 'Upload photos',
+    'process.step2desc': 'Passport + photo 4x6',
+    'process.step3title': 'Pay $25',
+    'process.step3desc': 'Online by card',
+    'process.step4title': 'Get via email',
+    'process.step4desc': 'In 3 days',
+
+    // Error messages
+    'error.sending': 'Sending error. Please try again.',
+
     // Footer
     'footer.sections': 'Sections',
     'footer.useful': 'Useful',
@@ -538,6 +648,61 @@ export const translations: Record<Locale, Record<string, string>> = {
     'cta.heading': 'Sẵn sàng cho cuộc phiêu lưu?',
     'cta.subtitle': 'Việt Nam đang chờ bạn!',
     'cta.button': 'Đăng ký e-Visa',
+
+    // Calculator Results
+    'calc.checkDates': 'Kiểm tra ngày!',
+    'calc.visaFree': 'Miễn thị thực',
+    'calc.visaFreeDesc': 'Không cần visa!',
+    'calc.evisa': 'Visa điện tử',
+    'calc.evisaDesc': 'Đăng ký e-Visa trực tuyến',
+    'calc.longTerm': 'Visa dài hạn',
+    'calc.longTermDesc': 'Liên hệ đại sứ quán',
+    'calc.workVisa': 'Visa lao động',
+    'calc.from': 'từ',
+    'calc.days0': '0 ngày',
+    'calc.days3': '3 ngày',
+    'calc.days14plus': '14+ ngày',
+    'calc.days14to30': '14-30 ngày',
+
+    // Comparison Table Values
+    'table.upTo45days': 'đến 45 ngày',
+    'table.upTo90days': 'đến 90 ngày',
+    'table.upTo30days': 'đến 30 ngày',
+    'table.3to5days': '3-5 ngày',
+    'table.13airports': '13 sân bay',
+
+    // Documents Section
+    'docs.visaFreeEntry': 'Miễn thị thực',
+    'docs.visaOnArrival': 'Visa khi đến',
+    'docs.passport6months': 'Hộ chiếu (còn hạn 6+ tháng)',
+    'docs.returnTicket': 'Vé khứ hồi',
+    'docs.hotelBooking': 'Đặt phòng khách sạn',
+    'docs.insurance': 'Bảo hiểm (khuyến nghị)',
+    'docs.passportPhoto': 'Ảnh hộ chiếu (scan)',
+    'docs.photo4x6': 'Ảnh 4x6 cm (kỹ thuật số)',
+    'docs.bankCard': 'Thẻ ngân hàng ($25)',
+    'docs.emailReceipt': 'Email để nhận',
+    'docs.travelDates': 'Ngày đi',
+    'docs.invitationLetter': 'Thư mời',
+    'docs.2photos': '2 ảnh 4x6 cm',
+    'docs.formOnsite': 'Đơn (tại chỗ)',
+    'docs.fee25cash': 'Phí $25 tiền mặt',
+    'docs.stampFee25': 'Phí đóng dấu $25',
+
+    // Process Section
+    'process.title': 'Quy trình',
+    'process.heading': 'Cách lấy e-Visa',
+    'process.step1title': 'Điền đơn',
+    'process.step1desc': 'Tại evisa.gov.vn',
+    'process.step2title': 'Tải ảnh lên',
+    'process.step2desc': 'Hộ chiếu + ảnh 4x6',
+    'process.step3title': 'Thanh toán $25',
+    'process.step3desc': 'Trực tuyến bằng thẻ',
+    'process.step4title': 'Nhận qua email',
+    'process.step4desc': 'Trong 3 ngày',
+
+    // Error messages
+    'error.sending': 'Lỗi gửi. Vui lòng thử lại.',
 
     // Footer
     'footer.sections': 'Mục',

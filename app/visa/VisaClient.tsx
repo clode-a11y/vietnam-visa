@@ -29,6 +29,16 @@ interface VisaClientProps {
   faqs: FAQ[]
 }
 
+interface CalcResult {
+  emoji: string
+  visa: string
+  desc: string
+  days: number
+  cost: string
+  time: string
+  show: boolean
+}
+
 export default function VisaClient({ visaTypes, faqs }: VisaClientProps) {
   const { locale, t } = useLocale()
   const [formData, setFormData] = useState({
@@ -39,6 +49,15 @@ export default function VisaClient({ visaTypes, faqs }: VisaClientProps) {
     message: ''
   })
   const [formStatus, setFormStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
+  const [calcResult, setCalcResult] = useState<CalcResult>({
+    emoji: '🎉',
+    visa: '',
+    desc: '',
+    days: 0,
+    cost: '$0',
+    time: '',
+    show: false
+  })
 
   const handleFormChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }))
@@ -105,36 +124,46 @@ export default function VisaClient({ visaTypes, faqs }: VisaClientProps) {
     const entries = (document.getElementById('entries') as HTMLSelectElement).value
 
     const days = Math.ceil((departure.getTime() - arrival.getTime()) / (1000 * 60 * 60 * 24))
-    if (days <= 0) { alert('Проверьте даты!'); return }
+    if (days <= 0) { alert(t('calc.checkDates')); return }
 
-    let emoji, visa, desc, cost, time
+    let emoji: string, visa: string, desc: string, cost: string, time: string
 
     if (purpose === 'tourism' && days <= 45 && entries === 'single') {
-      emoji = '🎉'; visa = 'Безвизовый въезд'; desc = 'Виза не требуется!'; cost = '$0'; time = '0 дней'
+      emoji = '🎉'
+      visa = t('calc.visaFree')
+      desc = t('calc.visaFreeDesc')
+      cost = '$0'
+      time = t('calc.days0')
     } else if (days <= 90) {
-      emoji = '💻'; visa = 'Электронная виза'; desc = 'Оформите e-Visa онлайн'; cost = '$25'; time = '3 дня'
+      emoji = '💻'
+      visa = t('calc.evisa')
+      desc = t('calc.evisaDesc')
+      cost = '$25'
+      time = t('calc.days3')
     } else {
-      emoji = '🏛️'; visa = 'Долгосрочная виза'; desc = 'Обратитесь в посольство'; cost = 'от $50'; time = '14+ дней'
+      emoji = '🏛️'
+      visa = t('calc.longTerm')
+      desc = t('calc.longTermDesc')
+      cost = `${t('calc.from')} $50`
+      time = t('calc.days14plus')
     }
 
     if (entries === 'multiple') cost = '$50'
-    if (purpose === 'work') { visa = 'Рабочая виза'; cost = 'от $100'; time = '14-30 дней' }
+    if (purpose === 'work') {
+      visa = t('calc.workVisa')
+      cost = `${t('calc.from')} $100`
+      time = t('calc.days14to30')
+    }
 
-    const resultEmoji = document.getElementById('resultEmoji')
-    const resultVisa = document.getElementById('resultVisa')
-    const resultDesc = document.getElementById('resultDesc')
-    const resultDays = document.getElementById('resultDays')
-    const resultCost = document.getElementById('resultCost')
-    const resultTime = document.getElementById('resultTime')
-    const calcResult = document.getElementById('calcResult')
-
-    if (resultEmoji) resultEmoji.textContent = emoji
-    if (resultVisa) resultVisa.textContent = visa
-    if (resultDesc) resultDesc.textContent = desc
-    if (resultDays) resultDays.textContent = String(days)
-    if (resultCost) resultCost.textContent = cost
-    if (resultTime) resultTime.textContent = time
-    if (calcResult) calcResult.classList.add('show')
+    setCalcResult({
+      emoji,
+      visa,
+      desc,
+      days,
+      cost,
+      time,
+      show: true
+    })
   }
 
   const toggleFaq = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -197,9 +226,9 @@ export default function VisaClient({ visaTypes, faqs }: VisaClientProps) {
                 <tbody className="divide-y divide-gray-100 dark:divide-slate-700">
                   <tr className="hover:bg-gray-50/50 dark:hover:bg-slate-700/50">
                     <td className="px-6 py-4 font-medium dark:text-white">{t('comparison.duration')}</td>
-                    <td className="px-6 py-4 text-center dark:text-gray-300">{locale === 'en' ? 'up to 45 days' : 'до 45 дней'}</td>
-                    <td className="px-6 py-4 text-center dark:text-gray-300">{locale === 'en' ? 'up to 90 days' : 'до 90 дней'}</td>
-                    <td className="px-6 py-4 text-center dark:text-gray-300">{locale === 'en' ? 'up to 30 days' : 'до 30 дней'}</td>
+                    <td className="px-6 py-4 text-center dark:text-gray-300">{t('table.upTo45days')}</td>
+                    <td className="px-6 py-4 text-center dark:text-gray-300">{t('table.upTo90days')}</td>
+                    <td className="px-6 py-4 text-center dark:text-gray-300">{t('table.upTo30days')}</td>
                   </tr>
                   <tr className="hover:bg-gray-50/50 dark:hover:bg-slate-700/50">
                     <td className="px-6 py-4 font-medium dark:text-white">{t('comparison.cost')}</td>
@@ -210,7 +239,7 @@ export default function VisaClient({ visaTypes, faqs }: VisaClientProps) {
                   <tr className="hover:bg-gray-50/50 dark:hover:bg-slate-700/50">
                     <td className="px-6 py-4 font-medium dark:text-white">{t('comparison.processingTime')}</td>
                     <td className="px-6 py-4 text-center text-teal-600 dark:text-teal-400 font-bold">{t('comparison.immediately')}</td>
-                    <td className="px-6 py-4 text-center dark:text-gray-300">{locale === 'en' ? '3-5 days' : '3-5 дней'}</td>
+                    <td className="px-6 py-4 text-center dark:text-gray-300">{t('table.3to5days')}</td>
                     <td className="px-6 py-4 text-center dark:text-gray-300">{t('comparison.onSite')}</td>
                   </tr>
                   <tr className="hover:bg-gray-50/50 dark:hover:bg-slate-700/50">
@@ -240,7 +269,7 @@ export default function VisaClient({ visaTypes, faqs }: VisaClientProps) {
                   <tr className="hover:bg-gray-50/50 dark:hover:bg-slate-700/50">
                     <td className="px-6 py-4 font-medium dark:text-white">{t('comparison.entryPoints')}</td>
                     <td className="px-6 py-4 text-center dark:text-gray-300">{t('comparison.all')}</td>
-                    <td className="px-6 py-4 text-center dark:text-gray-300">{locale === 'en' ? '13 airports' : '13 аэропортов'}</td>
+                    <td className="px-6 py-4 text-center dark:text-gray-300">{t('table.13airports')}</td>
                     <td className="px-6 py-4 text-center dark:text-gray-300">{t('comparison.airportsOnly')}</td>
                   </tr>
                   <tr className="hover:bg-gray-50/50 dark:hover:bg-slate-700/50">
@@ -279,22 +308,17 @@ export default function VisaClient({ visaTypes, faqs }: VisaClientProps) {
                   🎉
                 </div>
                 <div>
-                  <h3 className="font-bold text-lg dark:text-white">{locale === 'en' ? 'Visa-Free Entry' : 'Безвизовый въезд'}</h3>
-                  <span className="text-sm text-teal-600 dark:text-teal-400">{locale === 'en' ? 'up to 45 days' : 'до 45 дней'}</span>
+                  <h3 className="font-bold text-lg dark:text-white">{t('docs.visaFreeEntry')}</h3>
+                  <span className="text-sm text-teal-600 dark:text-teal-400">{t('table.upTo45days')}</span>
                 </div>
               </div>
               <ul className="space-y-3">
-                {(locale === 'en' ? [
-                  'Passport (6+ months valid)',
-                  'Return ticket',
-                  'Hotel booking',
-                  'Insurance (recommended)',
-                ] : [
-                  'Загранпаспорт (6+ мес.)',
-                  'Обратный билет',
-                  'Бронь отеля',
-                  'Страховка (рекоменд.)',
-                ]).map((item, i) => (
+                {[
+                  t('docs.passport6months'),
+                  t('docs.returnTicket'),
+                  t('docs.hotelBooking'),
+                  t('docs.insurance'),
+                ].map((item, i) => (
                   <li key={i} className="flex items-start gap-3">
                     <span className="w-5 h-5 bg-teal-100 dark:bg-teal-900/50 rounded flex items-center justify-center text-teal-600 dark:text-teal-400 text-sm flex-shrink-0 mt-0.5">✓</span>
                     <span className="text-gray-700 dark:text-gray-300">{item}</span>
@@ -311,25 +335,18 @@ export default function VisaClient({ visaTypes, faqs }: VisaClientProps) {
                 </div>
                 <div>
                   <h3 className="font-bold text-lg dark:text-white">E-Visa</h3>
-                  <span className="text-sm text-teal-600 dark:text-teal-400">{locale === 'en' ? 'up to 90 days' : 'до 90 дней'}</span>
+                  <span className="text-sm text-teal-600 dark:text-teal-400">{t('table.upTo90days')}</span>
                 </div>
               </div>
               <ul className="space-y-3">
-                {(locale === 'en' ? [
-                  'Passport (6+ months valid)',
-                  'Passport photo (scan)',
-                  'Photo 4x6 cm (digital)',
-                  'Bank card ($25)',
-                  'Email for receipt',
-                  'Travel dates',
-                ] : [
-                  'Загранпаспорт (6+ мес.)',
-                  'Фото паспорта (скан)',
-                  'Фото 4x6 см (цифровое)',
-                  'Банковская карта ($25)',
-                  'Email для получения',
-                  'Даты поездки',
-                ]).map((item, i) => (
+                {[
+                  t('docs.passport6months'),
+                  t('docs.passportPhoto'),
+                  t('docs.photo4x6'),
+                  t('docs.bankCard'),
+                  t('docs.emailReceipt'),
+                  t('docs.travelDates'),
+                ].map((item, i) => (
                   <li key={i} className="flex items-start gap-3">
                     <span className="w-5 h-5 bg-teal-100 dark:bg-teal-900/50 rounded flex items-center justify-center text-teal-600 dark:text-teal-400 text-sm flex-shrink-0 mt-0.5">✓</span>
                     <span className="text-gray-700 dark:text-gray-300">{item}</span>
@@ -345,26 +362,19 @@ export default function VisaClient({ visaTypes, faqs }: VisaClientProps) {
                   ✈️
                 </div>
                 <div>
-                  <h3 className="font-bold text-lg dark:text-white">{locale === 'en' ? 'Visa on Arrival' : 'Виза по прилёту'}</h3>
-                  <span className="text-sm text-orange-600 dark:text-orange-400">{locale === 'en' ? 'up to 30 days' : 'до 30 дней'}</span>
+                  <h3 className="font-bold text-lg dark:text-white">{t('docs.visaOnArrival')}</h3>
+                  <span className="text-sm text-orange-600 dark:text-orange-400">{t('table.upTo30days')}</span>
                 </div>
               </div>
               <ul className="space-y-3">
-                {(locale === 'en' ? [
-                  'Passport (6+ months valid)',
-                  'Invitation letter',
-                  '2 photos 4x6 cm',
-                  'Form (on-site)',
-                  '$25 fee (cash)',
-                  '$25 stamp fee',
-                ] : [
-                  'Загранпаспорт (6+ мес.)',
-                  'Пригласительное письмо',
-                  '2 фото 4x6 см',
-                  'Анкета (на месте)',
-                  'Сбор $25 наличными',
-                  'Штамповый сбор $25',
-                ]).map((item, i) => (
+                {[
+                  t('docs.passport6months'),
+                  t('docs.invitationLetter'),
+                  t('docs.2photos'),
+                  t('docs.formOnsite'),
+                  t('docs.fee25cash'),
+                  t('docs.stampFee25'),
+                ].map((item, i) => (
                   <li key={i} className="flex items-start gap-3">
                     <span className="w-5 h-5 bg-orange-100 dark:bg-orange-900/50 rounded flex items-center justify-center text-orange-600 dark:text-orange-400 text-sm flex-shrink-0 mt-0.5">✓</span>
                     <span className="text-gray-700 dark:text-gray-300">{item}</span>
@@ -380,22 +390,17 @@ export default function VisaClient({ visaTypes, faqs }: VisaClientProps) {
       <section id="process" className="py-20 px-6">
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-12">
-            <p className="reveal text-sm font-bold text-teal-700 dark:text-teal-400 uppercase tracking-wider mb-2">{locale === 'en' ? 'Process' : 'Процесс'}</p>
-            <h2 className="reveal reveal-delay-1 text-4xl font-black dark:text-white">{locale === 'en' ? 'How to get e-Visa' : 'Как получить e-Visa'}</h2>
+            <p className="reveal text-sm font-bold text-teal-700 dark:text-teal-400 uppercase tracking-wider mb-2">{t('process.title')}</p>
+            <h2 className="reveal reveal-delay-1 text-4xl font-black dark:text-white">{t('process.heading')}</h2>
           </div>
 
           <div className="grid md:grid-cols-4 gap-6">
-            {(locale === 'en' ? [
-              { num: '1', title: 'Fill the form', desc: 'At evisa.gov.vn' },
-              { num: '2', title: 'Upload photos', desc: 'Passport + photo 4x6' },
-              { num: '3', title: 'Pay $25', desc: 'Online by card' },
-              { num: '4', title: 'Get via email', desc: 'In 3 days' },
-            ] : [
-              { num: '1', title: 'Заполните анкету', desc: 'На сайте evisa.gov.vn' },
-              { num: '2', title: 'Загрузите фото', desc: 'Паспорт + фото 4x6' },
-              { num: '3', title: 'Оплатите $25', desc: 'Картой онлайн' },
-              { num: '4', title: 'Получите на email', desc: 'Через 3 дня' },
-            ]).map((step, i) => (
+            {[
+              { num: '1', title: t('process.step1title'), desc: t('process.step1desc') },
+              { num: '2', title: t('process.step2title'), desc: t('process.step2desc') },
+              { num: '3', title: t('process.step3title'), desc: t('process.step3desc') },
+              { num: '4', title: t('process.step4title'), desc: t('process.step4desc') },
+            ].map((step, i) => (
               <div key={i} className={`reveal reveal-delay-${i + 1} text-center`}>
                 <div className="w-20 h-20 mx-auto mb-4 bg-gradient-to-r from-teal-700 via-teal-500 to-teal-400 rounded-full flex items-center justify-center text-white text-3xl font-black shadow-lg">
                   {step.num}
@@ -447,21 +452,21 @@ export default function VisaClient({ visaTypes, faqs }: VisaClientProps) {
               {t('calculator.calculate')} →
             </button>
 
-            <div className="calc-result" id="calcResult">
-              <div className="result-emoji" id="resultEmoji">🎉</div>
-              <div className="result-visa" id="resultVisa">{locale === 'en' ? 'Visa-Free Entry' : 'Безвизовый въезд'}</div>
-              <p className="result-desc" id="resultDesc">{locale === 'en' ? 'No visa required!' : 'Виза не требуется!'}</p>
+            <div className={`calc-result ${calcResult.show ? 'show' : ''}`}>
+              <div className="result-emoji">{calcResult.emoji}</div>
+              <div className="result-visa">{calcResult.visa || t('calc.visaFree')}</div>
+              <p className="result-desc">{calcResult.desc || t('calc.visaFreeDesc')}</p>
               <div className="result-stats">
                 <div>
-                  <div className="result-stat-value" id="resultDays">0</div>
+                  <div className="result-stat-value">{calcResult.days}</div>
                   <div className="result-stat-label">{t('calculator.days')}</div>
                 </div>
                 <div>
-                  <div className="result-stat-value" id="resultCost">$0</div>
+                  <div className="result-stat-value">{calcResult.cost}</div>
                   <div className="result-stat-label">{t('calculator.cost')}</div>
                 </div>
                 <div>
-                  <div className="result-stat-value" id="resultTime">0</div>
+                  <div className="result-stat-value">{calcResult.time || t('calc.days0')}</div>
                   <div className="result-stat-label">{t('calculator.processing')}</div>
                 </div>
               </div>
@@ -668,7 +673,7 @@ export default function VisaClient({ visaTypes, faqs }: VisaClientProps) {
 
                 {formStatus === 'error' && (
                   <div className="p-4 bg-red-50 dark:bg-red-900/50 border border-red-200 dark:border-red-800 rounded-xl text-red-700 dark:text-red-400 text-sm">
-                    {locale === 'en' ? 'Sending error. Please try again.' : 'Ошибка отправки. Попробуйте ещё раз.'}
+                    {t('error.sending')}
                   </div>
                 )}
 
