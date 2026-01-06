@@ -3,6 +3,13 @@ import { prisma } from '@/lib/prisma'
 
 export async function POST(request: Request) {
   try {
+    if (!prisma) {
+      return NextResponse.json(
+        { error: 'Сервис временно недоступен' },
+        { status: 503 }
+      )
+    }
+
     const { email } = await request.json()
 
     if (!email || !email.includes('@')) {
@@ -49,6 +56,9 @@ export async function POST(request: Request) {
 
 export async function GET() {
   try {
+    if (!prisma) {
+      return NextResponse.json({ subscribers: 0 })
+    }
     const count = await prisma.newsletterSubscription.count({
       where: { isActive: true },
     })
