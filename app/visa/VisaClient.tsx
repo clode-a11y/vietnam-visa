@@ -40,10 +40,12 @@ interface CalcResult {
 }
 
 // CIS Countries visa conditions
+// Last updated: 2025-01-06
+// Source: https://evisa.xuatnhapcanh.gov.vn, https://visa.mofa.gov.vn
 interface CISCountry {
   id: string
   flag: string
-  visaFreeDays: number // 0 = no visa-free, -1 = needs e-Visa
+  visaFreeDays: number // 0 = no visa-free
   hasEvisa: boolean
   noteKey: string
 }
@@ -54,11 +56,6 @@ const CIS_COUNTRIES: CISCountry[] = [
   { id: 'kazakhstan', flag: '🇰🇿', visaFreeDays: 30, hasEvisa: true, noteKey: 'cis.note.kazakhstan' },
   { id: 'ukraine', flag: '🇺🇦', visaFreeDays: 45, hasEvisa: true, noteKey: 'cis.note.ukraine' },
   { id: 'uzbekistan', flag: '🇺🇿', visaFreeDays: 0, hasEvisa: true, noteKey: 'cis.note.uzbekistan' },
-  { id: 'kyrgyzstan', flag: '🇰🇬', visaFreeDays: 0, hasEvisa: true, noteKey: 'cis.note.kyrgyzstan' },
-  { id: 'tajikistan', flag: '🇹🇯', visaFreeDays: 0, hasEvisa: true, noteKey: 'cis.note.tajikistan' },
-  { id: 'azerbaijan', flag: '🇦🇿', visaFreeDays: 0, hasEvisa: true, noteKey: 'cis.note.azerbaijan' },
-  { id: 'armenia', flag: '🇦🇲', visaFreeDays: 0, hasEvisa: true, noteKey: 'cis.note.armenia' },
-  { id: 'moldova', flag: '🇲🇩', visaFreeDays: 0, hasEvisa: true, noteKey: 'cis.note.moldova' },
 ]
 
 export default function VisaClient({ visaTypes, faqs }: VisaClientProps) {
