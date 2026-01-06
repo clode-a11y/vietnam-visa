@@ -4,6 +4,7 @@ import './globals.css'
 import { Providers } from './providers'
 import CookieBanner from './components/CookieBanner'
 import FloatingContact from './components/FloatingContact'
+import YandexMetrika from './components/YandexMetrika'
 import ServiceWorkerRegistration from './components/ServiceWorkerRegistration'
 import AccessibilityPanel from './components/AccessibilityPanel'
 
@@ -131,6 +132,7 @@ export default function RootLayout({
           <AccessibilityPanel />
           <CookieBanner />
           <ServiceWorkerRegistration />
+          <YandexMetrika />
         </Providers>
       </body>
     </html>
