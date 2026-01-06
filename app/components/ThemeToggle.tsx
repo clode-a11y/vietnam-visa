@@ -33,10 +33,17 @@ export default function ThemeToggle() {
     html.classList.remove('dark', 'light')
     html.classList.add(newIsDark ? 'dark' : 'light')
 
-    // Update localStorage
+    // Update localStorage - merge with defaults to ensure complete settings
+    const defaultSettings = {
+      highContrast: false,
+      fontSize: 'normal',
+      reduceMotion: false,
+      dyslexiaFont: false,
+      theme: 'system',
+    }
     const savedSettings = localStorage.getItem('accessibility-settings')
-    const settings = savedSettings ? JSON.parse(savedSettings) : {}
-    settings.theme = newIsDark ? 'dark' : 'light'
+    const parsed = savedSettings ? JSON.parse(savedSettings) : {}
+    const settings = { ...defaultSettings, ...parsed, theme: newIsDark ? 'dark' : 'light' }
     localStorage.setItem('accessibility-settings', JSON.stringify(settings))
   }
 

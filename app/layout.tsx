@@ -117,8 +117,17 @@ export default function RootLayout({
                 try {
                   var settings = JSON.parse(localStorage.getItem('accessibility-settings') || '{}');
                   var theme = settings.theme;
-                  if (theme === 'dark' || (theme === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches) || (!theme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                  // Explicitly handle light theme - ensure no dark class
+                  if (theme === 'light') {
+                    document.documentElement.classList.remove('dark');
+                    document.documentElement.classList.add('light');
+                  } else if (theme === 'dark') {
                     document.documentElement.classList.add('dark');
+                  } else {
+                    // System preference or no setting
+                    if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                      document.documentElement.classList.add('dark');
+                    }
                   }
                 } catch (e) {}
               })();

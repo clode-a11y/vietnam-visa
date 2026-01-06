@@ -30,11 +30,26 @@ export default function AccessibilityPanel() {
   useEffect(() => {
     const saved = localStorage.getItem('accessibility-settings')
     if (saved) {
-      const parsed = JSON.parse(saved) as AccessibilitySettings
-      setSettings(parsed)
-      applySettings(parsed)
+      const parsed = JSON.parse(saved)
+      // Merge with defaults to ensure all properties exist
+      const mergedSettings: AccessibilitySettings = { ...defaultSettings, ...parsed }
+      setSettings(mergedSettings)
+      applySettings(mergedSettings)
     }
   }, [])
+
+  // Sync settings when panel opens (in case ThemeToggle changed them)
+  useEffect(() => {
+    if (isOpen) {
+      const saved = localStorage.getItem('accessibility-settings')
+      if (saved) {
+        const parsed = JSON.parse(saved)
+        // Merge with defaults to ensure all properties exist
+        const mergedSettings: AccessibilitySettings = { ...defaultSettings, ...parsed }
+        setSettings(mergedSettings)
+      }
+    }
+  }, [isOpen])
 
   // Apply settings to document
   const applySettings = (s: AccessibilitySettings) => {
@@ -73,7 +88,12 @@ export default function AccessibilityPanel() {
     key: K,
     value: AccessibilitySettings[K]
   ) => {
-    const newSettings = { ...settings, [key]: value }
+    // Read fresh settings from localStorage to avoid conflicts with ThemeToggle
+    const savedSettings = localStorage.getItem('accessibility-settings')
+    const parsed = savedSettings ? JSON.parse(savedSettings) : {}
+    // Merge with defaults to ensure all properties exist
+    const currentSettings: AccessibilitySettings = { ...defaultSettings, ...parsed }
+    const newSettings = { ...currentSettings, [key]: value }
     setSettings(newSettings)
     applySettings(newSettings)
     localStorage.setItem('accessibility-settings', JSON.stringify(newSettings))
