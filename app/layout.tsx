@@ -57,11 +57,20 @@ export const metadata: Metadata = {
     siteName: 'VietVisa',
     title: 'Виза во Вьетнам 2025 | Гайд для россиян',
     description: 'Безвизовый въезд до 45 дней, E-Visa за $25, виза по прилёту. Калькулятор визы и бесплатная консультация.',
+    images: [
+      {
+        url: 'https://visa-beta-azure.vercel.app/og-image.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'VietVisa - Визы и аренда во Вьетнаме',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Виза во Вьетнам 2025 | VietVisa',
     description: 'Безвизовый въезд до 45 дней, E-Visa за $25. Калькулятор визы для россиян.',
+    images: ['https://visa-beta-azure.vercel.app/og-image.jpg'],
   },
   alternates: {
     canonical: 'https://visa-beta-azure.vercel.app',
