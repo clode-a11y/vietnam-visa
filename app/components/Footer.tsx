@@ -15,6 +15,7 @@ export default function Footer() {
       rent: 'Аренда',
       blog: 'Блог',
       useful: 'Полезное',
+      contacts: 'Контакты',
       evisa: 'Сайт e-Visa',
       cities: 'Города',
       nhatrang: 'Нячанг',
@@ -34,6 +35,7 @@ export default function Footer() {
       rent: 'Rentals',
       blog: 'Blog',
       useful: 'Useful',
+      contacts: 'Contacts',
       evisa: 'e-Visa Website',
       cities: 'Cities',
       nhatrang: 'Nha Trang',
@@ -53,6 +55,7 @@ export default function Footer() {
       rent: 'Thuê nhà',
       blog: 'Blog',
       useful: 'Hữu ích',
+      contacts: 'Liên hệ',
       evisa: 'Trang e-Visa',
       cities: 'Thành phố',
       nhatrang: 'Nha Trang',
@@ -94,6 +97,9 @@ export default function Footer() {
         <div>
           <h4 className="font-bold mb-4 text-gray-800 dark:text-white">{t.useful}</h4>
           <div className="space-y-2">
+            <Link href="/contacts" className="block text-gray-600 dark:text-gray-400 hover:text-teal-600 dark:hover:text-teal-400 text-sm">
+              {t.contacts}
+            </Link>
             <a href="https://evisa.xuatnhapcanh.gov.vn" target="_blank" rel="noopener noreferrer" className="block text-gray-600 dark:text-gray-400 hover:text-teal-600 dark:hover:text-teal-400 text-sm">
               {t.evisa}
             </a>
