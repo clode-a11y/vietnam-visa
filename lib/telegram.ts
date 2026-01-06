@@ -125,6 +125,116 @@ ${request.comment ? `\n📝 *Комментарий:*\n${escapeMarkdown(request.
   }
 }
 
+interface NewApartmentNotification {
+  id: string
+  title: string
+  district: string
+  priceUsd: number
+  rooms: number
+  area: number
+  matchingSubscribers: number
+}
+
+export async function sendNewApartmentNotification(apartment: NewApartmentNotification) {
+  if (!TELEGRAM_BOT_TOKEN || !TELEGRAM_CHAT_ID) {
+    console.log('Telegram not configured, skipping notification')
+    return
+  }
+
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://visa-beta-azure.vercel.app'
+
+  const text = `
+🏠 *Новая квартира добавлена\\!*
+
+📍 *${escapeMarkdown(apartment.title)}*
+📌 Район: ${escapeMarkdown(apartment.district)}
+💰 Цена: $${apartment.priceUsd}/мес
+🛏️ Комнат: ${apartment.rooms === 0 ? 'Студия' : apartment.rooms}
+📐 Площадь: ${apartment.area} м²
+
+👥 Подписчиков подходит: *${apartment.matchingSubscribers}*
+
+🔗 [Открыть квартиру](${siteUrl}/rent/apartments/${apartment.id})
+
+⏰ ${new Date().toLocaleString('ru-RU', { timeZone: 'Asia/Ho_Chi_Minh' })}
+`.trim()
+
+  try {
+    const res = await fetch(
+      `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`,
+      {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          chat_id: TELEGRAM_CHAT_ID,
+          text,
+          parse_mode: 'MarkdownV2'
+        })
+      }
+    )
+
+    if (!res.ok) {
+      const error = await res.text()
+      console.error('Telegram API error:', error)
+    }
+  } catch (error) {
+    console.error('Failed to send new apartment notification:', error)
+  }
+}
+
+interface SubscriberNotification {
+  email: string
+  apartmentTitle: string
+  apartmentId: string
+  priceUsd: number
+  rooms: number
+  district: string
+}
+
+export async function sendSubscriberAlertToAdmin(subscribers: SubscriberNotification[]) {
+  if (!TELEGRAM_BOT_TOKEN || !TELEGRAM_CHAT_ID || subscribers.length === 0) {
+    return
+  }
+
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://visa-beta-azure.vercel.app'
+
+  const emailList = subscribers.map(s => `• ${escapeMarkdown(s.email)}`).join('\n')
+
+  const text = `
+📬 *Подписчики для уведомления\\!*
+
+🏠 *${escapeMarkdown(subscribers[0].apartmentTitle)}*
+💰 $${subscribers[0].priceUsd} \\| 🛏️ ${subscribers[0].rooms === 0 ? 'Студия' : subscribers[0].rooms} комн\\.
+
+📧 *Email адреса \\(${subscribers.length}\\):*
+${emailList}
+
+🔗 [Открыть квартиру](${siteUrl}/rent/apartments/${subscribers[0].apartmentId})
+`.trim()
+
+  try {
+    const res = await fetch(
+      `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`,
+      {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          chat_id: TELEGRAM_CHAT_ID,
+          text,
+          parse_mode: 'MarkdownV2'
+        })
+      }
+    )
+
+    if (!res.ok) {
+      const error = await res.text()
+      console.error('Telegram API error:', error)
+    }
+  } catch (error) {
+    console.error('Failed to send subscriber alert:', error)
+  }
+}
+
 interface ContactFormRequest {
   name: string
   email: string
