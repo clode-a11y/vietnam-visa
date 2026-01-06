@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { revalidatePath } from 'next/cache'
 import { prisma } from '@/lib/prisma'
 
 export async function GET(
@@ -43,6 +44,9 @@ export async function PATCH(
       data: body,
     })
 
+    // Revalidate visa page cache
+    revalidatePath('/visa')
+
     return NextResponse.json(visaType)
   } catch (error) {
     console.error('Error updating visa type:', error)
@@ -63,6 +67,9 @@ export async function DELETE(
     await prisma.visaType.delete({
       where: { id },
     })
+
+    // Revalidate visa page cache
+    revalidatePath('/visa')
 
     return NextResponse.json({ success: true })
   } catch (error) {
