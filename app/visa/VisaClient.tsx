@@ -39,6 +39,28 @@ interface CalcResult {
   show: boolean
 }
 
+// CIS Countries visa conditions
+interface CISCountry {
+  id: string
+  flag: string
+  visaFreeDays: number // 0 = no visa-free, -1 = needs e-Visa
+  hasEvisa: boolean
+  noteKey: string
+}
+
+const CIS_COUNTRIES: CISCountry[] = [
+  { id: 'russia', flag: '🇷🇺', visaFreeDays: 45, hasEvisa: true, noteKey: 'cis.note.russia' },
+  { id: 'belarus', flag: '🇧🇾', visaFreeDays: 45, hasEvisa: true, noteKey: 'cis.note.belarus' },
+  { id: 'kazakhstan', flag: '🇰🇿', visaFreeDays: 30, hasEvisa: true, noteKey: 'cis.note.kazakhstan' },
+  { id: 'ukraine', flag: '🇺🇦', visaFreeDays: 45, hasEvisa: true, noteKey: 'cis.note.ukraine' },
+  { id: 'uzbekistan', flag: '🇺🇿', visaFreeDays: 0, hasEvisa: true, noteKey: 'cis.note.uzbekistan' },
+  { id: 'kyrgyzstan', flag: '🇰🇬', visaFreeDays: 0, hasEvisa: true, noteKey: 'cis.note.kyrgyzstan' },
+  { id: 'tajikistan', flag: '🇹🇯', visaFreeDays: 0, hasEvisa: true, noteKey: 'cis.note.tajikistan' },
+  { id: 'azerbaijan', flag: '🇦🇿', visaFreeDays: 0, hasEvisa: true, noteKey: 'cis.note.azerbaijan' },
+  { id: 'armenia', flag: '🇦🇲', visaFreeDays: 0, hasEvisa: true, noteKey: 'cis.note.armenia' },
+  { id: 'moldova', flag: '🇲🇩', visaFreeDays: 0, hasEvisa: true, noteKey: 'cis.note.moldova' },
+]
+
 export default function VisaClient({ visaTypes, faqs }: VisaClientProps) {
   const { locale, t } = useLocale()
   const [formData, setFormData] = useState({
@@ -58,6 +80,7 @@ export default function VisaClient({ visaTypes, faqs }: VisaClientProps) {
     time: '',
     show: false
   })
+  const [selectedCitizenship, setSelectedCitizenship] = useState('russia')
 
   const handleFormChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }))
@@ -126,9 +149,14 @@ export default function VisaClient({ visaTypes, faqs }: VisaClientProps) {
     const days = Math.ceil((departure.getTime() - arrival.getTime()) / (1000 * 60 * 60 * 24))
     if (days <= 0) { alert(t('calc.checkDates')); return }
 
+    // Get visa-free days for selected citizenship
+    const country = CIS_COUNTRIES.find(c => c.id === selectedCitizenship)
+    const visaFreeDays = country?.visaFreeDays || 0
+
     let emoji: string, visa: string, desc: string, cost: string, time: string
 
-    if (purpose === 'tourism' && days <= 45 && entries === 'single') {
+    // Check if country has visa-free entry
+    if (visaFreeDays > 0 && purpose === 'tourism' && days <= visaFreeDays && entries === 'single') {
       emoji = '🎉'
       visa = t('calc.visaFree')
       desc = t('calc.visaFreeDesc')
@@ -137,7 +165,9 @@ export default function VisaClient({ visaTypes, faqs }: VisaClientProps) {
     } else if (days <= 90) {
       emoji = '💻'
       visa = t('calc.evisa')
-      desc = t('calc.evisaDesc')
+      desc = visaFreeDays === 0
+        ? t('cis.needEvisa')
+        : t('calc.evisaDesc')
       cost = '$25'
       time = t('calc.days3')
     } else {
@@ -291,6 +321,62 @@ export default function VisaClient({ visaTypes, faqs }: VisaClientProps) {
         </div>
       </section>
 
+      {/* CIS Countries Comparison */}
+      <section id="cis-countries" className="py-20 px-6 bg-gradient-to-b from-transparent to-teal-50/50 dark:to-slate-900/50">
+        <div className="max-w-5xl mx-auto">
+          <div className="text-center mb-12">
+            <p className="reveal text-sm font-bold text-teal-700 dark:text-teal-400 uppercase tracking-wider mb-2">{t('cis.title')}</p>
+            <h2 className="reveal reveal-delay-1 text-4xl font-black dark:text-white">{t('cis.heading')}</h2>
+            <p className="reveal reveal-delay-2 text-lg text-gray-600 dark:text-gray-400 mt-2">{t('cis.subtitle')}</p>
+          </div>
+
+          <div className="reveal reveal-delay-3 bg-white/95 dark:bg-slate-800/80 backdrop-blur-xl rounded-3xl shadow-lg border border-white/50 dark:border-slate-700/50 overflow-hidden">
+            <div className="overflow-x-auto">
+              <table className="w-full">
+                <thead>
+                  <tr className="bg-gradient-to-r from-teal-500/10 via-teal-400/10 to-teal-300/10">
+                    <th className="px-6 py-4 text-left font-bold text-gray-700 dark:text-gray-200">{t('cis.country')}</th>
+                    <th className="px-6 py-4 text-center font-bold text-gray-700 dark:text-gray-200">{t('cis.visaFreeDays')}</th>
+                    <th className="px-6 py-4 text-center font-bold text-gray-700 dark:text-gray-200">{t('cis.evisa')}</th>
+                    <th className="px-6 py-4 text-left font-bold text-gray-700 dark:text-gray-200">{t('cis.note')}</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-gray-100 dark:divide-slate-700">
+                  {CIS_COUNTRIES.map((country) => (
+                    <tr key={country.id} className="hover:bg-gray-50/50 dark:hover:bg-slate-700/50">
+                      <td className="px-6 py-4 font-medium dark:text-white">
+                        <span className="text-xl mr-2">{country.flag}</span>
+                        {t(`country.${country.id}`)}
+                      </td>
+                      <td className="px-6 py-4 text-center">
+                        {country.visaFreeDays > 0 ? (
+                          <span className="text-teal-600 dark:text-teal-400 font-bold">{country.visaFreeDays}</span>
+                        ) : (
+                          <span className="text-red-500">—</span>
+                        )}
+                      </td>
+                      <td className="px-6 py-4 text-center">
+                        {country.hasEvisa ? (
+                          <span className="text-teal-500">✓</span>
+                        ) : (
+                          <span className="text-red-500">✗</span>
+                        )}
+                      </td>
+                      <td className="px-6 py-4 text-sm text-gray-600 dark:text-gray-400">
+                        {t(country.noteKey)}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            <div className="px-6 py-4 bg-gray-50/50 dark:bg-slate-900/50 text-sm text-gray-500 dark:text-gray-400">
+              {t('cis.footnote')}
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Document Checklist */}
       <section id="documents" className="py-20 px-6">
         <div className="max-w-5xl mx-auto">
@@ -422,6 +508,23 @@ export default function VisaClient({ visaTypes, faqs }: VisaClientProps) {
           </div>
 
           <div className="reveal reveal-delay-2 bg-white/95 dark:bg-slate-800/80 backdrop-blur-xl rounded-3xl p-8 shadow-lg border border-white/50 dark:border-slate-700/50">
+            {/* Citizenship Selector - Full Width */}
+            <div className="mb-6">
+              <label className="block text-sm font-semibold text-gray-600 dark:text-gray-400 mb-2">{t('calculator.citizenship')}</label>
+              <select
+                value={selectedCitizenship}
+                onChange={(e) => setSelectedCitizenship(e.target.value)}
+                className="w-full px-4 py-3 rounded-xl border border-gray-200 dark:border-slate-600 bg-white dark:bg-slate-700 dark:text-white focus:ring-2 focus:ring-teal-500 focus:border-transparent outline-none"
+              >
+                {CIS_COUNTRIES.map(country => (
+                  <option key={country.id} value={country.id}>
+                    {country.flag} {t(`country.${country.id}`)}
+                  </option>
+                ))}
+                <option value="other">🌍 {t('country.other')}</option>
+              </select>
+            </div>
+
             <div className="grid grid-cols-2 gap-6 mb-6">
               <div>
                 <label className="block text-sm font-semibold text-gray-600 dark:text-gray-400 mb-2">{t('calculator.arrivalDate')}</label>
