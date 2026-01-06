@@ -1,16 +1,33 @@
 'use client'
 
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import Header from '@/app/components/Header'
 import Footer from '@/app/components/Footer'
 import FloatingContact from '@/app/components/FloatingContact'
+import { SubscriptionForm } from '@/app/components/rent/SubscriptionForm'
 import { useLocale } from '@/lib/i18n/context'
 import { translations } from '@/lib/i18n/translations'
+
+interface District {
+  id: string
+  nameRu: string
+  nameEn: string
+  nameVi: string
+}
 
 export default function RentPage() {
   const { locale } = useLocale()
   const t = (key: string) => translations[locale][key] || key
+  const [realDistricts, setRealDistricts] = useState<District[]>([])
+
+  useEffect(() => {
+    fetch('/api/rent/districts')
+      .then(res => res.json())
+      .then(data => setRealDistricts(data))
+      .catch(console.error)
+  }, [])
 
   // Mock data for demo
   const districts = [
@@ -188,6 +205,11 @@ export default function RentPage() {
               </div>
             ))}
           </div>
+        </section>
+
+        {/* Subscription Form */}
+        <section className="mt-12 max-w-md mx-auto">
+          <SubscriptionForm locale={locale} districts={realDistricts} />
         </section>
       </main>
 

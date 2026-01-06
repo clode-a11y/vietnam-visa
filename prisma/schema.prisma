@@ -196,3 +196,16 @@ model ViewingRequest {
   apartment   Apartment @relation(fields: [apartmentId], references: [id])
   createdAt   DateTime  @default(now())
 }
+
+model ApartmentSubscription {
+  id          String    @id @default(cuid())
+  email       String    @unique
+  minPrice    Int?
+  maxPrice    Int?
+  minRooms    Int?
+  maxRooms    Int?
+  districtId  String?
+  isActive    Boolean   @default(true)
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+}
