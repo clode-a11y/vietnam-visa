@@ -23,6 +23,7 @@ export default function Footer() {
       phuquoc: 'Фукуок',
       copyright: '© 2025 VietVisa',
       privacy: 'Конфиденциальность',
+      terms: 'Условия',
       admin: 'Админ',
     },
     en: {
@@ -41,6 +42,7 @@ export default function Footer() {
       phuquoc: 'Phu Quoc',
       copyright: '© 2025 VietVisa',
       privacy: 'Privacy',
+      terms: 'Terms',
       admin: 'Admin',
     },
     vi: {
@@ -59,6 +61,7 @@ export default function Footer() {
       phuquoc: 'Phú Quốc',
       copyright: '© 2025 VietVisa',
       privacy: 'Bảo mật',
+      terms: 'Điều khoản',
       admin: 'Quản trị',
     },
   }
@@ -111,6 +114,9 @@ export default function Footer() {
         <div className="flex gap-4">
           <Link href="/privacy" className="text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-300 text-sm">
             {t.privacy}
+          </Link>
+          <Link href="/terms" className="text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-300 text-sm">
+            {t.terms}
           </Link>
           <Link href="/admin" className="text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-300 text-sm">
             {t.admin}
