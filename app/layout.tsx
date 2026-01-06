@@ -5,6 +5,7 @@ import { Providers } from './providers'
 import CookieBanner from './components/CookieBanner'
 import FloatingContact from './components/FloatingContact'
 import YandexMetrika from './components/YandexMetrika'
+import GoogleAnalytics from './components/GoogleAnalytics'
 import ServiceWorkerRegistration from './components/ServiceWorkerRegistration'
 import AccessibilityPanel from './components/AccessibilityPanel'
 
@@ -133,6 +134,7 @@ export default function RootLayout({
           <CookieBanner />
           <ServiceWorkerRegistration />
           <YandexMetrika />
+          <GoogleAnalytics />
         </Providers>
       </body>
     </html>
