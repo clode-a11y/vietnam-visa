@@ -124,3 +124,59 @@ ${request.comment ? `\n📝 *Комментарий:*\n${escapeMarkdown(request.
     console.error('Failed to send Telegram notification:', error)
   }
 }
+
+interface ContactFormRequest {
+  name: string
+  email: string
+  subject: string
+  message: string
+}
+
+export async function sendContactFormNotification(request: ContactFormRequest) {
+  if (!TELEGRAM_BOT_TOKEN || !TELEGRAM_CHAT_ID) {
+    console.log('Telegram not configured, skipping notification')
+    return
+  }
+
+  const subjectLabels: Record<string, string> = {
+    visa: '🛂 Вопрос по визам',
+    rent: '🏠 Аренда квартиры',
+    other: '📋 Другое'
+  }
+
+  const text = `
+📩 *Новое сообщение с сайта\\!*
+
+${subjectLabels[request.subject] || request.subject}
+
+👤 *Имя:* ${escapeMarkdown(request.name)}
+📧 *Email:* ${escapeMarkdown(request.email)}
+
+📝 *Сообщение:*
+${escapeMarkdown(request.message)}
+
+⏰ ${new Date().toLocaleString('ru-RU', { timeZone: 'Asia/Ho_Chi_Minh' })}
+`.trim()
+
+  try {
+    const res = await fetch(
+      `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`,
+      {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          chat_id: TELEGRAM_CHAT_ID,
+          text,
+          parse_mode: 'MarkdownV2'
+        })
+      }
+    )
+
+    if (!res.ok) {
+      const error = await res.text()
+      console.error('Telegram API error:', error)
+    }
+  } catch (error) {
+    console.error('Failed to send contact form notification:', error)
+  }
+}

@@ -188,12 +188,22 @@ export default function ContactsPage() {
     e.preventDefault()
     setLoading(true)
 
-    // Simulate sending
-    await new Promise(resolve => setTimeout(resolve, 1500))
+    try {
+      const res = await fetch('/api/contacts', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      })
 
-    setLoading(false)
-    setSuccess(true)
-    setFormData({ name: '', email: '', subject: '', message: '' })
+      if (res.ok) {
+        setSuccess(true)
+        setFormData({ name: '', email: '', subject: '', message: '' })
+      }
+    } catch (error) {
+      console.error('Failed to send message:', error)
+    } finally {
+      setLoading(false)
+    }
   }
 
   return (
