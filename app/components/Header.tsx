@@ -20,6 +20,7 @@ export default function Header() {
       rent: 'Аренда',
       map: 'Карта',
       blog: 'Блог',
+      about: 'О нас',
       contacts: 'Контакты',
       favorites: 'Избранное',
       menu: 'Меню',
@@ -30,6 +31,7 @@ export default function Header() {
       rent: 'Rentals',
       map: 'Map',
       blog: 'Blog',
+      about: 'About',
       contacts: 'Contacts',
       favorites: 'Favorites',
       menu: 'Menu',
@@ -40,6 +42,7 @@ export default function Header() {
       rent: 'Thuê nhà',
       map: 'Bản đồ',
       blog: 'Blog',
+      about: 'Về chúng tôi',
       contacts: 'Liên hệ',
       favorites: 'Yêu thích',
       menu: 'Menu',
@@ -54,6 +57,7 @@ export default function Header() {
     { href: '/rent', label: t.rent, icon: '🏠' },
     { href: '/rent/map', label: t.map, icon: '🗺️' },
     { href: '/blog', label: t.blog, icon: '📖' },
+    { href: '/about', label: t.about, icon: '👥' },
     { href: '/contacts', label: t.contacts, icon: '📞' },
   ]
 
