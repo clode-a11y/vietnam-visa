@@ -5,6 +5,7 @@ import { LocaleProvider } from '@/lib/i18n/context'
 import { FavoritesProvider } from '@/lib/favorites'
 import { RecentlyViewedProvider } from '@/lib/recently-viewed'
 import { CompareProvider } from '@/lib/compare'
+import { ToastProvider } from '@/lib/toast'
 
 export function Providers({ children }: { children: React.ReactNode }) {
   return (
@@ -13,7 +14,9 @@ export function Providers({ children }: { children: React.ReactNode }) {
         <FavoritesProvider>
           <RecentlyViewedProvider>
             <CompareProvider>
-              {children}
+              <ToastProvider>
+                {children}
+              </ToastProvider>
             </CompareProvider>
           </RecentlyViewedProvider>
         </FavoritesProvider>

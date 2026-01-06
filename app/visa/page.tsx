@@ -4,6 +4,7 @@ import VisaHero from './VisaHero'
 import VisaCta from './VisaCta'
 import Header from '@/app/components/Header'
 import Footer from '@/app/components/Footer'
+import Testimonials from '@/app/components/Testimonials'
 import { Metadata } from 'next'
 
 // ISR: revalidate every 5 minutes (visa info changes rarely)
@@ -123,6 +124,9 @@ export default async function VisaPage() {
 
         {/* Dynamic content from database */}
         <VisaClient visaTypes={visaTypes} faqs={faqs} />
+
+        {/* Testimonials */}
+        <Testimonials />
 
         {/* CTA with photo background - using client component */}
         <VisaCta />

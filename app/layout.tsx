@@ -8,6 +8,7 @@ import YandexMetrika from './components/YandexMetrika'
 import GoogleAnalytics from './components/GoogleAnalytics'
 import ServiceWorkerRegistration from './components/ServiceWorkerRegistration'
 import AccessibilityPanel from './components/AccessibilityPanel'
+import { OrganizationJsonLd, WebSiteJsonLd, ServiceJsonLd } from './components/JsonLd'
 
 const inter = Inter({ subsets: ['latin', 'cyrillic'] })
 
@@ -91,6 +92,9 @@ export default function RootLayout({
   return (
     <html lang="ru" suppressHydrationWarning>
       <head>
+        <OrganizationJsonLd />
+        <WebSiteJsonLd />
+        <ServiceJsonLd />
         {/* Critical CSS for above-the-fold content - eliminates render blocking */}
         <style
           dangerouslySetInnerHTML={{

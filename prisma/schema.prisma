@@ -209,3 +209,13 @@ model ApartmentSubscription {
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt
 }
+
+model NewsletterSubscription {
+  id          String    @id @default(cuid())
+  email       String    @unique
+  topics      String[]  @default(["visa", "news"]) // visa, rent, news, tips
+  isActive    Boolean   @default(true)
+  confirmedAt DateTime?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+}

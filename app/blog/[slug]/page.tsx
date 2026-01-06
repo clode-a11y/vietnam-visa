@@ -1,7 +1,13 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import { notFound } from 'next/navigation'
+import { Metadata } from 'next'
 import { prisma } from '@/lib/prisma'
 import Header from '../../components/Header'
+import { ArticleJsonLd, BreadcrumbJsonLd } from '../../components/JsonLd'
+import ReadingProgress from '../../components/ReadingProgress'
+
+const BASE_URL = 'https://visa-beta-azure.vercel.app'
 
 // ISR: revalidate every 2 minutes
 export const revalidate = 120
@@ -14,6 +20,35 @@ async function getBlogPost(slug: string) {
     })
   } catch {
     return null
+  }
+}
+
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const { slug } = await params
+  const post = await getBlogPost(slug)
+
+  if (!post) {
+    return { title: 'Статья не найдена | VietVisa' }
+  }
+
+  return {
+    title: `${post.titleRu} | VietVisa`,
+    description: post.excerptRu,
+    openGraph: {
+      title: post.titleRu,
+      description: post.excerptRu,
+      url: `${BASE_URL}/blog/${post.slug}`,
+      type: 'article',
+      publishedTime: post.publishedAt?.toISOString(),
+      modifiedTime: post.updatedAt.toISOString(),
+      images: post.coverImage ? [{ url: post.coverImage, width: 1200, height: 630 }] : [],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: post.titleRu,
+      description: post.excerptRu,
+      images: post.coverImage ? [post.coverImage] : [],
+    },
   }
 }
 
@@ -33,9 +68,25 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 
   return (
     <>
+      <ArticleJsonLd
+        title={post.titleRu}
+        description={post.excerptRu}
+        url={`${BASE_URL}/blog/${post.slug}`}
+        image={post.coverImage || `${BASE_URL}/og-image.jpg`}
+        datePublished={post.publishedAt?.toISOString() || post.createdAt.toISOString()}
+        dateModified={post.updatedAt.toISOString()}
+      />
+      <BreadcrumbJsonLd
+        items={[
+          { name: 'Главная', url: BASE_URL },
+          { name: 'Блог', url: `${BASE_URL}/blog` },
+          { name: post.titleRu, url: `${BASE_URL}/blog/${post.slug}` },
+        ]}
+      />
+      <ReadingProgress />
       <Header />
 
-      <main className="pt-24 pb-16 px-6 min-h-screen bg-gradient-to-br from-green-50 via-pink-50 to-orange-50">
+      <main className="pt-24 pb-16 px-6 min-h-screen bg-gradient-to-br from-green-50 via-pink-50 to-orange-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900">
         <article className="max-w-3xl mx-auto">
           {/* Breadcrumb */}
           <nav className="mb-8">
@@ -71,11 +122,14 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 
           {/* Cover Image */}
           {post.coverImage && (
-            <div className="mb-8 rounded-3xl overflow-hidden shadow-lg">
-              <img
+            <div className="mb-8 rounded-3xl overflow-hidden shadow-lg relative aspect-video">
+              <Image
                 src={post.coverImage}
                 alt={post.titleRu}
-                className="w-full h-auto"
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 100vw, 768px"
+                priority
               />
             </div>
           )}

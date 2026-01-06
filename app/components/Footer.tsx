@@ -1,9 +1,33 @@
 'use client'
 
+import { useState } from 'react'
 import Link from 'next/link'
 import { useLocale } from '@/lib/i18n/context'
 
 export default function Footer() {
+  const [email, setEmail] = useState('')
+  const [subscribeStatus, setSubscribeStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
+
+  const handleSubscribe = async (e: React.FormEvent) => {
+    e.preventDefault()
+    if (!email) return
+    setSubscribeStatus('loading')
+    try {
+      const res = await fetch('/api/newsletter', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email }),
+      })
+      if (res.ok) {
+        setSubscribeStatus('success')
+        setEmail('')
+      } else {
+        setSubscribeStatus('error')
+      }
+    } catch {
+      setSubscribeStatus('error')
+    }
+  }
   const { locale } = useLocale()
 
   const labels = {
@@ -27,6 +51,11 @@ export default function Footer() {
       privacy: 'Конфиденциальность',
       terms: 'Условия',
       admin: 'Админ',
+      newsletter: 'Подписка на новости',
+      newsletterDesc: 'Получайте уведомления об изменениях визовых правил',
+      emailPlaceholder: 'Ваш email',
+      subscribe: 'OK',
+      subscribed: 'Вы подписаны!',
     },
     en: {
       brand: 'VietVisa',
@@ -48,6 +77,11 @@ export default function Footer() {
       privacy: 'Privacy',
       terms: 'Terms',
       admin: 'Admin',
+      newsletter: 'Newsletter',
+      newsletterDesc: 'Get notified about visa rule changes',
+      emailPlaceholder: 'Your email',
+      subscribe: 'OK',
+      subscribed: 'Subscribed!',
     },
     vi: {
       brand: 'VietVisa',
@@ -69,6 +103,11 @@ export default function Footer() {
       privacy: 'Bảo mật',
       terms: 'Điều khoản',
       admin: 'Quản trị',
+      newsletter: 'Đăng ký nhận tin',
+      newsletterDesc: 'Nhận thông báo về thay đổi quy định visa',
+      emailPlaceholder: 'Email của bạn',
+      subscribe: 'OK',
+      subscribed: 'Đã đăng ký!',
     },
   }
 
@@ -121,6 +160,38 @@ export default function Footer() {
           </div>
         </div>
       </div>
+
+      {/* Newsletter Section */}
+      <div className="max-w-5xl mx-auto py-8 border-t border-gray-100 dark:border-slate-800">
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div>
+            <h4 className="font-bold text-gray-800 dark:text-white">{t.newsletter}</h4>
+            <p className="text-gray-500 dark:text-gray-400 text-sm">{t.newsletterDesc}</p>
+          </div>
+          {subscribeStatus === 'success' ? (
+            <p className="text-teal-600 dark:text-teal-400 font-medium">{t.subscribed}</p>
+          ) : (
+            <form onSubmit={handleSubscribe} className="flex gap-2">
+              <input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder={t.emailPlaceholder}
+                required
+                className="px-4 py-2 rounded-lg border border-gray-200 dark:border-slate-600 bg-white dark:bg-slate-700 text-gray-900 dark:text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-teal-500 text-sm w-48"
+              />
+              <button
+                type="submit"
+                disabled={subscribeStatus === 'loading'}
+                className="px-4 py-2 bg-teal-600 text-white font-medium rounded-lg hover:bg-teal-700 disabled:opacity-50 transition text-sm"
+              >
+                {subscribeStatus === 'loading' ? '...' : t.subscribe}
+              </button>
+            </form>
+          )}
+        </div>
+      </div>
+
       <div className="max-w-5xl mx-auto pt-8 border-t border-gray-100 dark:border-slate-800 flex flex-col sm:flex-row justify-between items-center gap-4">
         <p className="text-gray-500 dark:text-gray-400 text-sm">{t.copyright}</p>
         <div className="flex gap-4">
