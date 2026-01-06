@@ -20,6 +20,7 @@ export default function Header() {
       rent: 'Аренда',
       map: 'Карта',
       blog: 'Блог',
+      contacts: 'Контакты',
       favorites: 'Избранное',
       menu: 'Меню',
       cta: 'Рассчитать визу',
@@ -29,6 +30,7 @@ export default function Header() {
       rent: 'Rentals',
       map: 'Map',
       blog: 'Blog',
+      contacts: 'Contacts',
       favorites: 'Favorites',
       menu: 'Menu',
       cta: 'Calculate Visa',
@@ -38,6 +40,7 @@ export default function Header() {
       rent: 'Thuê nhà',
       map: 'Bản đồ',
       blog: 'Blog',
+      contacts: 'Liên hệ',
       favorites: 'Yêu thích',
       menu: 'Menu',
       cta: 'Tính toán Visa',
@@ -51,6 +54,7 @@ export default function Header() {
     { href: '/rent', label: t.rent, icon: '🏠' },
     { href: '/rent/map', label: t.map, icon: '🗺️' },
     { href: '/blog', label: t.blog, icon: '📖' },
+    { href: '/contacts', label: t.contacts, icon: '📞' },
   ]
 
   const isActive = (href: string) => {
